@@ -124,7 +124,7 @@
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/ssh.png">
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/9.png">
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/10.png">
-<meta property="og:updated_time" content="2017-10-19T02:24:23.639Z">
+<meta property="og:updated_time" content="2017-10-19T02:51:52.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
 <meta name="twitter:description" content="Hexo是一个快速、简洁且高效的博客框架">
@@ -268,16 +268,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-search">
-          <a href="/search" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
 
       
     </ul>
@@ -400,8 +390,7 @@
       
 
       
-        <blockquote><p>Hexo是一个快速、简洁且高效的博客框架<a id="more"></a>，<br>而Git是目前世界上最先进的分布式版本控制系统，<br>利用Github Page可以免费创建一个静态网站。<br>下面将介绍如何使用Hexo和Github，在win10环境下搭建一个静态的博客。</p>
-</blockquote>
+        <p>Hexo是一个快速、简洁且高效的博客框架<a id="more"></a>，<br>而Git是目前世界上最先进的分布式版本控制系统，<br>利用Github Page可以免费创建一个静态网站。<br>下面将介绍如何使用Hexo和Github，在win10环境下搭建一个静态的博客。</p>
 <h1 id="安装和配置Hexo及Github"><a href="#安装和配置Hexo及Github" class="headerlink" title="安装和配置Hexo及Github"></a>安装和配置Hexo及Github</h1><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>安装Hexo前需要安装一下：</p>
 <ul>
 <li><a href="https://nodejs.org/en/" target="_blank" rel="external">node.js</a></li>
@@ -453,6 +442,10 @@
 <p>执行hexo deploy 时会让输入github 的账号密码。</p>
 <h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>执行hexo deploy 时可能会报错ERROR Deployer not found: git 或者 ERROR Deployer not found: github</p>
 <p>解决方法： <code>npm install hexo-deployer-git –save</code></p>
+<ul>
+<li>注意：要在hexo目录下执行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">之后执行deploy 会让你运行下面这两条命令，</div><div class="line">  git config --global user.email &quot;you@example.com&quot;</div><div class="line">  git config --global user.name &quot;Your Name&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>然后再把本地有变化的文件提交到远端 重新执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean  清除缓存</div><div class="line">hexo generate	生成文件</div><div class="line">hexo deploy	 部署到github中</div></pre></td></tr></table></figure>
 <p>此时就已经ok了，等待hexo deploy执行完毕，就可以在浏览器输入“<a href="https://lyxhh.github.io/”" target="_blank" rel="external">https://lyxhh.github.io/”</a> 进行访问我们的hexo博客了。 </p>
@@ -585,7 +578,7 @@
                 alt="lyxhh" />
             
               <p class="site-author-name" itemprop="name">lyxhh</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
           </div>
 
           <nav class="site-state motion-element">
