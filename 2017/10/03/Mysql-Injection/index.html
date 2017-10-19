@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Mysql Injection," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.学习手工注入能更好的了解sql注入的原理而不会知其然而不知其所以然。">
+<meta name="keywords" content="Mysql Injection">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql Injection">
+<meta property="og:url" content="http://www.lxhsec.com/2017/10/03/Mysql-Injection/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="1.学习手工注入能更好的了解sql注入的原理而不会知其然而不知其所以然。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/access.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/database.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/table%20concat.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/column.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/data.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/%E5%8D%95%E5%BC%95%E5%8F%B7.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/read.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/1111.gif">
+<meta property="og:updated_time" content="2017-10-19T02:32:39.024Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql Injection">
+<meta name="twitter:description" content="1.学习手工注入能更好的了解sql注入的原理而不会知其然而不知其所以然。">
+<meta name="twitter:image" content="http://owrmua5nw.bkt.clouddn.com/access.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2017/10/03/Mysql-Injection/"/>
+
+
+
+
+
+  <title>Mysql Injection | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2017/10/03/Mysql-Injection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mysql Injection</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-03T20:50:13+08:00">
+                2017-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Sql-Injection/" itemprop="url" rel="index">
+                    <span itemprop="name">Sql Injection</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1.学习手工注入能更好的了解sql注入的原理而不会知其然而不知其所以然。<a id="more"></a><br>2.在waf横行的年代，如果你连手工注入都不懂，又何谈绕过waf进行注入呢。<br>3.工具是死的，</p>
+<h1 id="Mysql-Injection"><a href="#Mysql-Injection" class="headerlink" title="Mysql Injection"></a>Mysql Injection</h1><h2 id="sql注入的原理"><a href="#sql注入的原理" class="headerlink" title="sql注入的原理"></a>sql注入的原理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Web Application 数据传输中，接受变量传递的值未进行过滤导致直接带入数据库查询。</div></pre></td></tr></table></figure>
+<h2 id="sql注入对于渗透的作用"><a href="#sql注入对于渗透的作用" class="headerlink" title="sql注入对于渗透的作用"></a>sql注入对于渗透的作用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">根据权限的不用，所能执行的操作也不同，</div><div class="line">最基本的权限也可以获取数据(例如 网站数据库的账号密码等)</div></pre></td></tr></table></figure>
+<h2 id="sql注入特性"><a href="#sql注入特性" class="headerlink" title="sql注入特性"></a>sql注入特性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">攻击方法由数据库类型决定</div><div class="line">攻击结果由数据库类型决定</div></pre></td></tr></table></figure>
+<h2 id="sql注入的分为两大类"><a href="#sql注入的分为两大类" class="headerlink" title="sql注入的分为两大类"></a>sql注入的分为两大类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1.数字型 2.字符型</div><div class="line">很多诸如post，cookie，http头注入等只是提交的方式不同，本质还是属于这两大类。</div><div class="line">搜索型也属于字符型，而数字型和字符型最大的区别在于字符型注入要闭合单引号，而搜索型多闭合个%号即可。</div></pre></td></tr></table></figure>
+<h2 id="Mysql5-0及其以上版本的注入"><a href="#Mysql5-0及其以上版本的注入" class="headerlink" title="Mysql5.0及其以上版本的注入"></a>Mysql5.0及其以上版本的注入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">5.0以上的注入属于有根据的注入，</div><div class="line">5.0开始自带information_schemas</div><div class="line">本章将讲述5.0以上的注入。</div></pre></td></tr></table></figure>
+<p>Mysql的函数注入常用函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">version() 显示数据库版本</div><div class="line">user() 显示当前连接数据库的用户</div><div class="line">database()显示当前使用的数据库 等一些函数</div></pre></td></tr></table></figure></p>
+<p>mysql5.0以上的新特性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Information_schema.schemata 存储mysql下所有的数据库</div><div class="line">Information_schema.tables  存储mysql下所有的表名</div><div class="line">Information_schema.columns 存储mysql下所有的列名</div><div class="line">Table.schema 表名来自哪个数据库</div><div class="line">Column.name 列名</div><div class="line">Table.name  表名</div><div class="line">Schema.name 数据库名</div><div class="line">符号&quot;.&quot;代表下一级的意思代表下一级的意思</div></pre></td></tr></table></figure></p>
+<p>mysql数据库的层次<br><img src="http://owrmua5nw.bkt.clouddn.com/access.png" alt="databases"></p>
+<h2 id="mysql注入过程分析"><a href="#mysql注入过程分析" class="headerlink" title="mysql注入过程分析"></a>mysql注入过程分析</h2><p>如果连接mysql数据库的是root权限，那么则有权限查看其他数据库。<br><img src="http://owrmua5nw.bkt.clouddn.com/database.png" alt="database"><br>如果只爆出来一个 可以加上group_concat()函数</p>
+<p>猜表</p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/table%20concat.png" alt="tables"><br>test也可以16进制编码，编码不用单引号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/testsql.php?x=1 UNION SELECT group_concat(table_name),2,3,4,5,6,7,8 from information_schema.tables  where  table_schema=&apos;test&apos;</div><div class="line">意思是:</div><div class="line">获取所有的表名从储存mysql下所有的表中获取，条件是数据库名为test的，</div><div class="line">即从储存所有的表中取出属于test数据库的表。</div><div class="line">其他的类似理解，</div></pre></td></tr></table></figure></p>
+<p>猜列</p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/column.png" alt="columns"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/testsql.php?x=1 UNION SELECT group_concat(column_name),2,3,4,5,6,7,8 from information_schema.columns where table_name=&apos;manage&apos;</div></pre></td></tr></table></figure></p>
+<p>猜数据</p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/data.png" alt="data"></p>
+<h2 id="如何防止sql注入。"><a href="#如何防止sql注入。" class="headerlink" title="如何防止sql注入。"></a>如何防止sql注入。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">既然我们知道了sql注入是由于参数未进行过滤而直接带入数据库查询而产生的，</div><div class="line">那么防御也就是把非法参数过滤，那么怎么过滤呢</div></pre></td></tr></table></figure>
+<h3 id="数字型的过滤"><a href="#数字型的过滤" class="headerlink" title="数字型的过滤"></a>数字型的过滤</h3><p> 判断接受的参数是否为数字，如果是则继续执行，如果不是则用JavaScript弹窗提示非法字符即可。</p>
+<h3 id="字符型过滤"><a href="#字符型过滤" class="headerlink" title="字符型过滤"></a>字符型过滤</h3><p> 可以使用正则过滤，如果遇到’单引号 “双引号 \反斜线 空字符等 则替换为空，原则上只要我们让攻击者的sql语句不能闭合我们的单引号即可。</p>
+<h2 id="Mysql注入的高级应用。"><a href="#Mysql注入的高级应用。" class="headerlink" title="Mysql注入的高级应用。"></a>Mysql注入的高级应用。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">前提条件是需要root权限,以及魔术引号关闭的状态。</div><div class="line">root权限支持读和写，那我们利用的前提是知道网站的绝对路径。</div></pre></td></tr></table></figure>
+<h3 id="如何获得网站的绝对路径"><a href="#如何获得网站的绝对路径" class="headerlink" title="如何获得网站的绝对路径"></a>如何获得网站的绝对路径</h3><p>1.报错显示，即 使网页报错，比如常见的单引号报错等，<br><img src="http://owrmua5nw.bkt.clouddn.com/%E5%8D%95%E5%BC%95%E5%8F%B7.png" alt="error"><br>2.读取Apache,iis等平台配置文件<br>3.读取脚本语言配置文件，例如php.ini<br>4.根据同服的其他站点的报错显示进行猜测。<br>5.探针文件，如phpinfo。<br>6.编辑器错误日志。<br>7.google hack<br>等其他方法。</p>
+<h3 id="利用Mysql-root权限进行读文件"><a href="#利用Mysql-root权限进行读文件" class="headerlink" title="利用Mysql root权限进行读文件"></a>利用Mysql root权限进行读文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">load_file()函数进行读取。</div><div class="line">这里要注意文件的路径要么</div><div class="line">一个/斜杠 </div><div class="line">要么两个\\反斜杠,</div><div class="line">一个\斜杠会被转义，</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/read.png" alt="read"></p>
+<h3 id="root权限写文件"><a href="#root权限写文件" class="headerlink" title="root权限写文件"></a><a href="#root权限写文件" title="root权限写文件"></a>root权限写文件</h3><p><img src="http://owrmua5nw.bkt.clouddn.com/1111.gif" alt="write"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">既然我们可以写文字进去，那么我们是不是也可以把我们的一句话写进去呢？</div><div class="line">注意：</div><div class="line">1.可编码写入，编码不用单引号，写入的文本用Hex编码，</div><div class="line">2.写入的绝对路径用Url编码，注意带上单引号进行编码。</div><div class="line">2.写入文件的函数不只into dumpfile 还可以用 into outfile写 用法相同，</div></pre></td></tr></table></figure></p>
+<p>个人理解，仅供参考。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2017/10/03/Mysql-Injection/" title="Mysql Injection">http://www.lxhsec.com/2017/10/03/Mysql-Injection/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql-Injection/" rel="tag"><i class="fa fa-tag"></i>Mysql Injection</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/24/Hexo/" rel="next" title="Hexo">
+                <i class="fa fa-chevron-left"></i> Hexo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/08/Mysql-blind-Injection/" rel="prev" title="Mysql Blind Injection">
+                Mysql Blind Injection <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql-Injection"><span class="nav-number">1.</span> <span class="nav-text">Mysql Injection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sql注入的原理"><span class="nav-number">1.1.</span> <span class="nav-text">sql注入的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql注入对于渗透的作用"><span class="nav-number">1.2.</span> <span class="nav-text">sql注入对于渗透的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql注入特性"><span class="nav-number">1.3.</span> <span class="nav-text">sql注入特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql注入的分为两大类"><span class="nav-number">1.4.</span> <span class="nav-text">sql注入的分为两大类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mysql5-0及其以上版本的注入"><span class="nav-number">1.5.</span> <span class="nav-text">Mysql5.0及其以上版本的注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql注入过程分析"><span class="nav-number">1.6.</span> <span class="nav-text">mysql注入过程分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何防止sql注入。"><span class="nav-number">1.7.</span> <span class="nav-text">如何防止sql注入。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数字型的过滤"><span class="nav-number">1.7.1.</span> <span class="nav-text">数字型的过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符型过滤"><span class="nav-number">1.7.2.</span> <span class="nav-text">字符型过滤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mysql注入的高级应用。"><span class="nav-number">1.8.</span> <span class="nav-text">Mysql注入的高级应用。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何获得网站的绝对路径"><span class="nav-number">1.8.1.</span> <span class="nav-text">如何获得网站的绝对路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用Mysql-root权限进行读文件"><span class="nav-number">1.8.2.</span> <span class="nav-text">利用Mysql root权限进行读文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root权限写文件"><span class="nav-number">1.8.3.</span> <span class="nav-text">root权限写文件</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
