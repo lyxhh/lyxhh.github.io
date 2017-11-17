@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="python正则表达式的简单使用">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python正则表达式">
+<meta property="og:url" content="http://www.lxhsec.com/2017/11/13/re/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="python正则表达式的简单使用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/matchseach.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/re1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/repot.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/rexied.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/res.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/rew.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/rekuohao.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/re2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/renumber.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/redakuohao.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/re3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/restartend.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/rexiegangb.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/re4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/reor.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/group1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/renum.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/reyinyong.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/rexier.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/findalliter.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/subsplit.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/tanlan.png">
+<meta property="og:updated_time" content="2017-11-17T13:53:10.668Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python正则表达式">
+<meta name="twitter:description" content="python正则表达式的简单使用">
+<meta name="twitter:image" content="http://owrmua5nw.bkt.clouddn.com/matchseach.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2017/11/13/re/"/>
+
+
+
+
+
+  <title>python正则表达式 | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2017/11/13/re/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python正则表达式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-13T10:17:19+08:00">
+                2017-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>python正则表达式的简单使用<a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">正则表达式使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。</div></pre></td></tr></table></figure>
+<h2 id="re"><a href="#re" class="headerlink" title="re"></a>re</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">在Python中需要通过正则表达式对字符串进行匹配的时候，</div><div class="line">可以使用re模块</div><div class="line"></div><div class="line">re.match  尝试在字符串的开头应用该模式， </div><div class="line">	   能够匹配出以xxx开头的字符串</div><div class="line"></div><div class="line">re.search  扫描字符串，寻找符合正则的，</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/matchseach.png" alt="matchseach"></p>
+<h2 id="表示字符"><a href="#表示字符" class="headerlink" title="表示字符"></a>表示字符</h2><p><img src="http://owrmua5nw.bkt.clouddn.com/re1.png" alt="re1"></p>
+<ul>
+<li><p>.<br><img src="http://owrmua5nw.bkt.clouddn.com/repot.png" alt="repot"></p>
+</li>
+<li><p>\d,\D<br><img src="http://owrmua5nw.bkt.clouddn.com/rexied.png" alt="rexied"></p>
+</li>
+<li><p>\s,\S<br><img src="http://owrmua5nw.bkt.clouddn.com/res.png" alt="res"></p>
+</li>
+<li><p>\w,\W<br><img src="http://owrmua5nw.bkt.clouddn.com/rew.png" alt="rew"></p>
+</li>
+<li><p>[]<br><img src="http://owrmua5nw.bkt.clouddn.com/rekuohao.png" alt="rekuohao"></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">\d == [0-9]  0-9 ==  0到9 a-z  == a到z</div><div class="line">\D == [^0-9]</div><div class="line">\w == [a-zA-Z0-9_]</div><div class="line">\W == [^a-zA-Z0-9_]</div><div class="line"></div><div class="line">在python正则表达式中，我们可以用反斜杠\来取消正则表达式中的特殊字符的解析，</div><div class="line">例如我们想匹配点。 我们可以用\. 来匹配</div></pre></td></tr></table></figure>
+<h2 id="表示数量"><a href="#表示数量" class="headerlink" title="表示数量"></a>表示数量</h2><p><img src="http://owrmua5nw.bkt.clouddn.com/re2.png" alt="re2"></p>
+<ul>
+<li><p>‘*’,’?’,’+’<br><img src="http://owrmua5nw.bkt.clouddn.com/renumber.png" alt="renumber"></p>
+</li>
+<li><p>{}<br><img src="http://owrmua5nw.bkt.clouddn.com/redakuohao.png" alt="redakuohao"></p>
+</li>
+</ul>
+<h2 id="表示边界"><a href="#表示边界" class="headerlink" title="表示边界"></a>表示边界</h2><p><img src="http://owrmua5nw.bkt.clouddn.com/re3.png" alt="re3"></p>
+<ul>
+<li><p>‘^’,’$’<br><img src="http://owrmua5nw.bkt.clouddn.com/restartend.png" alt="restartend"></p>
+</li>
+<li><p>‘\b’,’\B’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">单词边界，这是一个只匹配单词的开始和结尾的零宽断言。</div><div class="line">“单词”定义为一个字母数字的序列，所以单词的结束指的是空格或者非字母数字的字符。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/rexiegangb.png" alt="rexiegangb"></p>
+<h2 id="匹配分组"><a href="#匹配分组" class="headerlink" title="匹配分组"></a>匹配分组</h2><p><img src="http://owrmua5nw.bkt.clouddn.com/re4.png" alt="re4"></p>
+<ul>
+<li><p>“|”<br><img src="http://owrmua5nw.bkt.clouddn.com/reor.png" alt="reor"></p>
+</li>
+<li><p>“()”<br><img src="http://owrmua5nw.bkt.clouddn.com/group1.png" alt="group1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">group() 返回匹配的字符串</div><div class="line">start() 返回匹配的开始位置</div><div class="line">end()   返回匹配的结束位子</div><div class="line">span()  返回一个元祖表示匹配位置(开始，结束)</div></pre></td></tr></table></figure>
+</li>
+<li><p>“\number”<br><img src="http://owrmua5nw.bkt.clouddn.com/renum.png" alt="renum"></p>
+</li>
+<li><p>“(?P<name>)” 取别名,”(?P=name)” 引用别名<br><img src="http://owrmua5nw.bkt.clouddn.com/reyinyong.png" alt="reyinyong"></name></p>
+</li>
+</ul>
+<h2 id="原始字符串"><a href="#原始字符串" class="headerlink" title="原始字符串"></a>原始字符串</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">与大多数编程语言相同，正则表达式里使用&quot;\&quot;作为转义字符</div><div class="line">即</div><div class="line">\\ 转义成 \ </div><div class="line">\\\\ 转义成 \\</div><div class="line">Python中字符串前面加上 r 表示原生字符串，</div><div class="line"></div><div class="line">Python里的原生字符串很好地解决了这个问题，</div><div class="line">有了原始字符串，你再也不用担心是不是漏写了反斜杠，写出来的表达式也更直观。</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/rexier.png" alt="rexier"></p>
+<h2 id="re模块的其他函数"><a href="#re模块的其他函数" class="headerlink" title="re模块的其他函数"></a>re模块的其他函数</h2><ul>
+<li>findall,finditer<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">findall 遍历字符串，找到正则表达式匹配的所有位置，并以列表的形式返回</div><div class="line"></div><div class="line">finditer 遍历字符串，找到正则表达式匹配的所有位置，并以迭代器的形式返回</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/findalliter.png" alt="findalliter"></p>
+<ul>
+<li><p>sub(替换成这个，匹配这个内容[,count=0])</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">找到所有匹配的子字符串，并替换为新的内容</div><div class="line">count 指定最多替换的次数，必须是一个非负值。</div><div class="line">默认值是 0，意思是替换所有找到的匹配。</div></pre></td></tr></table></figure>
+</li>
+<li><p>split([,maxsplit=0])</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">在正则表达式匹配的地方进行分割，并返回一个列表</div><div class="line">maxsplit  参数来设置分割的数量。</div><div class="line">如果maxsplit的值是非 0，</div><div class="line">表示至多有 maxsplit 个分割会被处理，剩下的内容作为列表的最后一个元素返回。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/subsplit.png" alt="subsplit"></p>
+<h2 id="贪婪和非贪婪"><a href="#贪婪和非贪婪" class="headerlink" title="贪婪和非贪婪"></a>贪婪和非贪婪</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Python里数量词</div><div class="line"></div><div class="line">默认是贪婪的 总是尝试匹配尽可能多的字符；</div><div class="line"></div><div class="line">非贪婪 总是尝试匹配尽可能少的字符。</div><div class="line"></div><div class="line">在&quot;*&quot;,&quot;?&quot;,&quot;+&quot;,&quot;&#123;m,n&#125;&quot;后面加上？，使贪婪变成非贪婪。</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/tanlan.png" alt="tanlan"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">我们可以看到在贪婪模式下，re必须从字符串的尾部一个字符一个字符回溯，直到找到第一个匹配的。</div><div class="line"></div><div class="line">在找ip中 re从尾部回溯，\d+ 我们只需要给1个即可满足匹配条件，因此。匹配到2.168.1.1</div><div class="line"></div><div class="line">在找标签中，从尾部回溯找第一个&gt;,结果找到了&lt;title&gt;的&gt;,</div><div class="line">而不是&lt;html&gt;的&gt;,当非贪婪时，从头部开始找第一个&gt;,也就找到了&lt;html&gt;的&gt;</div><div class="line"></div><div class="line"></div><div class="line">注意，使用正则表达式分析 HTML 和 XML 是很痛苦的。</div><div class="line">当你编写一个正则表达式去处理所有可能的情况时，你会发现 HTML 和 XML 总会打破你的“规则”，</div><div class="line">这让你很头疼......像这样的话，</div><div class="line">建议使用 HTML 和 XML 解析器来处理更合适。</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2017/11/13/re/" title="python正则表达式">http://www.lxhsec.com/2017/11/13/re/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i>python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/10/burp/" rel="next" title="BurpSuite">
+                <i class="fa fa-chevron-left"></i> BurpSuite
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#re"><span class="nav-number">1.</span> <span class="nav-text">re</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表示字符"><span class="nav-number">2.</span> <span class="nav-text">表示字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表示数量"><span class="nav-number">3.</span> <span class="nav-text">表示数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表示边界"><span class="nav-number">4.</span> <span class="nav-text">表示边界</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配分组"><span class="nav-number">5.</span> <span class="nav-text">匹配分组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原始字符串"><span class="nav-number">6.</span> <span class="nav-text">原始字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re模块的其他函数"><span class="nav-number">7.</span> <span class="nav-text">re模块的其他函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贪婪和非贪婪"><span class="nav-number">8.</span> <span class="nav-text">贪婪和非贪婪</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
