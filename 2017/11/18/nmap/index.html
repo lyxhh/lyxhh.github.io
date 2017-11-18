@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="tools," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Nmap是一个用于网络探索和安全审计的开源工具。">
+<meta name="keywords" content="tools">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nmap">
+<meta property="og:url" content="http://www.lxhsec.com/2017/11/18/nmap/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="Nmap是一个用于网络探索和安全审计的开源工具。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/nmaparp.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/nmaparp2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/host.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/host1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/syn.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/tcp.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/id.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/openid.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/idclosed.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/idfilter.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/sa.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/tcpudp.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/sv.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/sv1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/script.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/source.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/fenpian.png">
+<meta property="og:updated_time" content="2017-11-18T10:47:20.582Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nmap">
+<meta name="twitter:description" content="Nmap是一个用于网络探索和安全审计的开源工具。">
+<meta name="twitter:image" content="http://owrmua5nw.bkt.clouddn.com/nmaparp.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2017/11/18/nmap/"/>
+
+
+
+
+
+  <title>Nmap | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2017/11/18/nmap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Nmap</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-18T09:27:35+08:00">
+                2017-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Nmap是一个用于网络探索和安全审计的开源工具。<a id="more"></a></p>
+<h1 id="Nmap扫描的4种基本技术"><a href="#Nmap扫描的4种基本技术" class="headerlink" title="Nmap扫描的4种基本技术"></a>Nmap扫描的4种基本技术</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Network Mapping    网络映射</div><div class="line"></div><div class="line">Port Scanning     端口扫描</div><div class="line"></div><div class="line">Service and Version Detection   服务与版本信息探测</div><div class="line"></div><div class="line">OS Detection  操作系统探测</div><div class="line"></div><div class="line">传输层管理逻辑地址（ports），ports类似于一栋大楼的房间号。决定了数据的具体去向</div><div class="line"></div><div class="line">传输层在两个machines间建立连接</div><div class="line">会话层在两个process间建立连接</div><div class="line"></div><div class="line"></div><div class="line">port决定了incoming的数据属于哪个运用程序</div></pre></td></tr></table></figure>
+<ul>
+<li>几个debug相关参数<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-v </div><div class="line"></div><div class="line">-d</div><div class="line"></div><div class="line">-p </div><div class="line"></div><div class="line">可重复，例如namp -sV -n --reason -v -v 127.0.0.1</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Host-Discovery"><a href="#Host-Discovery" class="headerlink" title="Host Discovery"></a>Host Discovery</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">任何网络侦察任务的开始都是将一系列IP范围缩小到一个活跃或感兴趣的主机列表中</div><div class="line"></div><div class="line">这里要说明一下，</div><div class="line">当使用nmap探测的目标是同一网段时，</div><div class="line">无论是探测端口，操作系统，服务，主机，</div><div class="line">nmap首选都是发送arp请求的，因为在同网段中它几乎总是更快，更有效，</div><div class="line">除非 --disable-arp-ping或--send-ip指定</div><div class="line"></div><div class="line">在下图中我们没有给出扫描的参数</div><div class="line">那么Nmap默认会发送</div><div class="line">一个ICMP回应请求，</div><div class="line">一个TCP SYN数据包到端口443，</div><div class="line">一个TCP ACK数据包到端口80</div><div class="line">和一个ICMP时间戳请求。</div><div class="line">这些默认值等同于-PE -PS443 -PA80 -PP选项。</div><div class="line"></div><div class="line">-n 不要做反向dns解析，缩短扫描时间。</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/nmaparp.png" alt="nmaparp"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/nmaparp2.png" alt="nmaparp2"></p>
+<h3 id="主机发现技术类型"><a href="#主机发现技术类型" class="headerlink" title="主机发现技术类型"></a>主机发现技术类型</h3><ul>
+<li>指定目的主机的三种方式<br><img src="http://owrmua5nw.bkt.clouddn.com/host.png" alt="host"></li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/host1.png" alt="host1"></p>
+<ul>
+<li><p>ICMP ECHO Request</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ping扫描</div></pre></td></tr></table></figure>
+</li>
+<li><p>ICMP Timestamp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ICMP 时间戳请求，如果目标存在，将返回当前时间</div></pre></td></tr></table></figure>
+</li>
+<li><p>ICMP Address Mask Request</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">icmp请求地址掩码，如果目标存在，将返回它的子网掩码</div></pre></td></tr></table></figure>
+</li>
+<li><p>TCP ping</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">发送一个TCP SYN or TCP ACK包去探测目的ip，还还需要提供指定的端口数量，例如 21，25，or 80.</div><div class="line"></div><div class="line">响应的结果，决定于发送的包，目的OS，防火墙或者ACL</div></pre></td></tr></table></figure>
+</li>
+<li><p>UDP ping</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">发送一个UDP数据包和一个指定的UDP端口去探测目标地址。</div><div class="line">如果目标地址是存在的，但是port是关闭的，那么目标系统</div><div class="line">会发送回来一个icmp 端口不可达，然而由于udp的无连接性质，</div><div class="line">UDP扫描没有回应，也有可能端口是打开的</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Nmap主机发现的一些参数"><a href="#Nmap主机发现的一些参数" class="headerlink" title="Nmap主机发现的一些参数"></a>Nmap主机发现的一些参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-sn （禁止端口扫描） </div><div class="line"></div><div class="line">ping扫描，但比ping广播地址更可靠，因为许多主机不回复广播查询。该选项告诉Nmap不要在主机发现后执行端口扫描</div><div class="line"></div><div class="line">-Pn (不能ping 跳过主机发现)</div><div class="line"></div><div class="line">当我们明确的知道了主机的存活，可以使用-Pn,跳过主机发现，减少扫描时间，</div><div class="line"></div><div class="line">-PU &lt;port list&gt; （UDP Ping）</div><div class="line">如果没有指定端口，则默认为40125</div><div class="line"></div><div class="line"></div><div class="line">--traceroute （跟踪主机的路径）</div><div class="line">Nmap的跟踪路由以高TTL开始，然后递减TTL直到达到零。</div><div class="line">可以用来初步判断一下cnd的真实ip，看最后一跳的地址。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-PS &lt;port list&gt; （TCP SYN Ping）syn扫描</div><div class="line">默认的目标端口是80</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/syn.png" alt="syn"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-PA &lt;port list&gt; (TCP ACK Ping)tcp扫描</div><div class="line">默认的目标端口是80</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/tcp.png" alt="tcp"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tcp 与syn扫描的区别：</div><div class="line">tcp是建立连接的扫描。会被目标主机记录log日志，</div><div class="line">而syn扫描没有建立连接，不易被主机log，但是容易被IPS发现</div><div class="line"></div><div class="line">-PS和-PA的配合能够发现状态和非状态防火墙。</div></pre></td></tr></table></figure>
+<h2 id="Port-and-Service-Scanning"><a href="#Port-and-Service-Scanning" class="headerlink" title="Port and Service Scanning"></a>Port and Service Scanning</h2><p>端口扫描技术</p>
+<ul>
+<li><p>Connect scan</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">建立tcp连接的扫描，原理跟上面的tcp连接图相似</div></pre></td></tr></table></figure>
+</li>
+<li><p>Half-open scan</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">半开式扫描，即syn扫描</div></pre></td></tr></table></figure>
+</li>
+<li><p>stealth scan</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">使用不同的flag设置不同的stealth scan</div><div class="line">例如：FIN，NULL和Xmas扫描</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Nmap的6种端口状态"><a href="#Nmap的6种端口状态" class="headerlink" title="Nmap的6种端口状态"></a>Nmap的6种端口状态</h3><ul>
+<li>open - 打开 </li>
+<li>closed - 关闭</li>
+<li>filtered - 回应被过滤</li>
+<li>Unfiltered - ack scan,open and closed 回应都是RST</li>
+<li>open|filtered 开放的UDP端口不回应，或者回应的icmp被过滤。(UDP,IP PROTO,FIN,NULL,Xmas scans)</li>
+<li>closed|filtered （ip idle scan only 利用ID 位进行扫描）<br><img src="http://owrmua5nw.bkt.clouddn.com/id.png" alt="id"></li>
+</ul>
+<h3 id="idle-scan-最终的隐形扫描"><a href="#idle-scan-最终的隐形扫描" class="headerlink" title="idle scan 最终的隐形扫描"></a>idle scan 最终的隐形扫描</h3><p>根据id的大小来判断端口的开放情况，<br><a href="https://nmap.org/book/idlescan.html" target="_blank" rel="external">idle scan参考文档</a><br><img src="http://owrmua5nw.bkt.clouddn.com/openid.png" alt="openid"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/idclosed.png" alt="idclosed"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/idfilter.png" alt="idfilter"></p>
+<h3 id="Nmap端口扫描的一些参数"><a href="#Nmap端口扫描的一些参数" class="headerlink" title="Nmap端口扫描的一些参数"></a>Nmap端口扫描的一些参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">-p &lt;port ranges&gt; （只扫描指定的端口）</div><div class="line">可以通过T:TCP 端口号，U:UDP 端口号， S:SCTP 端口号或P:IP协议端口号来指定特定的协议</div><div class="line"></div><div class="line">nmap -p -100 192.168.1.1 扫描 1到100端口</div><div class="line">nmap -p 100- 192.168.1.1 扫描100到65535</div><div class="line">nmap -p- 192.168.1.1   扫描所有端口</div><div class="line"></div><div class="line">-sS （TCP SYN扫描）半开扫描</div><div class="line"></div><div class="line">nmap发送一个SYN数据包，然后等待响应。</div><div class="line">SYN / ACK指示端口正在侦听（打开），</div><div class="line">而RST（重置）指示 非侦听器。</div><div class="line">如果在多次重传后没有收到响应，端口将被标记为已过滤。</div><div class="line">如果接收到ICMP不可达错误（类型3，代码0,1,2,3,9,10或13），则该端口也被标记为过滤</div><div class="line"></div><div class="line">-sT （TCP连接扫描）</div><div class="line">会在目标主机log日志出现一连串的连接尝试</div><div class="line"></div><div class="line">-sU （UDP扫描）</div><div class="line"></div><div class="line">一个服务会以一个UDP数据包作为回应，证明它是open。</div><div class="line">如果重传后没有收到回应，则该端口被分类为open|filtered。</div><div class="line">这意味着端口可能是开放的，或者数据包过滤器阻塞了通信。</div><div class="line">版本检测（-sV）可以用来帮助区分真正开放的端口和过滤的端口。</div><div class="line"></div><div class="line">-sA （TCP ACK扫描）</div><div class="line">它用于绘制防火墙规则集，确定它们是否是有状态的以及哪些端口被过滤。</div><div class="line"></div><div class="line">当扫描未经过滤系统， open以及closed端口都将返回一个RST包。Nmap中作为 unfiltered，</div><div class="line">这意味着它们可以连ACK包，但端口是open还是closed不确定。</div><div class="line"></div><div class="line">没有响应的端口或发送特定的ICMP错误消息被标记filtered。</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/sa.png" alt="sa"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/tcpudp.png" alt="tcpudp"></p>
+<h2 id="Service-and-Version-Detection"><a href="#Service-and-Version-Detection" class="headerlink" title="Service and Version Detection"></a>Service and Version Detection</h2><p>服务和版本检测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-sV （版本检测）</div><div class="line"></div><div class="line">--version-intensity &lt;intensity&gt; （设置版本扫描强度)</div><div class="line"></div><div class="line">数字越高，服务被正确识别的可能性就越大。</div><div class="line">但是，高强度扫描需要更长的时间。</div><div class="line">强度必须在0到9之间。 默认值是7</div><div class="line"></div><div class="line">--version-all （尝试每一个探针）</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:\Users\lxhsec&gt;nmap -n  -v -sS 192.168.1.1</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/sv.png" alt="sv"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">C:\Users\lxhsec&gt;nmap -n  -v -sS -sV 192.168.1.1</div><div class="line">当识别不出的时候可以尝试加大探针强度。</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/sv1.png" alt="sv1"></p>
+<h2 id="OS-Detection"><a href="#OS-Detection" class="headerlink" title="OS Detection"></a>OS Detection</h2><p>操作系统探测<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-O （启用操作系统检测）</div><div class="line"></div><div class="line">--osscan-guess; --fuzzy（当检测不出准确的操作系统时，可以用这个参数让nmap猜测操作系统）</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-A 可以检测操作系统，版本服务，脚本检测，默认端口扫描，路由追踪</div></pre></td></tr></table></figure>
+<h2 id="Nmap-Scripting-Engine-NSE"><a href="#Nmap-Scripting-Engine-NSE" class="headerlink" title="Nmap Scripting Engine (NSE)"></a>Nmap Scripting Engine (NSE)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Nmap脚本引擎（NSE）是Nmap最强大，最灵活的功能之一</div><div class="line">Lua编程语言编写namp插件</div><div class="line"></div><div class="line">-sC</div><div class="line">使用默认的一组脚本执行脚本扫描。</div><div class="line"></div><div class="line">--script &lt;filename&gt; 指定脚本</div><div class="line"></div><div class="line">--script-help &lt;filename&gt;</div><div class="line"></div><div class="line">显示有关脚本的帮助。</div><div class="line">对于与给定规范相匹配的每个脚本，</div><div class="line">Nmap都会打印脚本名称，类别和描述</div><div class="line"></div><div class="line">--script-args &lt;n1&gt;=&lt;v1&gt;,&lt;n2&gt;=&#123;&lt;n3&gt;=&lt;v3&gt;&#125;</div><div class="line"></div><div class="line">为NSE脚本提供参数</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/script.png" alt="script"><br><a href="https://nmap.org/nsedoc/" target="_blank" rel="external">列出了每个脚本接受的参数</a></p>
+<p><a href="https://nmap.org/book/man-bypass-firewalls-ids.html" target="_blank" rel="external">Firewall/IDS Evasion and Spoofing</a></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/source.png" alt="source"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/fenpian.png" alt="fenpian"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">当然nmap还有许许多多的参数，这里我只是简单的介绍了一些。</div><div class="line">个人理解，仅供参考。</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2017/11/18/nmap/" title="Nmap">http://www.lxhsec.com/2017/11/18/nmap/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tools/" rel="tag"><i class="fa fa-tag"></i>tools</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/13/re/" rel="next" title="python正则表达式">
+                <i class="fa fa-chevron-left"></i> python正则表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nmap扫描的4种基本技术"><span class="nav-number">1.</span> <span class="nav-text">Nmap扫描的4种基本技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Host-Discovery"><span class="nav-number">1.1.</span> <span class="nav-text">Host Discovery</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主机发现技术类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">主机发现技术类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap主机发现的一些参数"><span class="nav-number">1.1.2.</span> <span class="nav-text">Nmap主机发现的一些参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Port-and-Service-Scanning"><span class="nav-number">1.2.</span> <span class="nav-text">Port and Service Scanning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap的6种端口状态"><span class="nav-number">1.2.1.</span> <span class="nav-text">Nmap的6种端口状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#idle-scan-最终的隐形扫描"><span class="nav-number">1.2.2.</span> <span class="nav-text">idle scan 最终的隐形扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap端口扫描的一些参数"><span class="nav-number">1.2.3.</span> <span class="nav-text">Nmap端口扫描的一些参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-and-Version-Detection"><span class="nav-number">1.3.</span> <span class="nav-text">Service and Version Detection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OS-Detection"><span class="nav-number">1.4.</span> <span class="nav-text">OS Detection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nmap-Scripting-Engine-NSE"><span class="nav-number">1.5.</span> <span class="nav-text">Nmap Scripting Engine (NSE)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
