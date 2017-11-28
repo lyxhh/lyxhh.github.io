@@ -107,15 +107,33 @@
 <meta property="og:site_name" content="lyxhh">
 <meta property="og:description" content="Redis 采用运行在 内存中的数据集工作方式">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/config1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/config2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/set1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/set2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/get1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/yunsuan.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/orther.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/key.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/hash.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/list1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/list2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/list3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/setlist1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/setlist2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/zset.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/dingyue1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/dingyue2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/dingyue3.png">
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/slave1.png">
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/slave2.png">
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/slave3.png">
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/slave4.png">
-<meta property="og:updated_time" content="2017-11-28T10:46:15.414Z">
+<meta property="og:updated_time" content="2017-11-28T11:11:24.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis">
 <meta name="twitter:description" content="Redis 采用运行在 内存中的数据集工作方式">
-<meta name="twitter:image" content="http://owrmua5nw.bkt.clouddn.com/slave1.png">
+<meta name="twitter:image" content="http://owrmua5nw.bkt.clouddn.com/config1.png">
 
 
 
@@ -379,125 +397,138 @@
       
         <p>Redis 采用运行在 内存中的数据集工作方式<a id="more"></a></p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a href="https://redis.io/" target="_blank" rel="external">redis官方网站</a>，推荐下载稳定版本(stable)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">1.解压</div><div class="line">tar zxvf redis-3.2.5.tar.gz</div><div class="line"></div><div class="line">2.进入解压后的redis目录</div><div class="line"></div><div class="line">3.生成</div><div class="line">sudo make</div><div class="line"></div><div class="line">4.测试</div><div class="line">sudo make test</div><div class="line"></div><div class="line">5.安装</div><div class="line">sudo make install </div><div class="line"></div><div class="line">运行服务端</div><div class="line">redis-server</div><div class="line"></div><div class="line">运行客户端</div><div class="line">redis-cli</div><div class="line"></div><div class="line">运行命令</div><div class="line">ping</div><div class="line"></div><div class="line">返回PONG</div><div class="line"></div><div class="line">切换数据库命令</div><div class="line">select 数据库名</div><div class="line"></div><div class="line">redis 默认16个数据库 从0~15.</div><div class="line"></div><div class="line">``` </div><div class="line"></div><div class="line">## 配置</div></pre></td></tr></table></figure>
-<p>redis.conf为配置文件,通常在redis的目录下</p>
-<p>绑定地址：如果需要远程访问，可将此行注释<br>bind 127.0.0.1</p>
-<p>端口，默认为6379<br>port 6379</p>
-<p>是否以守护进程运行<br>如果以守护进程运行，则不会在命令行阻塞，类似于服务</p>
-<p>如果以非守护进程运行，则当前终端被阻塞，无法使用<br>推荐改为yes，以守护进程运行<br>daemonize no|yes</p>
-<p>数据文件<br>dbfilename dump.rdb<br>默认储存在当前目录</p>
-<p>若以守护进程方式配置<br>需要以配置文件方式启动，</p>
-<p>推荐指定配置文件启动<br>sudo redis-server redis.conf绝对路径 </p>
-<p>停止redis服务</p>
-<p>ps ajx|grep redis</p>
-<p>sudo kill -9 redis的进程id</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">![config1](http://owrmua5nw.bkt.clouddn.com/config1.png)</div><div class="line"></div><div class="line">![config2](http://owrmua5nw.bkt.clouddn.com/config2.png)</div><div class="line"></div><div class="line"># 数据操作</div></pre></td></tr></table></figure>
-<p>redis是key-value的数据，因此每个数据都是一个键值对</p>
-<p>键的类型是字符串</p>
-<p>值的类型分为五种：</p>
-<p>字符串string   实际操作中一般字符串的操作就足够使用了。<br>哈希hash<br>列表list<br>集合set<br>有序集合zset<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">数据操作的全部命令[官方中文文档](http://redis.cn/commands.html)</div><div class="line"></div><div class="line">## String</div></pre></td></tr></table></figure></p>
-<p>string是redis最基本的类型</p>
-<p>最大能存储512MB数据</p>
-<p>string类型是二进制安全的，即可以为任何数据，比如数字、图片、序列化对象等</p>
-<p>在redis不要理解string类型为字符串，它不仅可以存字符串，还可以存图片的二进制序列化等序列化对象，</p>
-<p>它的唯一要求，最大只能存储512MB数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 设置 and 获取</div><div class="line"></div><div class="line">* 设置键值</div></pre></td></tr></table></figure></p>
-<p>set key value<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">![set1](http://owrmua5nw.bkt.clouddn.com/set1.png)</div><div class="line"></div><div class="line">* 设置键值及过期时间，以秒为单位</div></pre></td></tr></table></figure></p>
-<p>SETEX key time value<br>操作session时有用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">![set2](http://owrmua5nw.bkt.clouddn.com/set2.png)</div><div class="line"></div><div class="line">* 设置多个键值</div></pre></td></tr></table></figure></p>
-<p>MSET key value [key value …]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 根据键获取值</div></pre></td></tr></table></figure></p>
-<p>如果不存在此键则返回nil<br>GET key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 根据多个键获取多个值</div></pre></td></tr></table></figure></p>
-<p>MGET key [key …]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">![get1](http://owrmua5nw.bkt.clouddn.com/get1.png)</div><div class="line"></div><div class="line">### 运算</div></pre></td></tr></table></figure></p>
-<p>要求值必须是数字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 将key对应的value加1</div></pre></td></tr></table></figure></p>
-<p>INCR key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 将key对应的value加整数</div></pre></td></tr></table></figure></p>
-<p>INCRBY key increment<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 将key对应的value减1</div></pre></td></tr></table></figure></p>
-<p>DECR key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 将key对应的value减整数</div></pre></td></tr></table></figure></p>
-<p>DECRBY key decrement<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">![yunsuan](http://owrmua5nw.bkt.clouddn.com/yunsuan.png)</div><div class="line"></div><div class="line">### 其他</div><div class="line"></div><div class="line">* 追加值</div></pre></td></tr></table></figure></p>
-<p>APPEND key value<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 获取值长度</div></pre></td></tr></table></figure></p>
-<p>STRLEN key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">![orther](http://owrmua5nw.bkt.clouddn.com/orther.png)</div><div class="line"></div><div class="line">## 键命令</div><div class="line"></div><div class="line">* 查找键，参数支持正则,* 代表通配符</div></pre></td></tr></table></figure></p>
-<p>KEYS regular<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 判断键是否存在，如果存在返回1，不存在返回0</div></pre></td></tr></table></figure></p>
-<p>EXISTS key [key …]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* 查看键对应的值的类型</div></pre></td></tr></table></figure></p>
-<p>TYPE key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 删除键及对应的值，可删除多个</div></pre></td></tr></table></figure></p>
-<p>DEL key [key …]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 设置过期时间，以秒为单位</div></pre></td></tr></table></figure></p>
-<p>创建时没有设置过期时间，之后也可以设置。<br>创建时没有设置过期时间则一直存在，直到使用使用DEL移除</p>
-<p>EXPIRE key seconds<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 查看 离过期时间的还有多远，以秒为单位，到0时删除。</div></pre></td></tr></table></figure></p>
-<p>TTL key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">![key](http://owrmua5nw.bkt.clouddn.com/key.png)</div><div class="line"></div><div class="line">## hash</div></pre></td></tr></table></figure></p>
-<p>hash用于存储对象，对象的格式为键值对<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 设置单个属性</div></pre></td></tr></table></figure></p>
-<p>HSET key field value<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 设置多个属性</div></pre></td></tr></table></figure></p>
-<p>HMSET key field value [field value …]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 获取一个属性的值</div></pre></td></tr></table></figure></p>
-<p>HGET key field<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 获取多个属性的值</div></pre></td></tr></table></figure></p>
-<p>HMGET key field [field …]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 获取所有属性和值</div></pre></td></tr></table></figure></p>
-<p>HGETALL key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 获取所有的属性</div></pre></td></tr></table></figure></p>
-<p>HKEYS key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* 返回包含属性的个数</div></pre></td></tr></table></figure></p>
-<p>HLEN key</p>
-<ul>
-<li>获取所有值<br>HVALS key<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 判断属性是否存在</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">1.解压</div><div class="line">tar zxvf redis-3.2.5.tar.gz</div><div class="line"></div><div class="line">2.进入解压后的redis目录</div><div class="line"></div><div class="line">3.生成</div><div class="line">sudo make</div><div class="line"></div><div class="line">4.测试</div><div class="line">sudo make test</div><div class="line"></div><div class="line">5.安装</div><div class="line">sudo make install </div><div class="line"></div><div class="line">运行服务端</div><div class="line">redis-server</div><div class="line"></div><div class="line">运行客户端</div><div class="line">redis-cli</div><div class="line"></div><div class="line">运行命令</div><div class="line">ping</div><div class="line"></div><div class="line">返回PONG</div><div class="line"></div><div class="line">切换数据库命令</div><div class="line">select 数据库名</div><div class="line"></div><div class="line">redis 默认16个数据库 从0~15.</div></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">redis.conf为配置文件,通常在redis的目录下</div><div class="line"></div><div class="line">绑定地址：如果需要远程访问，可将此行注释</div><div class="line">bind 127.0.0.1</div><div class="line"></div><div class="line">端口，默认为6379</div><div class="line">port 6379</div><div class="line"></div><div class="line">是否以守护进程运行</div><div class="line">如果以守护进程运行，则不会在命令行阻塞，类似于服务</div><div class="line"></div><div class="line">如果以非守护进程运行，则当前终端被阻塞，无法使用</div><div class="line">推荐改为yes，以守护进程运行</div><div class="line">daemonize no|yes</div><div class="line"></div><div class="line">数据文件</div><div class="line">dbfilename dump.rdb</div><div class="line">默认储存在当前目录</div><div class="line"></div><div class="line">若以守护进程方式配置</div><div class="line">需要以配置文件方式启动，</div><div class="line"></div><div class="line">推荐指定配置文件启动</div><div class="line">sudo redis-server redis.conf绝对路径 </div><div class="line"></div><div class="line">停止redis服务</div><div class="line"></div><div class="line">ps ajx|grep redis</div><div class="line"></div><div class="line">sudo kill -9 redis的进程id</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/config1.png" alt="config1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/config2.png" alt="config2"></p>
+<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">redis是key-value的数据，因此每个数据都是一个键值对</div><div class="line"></div><div class="line">键的类型是字符串</div><div class="line"></div><div class="line">值的类型分为五种：</div><div class="line"></div><div class="line">字符串string   实际操作中一般字符串的操作就足够使用了。</div><div class="line">哈希hash</div><div class="line">列表list</div><div class="line">集合set</div><div class="line">有序集合zset</div></pre></td></tr></table></figure>
+<p>数据操作的全部命令<a href="http://redis.cn/commands.html" target="_blank" rel="external">官方中文文档</a></p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">string是redis最基本的类型</div><div class="line"></div><div class="line">最大能存储512MB数据</div><div class="line"></div><div class="line">string类型是二进制安全的，即可以为任何数据，比如数字、图片、序列化对象等</div><div class="line"></div><div class="line">在redis不要理解string类型为字符串，它不仅可以存字符串，还可以存图片的二进制序列化等序列化对象，</div><div class="line"></div><div class="line">它的唯一要求，最大只能存储512MB数据</div></pre></td></tr></table></figure>
+<h3 id="设置-and-获取"><a href="#设置-and-获取" class="headerlink" title="设置 and 获取"></a>设置 and 获取</h3><ul>
+<li>设置键值<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set key value</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>HEXISTS key field<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 删除属性及值</div></pre></td></tr></table></figure></p>
-<p>HDEL key field [field …]<br>可同时删除多个属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 返回值的字符串长度</div></pre></td></tr></table></figure></p>
-<p>HSTRLEN key field<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">![hash](http://owrmua5nw.bkt.clouddn.com/hash.png)</div><div class="line"></div><div class="line">## list</div></pre></td></tr></table></figure></p>
-<p>列表的元素类型为string</p>
-<p>按照插入顺序排序</p>
-<p>在列表的头部或者尾部添加元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 设置</div></pre></td></tr></table></figure></p>
-<p>LPUSH key value [value …]<br>在头部插入数据</p>
-<p>在尾部插入数据<br>RPUSH key value [value …]</p>
-<p>在一个元素的前|后插入新元素<br>LINSERT key BEFORE|AFTER pivot value</p>
-<p>LSET key index value<br>设置指定索引的元素值,即修改or插入</p>
-<p>索引是基于0的下标<br>索引可以是负数，表示偏移量是从list尾部开始计数，如-1表示列表的最后一个元素</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">![list1](http://owrmua5nw.bkt.clouddn.com/list1.png)</div><div class="line"></div><div class="line">![list2](http://owrmua5nw.bkt.clouddn.com/list2.png)</div><div class="line"></div><div class="line"></div><div class="line">### 获取</div></pre></td></tr></table></figure>
-<p>LPOP key<br>移除并且返回 key 对应的 list 的第一个元素</p>
-<p>RPOP key<br>移除并返回存于 key 的 list 的最后一个元素</p>
-<p>LRANGE key start stop</p>
-<p>返回存储在 key 的列表里指定范围内的元素<br>start 和 end 偏移量都是基于0的下标<br>偏移量也可以是负数，表示偏移量是从list尾部开始计数，如-1表示列表的最后一个元素</p>
-<p>其他</p>
-<p>LTRIM key start stop<br>裁剪列表，改为原集合的一个子集<br>start 和 end 偏移量都是基于0的下标<br>偏移量也可以是负数，表示偏移量是从list尾部开始计数，如-1表示列表的最后一个元素</p>
-<p>LLEN key<br>返回存储在 key 里的list的长度</p>
-<p>LINDEX key index<br>返回列表里索引对应的元素</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">![list3](http://owrmua5nw.bkt.clouddn.com/list3.png)</div><div class="line"></div><div class="line"></div><div class="line">## set</div></pre></td></tr></table></figure>
-<p>无序集合</p>
-<p>元素为string类型</p>
-<p>元素具有唯一性，不重复<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 设置&amp;获取</div></pre></td></tr></table></figure></p>
-<p>SADD key member [member …]<br>添加元素</p>
-<p>获取</p>
-<p>SMEMBERS key<br>返回key集合所有的元素</p>
-<p>SCARD key<br>返回集合元素个数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">![setlist1](http://owrmua5nw.bkt.clouddn.com/setlist1.png)</div><div class="line"></div><div class="line"></div><div class="line">### 其它</div></pre></td></tr></table></figure>
-<p>SINTER key [key …]<br>求多个集合的交集</p>
-<p>SDIFF key [key …]<br>求某集合与其它集合的差集</p>
-<p>SUNION key [key …]<br>求多个集合的合集</p>
-<p>SISMEMBER key member<br>判断元素是否在集合中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">![setlist2](http://owrmua5nw.bkt.clouddn.com/setlist2.png)</div><div class="line"></div><div class="line"></div><div class="line">## zset</div></pre></td></tr></table></figure>
-<p>sorted set，有序集合</p>
-<p>元素为string类型</p>
-<p>元素具有唯一性，不重复</p>
-<p>每个元素都会关联一个double类型的score，表示权重，通过权重将元素从小到大排序</p>
-<p>元素的score可以相同<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>ZADD key score member [score member …]<br>添加</p>
-<p>ZRANGE key start stop<br>返回指定范围内的元素</p>
-<p>ZCARD key<br>返回元素个数</p>
-<p>ZCOUNT key min max<br>返回有序集key中，score值在min和max之间成员的个数</p>
-<p>ZSCORE key member<br>返回有序集key中，成员member的score值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![zset](http://owrmua5nw.bkt.clouddn.com/zset.png)</div></pre></td></tr></table></figure>
-<p>list set zset 三者的区别<br>list的顺序是按照插入时的顺序排列，<br>set 是无序的<br>zset 是按照权重的大小进行排列。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"># 高级</div><div class="line"></div><div class="line">## 发布订阅</div></pre></td></tr></table></figure></p>
-<p>客户端发到频道的消息，将会被推送到所有订阅此频道的客户端</p>
-<p>客户端不需要主动去获取消息，只需要订阅频道，这个频道的内容就会被推送过来</p>
-<p>即不需要主动请求 完成数据的更新<br>个人理解 类似于微信公众号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 消息的格式</div></pre></td></tr></table></figure></p>
-<p>消息类型，包含三种类型</p>
-<p>subscribe，表示订阅成功</p>
-<p>unsubscribe，表示取消订阅成功</p>
-<p>message，表示其它终端发布消息</p>
-<p>当在Pub/Sub以外状态，客户端可以发出任何redis命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<p>SUBSCRIBE 频道名称 [频道名称 …]<br>订阅</p>
-<p>UNSUBSCRIBE 频道名称 [频道名称 …]<br>取消订阅<br>如果不写参数，表示取消所有订阅</p>
-<p>PUBLISH 频道 消息<br>发布</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">![dingyue1](http://owrmua5nw.bkt.clouddn.com/dingyue1.png)</div><div class="line"></div><div class="line">![dingyue2](http://owrmua5nw.bkt.clouddn.com/dingyue2.png)</div><div class="line"></div><div class="line">![dingyue3](http://owrmua5nw.bkt.clouddn.com/dingyue3.png)</div><div class="line"></div><div class="line"></div><div class="line">## 主从配置</div></pre></td></tr></table></figure>
-<p>一个master可以拥有多个slave，一个slave又可以拥有多个slave，如此下去，形成了强大的多级服务器集群架构</p>
-<p>比如，<br>将ip为192.168.189.154的机器作为主服务器，<br>将ip为192.168.189.141的机器作为从服务器</p>
-<p>设置主服务器的配置<br>bind 192.168.189.154<br>设置从服务器的配置<br>注意：在slaveof后面写主机ip，再写端口，而且端口必须写<br>bind 192.168.189.141<br>slaveof 192.168.189.154 6379</p>
-<p>在master和slave分别执行info命令，查看输出信息</p>
-<p>在master上写数据<br>set hello world</p>
-<p>在slave上读数据<br>get hello</p>
-<p>```<br><img src="http://owrmua5nw.bkt.clouddn.com/slave1.png" alt="slave1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/set1.png" alt="set1"></p>
+<ul>
+<li>设置键值及过期时间，以秒为单位 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SETEX key time value</div><div class="line">操作session时有用。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/set2.png" alt="set2"></p>
+<ul>
+<li><p>设置多个键值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MSET key value [key value ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据键获取值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果不存在此键则返回nil</div><div class="line">GET key</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据多个键获取多个值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MGET key [key ...]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/get1.png" alt="get1"></p>
+<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">要求值必须是数字</div></pre></td></tr></table></figure>
+<ul>
+<li><p>将key对应的value加1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INCR key</div></pre></td></tr></table></figure>
+</li>
+<li><p>将key对应的value加整数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INCRBY key increment</div></pre></td></tr></table></figure>
+</li>
+<li><p>将key对应的value减1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DECR key</div></pre></td></tr></table></figure>
+</li>
+<li><p>将key对应的value减整数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DECRBY key decrement</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/yunsuan.png" alt="yunsuan"></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li><p>追加值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">APPEND key value</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取值长度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">STRLEN key</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/orther.png" alt="orther"></p>
+<h2 id="键命令"><a href="#键命令" class="headerlink" title="键命令"></a>键命令</h2><ul>
+<li><p>查找键，参数支持正则,* 代表通配符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">KEYS regular</div></pre></td></tr></table></figure>
+</li>
+<li><p>判断键是否存在，如果存在返回1，不存在返回0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">EXISTS key [key ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看键对应的值的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TYPE key</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除键及对应的值，可删除多个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DEL key [key ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置过期时间，以秒为单位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">创建时没有设置过期时间，之后也可以设置。</div><div class="line">创建时没有设置过期时间则一直存在，直到使用使用DEL移除</div><div class="line"></div><div class="line">EXPIRE key seconds</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看 离过期时间的还有多远，以秒为单位，到0时删除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TTL key</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/key.png" alt="key"></p>
+<h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hash用于存储对象，对象的格式为键值对</div></pre></td></tr></table></figure>
+<ul>
+<li><p>设置单个属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HSET key field value</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置多个属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HMSET key field value [field value ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取一个属性的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HGET key field</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取多个属性的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HMGET key field [field ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取所有属性和值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HGETALL key</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取所有的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HKEYS key</div></pre></td></tr></table></figure>
+</li>
+<li><p>返回包含属性的个数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HLEN key</div><div class="line">* 获取所有值</div><div class="line">HVALS key</div></pre></td></tr></table></figure>
+</li>
+<li><p>判断属性是否存在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HEXISTS key field</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除属性及值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HDEL key field [field ...]</div><div class="line">可同时删除多个属性。</div></pre></td></tr></table></figure>
+</li>
+<li><p>返回值的字符串长度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HSTRLEN key field</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/hash.png" alt="hash"></p>
+<h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">列表的元素类型为string</div><div class="line"></div><div class="line">按照插入顺序排序</div><div class="line"></div><div class="line">在列表的头部或者尾部添加元素</div></pre></td></tr></table></figure>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">LPUSH key value [value ...]</div><div class="line">在头部插入数据</div><div class="line"></div><div class="line"></div><div class="line">在尾部插入数据</div><div class="line">RPUSH key value [value ...]</div><div class="line"></div><div class="line">在一个元素的前|后插入新元素</div><div class="line">LINSERT key BEFORE|AFTER pivot value</div><div class="line"></div><div class="line"></div><div class="line">LSET key index value</div><div class="line">设置指定索引的元素值,即修改or插入</div><div class="line"></div><div class="line">索引是基于0的下标</div><div class="line">索引可以是负数，表示偏移量是从list尾部开始计数，如-1表示列表的最后一个元素</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/list1.png" alt="list1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/list2.png" alt="list2"></p>
+<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">LPOP key</div><div class="line">移除并且返回 key 对应的 list 的第一个元素</div><div class="line"></div><div class="line">RPOP key</div><div class="line">移除并返回存于 key 的 list 的最后一个元素</div><div class="line"></div><div class="line">LRANGE key start stop</div><div class="line"></div><div class="line">返回存储在 key 的列表里指定范围内的元素</div><div class="line">start 和 end 偏移量都是基于0的下标</div><div class="line">偏移量也可以是负数，表示偏移量是从list尾部开始计数，如-1表示列表的最后一个元素</div><div class="line"></div><div class="line"></div><div class="line">其他</div><div class="line"></div><div class="line"></div><div class="line">LTRIM key start stop</div><div class="line">裁剪列表，改为原集合的一个子集</div><div class="line">start 和 end 偏移量都是基于0的下标</div><div class="line">偏移量也可以是负数，表示偏移量是从list尾部开始计数，如-1表示列表的最后一个元素</div><div class="line"></div><div class="line">LLEN key</div><div class="line">返回存储在 key 里的list的长度</div><div class="line"></div><div class="line">LINDEX key index</div><div class="line">返回列表里索引对应的元素</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/list3.png" alt="list3"></p>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">无序集合</div><div class="line"></div><div class="line">元素为string类型</div><div class="line"></div><div class="line">元素具有唯一性，不重复</div></pre></td></tr></table></figure>
+<h3 id="设置-amp-获取"><a href="#设置-amp-获取" class="headerlink" title="设置&amp;获取"></a>设置&amp;获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">SADD key member [member ...]</div><div class="line">添加元素</div><div class="line"></div><div class="line"></div><div class="line">获取</div><div class="line"></div><div class="line">SMEMBERS key</div><div class="line">返回key集合所有的元素</div><div class="line"></div><div class="line"></div><div class="line">SCARD key</div><div class="line">返回集合元素个数</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/setlist1.png" alt="setlist1"></p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">SINTER key [key ...]</div><div class="line">求多个集合的交集</div><div class="line"></div><div class="line">SDIFF key [key ...]</div><div class="line">求某集合与其它集合的差集</div><div class="line"></div><div class="line">SUNION key [key ...]</div><div class="line">求多个集合的合集</div><div class="line"></div><div class="line">SISMEMBER key member</div><div class="line">判断元素是否在集合中</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/setlist2.png" alt="setlist2"></p>
+<h2 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sorted set，有序集合</div><div class="line"></div><div class="line">元素为string类型</div><div class="line"></div><div class="line">元素具有唯一性，不重复</div><div class="line"></div><div class="line">每个元素都会关联一个double类型的score，表示权重，通过权重将元素从小到大排序</div><div class="line"></div><div class="line">元素的score可以相同</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">ZADD key score member [score member ...]</div><div class="line">添加</div><div class="line"></div><div class="line">ZRANGE key start stop</div><div class="line">返回指定范围内的元素</div><div class="line"></div><div class="line">ZCARD key</div><div class="line">返回元素个数</div><div class="line"></div><div class="line">ZCOUNT key min max</div><div class="line">返回有序集key中，score值在min和max之间成员的个数</div><div class="line"></div><div class="line">ZSCORE key member</div><div class="line">返回有序集key中，成员member的score值</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/zset.png" alt="zset"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">list set zset 三者的区别</div><div class="line">list的顺序是按照插入时的顺序排列，</div><div class="line">set 是无序的</div><div class="line">zset 是按照权重的大小进行排列。</div></pre></td></tr></table></figure>
+<h1 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h1><h2 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">客户端发到频道的消息，将会被推送到所有订阅此频道的客户端</div><div class="line"></div><div class="line">客户端不需要主动去获取消息，只需要订阅频道，这个频道的内容就会被推送过来</div><div class="line"></div><div class="line">即不需要主动请求 完成数据的更新</div><div class="line">个人理解 类似于微信公众号。</div></pre></td></tr></table></figure>
+<h3 id="消息的格式"><a href="#消息的格式" class="headerlink" title="消息的格式"></a>消息的格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">消息类型，包含三种类型</div><div class="line"></div><div class="line">subscribe，表示订阅成功</div><div class="line"></div><div class="line">unsubscribe，表示取消订阅成功</div><div class="line"></div><div class="line">message，表示其它终端发布消息</div><div class="line"></div><div class="line">当在Pub/Sub以外状态，客户端可以发出任何redis命令</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">SUBSCRIBE 频道名称 [频道名称 ...]</div><div class="line">订阅</div><div class="line"></div><div class="line">UNSUBSCRIBE 频道名称 [频道名称 ...]</div><div class="line">取消订阅</div><div class="line">如果不写参数，表示取消所有订阅</div><div class="line"></div><div class="line">PUBLISH 频道 消息</div><div class="line">发布</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/dingyue1.png" alt="dingyue1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/dingyue2.png" alt="dingyue2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/dingyue3.png" alt="dingyue3"></p>
+<h2 id="主从配置"><a href="#主从配置" class="headerlink" title="主从配置"></a>主从配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">一个master可以拥有多个slave，一个slave又可以拥有多个slave，如此下去，形成了强大的多级服务器集群架构</div><div class="line"></div><div class="line">比如，</div><div class="line">将ip为192.168.189.154的机器作为主服务器，</div><div class="line">将ip为192.168.189.141的机器作为从服务器</div><div class="line"></div><div class="line">设置主服务器的配置</div><div class="line">bind 192.168.189.154</div><div class="line">设置从服务器的配置</div><div class="line">注意：在slaveof后面写主机ip，再写端口，而且端口必须写</div><div class="line">bind 192.168.189.141</div><div class="line">slaveof 192.168.189.154 6379</div><div class="line"></div><div class="line">在master和slave分别执行info命令，查看输出信息</div><div class="line"></div><div class="line">在master上写数据</div><div class="line">set hello world</div><div class="line"></div><div class="line">在slave上读数据</div><div class="line">get hello</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/slave1.png" alt="slave1"></p>
 <p><img src="http://owrmua5nw.bkt.clouddn.com/slave2.png" alt="slave2"></p>
 <p><img src="http://owrmua5nw.bkt.clouddn.com/slave3.png" alt="slave3"></p>
 <p><img src="http://owrmua5nw.bkt.clouddn.com/slave4.png" alt="slave4"></p>
@@ -710,7 +741,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据操作"><span class="nav-number"></span> <span class="nav-text">数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-and-获取"><span class="nav-number">1.1.</span> <span class="nav-text">设置 and 获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算"><span class="nav-number">1.2.</span> <span class="nav-text">运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">1.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键命令"><span class="nav-number">2.</span> <span class="nav-text">键命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash"><span class="nav-number">3.</span> <span class="nav-text">hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-number">4.</span> <span class="nav-text">list</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置"><span class="nav-number">4.1.</span> <span class="nav-text">设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取"><span class="nav-number">4.2.</span> <span class="nav-text">获取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-number">5.</span> <span class="nav-text">set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-amp-获取"><span class="nav-number">5.1.</span> <span class="nav-text">设置&获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">5.2.</span> <span class="nav-text">其它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zset"><span class="nav-number">6.</span> <span class="nav-text">zset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级"><span class="nav-number"></span> <span class="nav-text">高级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#发布订阅"><span class="nav-number">1.</span> <span class="nav-text">发布订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息的格式"><span class="nav-number">1.1.</span> <span class="nav-text">消息的格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主从配置"><span class="nav-number">2.</span> <span class="nav-text">主从配置</span></a></li></ol></div>
             
 
           </div>
