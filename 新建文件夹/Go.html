@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Golang基础第一个程序 变量变量：程序运行期间，可以改变的量。语法：   var 变量名 类型，在Go语言中，变量声明了必须要使用。在同一个{}里，声明的变量名是唯一的。变量的存储位置是在栈区 匿名变量：_   ，相当于占位符,丢弃数据不进行处理。123_，j:=1,2j=2，1丢弃， 基础数据类型   类型 名称 长度 默认值 说明     bool 布尔类型 1 false 其值不为真即为">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GoGolang">
+<meta property="og:url" content="http://www.lxhsec.com/新建文件夹/Go.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="Golang基础第一个程序 变量变量：程序运行期间，可以改变的量。语法：   var 变量名 类型，在Go语言中，变量声明了必须要使用。在同一个{}里，声明的变量名是唯一的。变量的存储位置是在栈区 匿名变量：_   ，相当于占位符,丢弃数据不进行处理。123_，j:=1,2j=2，1丢弃， 基础数据类型   类型 名称 长度 默认值 说明     bool 布尔类型 1 false 其值不为真即为">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/新建文件夹/Go/GolangFirst.png">
+<meta property="og:image" content="http://www.lxhsec.com/新建文件夹/Go/VariableUse.png">
+<meta property="og:image" content="http://www.lxhsec.com/新建文件夹/Go/AutoVariable.png">
+<meta property="og:image" content="http://www.lxhsec.com/新建文件夹/Go/scan.png">
+<meta property="og:image" content="http://www.lxhsec.com/新建文件夹/Go/scan1.png">
+<meta property="og:image" content="http://www.lxhsec.com/新建文件夹/Go/scan2.png">
+<meta property="og:image" content="http://www.lxhsec.com/新建文件夹/Go/scan3.png">
+<meta property="og:image" content="http://www.lxhsec.com/新建文件夹/Go/slicepoint.png">
+<meta property="og:image" content="http://www.lxhsec.com/新建文件夹/Go/slicepoint1.png">
+<meta property="og:updated_time" content="2018-10-15T13:08:04.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GoGolang">
+<meta name="twitter:description" content="Golang基础第一个程序 变量变量：程序运行期间，可以改变的量。语法：   var 变量名 类型，在Go语言中，变量声明了必须要使用。在同一个{}里，声明的变量名是唯一的。变量的存储位置是在栈区 匿名变量：_   ，相当于占位符,丢弃数据不进行处理。123_，j:=1,2j=2，1丢弃， 基础数据类型   类型 名称 长度 默认值 说明     bool 布尔类型 1 false 其值不为真即为">
+<meta name="twitter:image" content="http://www.lxhsec.com/新建文件夹/Go/GolangFirst.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/新建文件夹/Go.html"/>
+
+
+
+
+
+  <title>GoGolang | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">GoGolang</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h1 id="Golang基础"><a href="#Golang基础" class="headerlink" title="Golang基础"></a>Golang基础</h1><h3 id="第一个程序"><a href="#第一个程序" class="headerlink" title="第一个程序"></a>第一个程序</h3><p><img src="/新建文件夹/Go/GolangFirst.png" alt="GolangFirst"></p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量：程序运行期间，可以改变的量。<br>语法：<br>   var 变量名 类型，在Go语言中，变量声明了必须要使用。<br>在同一个{}里，声明的变量名是唯一的。<br>变量的存储位置是在栈区</p>
+<p>匿名变量：_   ，相当于占位符,丢弃数据不进行处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">_，j:=1,2</div><div class="line">j=2，</div><div class="line">1丢弃，</div></pre></td></tr></table></figure></p>
+<h4 id="基础数据类型"><a href="#基础数据类型" class="headerlink" title="基础数据类型"></a>基础数据类型</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+<th>长度</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bool</td>
+<td>布尔类型</td>
+<td>1</td>
+<td>false</td>
+<td>其值不为真即为假，不可以用数字代表true或false</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>字节型</td>
+<td>1</td>
+<td>0</td>
+<td>uint8别名</td>
+</tr>
+<tr>
+<td>rune</td>
+<td>字符类型</td>
+<td>4</td>
+<td>0</td>
+<td>专用于存储unicode编码，等价于uint32</td>
+</tr>
+<tr>
+<td>int, uint</td>
+<td>整型</td>
+<td>4或8</td>
+<td>0</td>
+<td>有符号32位或无符号64位</td>
+</tr>
+<tr>
+<td>int8</td>
+<td>整型</td>
+<td>1</td>
+<td>0</td>
+<td>-128 ~ 127,</td>
+</tr>
+<tr>
+<td>uint8</td>
+<td>整型</td>
+<td>1</td>
+<td>0</td>
+<td>0 ~ 255</td>
+</tr>
+<tr>
+<td>int16</td>
+<td>整型</td>
+<td>2</td>
+<td>0</td>
+<td>-32768 ~ 32767,</td>
+</tr>
+<tr>
+<td>uint16</td>
+<td>整型</td>
+<td>2</td>
+<td>0</td>
+<td>0 ~ 65535</td>
+</tr>
+<tr>
+<td>int32</td>
+<td>整型</td>
+<td>4</td>
+<td>0</td>
+<td>-2147483648 到 2147483647</td>
+</tr>
+<tr>
+<td>uint32</td>
+<td>整型</td>
+<td>4</td>
+<td>0</td>
+<td>0 到 4294967295(42亿)</td>
+</tr>
+<tr>
+<td>int64</td>
+<td>整型</td>
+<td>8</td>
+<td>0</td>
+<td>0 到 18446744073709551615</td>
+</tr>
+<tr>
+<td>uint64</td>
+<td>整型</td>
+<td>8</td>
+<td>0</td>
+<td>-9223372036854775808到9223372036854775807</td>
+</tr>
+<tr>
+<td>float32</td>
+<td>浮点型</td>
+<td>4</td>
+<td>0.0</td>
+<td>小数位精确到7位</td>
+</tr>
+<tr>
+<td>float64</td>
+<td>浮点型</td>
+<td>8</td>
+<td>0.0</td>
+<td>小数位精确到15位</td>
+</tr>
+<tr>
+<td>complex64</td>
+<td>复数类型</td>
+<td>8</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr>
+<td>complex128</td>
+<td>复数类型</td>
+<td>16</td>
+<td>None</td>
+<td>64 位实数和虚数</td>
+</tr>
+<tr>
+<td>uintptr</td>
+<td>整型</td>
+<td>4或8</td>
+<td>None</td>
+<td>⾜以存储指针的uint32或uint64整数</td>
+</tr>
+<tr>
+<td>string</td>
+<td>字符串</td>
+<td>None</td>
+<td>“”</td>
+<td>utf-8字符串</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>各类型默认值<br><img src="/新建文件夹/Go/VariableUse.png" alt="VariableUse"></p>
+</li>
+<li><p>变量定义使用及自动推导类型<br><img src="/新建文件夹/Go/AutoVariable.png" alt="AutoVariable"></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//结果</div><div class="line">10</div><div class="line">3.1415</div><div class="line">false</div><div class="line">97</div><div class="line">www.lxhsec.com</div><div class="line">----------</div><div class="line">http://www.lxhsec.com</div><div class="line">3.14159</div><div class="line">false</div><div class="line">97</div><div class="line">99</div></pre></td></tr></table></figure>
+<ul>
+<li>多重赋值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">func main() &#123;</div><div class="line">	a,b,c,d,e:=10,3.1415,&quot;22&quot;,false,&apos;a&apos;</div><div class="line">	fmt.Println(a) //10</div><div class="line">	fmt.Println(b) //3.1415</div><div class="line">	fmt.Println(c) //22</div><div class="line">	fmt.Println(d) //false</div><div class="line">	fmt.Println(e) //97 ASCII对应的值</div><div class="line">&#125;</div><div class="line"></div><div class="line">---result</div><div class="line">10</div><div class="line">3.1415</div><div class="line">22</div><div class="line">false</div><div class="line">97</div></pre></td></tr></table></figure>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>常量：程序运行期间，不可以改变的量。<br>语法：<br>    const 常量名 数据类型</p>
+<ol>
+<li>常量的存储位置是在数据区，不能通过&amp;取地址来访问。</li>
+<li>常量一般用大写字母表示。</li>
+<li>常量自动推到类型不需要使用 <strong>:=</strong>。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const A int =1</div><div class="line">const B = 2</div><div class="line">//const CC :=2  // error</div><div class="line">//fmt.Println(CC)</div><div class="line">fmt.Println(A)</div><div class="line">fmt.Println(B)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line">2</div></pre></td></tr></table></figure></p>
+<h4 id="iota"><a href="#iota" class="headerlink" title="iota"></a>iota</h4><p>iota，特殊常量，可以认为是一个可以被编译器修改的常量。</p>
+<p>在一个const声明语句中，在第一个声明的常量所在的行，iota将会被置为0，然后在每一个有常量声明的行加一</p>
+<p>iota 可以被用作枚举值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const (</div><div class="line">    a = iota //0</div><div class="line">    b,c = iota,iota //b =1 c=1</div><div class="line">	// 常量写在同一行值相同，换一行值加一</div><div class="line">    d,e = iota,iota //d=2,e=2</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>第一个 iota 等于 0，每当 iota 在新的一行被使用时，它的值都会自动加 1；所以 a=0, b=1, c=1, d=2, e=2 可以简写为如下形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const (</div><div class="line">    a = iota</div><div class="line">    b,c = iota,iota</div><div class="line">    d,e</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>iota 用法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">const (</div><div class="line">	a = 10 //iota=0</div><div class="line">	bb = 1&lt;&lt;iota  //bb=1&lt;&lt;iota   =&gt;1&lt;&lt;1   10 ==2    iota=1</div><div class="line">	cc = 3&lt;&lt;iota  //cc=3&lt;&lt;iota   =&gt;3&lt;&lt;2   1100 ==12  iota=2</div><div class="line">	dd            //dd=3&lt;&lt;iota   =&gt;3&lt;&lt;3 -&gt;11000 ==24</div><div class="line">	ee            //ee=3&lt;&lt;iota   =&gt;3&lt;&lt;4 -&gt;110000 ==48</div><div class="line">	b = iota //1  iota += 1</div><div class="line">	c   // 2  iota += 1</div><div class="line">	d=&quot;lxhsec&quot; //iota += 1</div><div class="line">	e    //iota += 1</div><div class="line">	f=100  //iota += 1</div><div class="line">	g   //iota += 1</div><div class="line">	h=iota  //11  恢复计数</div><div class="line">	i</div><div class="line">)</div><div class="line">fmt.Println(a,bb,cc,dd,ee,b,c,d,e,f,g,h,i)</div></pre></td></tr></table></figure></p>
+<p>结果如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10 2 12 24 48 5 6 lxhsec lxhsec 100 100 11 12</div></pre></td></tr></table></figure></p>
+<h3 id="格式输出"><a href="#格式输出" class="headerlink" title="格式输出"></a>格式输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import &quot;fmt&quot;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">	str:=&quot;www.lxhsec.com&quot;</div><div class="line">	fmt.Println(str)</div><div class="line">	fmt.Println(&quot;===&quot;) //Println输出完成 换行</div><div class="line">	fmt.Print(str)//Print输出完成 不换行</div><div class="line">	fmt.Println(&quot;===&quot;)</div><div class="line">	//但是这两个都没有解决格式的问题，Printf函数解决格式问题</div><div class="line">	d:=10</div><div class="line">	dd:=111123123</div><div class="line">	t:=false</div><div class="line">	c:=&apos;c&apos;</div><div class="line">	f:=31.1415926</div><div class="line">	ff:=312345.12</div><div class="line">	//\n表示转移字符 相当于换行符</div><div class="line">	fmt.Printf(&quot;t = %t\n&quot;,t) // %t 占位符  表示输出一个bool型数据</div><div class="line">	fmt.Printf(&quot;c = %c\n&quot;,c) // %c 占位符  表示输出一个字符数据</div><div class="line">	fmt.Printf(&quot;str = %s\n&quot;,str) // %s 占位符  表示输出一个字符串数据</div><div class="line"></div><div class="line">	fmt.Printf(&quot;d = %d\n&quot;,d) // %d 占位符  表示输出一个整形数据</div><div class="line">	fmt.Printf(&quot;5d = %5d\n&quot;,d) // %5d 占位符  占五位  少了用空格在前面填充</div><div class="line">	fmt.Printf(&quot;-5d = %-5d=\n&quot;,d) // %-5d 占位符  占五位  少了用空格在后面填充</div><div class="line">	fmt.Printf(&quot;0d = %05d\n&quot;,d) // %5d 占位符    占五位 少了用0在前面填充</div><div class="line">	fmt.Printf(&quot;dd = %3d\n&quot;,dd) // 当数据的位数 大于 格式化规定的数值时，数据原封不动输出</div><div class="line"></div><div class="line">	fmt.Printf(&quot;f = %f\n&quot;,f) // %f占位符，默认保留六位有效数字，多余四舍五入  表示输出一个浮点型数据，</div><div class="line">	fmt.Printf(&quot;3f = %.3f\n&quot;,f) // %.3f占位符，保留3位有效数字，多余四舍五入  表示输出一个浮点型数据，</div><div class="line">	fmt.Printf(&quot;010.4f = %010.4f\n&quot;,f) // %010.4f占位符，保留4位有效数字，多余四舍五入 且最多占10位 少了用0在前面填充</div><div class="line">	fmt.Printf(&quot;-10.4f = %-10.4f\n&quot;,f) // %-10.4f占位符，保留4位有效数字，多余四舍五入 且最多占10位 少了用空格在后面填充</div><div class="line">	fmt.Printf(&quot;10.4f = %10.4f\n&quot;,f) // %-10.4f占位符，保留4位有效数字，多余四舍五入 且最多占10位 少了用空格在前面填充</div><div class="line">	fmt.Printf(&quot;5.4f = %5.4f\n&quot;,ff)  // 当数据的位数 大于 格式化规定的数值时，数据原封不动输出,</div><div class="line">												//数据的精确值小于格式化规定的数值时，用0填充</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">---result</div><div class="line">www.lxhsec.com</div><div class="line">===</div><div class="line">www.lxhsec.com===</div><div class="line">t = false</div><div class="line">c = c</div><div class="line">str = www.lxhsec.com</div><div class="line">d = 10</div><div class="line">5d =    10</div><div class="line">-5d = 10   =</div><div class="line">0d = 00010</div><div class="line">dd = 111123123</div><div class="line">f = 31.141593</div><div class="line">3f = 31.142</div><div class="line">010.4f = 00031.1416</div><div class="line">-10.4f = 31.1416   </div><div class="line">10.4f =    31.1416</div><div class="line">5.4f = 312345.1200</div></pre></td></tr></table></figure>
+<h4 id="其他占位符"><a href="#其他占位符" class="headerlink" title="其他占位符"></a>其他占位符</h4><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%s</td>
+<td>字符串。输出字符串中的字符直至字符串中的空字符（字符串以’\0‘结尾，这个’\0’即ASCII码空字符）</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>以标准记数法表示的浮点数或者复数值</td>
+</tr>
+<tr>
+<td>%t</td>
+<td>以true或者false输出的布尔值</td>
+</tr>
+<tr>
+<td>%T</td>
+<td>使用Go语法输出的值的类型</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>字符型。可以把输入的数字按照ASCII码相应转换为对应的字符</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>以十六进制(基数为16)表示的一个值的地址，前缀为0x,字母使用小写的a-f表示</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>转换为十进制表示</td>
+</tr>
+<tr>
+<td>%b</td>
+<td>转换为二进制表示</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>转换为八进制表示</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>转换为十六进制表示，数字a-f使用小写表示</td>
+</tr>
+<tr>
+<td>%X</td>
+<td>转换为十六进制表示，数字A-F使用小写表示</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>一个%字面量，转义字符 %%==%</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>以科学记数法e表示的浮点数或者复数值</td>
+</tr>
+<tr>
+<td>%E</td>
+<td>以科学记数法E表示的浮点数或者复数值</td>
+</tr>
+<tr>
+<td>%g</td>
+<td>以%e或者%f表示的浮点数或者复数，任何一个都以最为紧凑的方式输出</td>
+</tr>
+<tr>
+<td>%G</td>
+<td>以%E或者%f表示的浮点数或者复数，任何一个都以最为紧凑的方式输出</td>
+</tr>
+<tr>
+<td>%q</td>
+<td>使用Go语法以及必须时使用转义，以双引号括起来的字符串或者字节切片[]byte，或者是以单引号括起来的数字</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>一个用Unicode表示法表示的整型码点，默认值为4个数字字符</td>
+</tr>
+<tr>
+<td>%v</td>
+<td>使用默认格式输出的内置或者自定义类型的值，或者是使用其类型的String()方式输出的自定义值，如果该方法存在的话</td>
+</tr>
+</tbody>
+</table>
+<h3 id="格式输入"><a href="#格式输入" class="headerlink" title="格式输入"></a>格式输入</h3><ul>
+<li><p>隔空or回车标志输入的结束<br><img src="/新建文件夹/Go/scan.png" alt="scan.png"></p>
+</li>
+<li><p>格式化输入，规定取值位数<br><img src="/新建文件夹/Go/scan1.png" alt="scan1.png"></p>
+</li>
+<li><p>输入的值大于取值位数<br><img src="/新建文件夹/Go/scan2.png" alt="scan2.png"></p>
+</li>
+<li><p>不带空格的输入取值<br><img src="/新建文件夹/Go/scan3.png" alt="scan3.png"></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">当输入的数据符合时，可以得到我们预期的值。</div><div class="line">若输入的数据，与格式化的</div></pre></td></tr></table></figure>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><p>Golang中，算术运算符 +,-,*,/,%,++,–</p>
+<ol>
+<li>++，–没有前自增，前自减，没有++a,–b,只有a++,b–.</li>
+<li>a/b a%b，除法，求余，除数不能为0，即b≠0.</li>
+<li><ul>
+<li>，除了可以完成两个数字相加以外，也可以链接两个字符串，例如：fmt.Printf(“%s”,”abc”+”dce”)</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">a:=3</div><div class="line">b:=2</div><div class="line">c:=2.0</div><div class="line">d:=3.0</div><div class="line">aa :=2</div><div class="line">bb :=3</div><div class="line">fmt.Println(a/b) //1   取整，舍弃小数</div><div class="line">fmt.Println(d/c) // 1.5  两个都带有小数，其结果才为浮点类型。</div><div class="line">fmt.Println(aa%bb) // 2 当%前面的变量小于后面变量时，值为%前面变量的值。</div></pre></td></tr></table></figure>
+<p>结果为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line">1.5</div><div class="line">2</div></pre></td></tr></table></figure></p>
+<ol>
+<li>先乘除,后加减,有括号先算括号里的,相同级别的从左至右运算</li>
+<li>小括号可以无限制的套用,但一定要成对出现</li>
+<li>Golang中，算术运算符没有前自增，前自减，没有++a,–b.</li>
+</ol>
+<h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3><p>Golang中，赋值运算符有，=、+=、-=、*=、/=、%=、&lt;&lt;=、&gt;&gt;=、&amp;=、^=、!=</p>
+<h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><p>Golang中，关系运算符有，==、!=、&lt;、&gt;、&lt;=、&gt;=</p>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>Golang中，逻辑运算符有，!、&amp;&amp;、||</p>
+<h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><p>假定 A = 60; B = 13; 其二进制数转换为：<br>A = 0011 1100<br>B = 0000 1101</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;</td>
+<td>按位与,A,B双方为1才为1，其余为0</td>
+<td>A&amp;B = 0000 1100</td>
+</tr>
+<tr>
+<td>&#124;</td>
+<td>按位或，A,B双方为0才为0，其余为1</td>
+<td>A&#124;B = 0011 1101</td>
+</tr>
+<tr>
+<td>^</td>
+<td>按位异或，A,B双方不同才为1，其余为0</td>
+<td>A^B = 0011 0001</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>左移运算符</td>
+<td>A&lt;&lt;2 11110000</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>右移运算符</td>
+<td>A&gt;&gt;2 00001111</td>
+</tr>
+</tbody>
+</table>
+<p>下表列出了位运算符 &amp;, |, 和 ^ 的计算：</p>
+<table>
+<thead>
+<tr>
+<th>p</th>
+<th>q</th>
+<th>p&amp;q</th>
+<th>p&#124;q</th>
+<th>p^q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="其他运算符"><a href="#其他运算符" class="headerlink" title="其他运算符"></a>其他运算符</h3><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>术语</th>
+<th>示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;</td>
+<td>取地址运算符</td>
+<td>&amp;a</td>
+<td>变量a的地址</td>
+</tr>
+<tr>
+<td>*</td>
+<td>取值运算符</td>
+<td>*a</td>
+<td>指针变量a所指向内存的值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>在Golang中，数据类型不允许隐式转换，所有类型转换必须显式声明（强制转换），而且转换只能发生在两种相互兼容的类型之间，习惯将低类型转换为高类型，例如，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">	var a int32 = 3</div><div class="line">	var b int64 = 10</div><div class="line">	c:=int64(a)+b</div><div class="line">	fmt.Println(c)</div><div class="line">高类型可以完全容纳低类型数据，</div><div class="line">若高类型转低类型，当高类型的数值大于低类型的最大容纳值，转换必然会丢失数值。</div><div class="line">因此，通常遵循，低类型转换为高类型原则，int32 -&gt; int64</div></pre></td></tr></table></figure></p>
+<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">13</div></pre></td></tr></table></figure></p>
+<p>int 转float 强制转换,多小数<br>float转int强制转换,丢精度.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a := 3.14  //3.99 结果也是30</div><div class="line">b := 10</div><div class="line">c := int(a)*b  // 30</div><div class="line">d := a*float64(b) // 31.400000000000002</div><div class="line">fmt.Println(c,d)</div></pre></td></tr></table></figure>
+<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">30 31.400000000000002</div></pre></td></tr></table></figure></p>
+<h3 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h3><p>由上至下代表优先级由高到低，二元运算符的运算方向均是从左至右，逻辑&amp;与的优先级要高于逻辑或|。</p>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>运算符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>^、!</td>
+</tr>
+<tr>
+<td>6</td>
+<td>*、/、%、 &lt;&lt; 、&gt;&gt; 、&amp; 、&amp;^</td>
+</tr>
+<tr>
+<td>5</td>
+<td>+、-、&#124; 、^</td>
+</tr>
+<tr>
+<td>4</td>
+<td>==、!=、&lt;、&lt;=、&gt;=、&gt;</td>
+</tr>
+<tr>
+<td>3</td>
+<td>&lt;_</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&amp;&amp;</td>
+</tr>
+<tr>
+<td>1</td>
+<td>&#124;&#124;</td>
+</tr>
+</tbody>
+</table>
+<p>可以通过使用括号来临时提升某个表达式的整体运算优先级。</p>
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><h3 id="选择结构"><a href="#选择结构" class="headerlink" title="选择结构"></a>选择结构</h3><h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">语法： if 表达式&#123;</div><div class="line">	//Code</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>与C类似，表达式不需要括号。</p>
+<ol>
+<li>if结构适合：一种的判断</li>
+<li>if-else结构适合：两种情况的判断</li>
+<li>if-else if 结构适合：多种情况判断</li>
+</ol>
+<h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">switch expr &#123;</div><div class="line">	case 1:</div><div class="line">		fmt.Println(&quot;1&quot;)</div><div class="line">	case 2,3,4:</div><div class="line">		fmt.Println(&quot;支持多条件匹配&quot;)</div><div class="line">	default:</div><div class="line">		fmt.Println(&quot;判断未知条件&quot;)</div></pre></td></tr></table></figure>
+<ol>
+<li>支持多条件匹配</li>
+<li>不同的 case 之间不使用 break 分隔，默认只会执行一个 case</li>
+<li>如果想要执行多个 case，需要使用 fallthrough 关键字，也可用 break 终止。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">func main() &#123;</div><div class="line"></div><div class="line">	a:=1</div><div class="line">	switch a &#123;</div><div class="line">	case 1:</div><div class="line">		fmt.Println(&quot;1&quot;)</div><div class="line">		if a&gt;0&#123;</div><div class="line">			break</div><div class="line">		&#125;</div><div class="line">		fallthrough     // 此时switch(1)会执行case1和case2，但是如果满足if条件，则只执行case1</div><div class="line">	case 2:</div><div class="line">		fmt.Println(&quot;2&quot;)</div><div class="line">	default:</div><div class="line">		fmt.Println(&quot;判断未知条件&quot;)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">--- 结果如下: </div><div class="line">1</div><div class="line">* 注释以下代码</div><div class="line">if a&gt;0&#123;</div><div class="line">    break</div><div class="line">&#125;</div><div class="line">结果为：</div><div class="line">1</div><div class="line">2</div></pre></td></tr></table></figure>
+<h3 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h3><p>GO语言中只有for循环结构，没有while,do-while结构<br>与C类似，表达式不需要括号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">for 表达式1;表达式2;表达式3&#123;</div><div class="line">	循环体</div><div class="line">&#125;</div><div class="line"></div><div class="line">循环控制语句</div><div class="line">break,  跳出循环。</div><div class="line">continue, 跳过当前循环剩余语句，然后继续进行下一轮循环。</div><div class="line">goto, 将控制转移到被标记的语句。</div></pre></td></tr></table></figure></p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">语法：</div><div class="line">func 函数名([parameter list])（[return_types])&#123;</div><div class="line">  函数体</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><p>在使用append添加数据时，切片的地址可能会发生变化，原因是因为切片的数据是连续的 在容量满了之后，在原来的基础上增加内存，但是可能后续地址被其他占用了，因此会重新寻找一片新的堆空间，存储所有的切片数据，同时也会将之前的数据进行释放(如果没使用)。</p>
+<h3 id="切片入门"><a href="#切片入门" class="headerlink" title="切片入门"></a>切片入门</h3><p>[<em>][</em>]切片的定义</p>
+<p>var name []datatype //1<br>s:=make([]datatype,len)//2<br>len(name) // 获取切片使用的长度<br>cap(name) // 获取切片的容器</p>
+<p>name 切片的名字<br>datatype 切片的数据类型<br>len 切片的长度</p>
+<p>[<em>][</em>]切片赋值 #1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">s:=make([]int,5) </div><div class="line">s[0]=1  //通过下标赋值</div><div class="line">s[4]=2</div><div class="line">//s[5]=5 // error 下标越界</div><div class="line">fmt.Println(s)</div><div class="line">--result</div><div class="line">[1 0 0 0 2]</div><div class="line"></div><div class="line">[*][*]切片赋值 #2</div><div class="line"></div><div class="line">s:=[]int&#123;1,2,3&#125; // 初始化赋值</div><div class="line">fmt.Println(s)</div><div class="line">--result</div><div class="line">[1 2 3]</div><div class="line"></div><div class="line">[*][*]通过append添加切片信息</div><div class="line">	s:=[]int&#123;1,2,3&#125;</div><div class="line">	s=append(s,123)</div><div class="line">	fmt.Println(s)</div><div class="line">--result</div><div class="line">[1 2 3 123]</div><div class="line"></div><div class="line">[*][*]遍历 #1</div><div class="line"></div><div class="line">	s:=[]int&#123;1,2,3&#125;</div><div class="line">	s=append(s,123)</div><div class="line">	for i:=0;i&lt;len(s);i++&#123;</div><div class="line">		fmt.Println(s[i])</div><div class="line">	&#125;</div><div class="line">--result</div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">123</div><div class="line"></div><div class="line">[*][*]遍历 #2</div><div class="line"></div><div class="line">	s:=[]int&#123;1,2,3&#125;</div><div class="line">	s=append(s,123)</div><div class="line">	for i,v:=range s&#123;</div><div class="line">		fmt.Println(i,v)</div><div class="line">	&#125;</div><div class="line">--result</div><div class="line">0 1</div><div class="line">1 2</div><div class="line">2 3</div><div class="line">3 123</div><div class="line"></div><div class="line">[*][*]容度cap</div><div class="line"></div><div class="line">cap的值为偶数，</div><div class="line">每增加一个append，当cap(name)值小于1024时，cap值翻倍</div><div class="line">每增加一个append，当cap(name)值大于1024时，cap值=上一次的cap值+上一次的cap值的四分之一s</div></pre></td></tr></table></figure></p>
+<p>##指针</p>
+<p>指针用来存取地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[*]指针定义</div><div class="line"></div><div class="line">var Varname *datatype</div><div class="line"></div><div class="line">- Varname 指针名</div><div class="line">- datatype 数据类型，</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[*]空指针</div><div class="line">var p *int // 默认值为nil(空指针 值为0)</div><div class="line"></div><div class="line">fmt.Println(p) // result: &lt;nil&gt;</div><div class="line">指针一旦定义，就指向了内存编号为0的内存地址，此地址不能被用户读写。</div><div class="line"></div><div class="line">内存编号0-255为系统占用，不允许用户进行读写操作。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[*]野指针</div><div class="line">将任意内存地址赋值给指针变量，称为野指针，例： </div><div class="line"></div><div class="line">var p *int</div><div class="line">p=0x1234 //error</div><div class="line">*p=123</div><div class="line">fmt.Println(*p)</div></pre></td></tr></table></figure>
+<p><strong>在Golang中，空指针和野指针都是不能直接使用的，访问它们对应的内存空间都会报错，</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">[*]创建指针空间</div><div class="line"></div><div class="line">reult=new(type) 返回*type </div><div class="line"></div><div class="line">例，</div><div class="line">	var p *int</div><div class="line">	fmt.Println(p) // nil 代表内存地址编号为0</div><div class="line">	p=new(int)  //new 在堆区 申请 int大小 的内存空间，并初始化值</div><div class="line">	fmt.Println(p)</div><div class="line">	fmt.Println(*p) // int初始化为0，bool为false 等</div><div class="line"></div><div class="line">--result</div><div class="line">&lt;nil&gt;</div><div class="line">0xc042052088</div><div class="line">0</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">[*]数组指针</div><div class="line">	var arr [5]int = [5]int&#123;123,1,2,3,4&#125;</div><div class="line">	var p *[5]int    //指针数组p的数组大小要与其指向的数组大小arr相同，</div><div class="line">	p=&amp;arr</div><div class="line">	fmt.Printf(&quot;%T\n&quot;,p) </div><div class="line">	fmt.Println(p)</div><div class="line">	fmt.Println(*p)</div><div class="line">	fmt.Println(len(*p))</div><div class="line">	fmt.Println((*p)[0])</div><div class="line">	fmt.Println(len(p))   //Go语言内部优化</div><div class="line">	fmt.Println(p[0])  //Go语言内部优化</div><div class="line"></div><div class="line">--result</div><div class="line">*[5]int</div><div class="line">&amp;[123 1 2 3 4]</div><div class="line">[123 1 2 3 4]</div><div class="line">5</div><div class="line">123</div><div class="line">5</div><div class="line">123</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[*]切片指针</div></pre></td></tr></table></figure>
+<p><img src="/新建文件夹/Go/slicepoint.png" alt="slicepoint"></p>
+<p><img src="/新建文件夹/Go/slicepoint1.png" alt="slicepoint1"></p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Golang基础"><span class="nav-number">1.</span> <span class="nav-text">Golang基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个程序"><span class="nav-number">1.0.1.</span> <span class="nav-text">第一个程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">1.0.2.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础数据类型"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">基础数据类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">1.0.3.</span> <span class="nav-text">常量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#iota"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">iota</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式输出"><span class="nav-number">1.0.4.</span> <span class="nav-text">格式输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#其他占位符"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">其他占位符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式输入"><span class="nav-number">1.0.5.</span> <span class="nav-text">格式输入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">1.1.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算术运算符"><span class="nav-number">1.1.1.</span> <span class="nav-text">算术运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值运算符"><span class="nav-number">1.1.2.</span> <span class="nav-text">赋值运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系运算符"><span class="nav-number">1.1.3.</span> <span class="nav-text">关系运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">1.1.4.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位运算符"><span class="nav-number">1.1.5.</span> <span class="nav-text">位运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他运算符"><span class="nav-number">1.1.6.</span> <span class="nav-text">其他运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换"><span class="nav-number">1.1.7.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符优先级"><span class="nav-number">1.1.8.</span> <span class="nav-text">运算符优先级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制"><span class="nav-number">1.2.</span> <span class="nav-text">流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">选择结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switch"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">switch</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环结构"><span class="nav-number">1.2.2.</span> <span class="nav-text">循环结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.3.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切片"><span class="nav-number">1.4.</span> <span class="nav-text">切片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#切片入门"><span class="nav-number">1.4.1.</span> <span class="nav-text">切片入门</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

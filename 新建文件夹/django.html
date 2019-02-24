@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Python web 框架的简单使用">
+<meta name="keywords" content="django">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Django">
+<meta property="og:url" content="http://www.lxhsec.com/新建文件夹/django.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="Python web 框架的简单使用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djangoversion.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djangostart.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djangosupportdb.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/mysqlinit.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djangoapp.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/modle.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/modleshuom.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djangoinstallapp.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/makemigrayions.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/migrate1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/migrate2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/admin.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/admin2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/admin3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/register1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/admin4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/admin5.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/admin6.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/admin7.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/admin8.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/admin9.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djview.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djurl1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djurl2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/respon1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/respon2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/template1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/template2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/template3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/template4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djmodle1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djmodle2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djmodle3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djmodle4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/manage1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/manage2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/manage3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect111.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect222.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect5.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect6.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect7.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect8.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect9.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect10.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djselect11.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/self0.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/self1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/self2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/self3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/self4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djview1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/viewtest1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/viewtest2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/viewtest3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/viewtask1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/viewtest4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/viewtest5.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djget1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djget2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djget3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djget4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djget5.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djpost1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djpost2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djpost3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djpost4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djpost5.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/post6.gif">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/cookie.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/cookie2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/redirect1.gif">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/redirect.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/direct.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/repjson.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/repjson1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/session1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/session2.gif">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djsession1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djsession2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djsession3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djsession4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/sessionexpiry.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/session2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/session3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/session5.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/session4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/template11.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djtmptest1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djtmptest2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djtmptest3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djtmptest4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djfor.gif">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djtmptest5.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/fanxiang1.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/fanxiang2.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/fanxiang3.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/fanxiang4.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/fanxiang5.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/fanxiang6.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/htmlzhuanyi.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djview11.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djview12.png">
+<meta property="og:image" content="http://owrmua5nw.bkt.clouddn.com/djview13.png">
+<meta property="og:updated_time" content="2017-12-12T13:04:18.132Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django">
+<meta name="twitter:description" content="Python web 框架的简单使用">
+<meta name="twitter:image" content="http://owrmua5nw.bkt.clouddn.com/djangoversion.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/新建文件夹/django.html"/>
+
+
+
+
+
+  <title>Django | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">Django</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <p>Python web 框架的简单使用<a id="more"></a></p>
+<ul>
+<li>简介</li>
+</ul>
+<hr>
+<ul>
+<li><p>MVC</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">django框架与传统的MVC框架不同，而是采用了MVT的架构。</div><div class="line">框架的核心思想是：解耦</div><div class="line"></div><div class="line">降低各功能模块之间的耦合性，方便变更，更容易重构代码，最大程度上实现代码的重用</div><div class="line"></div><div class="line">m表示model，主要用于对数据库层的封装</div><div class="line">v表示view，用于向用户展示结果</div><div class="line">c表示controller，是核心，用于处理请求、获取数据、返回结果</div></pre></td></tr></table></figure>
+</li>
+<li><p>MVT</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">m表示model，负责与数据库交互</div><div class="line">v表示view，是核心，负责接收请求、获取数据、返回结果</div><div class="line">t表示template，负责呈现内容到浏览器</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>ubuntu16.04<br><a href="http://www.lxhsec.com/2017/11/01/virtualenv/#more">python虚拟环境搭建教程</a></p>
+<p>查看虚拟环境中已经安装的包<br>pip list<br>pip freeze</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">安装1.8.2版本，使用的人多，文档多，便于学习。</div><div class="line"></div><div class="line">pip install django==1.8.2</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djangoversion.png" alt="djangoversion"></p>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">django-admin startproject test1</div><div class="line"></div><div class="line"></div><div class="line">让我们看一下startproject生成了什么：</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djangostart.png" alt="djangostart"></p>
+<h2 id="设计数据库"><a href="#设计数据库" class="headerlink" title="设计数据库"></a>设计数据库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">本示例完成“图书-英雄”信息的维护，需要存储两种数据：图书、英雄</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">图书表结构设计：</div><div class="line">表名：BookInfo</div><div class="line">图书名称：btitle</div><div class="line">图书发布时间：bpub_date</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">英雄表结构设计：</div><div class="line">表名：HeroInfo</div><div class="line">英雄姓名：hname</div><div class="line">英雄性别：hgender</div><div class="line">英雄简介：hcontent</div><div class="line">所属图书：hbook</div><div class="line"></div><div class="line"></div><div class="line">一本图书有多个英雄，</div><div class="line">例如三国。</div><div class="line"></div><div class="line">三国里面的英雄又只属于三国这一本书，不可能让诸葛亮跑去水浒传指点江山吧？</div><div class="line"></div><div class="line">因此  图书-英雄的关系为一对多</div></pre></td></tr></table></figure>
+<h3 id="数据库配置"><a href="#数据库配置" class="headerlink" title="数据库配置"></a>数据库配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">在settings.py文件中，通过DATABASES项进行数据库设置</div><div class="line"></div><div class="line">django支持的数据库包括：sqlite、mysql等主流数据库</div><div class="line"></div><div class="line">Django默认使用SQLite数据库</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djangosupportdb.png" alt="djangosupportdb"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">先安装pymysql  </div><div class="line"></div><div class="line">pip install pymysql</div><div class="line"></div><div class="line">setting.py </div><div class="line"></div><div class="line">mysql  配置</div><div class="line">DATABASES = &#123;</div><div class="line">    &apos;default&apos;: &#123;</div><div class="line">        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,</div><div class="line">        &apos;NAME&apos; : &apos;djangotest&apos; ,</div><div class="line">        &apos;USER&apos; : &apos;root&apos; ,</div><div class="line">        &apos;PASSWORD&apos; : &apos;root&apos; ,</div><div class="line">        &apos;HOST&apos; : &apos;127.0.0.1&apos; ,</div><div class="line">        &apos;PORT&apos; : &apos;3306&apos; ,</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">配置完后需要在项目的__init__.py 加入如下代码。</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/mysqlinit.png" alt="mysqlinit"></p>
+<h3 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在一个项目中可以创建一到多个应用，</div><div class="line"></div><div class="line">每个应用进行一种业务处理</div><div class="line"></div><div class="line">创建应用的命令：</div><div class="line">python manage.py startapp appname</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djangoapp.png" alt="djangoapp"></p>
+<h3 id="定义模型类"><a href="#定义模型类" class="headerlink" title="定义模型类"></a>定义模型类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">有一个数据表，就有一个模型类与之对应</div><div class="line"></div><div class="line">打开models.py文件，定义模型类</div><div class="line"></div><div class="line">引入包from django.db import models</div><div class="line"></div><div class="line">模型类继承自models.Model类</div><div class="line"></div><div class="line">说明：不需要定义主键列，在生成时会自动添加，并且值为自动增长</div><div class="line"></div><div class="line">当输出对象时，会调用对象的str方法</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/modle.png" alt="modle"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/modleshuom.png" alt="modleshuom"></p>
+<h3 id="生成数据表"><a href="#生成数据表" class="headerlink" title="生成数据表"></a>生成数据表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">激活模型：</div><div class="line">编辑settings.py文件，</div><div class="line">将blog应用加入到</div><div class="line"></div><div class="line">installed_apps中</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djangoinstallapp.png" alt="djangoinstallapp"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">生成迁移文件：根据模型类生成sql语句</div><div class="line"></div><div class="line">python manage.py makemigrations</div><div class="line"></div><div class="line">迁移文件被生成到应用的migrations目录</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/makemigrayions.png" alt="makemigrayions"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">执行迁移：</div><div class="line">执行sql语句在mysql数据库中生成相应的表</div><div class="line">python manage.py migrate</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/migrate1.png" alt="migrate1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/migrate2.png" alt="migrate2"></p>
+<h3 id="测试数据操作"><a href="#测试数据操作" class="headerlink" title="测试数据操作"></a>测试数据操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">进入python shell，进行简单的模型API练习</div><div class="line"></div><div class="line">python manage.py shell</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect1.png" alt="djselect1"></p>
+<ul>
+<li>关联对象的操作<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">对于HeroInfo可以按照上面的操作方式进行</div><div class="line"></div><div class="line">添加，注意添加关联对象</div><div class="line">h=HeroInfo()</div><div class="line">h.hname=&apos;郭靖&apos;</div><div class="line">h.hgender=True</div><div class="line">h.hcontent=&apos;降龙十八掌&apos;</div><div class="line">h.hBook=b</div><div class="line">h.save()</div><div class="line"></div><div class="line">hh=HeroInfo()</div><div class="line">hh.hname=&apos;黄蓉&apos;</div><div class="line">hh.hgender=True</div><div class="line">hh.hcontent=&apos;降龙十九掌&apos;</div><div class="line">hh.hBook=b</div><div class="line">hh.save()</div><div class="line"></div><div class="line"></div><div class="line">获得关联集合：返回当前book对象的所有hero</div><div class="line">b.heroinfo_set.all()</div><div class="line"></div><div class="line"></div><div class="line">有一个HeroInfo存在，必须要有一个BookInfo对象，提供了创建关联的数据：</div><div class="line"></div><div class="line">h=b.heroinfo_set.create(hname=u&apos;黄蓉&apos;,hgender=False,hcontent=u&apos;打狗棍法&apos;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect2.png" alt="djselect2"></p>
+<h2 id="管理站点"><a href="#管理站点" class="headerlink" title="管理站点"></a>管理站点</h2><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">运行如下命令可以开启服务器</div><div class="line">python manage.py runserver ip:port</div><div class="line"></div><div class="line">不写 默认127.0.0.1:8000</div><div class="line"></div><div class="line">可以修改端口</div><div class="line">python manage.py runserver 8080</div><div class="line"></div><div class="line">如果修改文件不需要重启服务器，如果增删文件需要重启服务器</div><div class="line"></div><div class="line">这是一个纯python编写的轻量级web服务器，仅在开发阶段使用</div></pre></td></tr></table></figure>
+<h3 id="管理操作"><a href="#管理操作" class="headerlink" title="管理操作"></a>管理操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">站点分为“内容发布”和“公共访问”两部分</div><div class="line">“内容发布”的部分负责添加、修改、删除内容，</div><div class="line"></div><div class="line">开发这些重复的功能是一件单调乏味、缺乏创造力的工作。</div><div class="line"></div><div class="line">为此，Django会根据定义的模型类完全自动地生成管理模块</div></pre></td></tr></table></figure>
+<ul>
+<li>使用django的管理<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">创建一个管理员用户</div><div class="line"></div><div class="line">python manage.py createsuperuser</div><div class="line"></div><div class="line">按提示输入用户名、邮箱、密码</div><div class="line"></div><div class="line">启动服务器，通过“127.0.0.1:8000/admin”访问，</div><div class="line">输入上面创建的用户名、密码完成登录</div><div class="line"></div><div class="line">进入管理站点，默认可以对groups、users进行管理</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/admin.png" alt="admin"></p>
+<ul>
+<li>管理界面本地化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">编辑settings.py文件，设置编码、时区</div><div class="line">LANGUAGE_CODE = &apos;zh-Hans&apos;</div><div class="line"></div><div class="line">TIME_ZONE = &apos;Asia/Shanghai&apos;</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/admin2.png" alt="admin2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/admin3.png" alt="admin3"></p>
+<ul>
+<li>向admin注册blog的模型<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">打开blog/admin.py文件，注册模型</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/register1.png" alt="register1"></p>
+<ul>
+<li>自定义管理页面<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Django提供了admin.ModelAdmin类</div><div class="line"></div><div class="line">通过定义ModelAdmin的子类，来定义模型在Admin界面的显示方式</div><div class="line"></div><div class="line">class QuestionAdmin(admin.ModelAdmin):</div><div class="line">    ...</div><div class="line">admin.site.register(BookInfo, QuestionAdmin)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/admin4.png" alt="admin4"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/admin5.png" alt="admin5"></p>
+<ul>
+<li>关联对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">对于HeroInfo模型类，有两种注册方式</div><div class="line"></div><div class="line">方式一：与BookInfo模型类相同</div><div class="line">方式二：关联注册</div><div class="line">按照BookInfor的注册方式完成HeroInfo的注册</div><div class="line"></div><div class="line">接下来实现关联注册</div><div class="line"></div><div class="line">可以将内嵌的方式改为表格</div><div class="line">class HeroInfoInline(admin.TabularInline)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/admin6.png" alt="admin6"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/admin7.png" alt="admin7"></p>
+<ul>
+<li>布尔值的显示<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">发布性别的显示不是一个直观的结果，可以使用方法进行封装</div><div class="line"></div><div class="line">    def gender(self):</div><div class="line">        if (self.hgender):</div><div class="line">            return &apos;男&apos;</div><div class="line">        else:</div><div class="line">            return &apos;女&apos;</div><div class="line"></div><div class="line">    gender.short_description = &apos;性别&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/admin8.png" alt="admin8"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/admin9.png" alt="admin9"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">from django.contrib import admin</div><div class="line">from .models import BookInfo</div><div class="line">from .models import HeroInfo</div><div class="line"># Register your models here.</div><div class="line"></div><div class="line"># class HeroInfoInline(admin.TabularInline)</div><div class="line">class HeroInfoInline(admin.StackedInline):</div><div class="line">    model = HeroInfo</div><div class="line">    extra = 2</div><div class="line">    # 默认提供足够2个HeroInfo的空间。</div><div class="line"></div><div class="line">class HeroInfoAdmin(admin.ModelAdmin):</div><div class="line"></div><div class="line">    list_display = [&apos;id&apos;, &apos;hname&apos;, &apos;gender&apos;, &apos;hcontent&apos;]</div><div class="line"></div><div class="line">admin.site.register(HeroInfo, HeroInfoAdmin)</div><div class="line"></div><div class="line">class QuestionAdmin(admin.ModelAdmin):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    列表页属性:</div><div class="line">        list_display：显示字段，可以点击列头进行排序</div><div class="line">        list_filter：过滤字段，过滤框会出现在右侧</div><div class="line">        search_fields：搜索字段，搜索框会出现在上侧</div><div class="line">        list_per_page：分页，分页框会出现在下侧</div><div class="line">    添加、修改页属性:</div><div class="line">        fields：属性的先后顺序</div><div class="line">        fieldsets：属性分组</div><div class="line">        fields和fieldsets不能一起用</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    list_display = [&apos;pk&apos;, &apos;btitle&apos;, &apos;bpub_date&apos;]</div><div class="line">    inlines = [HeroInfoInline]</div><div class="line">    list_filter = [&apos;btitle&apos;]</div><div class="line">    search_fields = [&apos;btitle&apos;]</div><div class="line">    list_per_page = 10</div><div class="line">    # fields = [&apos;bpub_date&apos;, &apos;btitle&apos;]</div><div class="line">    fieldsets = [</div><div class="line">    (&apos;basic&apos;,&#123;&apos;fields&apos;: [&apos;btitle&apos;]&#125;),</div><div class="line">    (&apos;more&apos;, &#123;&apos;fields&apos;: [&apos;bpub_date&apos;]&#125;),</div><div class="line">]</div><div class="line">    </div><div class="line">admin.site.register(BookInfo, QuestionAdmin)</div></pre></td></tr></table></figure>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">在django中，视图对WEB请求进行回应</div><div class="line"></div><div class="line">视图接收reqeust对象作为第一个参数，包含了请求的信息</div><div class="line"></div><div class="line">视图就是一个Python函数，被定义在views.py中</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djview.png" alt="djview"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">定义完成视图后，需要配置urlconf，否则无法处理请求</div><div class="line"></div><div class="line">Django使用正则表达式匹配请求的URL，一旦匹配成功，则调用应用的视图</div><div class="line"></div><div class="line">注意：只匹配路径部分，即除去域名、参数后的字符串</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djurl1.png" alt="djurl1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djurl2.png" alt="djurl2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/respon1.png" alt="respon1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/respon2.png" alt="respon2"></p>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">模板是html页面，可以根据视图中传递的数据填充值</div><div class="line">创建模板的目录如下图：</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/template1.png" alt="template1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">修改settings.py文件，设置TEMPLATES的DIRS值</div><div class="line">&apos;DIRS&apos;: [os.path.join(BASE_DIR, &apos;templates&apos;)],</div><div class="line"></div><div class="line">在模板中访问视图传递的数据</div><div class="line"></div><div class="line">&#123;&#123;输出值，可以是变量，也可以是对象.属性&#125;&#125;</div><div class="line">&#123;%执行代码段%&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/template2.png" alt="template2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/template3.png" alt="template3"></p>
+<ul>
+<li>Render简写<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Django提供了函数Render()简化视图调用模板、构造上下文</div><div class="line">request == &lt;WSGIRequest: GET &apos;/&apos;&gt;</div><div class="line">可以把request 输出到页面上就可以看到了。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/template4.png" alt="template4"></p>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">MVC框架中包括一个重要的部分，就是ORM，它实现了数据模型与数据库的解耦，</div><div class="line">即数据模型的设计不需要依赖于特定的数据库，通过简单的配置就可以轻松更换数据库</div><div class="line"></div><div class="line">ORM是“对象-关系-映射”的简称，主要任务是：</div><div class="line"></div><div class="line">根据对象的类型生成表结构</div><div class="line">将对象、列表的操作，转换为sql语句</div><div class="line">将sql查询到的结果转换为对象、列表</div></pre></td></tr></table></figure>
+<ul>
+<li>模型开发流程<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">在models.py中定义模型类，要求继承自models.Model</div><div class="line">把应用加入settings.py文件的installed_app项</div><div class="line"></div><div class="line">生成迁移文件</div><div class="line"></div><div class="line">执行迁移生成表</div><div class="line"></div><div class="line">使用模型类进行crud操作</div><div class="line"></div><div class="line"></div><div class="line">使用数据库生成模型类</div><div class="line"></div><div class="line">python manage.py inspectdb &gt; blog/models.py</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="定义模型"><a href="#定义模型" class="headerlink" title="定义模型"></a>定义模型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">在模型中定义属性，会生成表中的字段</div><div class="line"></div><div class="line">django会为表增加自动增长的主键列，每个模型只能有一个主键列，</div><div class="line"></div><div class="line">默认情况下，Django 会给每个模型添加下面这个字段：</div><div class="line"></div><div class="line">id = models.AutoField(primary_key=True)</div><div class="line"></div><div class="line">这是一个自增主键字段。</div><div class="line"></div><div class="line">如果你想指定一个自定义主键字段，只要在某个字段上指定 primary_key=True 即可</div><div class="line"></div><div class="line">如果使用选项设置某属性为主键列后，则django不会再生成默认的主键列</div><div class="line"></div><div class="line"></div><div class="line">属性命名限制</div><div class="line"></div><div class="line">不能是python的保留关键字</div><div class="line"></div><div class="line">由于django的查询方式，字段名称中连续的下划线不能超过一个</div></pre></td></tr></table></figure>
+<h3 id="定义属性"><a href="#定义属性" class="headerlink" title="定义属性"></a>定义属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">定义属性时，需要字段类型</div><div class="line"></div><div class="line">使用方式</div><div class="line">导入from django.db import models</div><div class="line"></div><div class="line">通过models.Field创建字段类型的对象，赋值给属性</div><div class="line"></div><div class="line">对于重要数据都做逻辑删除，不做物理删除，</div><div class="line"></div><div class="line">实现方法是定义isDelete属性，类型为BooleanField，默认值为False</div></pre></td></tr></table></figure>
+<h3 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">AutoField：一个根据实际ID自动增长的IntegerField，通常不指定</div><div class="line">     - 如果不指定，一个主键字段将自动添加到模型中</div><div class="line"></div><div class="line">BooleanField：true/false 字段，此字段的默认表单控制是CheckboxInput</div><div class="line"></div><div class="line">NullBooleanField：支持null、true、false三种值</div><div class="line"></div><div class="line">CharField(max_length=字符长度)：字符串，默认的表单样式是 TextInput</div><div class="line"></div><div class="line">TextField：大文本字段，一般超过4000使用，默认的表单控件是Textarea</div><div class="line"></div><div class="line">IntegerField：整数</div><div class="line"></div><div class="line">DecimalField(max_digits=None, decimal_places=None)：使用python的Decimal实例表示的十进制浮点数</div><div class="line">	- DecimalField.max_digits：位数总数</div><div class="line">	- DecimalField.decimal_places：小数点后的数字位数</div><div class="line"></div><div class="line">FloatField：用Python的float实例来表示的浮点数</div><div class="line"></div><div class="line">DateField[auto_now=False, auto_now_add=False])：使用Python的datetime.date实例表示的日期</div><div class="line"></div><div class="line">	- 参数DateField.auto_now：每次保存对象时，自动设置该字段为当前时间，</div><div class="line">	用于&quot;最后一次修改&quot;的时间戳，它总是使用当前日期，默认为false</div><div class="line">	- </div><div class="line">	- 参数DateField.auto_now_add：当对象第一次被创建时自动设置当前时间，</div><div class="line">	用于创建的时间戳，它总是使用当前日期，默认为false</div><div class="line">	- </div><div class="line">	- 该字段默认对应的表单控件是一个TextInput. </div><div class="line">	在管理员站点添加了一个JavaScript写的日历控件，</div><div class="line">	和一个“Today&quot;的快捷按钮，包含了一个额外的invalid_date错误消息键</div><div class="line">	- </div><div class="line">	- auto_now_add, auto_now, and default 这些设置是相互排斥的，</div><div class="line">	他们之间的任何组合将会发生错误的结果</div><div class="line"></div><div class="line">TimeField：使用Python的datetime.time实例表示的时间，参数同DateField</div><div class="line"></div><div class="line">DateTimeField：使用Python的datetime.datetime实例表示的日期和时间，参数同DateField</div><div class="line"></div><div class="line">FileField：一个上传文件的字段</div><div class="line"></div><div class="line">ImageField：继承了FileField的所有属性和方法，但对上传的对象进行校验，确保它是个有效的image</div></pre></td></tr></table></figure>
+<h3 id="字段选项"><a href="#字段选项" class="headerlink" title="字段选项"></a>字段选项</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">通过字段选项，可以实现对字段的约束</div><div class="line"></div><div class="line">在字段对象时通过关键字参数指定</div><div class="line"></div><div class="line">null：如果为True，Django 将空值以NULL 存储到数据库中，默认值是 False</div><div class="line"></div><div class="line">blank：如果为True，则该字段允许为空值，默认值是 False</div><div class="line"></div><div class="line">对比：</div><div class="line"></div><div class="line">null是数据库范畴的概念，指数据库中字段内容是否允许为空,</div><div class="line"></div><div class="line">blank是表单验证证范畴的</div><div class="line"></div><div class="line">如果一个字段的blank=True，表单的验证将允许输入一个空值。如果字段的blank=False，该字段就是必填的</div><div class="line"></div><div class="line">db_column：字段的名称，如果未指定，则使用属性的名称</div><div class="line"></div><div class="line">db_index：若值为 True, 则在表中会为此字段创建索引</div><div class="line"></div><div class="line">default：默认值</div><div class="line"></div><div class="line">primary_key：若为 True, 则该字段会成为模型的主键字段</div><div class="line"></div><div class="line">unique：如果为 True, 这个字段在表中必须有唯一值</div><div class="line"></div><div class="line">以上都是常用字段的介绍</div></pre></td></tr></table></figure>
+<p><a href="http://python.usyiyi.cn/documents/django_182/ref/models/fields.html" target="_blank" rel="external">要了解详细内容请查看</a></p>
+<h3 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">关系的类型包括</div><div class="line"></div><div class="line">ForeignKey：一对多，将字段定义在多的端中</div><div class="line"></div><div class="line">ManyToManyField：多对多，</div><div class="line"></div><div class="line">在哪个模型中设置 ManyToManyField 并不重要，在两个模型中任选一个即可 —— 不要两个模型都设置。</div><div class="line"></div><div class="line">OneToOneField：一对一，将字段定义在任意一端中</div><div class="line"></div><div class="line">可以维护递归的关联关系，使用&apos;self&apos;指定，详见“自关联”</div><div class="line"></div><div class="line">对象.模型类小写_set -&gt; 找到所有外键为1的。</div><div class="line">bookhtl = BookInfo.objects.get(pk=1)</div><div class="line">aall = bookhtl.heroinfo_set.all()</div><div class="line"></div><div class="line">访问外键所链接的主键。</div><div class="line">hero = HeroInfo.objects.get(pk=1)</div><div class="line">a = hero.hbook</div></pre></td></tr></table></figure>
+<p><a href="http://python.usyiyi.cn/documents/django_182/topics/db/examples/many_to_many.html" target="_blank" rel="external">多对多</a></p>
+<h3 id="元选项"><a href="#元选项" class="headerlink" title="元选项"></a>元选项</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">在模型类中定义类Meta，用于设置元信息</div><div class="line">元信息db_table：定义数据表名称，推荐使用小写字母，</div><div class="line"></div><div class="line">数据表的默认名称:&lt;app_name&gt;_&lt;model_name&gt; 应用名字_模型类名</div></pre></td></tr></table></figure>
+<ul>
+<li>ordering<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">对象默认的顺序，获取一个对象的列表时使用：</div><div class="line"></div><div class="line">ordering = [&apos;-order_date&apos;]</div><div class="line">它是一个字符串的列表或元组。</div><div class="line">每个字符串是一个字段名，</div><div class="line"></div><div class="line">前面带有可选的“-”前缀表示倒序。</div><div class="line">前面没有“-”的字段表示正序。</div><div class="line">使用&quot;?&quot;来表示随机排序。</div><div class="line"></div><div class="line">例如，要按照pub_date字段的正序排序，这样写：</div><div class="line"></div><div class="line">ordering = [&apos;pub_date&apos;]</div><div class="line"></div><div class="line">按照pub_date字段的倒序排序，这样写：</div><div class="line"></div><div class="line">ordering = [&apos;-pub_date&apos;]</div><div class="line"></div><div class="line">先按照pub_date的倒序排序，再按照 author 的正序排序，这样写：</div><div class="line"></div><div class="line">ordering = [&apos;-pub_date&apos;, &apos;author&apos;]</div><div class="line"></div><div class="line">注意：排序会增加数据库的开销！！！！</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djmodle1.png" alt="djmodle1"></p>
+<ul>
+<li>测试数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">模型BookInfo的测试数据</div><div class="line">insert into bookinfo(btitle,bpub_date,bread,bcommet,isDelete) values</div><div class="line">(&apos;射雕英雄传&apos;,&apos;1980-5-1&apos;,12,34,0),</div><div class="line">(&apos;天龙八部&apos;,&apos;1986-7-24&apos;,36,40,0),</div><div class="line">(&apos;笑傲江湖&apos;,&apos;1995-12-24&apos;,20,80,0),</div><div class="line">(&apos;雪山飞狐&apos;,&apos;1987-11-11&apos;,58,24,0);</div><div class="line"></div><div class="line">模型HeroInfo的测试数据</div><div class="line">insert into mondletest_heroinfo(hname,hgender,hbook_id,hcontent,isDelete) values</div><div class="line">(&apos;郭靖&apos;,1,1,&apos;降龙十八掌&apos;,0),</div><div class="line">(&apos;黄蓉&apos;,0,1,&apos;打狗棍法&apos;,0),</div><div class="line">(&apos;黄药师&apos;,1,1,&apos;弹指神通&apos;,0),</div><div class="line">(&apos;欧阳锋&apos;,1,1,&apos;蛤蟆功&apos;,0),</div><div class="line">(&apos;梅超风&apos;,0,1,&apos;九阴白骨爪&apos;,0),</div><div class="line">(&apos;乔峰&apos;,1,2,&apos;降龙十八掌&apos;,0),</div><div class="line">(&apos;段誉&apos;,1,2,&apos;六脉神剑&apos;,0),</div><div class="line">(&apos;虚竹&apos;,1,2,&apos;天山六阳掌&apos;,0),</div><div class="line">(&apos;王语嫣&apos;,0,2,&apos;神仙姐姐&apos;,0),</div><div class="line">(&apos;令狐冲&apos;,1,3,&apos;独孤九剑&apos;,0),</div><div class="line">(&apos;任盈盈&apos;,0,3,&apos;弹琴&apos;,0),</div><div class="line">(&apos;岳不群&apos;,1,3,&apos;华山剑法&apos;,0),</div><div class="line">(&apos;东方不败&apos;,0,3,&apos;葵花宝典&apos;,0),</div><div class="line">(&apos;胡斐&apos;,1,4,&apos;胡家刀法&apos;,0),</div><div class="line">(&apos;苗若兰&apos;,0,4,&apos;黄衣&apos;,0),</div><div class="line">(&apos;程灵素&apos;,0,4,&apos;医术&apos;,0),</div><div class="line">(&apos;袁紫衣&apos;,0,4,&apos;六合拳&apos;,0);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djmodle2.png" alt="djmodle2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djmodle3.png" alt="djmodle3"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djmodle4.png" alt="djmodle4"></p>
+<h2 id="模型成员"><a href="#模型成员" class="headerlink" title="模型成员"></a>模型成员</h2><h3 id="类的属性"><a href="#类的属性" class="headerlink" title="类的属性"></a>类的属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">objects：是Manager类型的对象，用于与数据库进行交互</div><div class="line"></div><div class="line">当定义模型类时没有指定管理器，则Django会为模型类提供一个名为objects的管理器</div><div class="line"></div><div class="line">支持明确指定模型类的管理器</div><div class="line">class BookInfo(models.Model):</div><div class="line">   </div><div class="line">    books = models.Manager()</div><div class="line"></div><div class="line">当为模型类指定管理器后，django不再为模型类生成名为objects的默认管理器</div></pre></td></tr></table></figure>
+<h3 id="管理器Manager"><a href="#管理器Manager" class="headerlink" title="管理器Manager"></a>管理器Manager</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">管理器是Django的模型进行数据库的查询操作的接口，Django应用的每个模型都拥有至少一个管理器</div><div class="line"></div><div class="line">自定义管理器类主要用于两种情况</div><div class="line">情况一：向管理器类中添加额外的方法，在模型类写个类方法也可以实现，官方推荐使用管理器。</div><div class="line"></div><div class="line">情况二：修改管理器返回的原始查询集：重写get_queryset()方法</div></pre></td></tr></table></figure>
+<p>源码中我们可以看到。<br><img src="http://owrmua5nw.bkt.clouddn.com/manage1.png" alt="manage1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/manage2.png" alt="manage2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/manage3.png" alt="manage3"></p>
+<h3 id="实例的属性"><a href="#实例的属性" class="headerlink" title="实例的属性"></a>实例的属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DoesNotExist：在进行单个查询时，模型的对象不存在时会引发此异常，结合try/except使用</div></pre></td></tr></table></figure>
+<h3 id="实例的方法"><a href="#实例的方法" class="headerlink" title="实例的方法"></a>实例的方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">save()：将模型对象保存到数据表中</div><div class="line"></div><div class="line">delete()：将模型对象从数据表中删除</div></pre></td></tr></table></figure>
+<h2 id="模型查询"><a href="#模型查询" class="headerlink" title="模型查询"></a>模型查询</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">查询集表示从数据库中获取的对象集合</div><div class="line"></div><div class="line">查询集可以含有零个、一个或多个过滤器</div><div class="line"></div><div class="line">过滤器 基于所给的参数限制查询的结果</div><div class="line"></div><div class="line">从Sql的角度，查询集和select语句等价，过滤器像where和limit子句</div><div class="line"></div><div class="line">接下来主要讨论如下知识点</div><div class="line"></div><div class="line">查询集</div><div class="line">字段查询：比较运算符，F对象，Q对象</div></pre></td></tr></table></figure>
+<h3 id="查询集"><a href="#查询集" class="headerlink" title="查询集"></a>查询集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">在管理器上调用过滤器方法会返回查询集</div><div class="line"></div><div class="line">查询集经过过滤器筛选后返回新的查询集，因此可以写成链式过滤</div><div class="line"></div><div class="line">惰性执行：创建查询集不会带来任何数据库的访问，直到调用数据时，才会访问数据库</div><div class="line"></div><div class="line">何时对查询集求值：迭代，序列化，与if合用</div><div class="line"></div><div class="line">查询的快捷方式：pk，pk表示primary key，默认的主键是id</div></pre></td></tr></table></figure>
+<ul>
+<li>返回查询集的方法，称为过滤器<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">all()</div><div class="line">filter() 返回一个新的QuerySet，包含与给定的查询参数匹配的对象。</div><div class="line">exclude() 返回一个新的QuerySet，它包含不满足给定的查找参数的对象。</div><div class="line">order_by() 排序</div><div class="line"></div><div class="line">Entry.objects.filter(pub_date__year=2005).order_by(&apos;-pub_date&apos;, &apos;headline&apos;)</div><div class="line">上面的结果将按照pub_date 降序排序，然后再按照headline 升序排序。</div><div class="line"></div><div class="line">values()：一个对象构成一个字典，然后构成一个列表返回</div><div class="line"></div><div class="line">写法：</div><div class="line">filter(键1=值1,键2=值2)</div><div class="line">等价于</div><div class="line">filter(键1=值1).filter(键2=值2)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect.png" alt="djselect"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect111.png" alt="djselect111"></p>
+<ul>
+<li>返回单个值的方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">get()：返回单个满足条件的对象</div><div class="line">	如果未找到会引发&quot;模型类.DoesNotExist&quot;异常</div><div class="line">	如果多条被返回，会引发&quot;模型类.MultipleObjectsReturned&quot;异常</div><div class="line"></div><div class="line">count()：返回当前查询的总条数</div><div class="line">first()：返回第一个对象</div><div class="line">last()：返回最后一个对象</div><div class="line">exists()：判断查询集中是否有数据，如果有则返回True</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect222.png" alt="djselect222"></p>
+<h3 id="限制查询集"><a href="#限制查询集" class="headerlink" title="限制查询集"></a>限制查询集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">查询集返回列表，可以使用下标的方式进行限制，等同于sql中的limit和offset子句</div><div class="line">注意：不支持负数索引</div><div class="line"></div><div class="line">使用下标后返回一个新的查询集，不会立即执行查询</div><div class="line"></div><div class="line">如果获取一个对象，直接使用[0]，等同于[0:1].get()，</div><div class="line">但是如果没有数据，[0]引发IndexError异常，</div><div class="line">[0:1].get()引发DoesNotExist异常</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect3.png" alt="djselect3"></p>
+<h3 id="查询集的缓存"><a href="#查询集的缓存" class="headerlink" title="查询集的缓存"></a>查询集的缓存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">每个查询集都包含一个缓存来最小化对数据库的访问</div><div class="line"></div><div class="line">在新建的查询集中，缓存为空，</div><div class="line">首次对查询集求值时，会发生数据库查询，</div><div class="line">django会将查询的结果存在查询集的缓存中，并返回请求的结果，接下来对查询集求值将重用缓存的结果</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">情况一：这构成了两个查询集，无法重用缓存，每次查询都会与数据库进行一次交互，增加了数据库的负载</div><div class="line">print([e.title for e in Entry.objects.all()])</div><div class="line">print([e.title for e in Entry.objects.all()])</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">情况二：两次循环使用同一个查询集，第二次使用缓存中的数据</div><div class="line">querylist=Entry.objects.all()</div><div class="line">print([e.title for e in querylist])</div><div class="line">print([e.title for e in querylist])</div></pre></td></tr></table></figure>
+<h3 id="何时查询集不会被缓存"><a href="#何时查询集不会被缓存" class="headerlink" title="何时查询集不会被缓存"></a>何时查询集不会被缓存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">当只对查询集的部分进行求值时会检查缓存，但是如果这部分不在缓存中，那么接下来查询返回的记录将不会被缓存，</div><div class="line">这意味着使用索引来限制查询集将不会填充缓存，如果这部分数据已经被缓存，则直接使用缓存中的数据</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">例如，重复获取查询集对象中一个特定的索引将每次都查询数据库：</div><div class="line"></div><div class="line">&gt;&gt;&gt; queryset = Entry.objects.all()</div><div class="line">&gt;&gt;&gt; print queryset[5] # Queries the database</div><div class="line">&gt;&gt;&gt; print queryset[5] # Queries the database again</div></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">然而，如果已经对全部查询集求值过，则将检查缓存：</div><div class="line"></div><div class="line">&gt;&gt;&gt; queryset = Entry.objects.all()</div><div class="line">&gt;&gt;&gt; [entry for entry in queryset] # Queries the database</div><div class="line">&gt;&gt;&gt; print queryset[5] # Uses cache</div><div class="line">&gt;&gt;&gt; print queryset[5] # Uses cache</div></pre></td></tr></table></figure>
+<h3 id="字段查询"><a href="#字段查询" class="headerlink" title="字段查询"></a>字段查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">实现where子名，作为方法filter()、exclude()、get()的参数</div><div class="line"></div><div class="line">语法：属性名称__比较运算符=值   - (模型类当中的属性)</div><div class="line"></div><div class="line"></div><div class="line">表示两个下划线，左侧是属性名称，右侧是比较类型</div><div class="line"></div><div class="line">对于外键，使用“属性名_id”表示外键的原始值</div><div class="line"></div><div class="line">转义：like语句中使用了%与，匹配数据中的%与，在过滤器中直接写，例如：filter(title__contains=&quot;%&quot;)=&gt;where title like &apos;%\%%&apos;，表示查找标题中包含%的</div></pre></td></tr></table></figure>
+<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">exact：表示判等，大小写敏感；如果没有写“ 比较运算符”，表示判等</div><div class="line"></div><div class="line">contains：是否包含，大小写敏感</div><div class="line"></div><div class="line">startswith、endswith：以value开头或结尾，大小写敏感</div><div class="line"></div><div class="line">isnull  值为 True 或 False, 相当于 SQL语句IS NULL和IS NOT NULL.</div><div class="line"></div><div class="line">在前面加个i表示不区分大小写，如iexact、icontains、istarswith、iendswith</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect5.png" alt="djselect5"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect4.png" alt="djselect4"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">in：是否包含在范围内</div><div class="line"></div><div class="line">gt、gte、lt、lte：大于、大于等于、小于、小于等于</div><div class="line"></div><div class="line">year、month、day、week_day、hour、minute、second：对日期间类型的属性进行运算</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect6.png" alt="djselect6"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect7.png" alt="djselect7"></p>
+<h3 id="跨关联关系的查询：处理join查询"><a href="#跨关联关系的查询：处理join查询" class="headerlink" title="跨关联关系的查询：处理join查询"></a>跨关联关系的查询：处理join查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">语法：模型类名 &lt;属性名&gt; &lt;比较&gt;</div><div class="line">注：可以没有__&lt;比较&gt;部分，表示等于，结果同inner join</div><div class="line"></div><div class="line">可返向使用，即在关联的两个模型中都可以使用</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect8.png" alt="djselect8"></p>
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">使用aggregate()函数返回聚合函数的值</div><div class="line"></div><div class="line">函数：Avg，Count，Max，Min，Sum</div><div class="line"></div><div class="line">from django.db.models import Max</div><div class="line">a=BookInfo.books.aggregate(Max(&apos;pk&apos;))</div><div class="line"></div><div class="line"></div><div class="line">count的一般用法：</div><div class="line"></div><div class="line">a=BookInfo.books.count()</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect9.png" alt="djselect9"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">以上查询都是一个字段跟一个常量做比较，如果希望字段间进行比较，可以使用F对象</div></pre></td></tr></table></figure>
+<h3 id="F对象"><a href="#F对象" class="headerlink" title="F对象"></a>F对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">from django.db.models import F</div><div class="line"></div><div class="line">django支持对F()对象使用算数运算</div><div class="line"></div><div class="line"></div><div class="line">F()对象中还可以写作“模型类__列名”进行关联查询</div><div class="line"></div><div class="line"></div><div class="line">对于date/time字段，可与timedelta()进行运算</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect10.png" alt="djselect10"></p>
+<h3 id="Q对象"><a href="#Q对象" class="headerlink" title="Q对象"></a>Q对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">from django.db.models import Q</div><div class="line"></div><div class="line">过滤器的方法中关键字参数查询，默认会合并为And进行</div><div class="line"></div><div class="line">a=BookInfo.books.filter(pk__lt=3,bcommet__gt=100)</div><div class="line">等同于</div><div class="line">a=BookInfo.books.filter(Q(pk__lt=3)&amp;Q(bcommet__gt=100))</div><div class="line"> 主键小于10，并且评论数目大于10.</div><div class="line"></div><div class="line">如果想要进行or 查询。必须使用Q()对象</div><div class="line">a=BookInfo.books.filter(Q(pk__lt=3)|Q(bcommet__gt=100))</div><div class="line"></div><div class="line"></div><div class="line">a=BookInfo.books.filter(Q(pk__lt=3)&amp;Q(bcommet__gt=100))</div><div class="line">这样就是and，默认就是and，没必要这样写。</div><div class="line"></div><div class="line">使用~（not）操作符在Q对象前表示取反</div><div class="line">a=BookInfo.books.filter(~Q(pk__lt=3)|Q(bcommet__gt=100))</div><div class="line"></div><div class="line"></div><div class="line">过滤器函数可以混合使用Q对象和关键字参数，所有参数都将and在一起，Q对象必须位于关键字参数的前面</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djselect11.png" alt="djselect11"></p>
+<h2 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">新建模型AreaInfo，生成迁移，记得在setting.py注册应用</div><div class="line">class AreaInfo(models.Model):</div><div class="line">    atitle = models.CharField(max_length=20)</div><div class="line">    aParent = models.ForeignKey(&apos;self&apos;, null=True, blank=True)</div><div class="line"></div><div class="line">访问关联对象</div><div class="line">上级对象：area.aParent</div><div class="line">下级对象：area.areainfo_set.all()</div></pre></td></tr></table></figure>
+<p><a href="https://pan.baidu.com/s/1nuRoIyl" target="_blank" rel="external">加入测试数据</a></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/self0.png" alt="self0"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/self1.png" alt="self1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/self2.png" alt="self2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/self3.png" alt="self3"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/self4.png" alt="self4"></p>
+<h1 id="视图-1"><a href="#视图-1" class="headerlink" title="视图"></a>视图</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">视图接受Web请求并且返回Web响应</div><div class="line">视图就是一个python函数，被定义在views.py中</div><div class="line">响应可以是一张网页的HTML内容，一个重定向，一个404错误等等</div><div class="line"></div><div class="line">响应处理过程如下图：</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djview1.png" alt="djview1"></p>
+<h2 id="URLconf"><a href="#URLconf" class="headerlink" title="URLconf"></a>URLconf</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">在settings.py文件中通过ROOT_URLCONF指定根级url的配置</div><div class="line">urlpatterns是一个url()实例的列表</div><div class="line"></div><div class="line">编写URLconf的注意：</div><div class="line">若要从url中捕获一个值，需要在它周围设置一对圆括号</div><div class="line"></div><div class="line">不需要添加一个前导的反斜杠，如应该写作&apos;test/&apos;，而不应该写作&apos;/test/&apos;</div><div class="line"></div><div class="line">每个正则表达式前面的r表示字符串不转义</div><div class="line"></div><div class="line">请求的url被看做是一个普通的python字符串，进行匹配时不包括get或post请求的参数及域名</div><div class="line"></div><div class="line">http://www.lxhsec.com/python/django/?id=1 </div><div class="line">只匹配python/django/部分</div></pre></td></tr></table></figure>
+<ul>
+<li>正则表达式非命名组，通过位置,按顺序将参数传递给视图<br><img src="http://owrmua5nw.bkt.clouddn.com/viewtest1.png" alt="viewtest1"></li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/viewtest2.png" alt="viewtest2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/viewtest3.png" alt="viewtest3"></p>
+<ul>
+<li>正则表达式命名组，通过关键字参数传递给视图，<br>其他代码不变<br><img src="http://owrmua5nw.bkt.clouddn.com/viewtask1.png" alt="viewtask1"></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">参数匹配规则：优先使用命名参数，如果没有命名参数则使用位置参数</div><div class="line"></div><div class="line">每个捕获的参数都作为一个普通的python字符串传递给视图</div></pre></td></tr></table></figure>
+<h2 id="定义视图"><a href="#定义视图" class="headerlink" title="定义视图"></a>定义视图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">本质就是一个函数</div><div class="line"></div><div class="line">视图的参数</div><div class="line"> 一个HttpRequest实例</div><div class="line">	通过正则表达式组获取的位置参数</div><div class="line">	通过正则表达式组获得的关键字参数</div><div class="line"></div><div class="line">如果处理功能过多，可以细化功能，分别写在不同的应用中。</div></pre></td></tr></table></figure>
+<h3 id="自定义404视图"><a href="#自定义404视图" class="headerlink" title="自定义404视图"></a>自定义404视图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">默认的404视图将传递一个变量给模板：request_path，它是导致错误的URL</div><div class="line"></div><div class="line">如果Django在检测URLconf中的每个正则表达式后没有找到匹配的内容也将调用404视图</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/viewtest4.png" alt="viewtest4"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/viewtest5.png" alt="viewtest5"></p>
+<h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><ul>
+<li><p>HttpReqeust</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">浏览器输入url后，服务器接收到http协议的请求后，会根据报文创建HttpRequest对象</div><div class="line"></div><div class="line">视图函数的第一个参数是HttpRequest对象</div><div class="line"></div><div class="line">在django.http模块中定义了HttpRequest对象的API</div></pre></td></tr></table></figure>
+</li>
+<li><p>属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">下面除非特别说明，属性都是只读的</div><div class="line"></div><div class="line">path：一个字符串，表示请求的页面的完整路径，不包含域名</div><div class="line"></div><div class="line">method：一个字符串，表示请求使用的HTTP方法，常用值包括：&apos;GET&apos;、&apos;POST&apos;</div><div class="line"></div><div class="line">encoding：一个字符串，表示提交的数据的编码方式</div><div class="line">如果为None则表示使用浏览器的默认设置，一般为utf-8</div><div class="line">这个属性是可写的，</div><div class="line">可以通过修改它来修改访问表单数据使用的编码，</div><div class="line">接下来对属性的任何访问将使用新的encoding值</div><div class="line"></div><div class="line">GET：一个类似于字典的对象，包含get请求方式的所有参数</div><div class="line"></div><div class="line">POST：一个类似于字典的对象，包含post请求方式的所有参数</div><div class="line"></div><div class="line">FILES：一个类似于字典的对象，包含所有的上传文件</div><div class="line"></div><div class="line">COOKIES：一个标准的Python字典，包含所有的cookie，键和值都为字符串</div><div class="line">session：一个既可读又可写的类似于字典的对象，</div><div class="line">表示当前的会话，只有当Django 启用会话的支持时才可用，</div><div class="line"></div><div class="line">详细内容见“状态保持”</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">is_ajax()：如果请求是通过XMLHttpRequest发起的，则返回True</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="QueryDict对象"><a href="#QueryDict对象" class="headerlink" title="QueryDict对象"></a>QueryDict对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">一个类字典对象</div><div class="line">python字典中键是唯一的。</div><div class="line">而QueryDict对象 允许 相同的键，即同一个键带有多个值的情况</div><div class="line"></div><div class="line">方法get()：根据键获取值</div><div class="line"></div><div class="line">只能获取键的一个值</div><div class="line">如果一个键同时拥有多个值，获取最后一个值</div><div class="line"></div><div class="line">dict.get(&apos;键&apos;,default)</div><div class="line">或简写为</div><div class="line">dict[&apos;键&apos;] -&gt; 如果没有那个键，则会报异常。推荐使用第一种</div><div class="line"></div><div class="line"></div><div class="line">方法getlist()：根据键获取值</div><div class="line"></div><div class="line">将键的值以列表返回，可以获取一个键的多个值</div><div class="line"></div><div class="line">dict.getlist(&apos;键&apos;,default)</div></pre></td></tr></table></figure>
+<h3 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">QueryDict类型的对象</div><div class="line"></div><div class="line">包含get请求方式的所有参数</div><div class="line"></div><div class="line">与url请求地址中的参数对应，位于?后面</div><div class="line"></div><div class="line">参数的格式是键值对，如key1=value1</div><div class="line"></div><div class="line">多个参数之间，使用&amp;连接</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djget1.png" alt="djget1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djget2.png" alt="djget2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djget3.png" alt="djget3"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djget4.png" alt="djget4"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djget5.png" alt="djget5"></p>
+<h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">QueryDict类型的对象</div><div class="line"></div><div class="line">包含post请求方式的所有参数</div><div class="line"></div><div class="line">与form表单中的控件对应</div><div class="line"></div><div class="line">控件name属性的值为键，value属性的值为值，构成键值对提交</div><div class="line"></div><div class="line">对于checkbox控件，name属性一样为一组，当控件被选中后会被提交，存在一键多值的情况</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djpost1.png" alt="djpost1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djpost2.png" alt="djpost2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djpost3.png" alt="djpost3"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djpost4.png" alt="djpost4"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djpost5.png" alt="djpost5"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/post6.gif" alt="post6.gif"></p>
+<p><a href="http://python.usyiyi.cn/documents/django_182/ref/request-response.html#httprequest-objects" target="_blank" rel="external">详细request</a></p>
+<h2 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">在django.http模块中定义了HttpResponse对象的API</div><div class="line"></div><div class="line">HttpRequest对象由Django自动创建，HttpResponse对象由程序员创建</div><div class="line"></div><div class="line">不调用模板，直接返回数据</div></pre></td></tr></table></figure>
+<h3 id="HttpResponse对象方法"><a href="#HttpResponse对象方法" class="headerlink" title="HttpResponse对象方法"></a>HttpResponse对象方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">write(content)：以文件的方式写</div><div class="line"></div><div class="line">flush()：以文件的方式输出缓存区</div><div class="line"></div><div class="line">set_cookie(key, value=&apos;&apos;, max_age=None, expires=None, path=&apos;/&apos;, domain=None, secure=None, httponly=False)</div><div class="line">：设置Cookie cookie就是存储在浏览器端的一段文本</div><div class="line"></div><div class="line">key、value都是字符串类型</div><div class="line"></div><div class="line">max_age是一个整数，表示在指定秒数后过期</div><div class="line"></div><div class="line">expires 应该是一个 UTC &quot;Wdy, DD-Mon-YY HH:MM:SS GMT&quot; 格式的字符串，或者一个datetime.datetime 对象。</div><div class="line">如果expires 是一个datetime 对象，则max_age 会通过计算得到。</div><div class="line"></div><div class="line">如果你想</div><div class="line"></div><div class="line">max_age与expires二选一</div><div class="line"></div><div class="line">如果不指定过期时间，则两个星期后过期</div><div class="line"></div><div class="line">如果你想设置一个跨域的Cookie，请使用domain 参数。例如，domain=&quot;.lawrence.com&quot; 将设置一个www.lawrence.com、blogs.lawrence.com 和calendars.lawrence.com 都可读的Cookie。否则，Cookie 将只能被设置它的域读取。</div><div class="line"></div><div class="line">如果你想阻止客服端的JavaScript 访问Cookie，可以设置httponly=True。</div><div class="line"></div><div class="line">delete_cookie(key)：删除指定的key的Cookie，如果key不存在则什么也不发生</div></pre></td></tr></table></figure>
+<p>从response对象中，设置cookie，<br><img src="http://owrmua5nw.bkt.clouddn.com/cookie.png" alt="cookie"></p>
+<p>从request对象中，读取cookie<br><img src="http://owrmua5nw.bkt.clouddn.com/cookie2.png" alt="cookie2"></p>
+<p><a href="http://python.usyiyi.cn/documents/django_182/ref/request-response.html#httpresponse-objects" target="_blank" rel="external">详细response</a></p>
+<h2 id="HttpResponse的子类"><a href="#HttpResponse的子类" class="headerlink" title="HttpResponse的子类"></a>HttpResponse的子类</h2><h3 id="子类HttpResponseRedirect"><a href="#子类HttpResponseRedirect" class="headerlink" title="子类HttpResponseRedirect"></a>子类HttpResponseRedirect</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">与 HttpResponse相同, 这些衍生类（子类）存在于django.http之中。</div><div class="line"></div><div class="line">重定向，服务器端跳转</div><div class="line">构造函数的第一个参数用来指定重定向的地址</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/redirect1.gif" alt="redirect1.gif"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/redirect.png" alt="redirect"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/direct.png" alt="direct"></p>
+<h3 id="子类JsonResponse"><a href="#子类JsonResponse" class="headerlink" title="子类JsonResponse"></a>子类JsonResponse</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">返回json数据，一般用于异步请求</div><div class="line">_init _(data)</div><div class="line">参数data是字典对象</div><div class="line">JsonResponse的默认Content-Type为application/json</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/repjson.png" alt="repjson"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/repjson1.png" alt="repjson1"></p>
+<h2 id="简写函数"><a href="#简写函数" class="headerlink" title="简写函数"></a>简写函数</h2><h3 id="render"><a href="#render" class="headerlink" title="render"></a>render</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">render(request, template_name[, context])</div><div class="line"></div><div class="line">结合一个给定的模板和一个给定的上下文字典，并返回一个渲染后的HttpResponse对象</div><div class="line"></div><div class="line">request：该request用于生成response</div><div class="line">template_name：要使用的模板的完整名称</div><div class="line">context：添加到模板上下文的一个字典，视图将在渲染模板之前调用它</div><div class="line">[]表示 可选参数</div></pre></td></tr></table></figure>
+<h2 id="状态保持"><a href="#状态保持" class="headerlink" title="状态保持"></a>状态保持</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">http协议是无状态的：每次请求都是一次新的请求，不会记得之前通信的状态</div><div class="line"></div><div class="line">若我们想记录这种通信状态，可以用session(会话)，或cookie来保存。</div><div class="line"></div><div class="line">客户端与服务器端的一次通信，就是一次会话</div><div class="line"></div><div class="line">实现状态保持的方式：在客户端或服务器端存储与会话有关的数据</div><div class="line"></div><div class="line">使用cookie，所有数据存储在客户端，注意不要存储敏感信息</div><div class="line"></div><div class="line">推荐使用sesison方式，所有数据存储在服务器端，</div><div class="line"></div><div class="line">在客户端cookie中存储session_id-&gt;session依赖于cookie，</div><div class="line"></div><div class="line">状态保持的目的是在一段时间内跟踪请求者的状态，可以实现跨页面访问当前请求者的数据</div><div class="line"></div><div class="line">注意：不同的请求者之间不会共享这个数据，与请求者一一对应</div><div class="line"></div><div class="line">使用django-admin startproject创建的项目默认启用默认是启动session</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/session1.png" alt="session1"></p>
+<h3 id="使用session"><a href="#使用session" class="headerlink" title="使用session"></a>使用session</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">启用会话后，每个HttpRequest对象将具有一个session属性，它是一个类字典对象</div><div class="line"></div><div class="line">get(key, default=None)：根据键获取会话的值</div><div class="line">clear()：清除所有会话</div><div class="line">flush()：删除当前的会话数据并删除会话的Cookie</div><div class="line">del request.session[&apos;member_id&apos;]：删除会话</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/session2.gif" alt="session2.gif"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djsession1.png" alt="djsession1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djsession2.png" alt="djsession2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djsession3.png" alt="djsession3"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djsession4.png" alt="djsession4"></p>
+<h3 id="会话过期时间"><a href="#会话过期时间" class="headerlink" title="会话过期时间"></a>会话过期时间</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">set_expiry(value)：设置会话的超时时间</div><div class="line"></div><div class="line">如果没有指定，则两个星期后过期</div><div class="line">如果value是一个整数，会话将在values秒没有活动后过期</div><div class="line">若果value是一个imedelta对象，会话将在当前时间加上这个指定的日期/时间过期</div><div class="line">如果value为0，那么用户会话的Cookie将在用户的浏览器关闭时过期</div><div class="line">如果value为None，那么会话永不过期</div><div class="line"></div><div class="line">修改视图中login_handle函数，查看效果</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/sessionexpiry.png" alt="sessionexpiry"></p>
+<h3 id="session存在哪里"><a href="#session存在哪里" class="headerlink" title="session存在哪里"></a>session存在哪里</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">django默认的会话存储方式是存放在数据库。</div><div class="line">因此需要迁移，使数据库中产生对应的session表</div><div class="line"></div><div class="line">SESSION_ENGINE=&apos;django.contrib.sessions.backends.db&apos;</div><div class="line"></div><div class="line">SESSION_ENGINE=&apos;django.contrib.sessions.backends.cache&apos;</div><div class="line"></div><div class="line">SESSION_ENGINE=&apos;django.contrib.sessions.backends.cached_db&apos;</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/session2.png" alt="session2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/session3.png" alt="session3"></p>
+<h3 id="使用Redis缓存session"><a href="#使用Redis缓存session" class="headerlink" title="使用Redis缓存session"></a>使用Redis缓存session</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">安装包</div><div class="line">pip install django-redis-sessions</div><div class="line"></div><div class="line">修改settings中的配置，增加如下项,(根据自己配置的改，以下是默认配置)</div><div class="line">SESSION_ENGINE = &apos;redis_sessions.session&apos;</div><div class="line">SESSION_REDIS_HOST = &apos;localhost&apos;</div><div class="line">SESSION_REDIS_PORT = 6379</div><div class="line">SESSION_REDIS_DB = 0</div><div class="line">SESSION_REDIS_PASSWORD = &apos;&apos;</div><div class="line">SESSION_REDIS_PREFIX = &apos;session&apos;</div><div class="line"></div><div class="line">服务器上要安装有redis。</div><div class="line"></div><div class="line">启动：sudo redis-server /etc/redis/redis.conf</div><div class="line"></div><div class="line">停止：sudo redis-server stop</div><div class="line"></div><div class="line">重启：sudo redis-server restart</div><div class="line"></div><div class="line">redis-cli：使用客户端连接服务器</div><div class="line">keys *：查看所有的键</div><div class="line">get name：获取指定键的值</div><div class="line">del name：删除指定名称的键</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/session5.png" alt="session5"></p>
+<h3 id="服务端存储大量session-如何区分。"><a href="#服务端存储大量session-如何区分。" class="headerlink" title="服务端存储大量session 如何区分。"></a>服务端存储大量session 如何区分。</h3><p><img src="http://owrmua5nw.bkt.clouddn.com/session4.png" alt="session4"></p>
+<p><a href="http://python.usyiyi.cn/documents/django_182/topics/http/sessions.html#module-django.contrib.sessions" target="_blank" rel="external">session完整</a></p>
+<h1 id="模板-1"><a href="#模板-1" class="headerlink" title="模板"></a>模板</h1><h2 id="模板介绍"><a href="#模板介绍" class="headerlink" title="模板介绍"></a>模板介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">作为Web框架，Django提供了模板，可以很便利的动态生成HTML</div><div class="line"></div><div class="line">模版系统致力于表达外观，而不是程序逻辑</div><div class="line"></div><div class="line">模板的设计实现了业务逻辑(view)与显示内容（template）的分离，一个视图可以使用任意一个模板，一个模板可以供多个视图使用</div><div class="line"></div><div class="line">模板包含:</div><div class="line">	HTML的静态部分</div><div class="line">	动态插入内容部分</div><div class="line"></div><div class="line">Django模板语言，简写DTL，定义在django.template包中</div><div class="line"></div><div class="line">由startproject命令生成的settings.py定义关于模板的值：</div><div class="line">	DIRS定义了一个目录列表，模板引擎按列表顺序搜索这些目以查找模板源文件</div><div class="line"></div><div class="line">	APP_DIRS告诉模板引擎是否应该在每个已安装的应用中查找模板</div><div class="line"></div><div class="line">常用方式：在项目的根目录下创建templates目录，设置DIRS值</div><div class="line">DIRS=[os.path.join(BASE_DIR,&quot;templates&quot;)]</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/template11.png" alt="template11"></p>
+<h3 id="模板处理"><a href="#模板处理" class="headerlink" title="模板处理"></a>模板处理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Django处理模板分为两个阶段</div><div class="line"></div><div class="line">Step1 加载：根据给定的标识找到模板然后预处理，通常会将它编译好放在内存中</div><div class="line"></div><div class="line">Step2 渲染：使用Context数据对模板插值并返回生成的字符串</div><div class="line"></div><div class="line">render(request,&apos;模板&apos;,context)</div><div class="line"></div><div class="line">Step3 返回给浏览器：</div><div class="line">return render(request,&apos;模板&apos;,context)</div><div class="line"></div><div class="line">render是快捷函数，为了减少加载模板、渲染模板的重复代码，</div></pre></td></tr></table></figure>
+<h2 id="定义模块"><a href="#定义模块" class="headerlink" title="定义模块"></a>定义模块</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">语法：</div><div class="line"></div><div class="line">&#123;&#123; variable &#125;&#125;</div><div class="line"></div><div class="line">当模版引擎遇到一个变量，将计算这个变量，然后将结果输出</div><div class="line"></div><div class="line">变量名必须由字母、数字、下划线（不能以下划线开头）和点组成</div><div class="line"></div><div class="line">如果变量不存在， 模版系统将插入&apos;&apos; (空字符串)</div><div class="line"></div><div class="line">在模板中调用方法时不能传递参数</div><div class="line"></div><div class="line">当模版引擎遇到点(&quot;.&quot;)，会按照下列顺序查询：</div><div class="line">	字典查询，例如：foo[&quot;bar&quot;]</div><div class="line">	属性或方法查询，例如：foo.bar</div><div class="line">	数字索引查询，例如：foo[bar]</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djtmptest1.png" alt="djtmptest1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djtmptest2.png" alt="djtmptest2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djtmptest3.png" alt="djtmptest3"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djtmptest4.png" alt="djtmptest4"></p>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">语法：&#123; % tag % &#125;</div><div class="line"></div><div class="line">作用</div><div class="line"></div><div class="line">	在输出中创建文本</div><div class="line"></div><div class="line">	控制循环或逻辑</div><div class="line"></div><div class="line">	加载外部信息到模板中供以后的变量使用</div><div class="line"></div><div class="line">布尔标签：and、or，and比or的优先级高</div></pre></td></tr></table></figure>
+<ul>
+<li>for标签<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;% for each in test1 %&#125;</div><div class="line">循环逻辑</div><div class="line">&#123;&#123; forloop.counter &#125;&#125; 表示当前是第几次循环</div><div class="line"></div><div class="line">&#123;% empty %&#125;</div><div class="line">当要遍历的test1不存在时，执行此处，可以给出一些错误信息</div><div class="line">&#123;% endfor %&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djfor.gif" alt="djfor.git"></p>
+<ul>
+<li>if标签</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;% if ... %&#125;</div><div class="line">逻辑1</div><div class="line">&#123;% elif ... %&#125;</div><div class="line">逻辑2</div><div class="line">&#123;% else %&#125;</div><div class="line">逻辑3</div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djtmptest5.png" alt="djtmptest5"></p>
+<ul>
+<li><p>comment标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;% comment %&#125;</div><div class="line">多行注释</div><div class="line">&#123;% endcomment %&#125;</div><div class="line"></div><div class="line">单行注释</div><div class="line">&#123;#...#&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>csrf_token</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">这个标签用于跨站请求伪造保护</div><div class="line">&#123;% csrf_token %&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">语法：&#123; &#123; 变量|过滤器 &#125;&#125;</div><div class="line"></div><div class="line">使用管道符号 (|)来应用过滤器</div><div class="line"></div><div class="line">通过使用过滤器来改变变量的计算结果</div><div class="line"></div><div class="line">可以在if标签中使用过滤器结合运算符</div><div class="line">if list1|length &gt; 1</div><div class="line"></div><div class="line">过滤器能够被“串联”，构成过滤器链</div><div class="line">name|lower|upper</div><div class="line"></div><div class="line">join 使用字符串连接列表，</div><div class="line"></div><div class="line">&#123;&#123; value|join:&quot; // &quot; &#125;&#125;</div><div class="line">如果value是列表[&apos;a&apos;， &apos;b&apos;， &apos;c&apos;] ，输出将是字符串“a // b // c“。</div><div class="line"></div><div class="line">default：如果一个变量没有被提供，或者值为false或空，则使用默认值，否则使用变量的值</div><div class="line">value|default:&quot;什么也没有</div><div class="line"></div><div class="line">date：根据给定格式对一个date变量格式化</div><div class="line">value|date:&apos;Y-m-d&apos;</div></pre></td></tr></table></figure>
+<p><a href="http://python.usyiyi.cn/documents/django_182/ref/templates/builtins.html" target="_blank" rel="external">过滤器</a></p>
+<h2 id="反向解析"><a href="#反向解析" class="headerlink" title="反向解析"></a>反向解析</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">返回一个绝对路径的引用(不包含域名的URL)，该引用匹配一个给定的视图函数和一些可选的参数。</div><div class="line"></div><div class="line">它可以避免在模板中硬编码链接路径。</div><div class="line"></div><div class="line">&#123;% url &apos;myapp:view-name&apos; p1 p2 %&#125;</div><div class="line"></div><div class="line">警告</div><div class="line"></div><div class="line">不要忘记在函数路径或模式名称周围加引号，否则值将被解释为上下文变量！</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/fanxiang1.png" alt="fanxiang1"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/fanxiang2.png" alt="fanxiang2"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/fanxiang3.png" alt="fanxiang3"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/fanxiang4.png" alt="fanxiang4"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/fanxiang5.png" alt="fanxiang5"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/fanxiang6.png" alt="fanxiang6"></p>
+<h2 id="模板继承"><a href="#模板继承" class="headerlink" title="模板继承"></a>模板继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">模板继承可以减少页面内容的重复定义，实现页面内容的重用</div><div class="line"></div><div class="line">典型应用：网站的头部、尾部是一样的，这些内容可以定义在父模板中，子模板不需要重复定义</div><div class="line"></div><div class="line">block标签：在父模板中预留区域，在子模板中填充</div><div class="line">&#123;% block block_name %&#125;</div><div class="line">这里可以定义默认值</div><div class="line">如果不定义默认值，则表示空字符串</div><div class="line">&#123;% endblock %&#125;</div><div class="line"></div><div class="line"></div><div class="line">extends继承：继承，写在模板文件的第一行</div><div class="line"></div><div class="line">&#123;% extends &quot;base.html&quot; %&#125;</div><div class="line"></div><div class="line"></div><div class="line">说明</div><div class="line"></div><div class="line">如果在模版中使用extends标签，它必须是模版中的第一个标签</div><div class="line"></div><div class="line">不能在一个模版中定义多个相同名字的block标签</div><div class="line"></div><div class="line">子模版不必定义全部父模版中的blocks，如果子模版没有定义block，则使用了父模版中的默认值</div><div class="line"></div><div class="line">如果发现在模板中大量的重复内容，那就应该把内容移动到父模板中</div><div class="line"></div><div class="line">使用可以获取父模板中block的内容</div><div class="line">为了更好的可读性，可以给endblock标签一个名字</div><div class="line"></div><div class="line">&#123; % block block_name %&#125;</div><div class="line">区域内容</div><div class="line">&#123; % endblock block_name %&#125;</div></pre></td></tr></table></figure>
+<p><a href="http://python.usyiyi.cn/documents/django_182/ref/templates/language.html#template-inheritance" target="_blank" rel="external">例子</a></p>
+<h2 id="HTML转义"><a href="#HTML转义" class="headerlink" title="HTML转义"></a>HTML转义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">防止恶意的js代码。</div><div class="line"></div><div class="line">从视图当中传进来的字符串会被模板转义，</div></pre></td></tr></table></figure>
+<ul>
+<li>Django会将如下字符自动转义：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt; 会转换为&amp;lt;</div><div class="line"></div><div class="line">&gt; 会转换为&amp;gt;</div><div class="line"></div><div class="line">&apos; (单引号) 会转换为&amp;#39;</div><div class="line"></div><div class="line">&quot; (双引号)会转换为 &amp;quot;</div><div class="line"></div><div class="line">&amp; 会转换为 &amp;amp;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="关闭转义"><a href="#关闭转义" class="headerlink" title="关闭转义"></a>关闭转义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">对于变量使用safe过滤器</div><div class="line">&#123;&#123; data|safe &#125;&#125;</div><div class="line"></div><div class="line">对于代码块使用autoescape标签</div><div class="line">&#123; % autoescape off %&#125;</div><div class="line">&#123;&#123; body &#125;&#125;</div><div class="line">&#123; % endautoescape %&#125;</div><div class="line"></div><div class="line">标签autoescape接受on或者off参数</div><div class="line">自动转义标签在base模板中关闭，在child模板中也是关闭的</div></pre></td></tr></table></figure>
+<h3 id="手动转义"><a href="#手动转义" class="headerlink" title="手动转义"></a>手动转义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">手动转义</div><div class="line">&#123; &#123; data|default:&quot;&lt;b&gt;123&lt;/b&gt;&quot; &#125;&#125;</div><div class="line">应写为</div><div class="line">&#123; &#123; data|default:&quot;&amp;lt;b&amp;gt;123&amp;lt;/b&amp;gt;&quot; &#125;&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/htmlzhuanyi.png" alt="htmlzhuanyi"></p>
+<h2 id="csrf"><a href="#csrf" class="headerlink" title="csrf"></a>csrf</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">全称Cross Site Request Forgery，跨站请求伪造</div></pre></td></tr></table></figure>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djview11.png" alt="djview11"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djview12.png" alt="djview12"></p>
+<p><img src="http://owrmua5nw.bkt.clouddn.com/djview13.png" alt="djview13"></p>
+<iframe height="300" width="510" src="http://player.youku.com/embed/XMzIxNTYxMDU4OA==" frameborder="0" 'allowfullscreen'=""></iframe>
+
+<h2 id="验证码"><a href="#验证码" class="headerlink" title="验证码"></a>验证码</h2><h1 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">高级知识点包括：</div><div class="line"></div><div class="line">静态文件处理</div><div class="line">中间件</div><div class="line">上传图片</div><div class="line">Admin站点</div><div class="line">分页</div><div class="line">使用jquery完成ajax</div></pre></td></tr></table></figure>
+<h2 id="静态文件处理"><a href="#静态文件处理" class="headerlink" title="静态文件处理"></a>静态文件处理</h2><h1 id="第三方"><a href="#第三方" class="headerlink" title="第三方"></a>第三方</h1>
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#入门"><span class="nav-number">1.</span> <span class="nav-text">入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.1.</span> <span class="nav-text">环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建项目"><span class="nav-number">1.1.2.</span> <span class="nav-text">创建项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计数据库"><span class="nav-number">1.2.</span> <span class="nav-text">设计数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库配置"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据库配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建应用"><span class="nav-number">1.2.2.</span> <span class="nav-text">创建应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义模型类"><span class="nav-number">1.2.3.</span> <span class="nav-text">定义模型类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成数据表"><span class="nav-number">1.2.4.</span> <span class="nav-text">生成数据表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试数据操作"><span class="nav-number">1.2.5.</span> <span class="nav-text">测试数据操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理站点"><span class="nav-number">1.3.</span> <span class="nav-text">管理站点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器"><span class="nav-number">1.3.1.</span> <span class="nav-text">服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理操作"><span class="nav-number">1.3.2.</span> <span class="nav-text">管理操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图"><span class="nav-number">1.4.</span> <span class="nav-text">视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板"><span class="nav-number">1.5.</span> <span class="nav-text">模板</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型"><span class="nav-number">2.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义模型"><span class="nav-number">2.1.</span> <span class="nav-text">定义模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义属性"><span class="nav-number">2.1.1.</span> <span class="nav-text">定义属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段类型"><span class="nav-number">2.1.2.</span> <span class="nav-text">字段类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段选项"><span class="nav-number">2.1.3.</span> <span class="nav-text">字段选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系"><span class="nav-number">2.1.4.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元选项"><span class="nav-number">2.1.5.</span> <span class="nav-text">元选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型成员"><span class="nav-number">2.2.</span> <span class="nav-text">模型成员</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类的属性"><span class="nav-number">2.2.1.</span> <span class="nav-text">类的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理器Manager"><span class="nav-number">2.2.2.</span> <span class="nav-text">管理器Manager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例的属性"><span class="nav-number">2.2.3.</span> <span class="nav-text">实例的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例的方法"><span class="nav-number">2.2.4.</span> <span class="nav-text">实例的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型查询"><span class="nav-number">2.3.</span> <span class="nav-text">模型查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">2.3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询集"><span class="nav-number">2.3.2.</span> <span class="nav-text">查询集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限制查询集"><span class="nav-number">2.3.3.</span> <span class="nav-text">限制查询集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询集的缓存"><span class="nav-number">2.3.4.</span> <span class="nav-text">查询集的缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#何时查询集不会被缓存"><span class="nav-number">2.3.5.</span> <span class="nav-text">何时查询集不会被缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段查询"><span class="nav-number">2.3.6.</span> <span class="nav-text">字段查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较运算符"><span class="nav-number">2.3.7.</span> <span class="nav-text">比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨关联关系的查询：处理join查询"><span class="nav-number">2.3.8.</span> <span class="nav-text">跨关联关系的查询：处理join查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合函数"><span class="nav-number">2.3.9.</span> <span class="nav-text">聚合函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F对象"><span class="nav-number">2.3.10.</span> <span class="nav-text">F对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q对象"><span class="nav-number">2.3.11.</span> <span class="nav-text">Q对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自连接"><span class="nav-number">2.4.</span> <span class="nav-text">自连接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图-1"><span class="nav-number">3.</span> <span class="nav-text">视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#URLconf"><span class="nav-number">3.1.</span> <span class="nav-text">URLconf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义视图"><span class="nav-number">3.2.</span> <span class="nav-text">定义视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义404视图"><span class="nav-number">3.2.1.</span> <span class="nav-text">自定义404视图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Request"><span class="nav-number">3.3.</span> <span class="nav-text">Request</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QueryDict对象"><span class="nav-number">3.3.1.</span> <span class="nav-text">QueryDict对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GET"><span class="nav-number">3.3.2.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POST"><span class="nav-number">3.3.3.</span> <span class="nav-text">POST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Response"><span class="nav-number">3.4.</span> <span class="nav-text">Response</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HttpResponse对象方法"><span class="nav-number">3.4.1.</span> <span class="nav-text">HttpResponse对象方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HttpResponse的子类"><span class="nav-number">3.5.</span> <span class="nav-text">HttpResponse的子类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#子类HttpResponseRedirect"><span class="nav-number">3.5.1.</span> <span class="nav-text">子类HttpResponseRedirect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子类JsonResponse"><span class="nav-number">3.5.2.</span> <span class="nav-text">子类JsonResponse</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简写函数"><span class="nav-number">3.6.</span> <span class="nav-text">简写函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#render"><span class="nav-number">3.6.1.</span> <span class="nav-text">render</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态保持"><span class="nav-number">3.7.</span> <span class="nav-text">状态保持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用session"><span class="nav-number">3.7.1.</span> <span class="nav-text">使用session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话过期时间"><span class="nav-number">3.7.2.</span> <span class="nav-text">会话过期时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session存在哪里"><span class="nav-number">3.7.3.</span> <span class="nav-text">session存在哪里</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Redis缓存session"><span class="nav-number">3.7.4.</span> <span class="nav-text">使用Redis缓存session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端存储大量session-如何区分。"><span class="nav-number">3.7.5.</span> <span class="nav-text">服务端存储大量session 如何区分。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模板-1"><span class="nav-number">4.</span> <span class="nav-text">模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模板介绍"><span class="nav-number">4.1.</span> <span class="nav-text">模板介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板处理"><span class="nav-number">4.1.1.</span> <span class="nav-text">模板处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义模块"><span class="nav-number">4.2.</span> <span class="nav-text">定义模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">4.2.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签"><span class="nav-number">4.2.2.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤器"><span class="nav-number">4.2.3.</span> <span class="nav-text">过滤器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向解析"><span class="nav-number">4.3.</span> <span class="nav-text">反向解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板继承"><span class="nav-number">4.4.</span> <span class="nav-text">模板继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML转义"><span class="nav-number">4.5.</span> <span class="nav-text">HTML转义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭转义"><span class="nav-number">4.5.1.</span> <span class="nav-text">关闭转义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手动转义"><span class="nav-number">4.5.2.</span> <span class="nav-text">手动转义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#csrf"><span class="nav-number">4.6.</span> <span class="nav-text">csrf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证码"><span class="nav-number">4.7.</span> <span class="nav-text">验证码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级"><span class="nav-number">5.</span> <span class="nav-text">高级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#静态文件处理"><span class="nav-number">5.1.</span> <span class="nav-text">静态文件处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三方"><span class="nav-number">6.</span> <span class="nav-text">第三方</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

