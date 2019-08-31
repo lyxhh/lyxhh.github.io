@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Redis 采用运行在 内存中的数据集工作方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis">
+<meta property="og:url" content="http://www.lxhsec.com/2017/11/27/redis/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="Redis 采用运行在 内存中的数据集工作方式">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/config1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/config2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/set1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/set2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/get1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/yunsuan.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/orther.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/key.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/hash.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/list1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/list2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/list3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/setlist1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/setlist2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/zset.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/dingyue1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/dingyue2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/dingyue3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/slave1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/slave2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/slave3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/slave5.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/11/27/redis/slave4.png">
+<meta property="og:updated_time" content="2019-08-31T04:16:49.109Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis">
+<meta name="twitter:description" content="Redis 采用运行在 内存中的数据集工作方式">
+<meta name="twitter:image" content="http://www.lxhsec.com/2017/11/27/redis/config1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2017/11/27/redis/"/>
+
+
+
+
+
+  <title>redis | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2017/11/27/redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">redis</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-27T18:42:25+08:00">
+                2017-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Redis 采用运行在 内存中的数据集工作方式<a id="more"></a></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a href="https://redis.io/" target="_blank" rel="external">redis官方网站</a>，推荐下载稳定版本(stable)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">1.解压</div><div class="line">tar zxvf redis-3.2.5.tar.gz</div><div class="line"></div><div class="line">2.进入解压后的redis目录</div><div class="line"></div><div class="line">3.生成</div><div class="line">sudo make</div><div class="line"></div><div class="line">4.测试</div><div class="line">sudo make test</div><div class="line"></div><div class="line">5.安装</div><div class="line">sudo make install </div><div class="line"></div><div class="line">运行服务端</div><div class="line">redis-server</div><div class="line"></div><div class="line">运行客户端</div><div class="line">redis-cli</div><div class="line"></div><div class="line">运行命令</div><div class="line">ping</div><div class="line"></div><div class="line">返回PONG</div><div class="line"></div><div class="line">切换数据库命令</div><div class="line">select 数据库名</div><div class="line"></div><div class="line">redis 默认16个数据库 从0~15.</div></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">redis.conf为配置文件,通常在redis的目录下</div><div class="line"></div><div class="line">绑定地址：如果需要远程访问，可将此行注释</div><div class="line">bind 127.0.0.1</div><div class="line"></div><div class="line">端口，默认为6379</div><div class="line">port 6379</div><div class="line"></div><div class="line">是否以守护进程运行</div><div class="line">如果以守护进程运行，则不会在命令行阻塞，类似于服务</div><div class="line"></div><div class="line">如果以非守护进程运行，则当前终端被阻塞，无法使用</div><div class="line">推荐改为yes，以守护进程运行</div><div class="line">daemonize no|yes</div><div class="line"></div><div class="line">数据文件</div><div class="line">dbfilename dump.rdb</div><div class="line">默认储存在当前目录</div><div class="line"></div><div class="line">若以守护进程方式配置</div><div class="line">需要以配置文件方式启动，</div><div class="line"></div><div class="line">推荐指定配置文件启动</div><div class="line">sudo redis-server redis.conf绝对路径 </div><div class="line"></div><div class="line">停止redis服务</div><div class="line"></div><div class="line">ps ajx|grep redis</div><div class="line"></div><div class="line">sudo kill -9 redis的进程id</div></pre></td></tr></table></figure>
+<p><img src="/2017/11/27/redis/config1.png" alt="config1"></p>
+<p><img src="/2017/11/27/redis/config2.png" alt="config2"></p>
+<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">redis是key-value的数据，因此每个数据都是一个键值对</div><div class="line"></div><div class="line">键的类型是字符串</div><div class="line"></div><div class="line">值的类型分为五种：</div><div class="line"></div><div class="line">字符串string   实际操作中一般字符串的操作就足够使用了。</div><div class="line">哈希hash</div><div class="line">列表list</div><div class="line">集合set</div><div class="line">有序集合zset</div></pre></td></tr></table></figure>
+<p>数据操作的全部命令<a href="http://redis.cn/commands.html" target="_blank" rel="external">官方中文文档</a></p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">string是redis最基本的类型</div><div class="line"></div><div class="line">最大能存储512MB数据</div><div class="line"></div><div class="line">string类型是二进制安全的，即可以为任何数据，比如数字、图片、序列化对象等</div><div class="line"></div><div class="line">在redis不要理解string类型为字符串，它不仅可以存字符串，还可以存图片的二进制序列化等序列化对象，</div><div class="line"></div><div class="line">它的唯一要求，最大只能存储512MB数据</div></pre></td></tr></table></figure>
+<h3 id="设置-and-获取"><a href="#设置-and-获取" class="headerlink" title="设置 and 获取"></a>设置 and 获取</h3><ul>
+<li>设置键值<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set key value</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2017/11/27/redis/set1.png" alt="set1"></p>
+<ul>
+<li>设置键值及过期时间，以秒为单位 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SETEX key time value</div><div class="line">操作session时有用。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2017/11/27/redis/set2.png" alt="set2"></p>
+<ul>
+<li><p>设置多个键值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MSET key value [key value ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据键获取值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果不存在此键则返回nil</div><div class="line">GET key</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据多个键获取多个值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MGET key [key ...]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2017/11/27/redis/get1.png" alt="get1"></p>
+<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">要求值必须是数字</div></pre></td></tr></table></figure>
+<ul>
+<li><p>将key对应的value加1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INCR key</div></pre></td></tr></table></figure>
+</li>
+<li><p>将key对应的value加整数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">INCRBY key increment</div></pre></td></tr></table></figure>
+</li>
+<li><p>将key对应的value减1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DECR key</div></pre></td></tr></table></figure>
+</li>
+<li><p>将key对应的value减整数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DECRBY key decrement</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2017/11/27/redis/yunsuan.png" alt="yunsuan"></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li><p>追加值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">APPEND key value</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取值长度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">STRLEN key</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2017/11/27/redis/orther.png" alt="orther"></p>
+<h2 id="键命令"><a href="#键命令" class="headerlink" title="键命令"></a>键命令</h2><ul>
+<li><p>查找键，参数支持正则,* 代表通配符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">KEYS regular</div></pre></td></tr></table></figure>
+</li>
+<li><p>判断键是否存在，如果存在返回1，不存在返回0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">EXISTS key [key ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看键对应的值的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TYPE key</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除键及对应的值，可删除多个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DEL key [key ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置过期时间，以秒为单位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">创建时没有设置过期时间，之后也可以设置。</div><div class="line">创建时没有设置过期时间则一直存在，直到使用使用DEL移除</div><div class="line"></div><div class="line">EXPIRE key seconds</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看 离过期时间的还有多远，以秒为单位，到0时删除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TTL key</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2017/11/27/redis/key.png" alt="key"></p>
+<h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hash用于存储对象，对象的格式为键值对</div></pre></td></tr></table></figure>
+<ul>
+<li><p>设置单个属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HSET key field value</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置多个属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HMSET key field value [field value ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取一个属性的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HGET key field</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取多个属性的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HMGET key field [field ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取所有属性和值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HGETALL key</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取所有的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HKEYS key</div></pre></td></tr></table></figure>
+</li>
+<li><p>返回包含属性的个数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HLEN key</div><div class="line">* 获取所有值</div><div class="line">HVALS key</div></pre></td></tr></table></figure>
+</li>
+<li><p>判断属性是否存在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HEXISTS key field</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除属性及值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HDEL key field [field ...]</div><div class="line">可同时删除多个属性。</div></pre></td></tr></table></figure>
+</li>
+<li><p>返回值的字符串长度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HSTRLEN key field</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2017/11/27/redis/hash.png" alt="hash"></p>
+<h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">列表的元素类型为string</div><div class="line"></div><div class="line">按照插入顺序排序</div><div class="line"></div><div class="line">在列表的头部或者尾部添加元素</div></pre></td></tr></table></figure>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">LPUSH key value [value ...]</div><div class="line">在头部插入数据</div><div class="line"></div><div class="line"></div><div class="line">在尾部插入数据</div><div class="line">RPUSH key value [value ...]</div><div class="line"></div><div class="line">在一个元素的前|后插入新元素</div><div class="line">LINSERT key BEFORE|AFTER pivot value</div><div class="line"></div><div class="line"></div><div class="line">LSET key index value</div><div class="line">设置指定索引的元素值,即修改or插入</div><div class="line"></div><div class="line">索引是基于0的下标</div><div class="line">索引可以是负数，表示偏移量是从list尾部开始计数，如-1表示列表的最后一个元素</div></pre></td></tr></table></figure>
+<p><img src="/2017/11/27/redis/list1.png" alt="list1"></p>
+<p><img src="/2017/11/27/redis/list2.png" alt="list2"></p>
+<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">LPOP key</div><div class="line">移除并且返回 key 对应的 list 的第一个元素</div><div class="line"></div><div class="line">RPOP key</div><div class="line">移除并返回存于 key 的 list 的最后一个元素</div><div class="line"></div><div class="line">LRANGE key start stop</div><div class="line"></div><div class="line">返回存储在 key 的列表里指定范围内的元素</div><div class="line">start 和 end 偏移量都是基于0的下标</div><div class="line">偏移量也可以是负数，表示偏移量是从list尾部开始计数，如-1表示列表的最后一个元素</div><div class="line"></div><div class="line"></div><div class="line">其他</div><div class="line"></div><div class="line"></div><div class="line">LTRIM key start stop</div><div class="line">裁剪列表，改为原集合的一个子集</div><div class="line">start 和 end 偏移量都是基于0的下标</div><div class="line">偏移量也可以是负数，表示偏移量是从list尾部开始计数，如-1表示列表的最后一个元素</div><div class="line"></div><div class="line">LLEN key</div><div class="line">返回存储在 key 里的list的长度</div><div class="line"></div><div class="line">LINDEX key index</div><div class="line">返回列表里索引对应的元素</div></pre></td></tr></table></figure>
+<p><img src="/2017/11/27/redis/list3.png" alt="list3"></p>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">无序集合</div><div class="line"></div><div class="line">元素为string类型</div><div class="line"></div><div class="line">元素具有唯一性，不重复</div></pre></td></tr></table></figure>
+<h3 id="设置-amp-获取"><a href="#设置-amp-获取" class="headerlink" title="设置&amp;获取"></a>设置&amp;获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">SADD key member [member ...]</div><div class="line">添加元素</div><div class="line"></div><div class="line"></div><div class="line">获取</div><div class="line"></div><div class="line">SMEMBERS key</div><div class="line">返回key集合所有的元素</div><div class="line"></div><div class="line"></div><div class="line">SCARD key</div><div class="line">返回集合元素个数</div></pre></td></tr></table></figure>
+<p><img src="/2017/11/27/redis/setlist1.png" alt="setlist1"></p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">SINTER key [key ...]</div><div class="line">求多个集合的交集</div><div class="line"></div><div class="line">SDIFF key [key ...]</div><div class="line">求某集合与其它集合的差集</div><div class="line"></div><div class="line">SUNION key [key ...]</div><div class="line">求多个集合的合集</div><div class="line"></div><div class="line">SISMEMBER key member</div><div class="line">判断元素是否在集合中</div></pre></td></tr></table></figure>
+<p><img src="/2017/11/27/redis/setlist2.png" alt="setlist2"></p>
+<h2 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sorted set，有序集合</div><div class="line"></div><div class="line">元素为string类型</div><div class="line"></div><div class="line">元素具有唯一性，不重复</div><div class="line"></div><div class="line">每个元素都会关联一个double类型的score，表示权重，通过权重将元素从小到大排序</div><div class="line"></div><div class="line">元素的score可以相同</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">ZADD key score member [score member ...]</div><div class="line">添加</div><div class="line"></div><div class="line">ZRANGE key start stop</div><div class="line">返回指定范围内的元素</div><div class="line"></div><div class="line">ZCARD key</div><div class="line">返回元素个数</div><div class="line"></div><div class="line">ZCOUNT key min max</div><div class="line">返回有序集key中，score值在min和max之间成员的个数</div><div class="line"></div><div class="line">ZSCORE key member</div><div class="line">返回有序集key中，成员member的score值</div></pre></td></tr></table></figure>
+<p><img src="/2017/11/27/redis/zset.png" alt="zset"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">list set zset 三者的区别</div><div class="line">list的顺序是按照插入时的顺序排列，</div><div class="line">set 是无序的</div><div class="line">zset 是按照权重的大小进行排列。</div></pre></td></tr></table></figure>
+<h1 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h1><h2 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">客户端发到频道的消息，将会被推送到所有订阅此频道的客户端</div><div class="line"></div><div class="line">客户端不需要主动去获取消息，只需要订阅频道，这个频道的内容就会被推送过来</div><div class="line"></div><div class="line">即不需要主动请求 完成数据的更新</div><div class="line">个人理解 类似于微信公众号。</div></pre></td></tr></table></figure>
+<h3 id="消息的格式"><a href="#消息的格式" class="headerlink" title="消息的格式"></a>消息的格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">消息类型，包含三种类型</div><div class="line"></div><div class="line">subscribe，表示订阅成功</div><div class="line"></div><div class="line">unsubscribe，表示取消订阅成功</div><div class="line"></div><div class="line">message，表示其它终端发布消息</div><div class="line"></div><div class="line">当在Pub/Sub以外状态，客户端可以发出任何redis命令</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">SUBSCRIBE 频道名称 [频道名称 ...]</div><div class="line">订阅</div><div class="line"></div><div class="line">UNSUBSCRIBE 频道名称 [频道名称 ...]</div><div class="line">取消订阅</div><div class="line">如果不写参数，表示取消所有订阅</div><div class="line"></div><div class="line">PUBLISH 频道 消息</div><div class="line">发布</div></pre></td></tr></table></figure>
+<p><img src="/2017/11/27/redis/dingyue1.png" alt="dingyue1"></p>
+<p><img src="/2017/11/27/redis/dingyue2.png" alt="dingyue2"></p>
+<p><img src="/2017/11/27/redis/dingyue3.png" alt="dingyue3"></p>
+<h2 id="主从配置"><a href="#主从配置" class="headerlink" title="主从配置"></a>主从配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">一个master可以拥有多个slave，一个slave又可以拥有多个slave，如此下去，形成了强大的多级服务器集群架构</div><div class="line"></div><div class="line">比如，</div><div class="line">将ip为192.168.189.154的机器作为主服务器，</div><div class="line">将ip为192.168.189.141的机器作为从服务器</div><div class="line"></div><div class="line">设置主服务器的配置</div><div class="line">bind 192.168.189.154</div><div class="line">设置从服务器的配置</div><div class="line">注意：在slaveof后面写主机ip，再写端口，而且端口必须写</div><div class="line">bind 192.168.189.141</div><div class="line">slaveof 192.168.189.154 6379</div><div class="line"></div><div class="line">在master和slave分别执行info命令，查看输出信息</div><div class="line"></div><div class="line">在master上写数据</div><div class="line">set hello world</div><div class="line"></div><div class="line">在slave上读数据</div><div class="line">get hello</div></pre></td></tr></table></figure>
+<p><img src="/2017/11/27/redis/slave1.png" alt="slave1"></p>
+<p><img src="/2017/11/27/redis/slave2.png" alt="slave2"></p>
+<p><img src="/2017/11/27/redis/slave3.png" alt="slave3"></p>
+<p><img src="/2017/11/27/redis/slave5.png" alt="slave5"></p>
+<p><img src="/2017/11/27/redis/slave4.png" alt="slave4"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">redis命令有几百条 我不可能一一列出来，</div><div class="line">上面给出了redis的中文文档，需要的时候可自行查询。</div><div class="line"></div><div class="line">个人理解，仅供参考。</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2017/11/27/redis/" title="redis">http://www.lxhsec.com/2017/11/27/redis/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/18/nmap/" rel="next" title="nmap">
+                <i class="fa fa-chevron-left"></i> nmap
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/13/Web/" rel="prev" title="Web Security">
+                Web Security <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">1.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据操作"><span class="nav-number">2.</span> <span class="nav-text">数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">2.1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-and-获取"><span class="nav-number">2.1.1.</span> <span class="nav-text">设置 and 获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算"><span class="nav-number">2.1.2.</span> <span class="nav-text">运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">2.1.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键命令"><span class="nav-number">2.2.</span> <span class="nav-text">键命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash"><span class="nav-number">2.3.</span> <span class="nav-text">hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-number">2.4.</span> <span class="nav-text">list</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置"><span class="nav-number">2.4.1.</span> <span class="nav-text">设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取"><span class="nav-number">2.4.2.</span> <span class="nav-text">获取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set"><span class="nav-number">2.5.</span> <span class="nav-text">set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-amp-获取"><span class="nav-number">2.5.1.</span> <span class="nav-text">设置&获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">2.5.2.</span> <span class="nav-text">其它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zset"><span class="nav-number">2.6.</span> <span class="nav-text">zset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级"><span class="nav-number">3.</span> <span class="nav-text">高级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#发布订阅"><span class="nav-number">3.1.</span> <span class="nav-text">发布订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息的格式"><span class="nav-number">3.1.1.</span> <span class="nav-text">消息的格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主从配置"><span class="nav-number">3.2.</span> <span class="nav-text">主从配置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

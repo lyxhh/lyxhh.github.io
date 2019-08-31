@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Mysql数据库，是当前应用非常广泛的一款关系型数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql">
+<meta property="og:url" content="http://www.lxhsec.com/2017/10/20/mysql/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="Mysql数据库，是当前应用非常广泛的一款关系型数据库">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/mysql%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/wailian.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/database%20crud.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/database%20crud2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/table1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/table2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/table3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/datacmd1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/datacmd2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/dump.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/bak.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/where1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/where2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/and.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/or.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/like1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/like2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/like3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/in1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/in2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/in3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/null1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/null2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/null3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/count.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/max.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/min.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/sum.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/avg.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/groupby1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/groupby2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/orderby1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/foreignkey.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/foreignkey2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/foreignkey%E7%BA%A7%E8%81%94.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/connect1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/innerjoin.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/leftjoin.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/rightjoin.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/innerjoin1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/innerjoin2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/innerjoin3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/zilianjie1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/zilianjie2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/view1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/shiwu1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/shiwu2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/shiwu3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/indexex1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/indexex2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/indexex3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/pymysql1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/20/mysql/pymysql2.png">
+<meta property="og:updated_time" content="2019-08-31T04:13:57.830Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql">
+<meta name="twitter:description" content="Mysql数据库，是当前应用非常广泛的一款关系型数据库">
+<meta name="twitter:image" content="http://www.lxhsec.com/2017/10/20/mysql/mysql%E8%BF%9E%E6%8E%A5.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2017/10/20/mysql/"/>
+
+
+
+
+
+  <title>mysql | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2017/10/20/mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T19:59:34+08:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Mysql数据库，是当前应用非常广泛的一款关系型数据库<a id="more"></a><br>查看<a href="http://www.mysql.com/" target="_blank" rel="external">官方网站</a><br>查看<a href="http://db-engines.com/en/ranking" target="_blank" rel="external">数据库排名</a></p>
+<h1 id="简介与安装"><a href="#简介与安装" class="headerlink" title="简介与安装"></a>简介与安装</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">E-R模型</div><div class="line"></div><div class="line">关系型数据库是按照E-R模型进行设计的</div><div class="line">E表示entry，实体</div><div class="line">R表示relationship，关系</div><div class="line">一个实体转换为数据库中的一个表</div><div class="line">关系描述两个实体之间的对应规则，包括</div><div class="line">一对一</div><div class="line">一对多</div><div class="line">多对多</div><div class="line">关系转换为数据库表中的一个列 *在关系型数据库中一行就是一个对象</div><div class="line"></div><div class="line">三范式</div><div class="line"></div><div class="line">经过研究和对使用中问题的总结，对于设计数据库提出了一些规范，这些规范被称为范式</div><div class="line">第一范式（1NF)：列不可拆分</div><div class="line">第二范式（2NF)：唯一标识</div><div class="line">第三范式（3NF)：引用主键</div><div class="line">说明：后一个范式，都是在前一个范式的基础上建立的</div></pre></td></tr></table></figure>
+<h3 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">在mysql中包含的数据类型很多，这里主要列出来常用的几种</div><div class="line">数字：int,decimal</div><div class="line">字符串：varchar,text</div><div class="line">日期：datetime</div><div class="line">布尔：bit</div></pre></td></tr></table></figure>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">主键primary key</div><div class="line">非空not null</div><div class="line">惟一unique</div><div class="line">默认default</div><div class="line">外键foreign key</div></pre></td></tr></table></figure>
+<h3 id="逻辑删除"><a href="#逻辑删除" class="headerlink" title="逻辑删除"></a>逻辑删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">对于重要数据，并不希望物理删除，一旦删除，数据无法找回</div><div class="line">一般对于重要数据，会设置一个isDelete的列，类型为bit，表示逻辑删除</div><div class="line">大于大量增长的非重要数据，可以进行物理删除</div><div class="line">数据的重要性，要根据实际开发决定</div></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install mysql-server</div><div class="line">sudo apt-get install mysql-client</div><div class="line">然后按照提示输入</div><div class="line"></div><div class="line">查看版本：select version();</div><div class="line">显示当前时间：select now();</div><div class="line">注意：在语句结尾要使用分号;</div></pre></td></tr></table></figure>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql -uroot -proot -h127.0.0.1</div><div class="line">-u root</div><div class="line">-p 安装时设置的密码</div><div class="line">-h 连接的主机ip地址</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/mysql%E8%BF%9E%E6%8E%A5.png" alt="mysql连接"></p>
+<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">启动</div><div class="line">service mysql start</div><div class="line">停止</div><div class="line">service mysql stop</div><div class="line">重启</div><div class="line">service mysql restart</div></pre></td></tr></table></figure>
+<h2 id="开启远程连接"><a href="#开启远程连接" class="headerlink" title="开启远程连接"></a>开启远程连接</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">找到mysql配置文件并修改</div><div class="line"></div><div class="line">sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf</div><div class="line">将bind-address=127.0.0.1注释</div><div class="line"></div><div class="line">登录mysql，运行命令</div><div class="line"></div><div class="line">use mysql</div><div class="line"></div><div class="line">GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;root&apos; WITH GRANT OPTION;</div><div class="line">命令可以更改远程连接的设置</div><div class="line"></div><div class="line">flush privileges;</div><div class="line">命令刷新刚才修改的权限，使其生效。</div><div class="line"></div><div class="line">select host,user from user;</div><div class="line"></div><div class="line">重启mysql</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/wailian.png" alt="wailian"></p>
+<h1 id="数据库与表的操作"><a href="#数据库与表的操作" class="headerlink" title="数据库与表的操作"></a>数据库与表的操作</h1><h2 id="数据库命令："><a href="#数据库命令：" class="headerlink" title="数据库命令："></a>数据库命令：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">查看所有数据库：show databases;</div><div class="line"></div><div class="line">创建create database 数据库名 charset=utf8;</div><div class="line"></div><div class="line">使用数据库：use 数据库名;</div><div class="line"></div><div class="line">删除drop database 数据库名;</div><div class="line"></div><div class="line">查看当前选择的数据库</div><div class="line">select database();</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/database%20crud.png" alt="database crud"><br><img src="/2017/10/20/mysql/database%20crud2.png" alt="database crud2"></p>
+<h2 id="表命令："><a href="#表命令：" class="headerlink" title="表命令："></a>表命令：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">create table 表名(列...);</div><div class="line">列的格式：列的名称 类型 约束</div><div class="line"></div><div class="line">create table student(</div><div class="line">    id int not null primary key auto_increment,</div><div class="line">    name varchar(10) not null,</div><div class="line">    gender bit default 1,</div><div class="line">    birthday datetime,</div><div class="line">    isDelete bit default 0</div><div class="line">     );</div><div class="line"></div><div class="line">查看所有表show tables;</div><div class="line"></div><div class="line">查看表的创建语句</div><div class="line">show create table students;</div><div class="line"></div><div class="line">查看表结构desc 表名;</div><div class="line"></div><div class="line">修改表：alter table 表名 add|modify|drop 列名 类型 约束;</div><div class="line"></div><div class="line">alter table student modify column isDelete bit not null default 0;</div><div class="line"></div><div class="line">删除表：drop table 表名;（连结构也删除）</div><div class="line">truncate table 表名;(删除所有数据，留结构)</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/table1.png" alt="table1"></p>
+<p><img src="/2017/10/20/mysql/table2.png" alt="table2"></p>
+<p><img src="/2017/10/20/mysql/table3.png" alt="table3"></p>
+<h2 id="数据的增加、修改、删除以及简单的查询："><a href="#数据的增加、修改、删除以及简单的查询：" class="headerlink" title="数据的增加、修改、删除以及简单的查询："></a>数据的增加、修改、删除以及简单的查询：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">简单查询：select * from student; 从student表中查询所有的字段。</div><div class="line"></div><div class="line">添加数据：insert into 表名(列名) values(值),(值)...;</div><div class="line"></div><div class="line">修改数据：update 表名 set 列1=值1,... where 条件;</div><div class="line"></div><div class="line">删除数据：delete from 表名 where 条件;</div><div class="line"></div><div class="line">逻辑删除：本质就是修改操作update</div><div class="line"></div><div class="line">alter table student add isdelete bit default 0;</div><div class="line"></div><div class="line">如果需要删除则</div><div class="line"></div><div class="line">update student isdelete=1 where 条件;</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/datacmd1.png" alt="datacmd1"></p>
+<p><img src="/2017/10/20/mysql/datacmd2.png" alt="datacmd2"></p>
+<h2 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">进入超级管理员</div><div class="line">sudo -s</div><div class="line"></div><div class="line">进入mysql库目录</div><div class="line">cd /var/lib/mysql</div><div class="line"></div><div class="line">运行mysqldump命令</div><div class="line">mysqldump –uroot –p 数据库名 &gt; ~/Desktop/备份文件.sql;</div><div class="line">按提示输入mysql的密码</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/dump.png" alt="dump"></p>
+<h2 id="数据恢复"><a href="#数据恢复" class="headerlink" title="数据恢复"></a>数据恢复</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">连接mysql，创建数据库</div><div class="line"></div><div class="line">退出连接，执行如下命令</div><div class="line"></div><div class="line">mysql -uroot –p 数据库名 &lt; ~/Desktop/备份文件.sql</div><div class="line">根据提示输入mysql密码</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/bak.png" alt="back"></p>
+<h1 id="数据的查询（重点）"><a href="#数据的查询（重点）" class="headerlink" title="数据的查询（重点）"></a>数据的查询（重点）</h1><h2 id="查询的基本语法"><a href="#查询的基本语法" class="headerlink" title="查询的基本语法"></a>查询的基本语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">select * from 表名;</div><div class="line">from关键字后面写表名，表示数据来源于是这张表</div><div class="line"></div><div class="line">select后面写表中的列名，如果是*表示在结果中显示表中所有列</div><div class="line"></div><div class="line">在select后面的列名部分，可以使用as为列起别名，这个别名出现在结果集中</div><div class="line"></div><div class="line">如果要查询多个列，之间使用逗号分隔</div></pre></td></tr></table></figure>
+<h2 id="消除重复行"><a href="#消除重复行" class="headerlink" title="消除重复行"></a>消除重复行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在select后面 列前 使用distinct可以消除重复的行</div><div class="line">select distinct gender from students;</div></pre></td></tr></table></figure>
+<h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">使用where子句对表中的数据筛选，结果为true的行会出现在结果集中</div><div class="line">语法如下：</div><div class="line">select * from 表名 where 条件;</div></pre></td></tr></table></figure>
+<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">等于=</div><div class="line">大于&gt;</div><div class="line">大于等于&gt;=</div><div class="line">小于&lt;</div><div class="line">小于等于&lt;=</div><div class="line">不等于!=或&lt;&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>查询id大于3的学生<br>select * from student where id&lt;3;<br><img src="/2017/10/20/mysql/where1.png" alt="where1"></p>
+</li>
+<li><p>查询没被删除的学生<br>select * from student where isdelete=0;<br><img src="/2017/10/20/mysql/where2.png" alt="where2"></p>
+</li>
+</ul>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">and</div><div class="line">or</div><div class="line">not</div></pre></td></tr></table></figure>
+<ul>
+<li><p>查询编号大于3的女同学  1 为男，0为女<br>select * from student where id&gt;3 and gender=0;<br><img src="/2017/10/20/mysql/and.png" alt="and"></p>
+</li>
+<li><p>查询编号小于4或没被删除的学生<br>select * from student where id&lt;4 or isdelete=0;<br><img src="/2017/10/20/mysql/or.png" alt="or"></p>
+</li>
+</ul>
+<h3 id="模糊查询like"><a href="#模糊查询like" class="headerlink" title="模糊查询like"></a>模糊查询like</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">%表示任意多个任意字符</div><div class="line"></div><div class="line">_表示一个任意字符</div></pre></td></tr></table></figure>
+<ul>
+<li><p>查询姓L的学生<br>select * from student where name like ‘l%’;<br><img src="/2017/10/20/mysql/like1.png" alt="like1"></p>
+</li>
+<li><p>查询姓L并且名字是一个字的学生<br>select * from student where name like ‘l__’;<br><img src="/2017/10/20/mysql/like2.png" alt="like2"></p>
+</li>
+<li><p>查询名字中有e的学生<br>select * from student where name like ‘%e%’;<br><img src="/2017/10/20/mysql/like3.png" alt="like3"></p>
+</li>
+</ul>
+<h3 id="范围查询-in"><a href="#范围查询-in" class="headerlink" title="范围查询 in"></a>范围查询 in</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">in表示在一个非连续的范围内</div></pre></td></tr></table></figure>
+<p>查询编号是2或4的学生<br>select * from student where id in(2,4);<br><img src="/2017/10/20/mysql/in1.png" alt="in1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">between ... and ...表示在一个连续的范围内</div></pre></td></tr></table></figure>
+<p>查询学生是2至4的学生<br>select * from student where id between 2 and 4;<br><img src="/2017/10/20/mysql/in2.png" alt="in2"></p>
+<p>查询学生是2至4的男生<br>select * from student where id between 2 and 4 and gender=1;<br><img src="/2017/10/20/mysql/in3.png" alt="in3"></p>
+<h3 id="空判断"><a href="#空判断" class="headerlink" title="空判断"></a>空判断</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">注意：null与&apos;&apos;是不同的</div><div class="line">判空is null</div></pre></td></tr></table></figure>
+<ul>
+<li><p>查询没有填写生日的学生<br>select * from student where birthday is null;<br><img src="/2017/10/20/mysql/null1.png" alt="null1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">判非空is not null</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询填写了生日的学生<br>select * from student where birthday is not null;<br><img src="/2017/10/20/mysql/null2.png" alt="null2"></p>
+</li>
+<li><p>查询填写了生日的女生<br>select * from student where birthday  is not null and gender=0;<br><img src="/2017/10/20/mysql/null3.png" alt="null3"></p>
+</li>
+</ul>
+<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">小括号，not，比较运算符，逻辑运算符</div><div class="line">and比or先运算，如果同时出现并希望先算or，需要结合()使用</div></pre></td></tr></table></figure>
+<h2 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">为了快速得到统计数据，提供了5个聚合函数</div><div class="line">count(*)表示计算总行数，括号中写星与列名，结果是相同的</div></pre></td></tr></table></figure>
+<ul>
+<li>查询学生总数<br>select count(*) from student;<br><img src="/2017/10/20/mysql/count.png" alt="count"></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">max(列)表示求此列的最大值</div></pre></td></tr></table></figure>
+<ul>
+<li>查询女生的编号最大值<br>select max(id) from student where gender=0;<br><img src="/2017/10/20/mysql/max.png" alt="max"></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">min(列)表示求此列的最小值</div></pre></td></tr></table></figure>
+<ul>
+<li>查询未删除的学生最小编号<br>select min(id) from student where isdelete=0;<br><img src="/2017/10/20/mysql/min.png" alt="min"></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sum(列)表示求此列的和</div></pre></td></tr></table></figure>
+<ul>
+<li>查询男生的编号之和<br>select sum(id) from student where gender=1;<br><img src="/2017/10/20/mysql/sum.png" alt="sum"></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">avg(列)表示求此列的平均值</div></pre></td></tr></table></figure>
+<ul>
+<li>查询未删除女生的编号平均值<br>select avg(id) from student where isdelete=0 and gender=0;<br><img src="/2017/10/20/mysql/avg.png" alt="avg"></li>
+</ul>
+<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">按照字段分组，表示此字段相同的数据会被放到一个组中</div><div class="line">分组后，只能查询出相同的数据列，对于有差异的数据列无法出现在结果集中</div><div class="line">可以对分组后的数据进行统计，做聚合运算</div><div class="line"></div><div class="line">语法：</div><div class="line">select 列1,列2,聚合... from 表名 group by 列1,列2,列3...</div></pre></td></tr></table></figure>
+<ul>
+<li>查询男女生总数</li>
+</ul>
+<p>select gender as 性别,count(*)<br>from student<br>group by gender;<br><img src="/2017/10/20/mysql/groupby1.png" alt="groupby1"></p>
+<h3 id="分组后的数据筛选"><a href="#分组后的数据筛选" class="headerlink" title="分组后的数据筛选"></a>分组后的数据筛选</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">语法：</div><div class="line">select 列1,列2,聚合... from 表名</div><div class="line">group by 列1,列2,列3...</div><div class="line">having 列1,...聚合...</div><div class="line">having后面的条件运算符与where的相同</div></pre></td></tr></table></figure>
+<ul>
+<li>查询男生总人数</li>
+</ul>
+<p>方案一<br>select count(*)<br>from student<br>where gender=1;</p>
+<hr>
+<p>方案二：</p>
+<p>select gender as 性别,count(*)<br>from student<br>group by gender<br>having gender=1;<br><img src="/2017/10/20/mysql/groupby2.png" alt="groupby2"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">对比where与having</div><div class="line"></div><div class="line">where是对from后面指定的表进行数据筛选，属于对原始数据的筛选</div><div class="line">having是对group by的结果进行筛选</div></pre></td></tr></table></figure>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">为了方便查看数据，可以对数据进行排序</div><div class="line"></div><div class="line">语法：</div><div class="line">select * from 表名</div><div class="line">order by 列1 asc|desc,列2 asc|desc,...</div><div class="line"></div><div class="line">将行数据按照列1进行排序，如果某些行列1的值相同时，则按照列2排序，以此类推</div><div class="line"></div><div class="line">默认按照列值从小到大排列</div><div class="line"></div><div class="line">asc从小到大排列，即升序</div><div class="line"></div><div class="line">desc从大到小排序，即降序</div></pre></td></tr></table></figure>
+<ul>
+<li>查询未删除男生学生信息，按学号降序</li>
+</ul>
+<p>select * from student<br>where gender=1 and isdelete=0<br>order by id desc;</p>
+<ul>
+<li>查询未删除学生信息，按学号升序</li>
+</ul>
+<p>select * from student<br>where isdelete=1<br>order by id;<br><img src="/2017/10/20/mysql/orderby1.png" alt="orderby1"></p>
+<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">获取部分行</div><div class="line"></div><div class="line">当数据量过大时，在一页中查看数据是一件非常麻烦的事情</div><div class="line">语法</div><div class="line"></div><div class="line">select * from 表名</div><div class="line">limit start,count</div><div class="line">从start开始，获取count条数据</div><div class="line">start索引从0开始</div></pre></td></tr></table></figure>
+<p>已知：每页显示m条数据，当前显示第n页<br>求总页数：</p>
+<p>查询总条数p1<br>使用p1除以m得到p2<br>如果整除则p2为总数页<br>如果不整除则p2+1为总页数<br>求第n页的数据</p>
+<p>select <em> from student<br>where isdelete=0<br>limit (n-1)</em>m,m</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">完整的select语句</div><div class="line">select distinct *</div><div class="line">from 表名</div><div class="line">where ....</div><div class="line">group by ... having ...</div><div class="line">order by ...</div><div class="line">limit star,count</div><div class="line"></div><div class="line">执行顺序为：</div><div class="line">from 表名</div><div class="line">where ....</div><div class="line">group by ...</div><div class="line">select distinct *</div><div class="line">having ...</div><div class="line">order by ...</div><div class="line">limit star,count</div><div class="line">实际使用中，只是语句中某些部分的组合，而不是全部</div></pre></td></tr></table></figure>
+<h1 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h1><h2 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">通过外键约束进行数据的有效性验证</div><div class="line"></div><div class="line"></div><div class="line">为stuid添加外键约束</div><div class="line">alter table scores add constraint stu_id foreign key(stuid) references student(id);</div><div class="line">此时插入或者修改数据时，如果stuid的值在student表中不存在则会报错,</div><div class="line">确保了数据的有效性</div><div class="line"></div><div class="line">在创建表时可以直接创建约束</div><div class="line">create table scores(</div><div class="line">id int primary key auto_increment,</div><div class="line">stuid int,</div><div class="line">subid int,</div><div class="line">score decimal(5,2),</div><div class="line">foreign key(stuid) references student(id),</div><div class="line"></div><div class="line">);</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/foreignkey.png" alt="foreignkey"></p>
+<p><img src="/2017/10/20/mysql/foreignkey2.png" alt="foreignkey2"></p>
+<h3 id="外键的级联操作"><a href="#外键的级联操作" class="headerlink" title="外键的级联操作"></a>外键的级联操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">在删除student表的数据时，如果这个id值在scores中已经存在，则会抛异常</div><div class="line"></div><div class="line">推荐使用逻辑删除，还可以解决这个问题</div><div class="line"></div><div class="line">可以创建表时指定级联操作，也可以在创建表后再修改外键的级联操作</div><div class="line"></div><div class="line">如果你在上面创建外键时使用了默认的抛异常那么在设置级联则会报错。只能使用一个。</div><div class="line"></div><div class="line">语法</div><div class="line">alter table scores add constraint stu_id foreign key(stuid) references student(id) on delete cascade;</div><div class="line"></div><div class="line">在创建表时可以直接创建约束</div><div class="line">create table scores(</div><div class="line">id int primary key auto_increment,</div><div class="line">stuid int,</div><div class="line">subid int,</div><div class="line">score decimal(5,2),</div><div class="line">foreign key(stuid) references student(id) on delete cascade</div><div class="line">);</div><div class="line"></div><div class="line">级联操作的类型包括：</div><div class="line">restrict（限制）：默认值，抛异常</div><div class="line">cascade（级联）：如果主表的记录删掉，则从表中相关联的记录都将被删除 </div><div class="line">set null：将外键设置为空</div><div class="line">no action：什么都不做</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/foreignkey%E7%BA%A7%E8%81%94.png" alt="foreignkey级联"></p>
+<h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">create table scores(</div><div class="line">id int primary key auto_increment,</div><div class="line">stuid int,</div><div class="line">subid int,</div><div class="line">score decimal(5,2),</div><div class="line">foreign key(stuid) references students(id),</div><div class="line">foreign key(subid) references subjects(id)</div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create table subjects(</div><div class="line">id int primary key auto_increment,</div><div class="line">stitle varchar(10)</div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create table students(</div><div class="line">id int primary key auto_increment,</div><div class="line">sname varchar(10)</div><div class="line">);</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/connect1.png" alt="connect1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">问：查询每个学生每个科目的分数</div><div class="line">分析：学生姓名来源于student表，科目名称来源于subjects，分数来源于scores表，怎么将3个表放到一起查询，并将结果显示在同一个结果集中呢？</div><div class="line"></div><div class="line">答：当查询结果来源于多张表时，需要使用连接查询</div><div class="line"></div><div class="line">关键：找到表间的关系，当前的关系是</div><div class="line">students表的id主键---scores表的stuid外键</div><div class="line">subjects表的id主键---scores表的subid外键</div><div class="line"></div><div class="line">则上面问题 查询每个学生每个科目的分数 的答案是：</div><div class="line"></div><div class="line">select students.sname,subjects.stitle,scores.score</div><div class="line">from scores</div><div class="line">inner join students on scores.stuid=students.id</div><div class="line">inner join subjects on scores.subid=subjects.id;</div><div class="line"></div><div class="line">结论：当需要对有关系的多张表进行查询时，需要使用连接join</div><div class="line">连接查询</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/innerjoin.png" alt="innerjoin"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">连接查询分类如下：</div><div class="line">表A inner join 表B：表A与表B匹配的行会出现在结果中</div><div class="line"></div><div class="line">表A left join 表B：表A与表B匹配的行会出现在结果中，外加表A中独有的数据，表B不存的数据使用null填充</div><div class="line"></div><div class="line">表A right join 表B：表A与表B匹配的行会出现在结果中，外加表B中独有的数据，表A不存在的数据使用null填充</div><div class="line"></div><div class="line">在查询或条件中推荐使用“表名.列名”的语法</div><div class="line"></div><div class="line">如果多个表中列名不重复可以省略“表名.”部分</div><div class="line"></div><div class="line">如果表的名称太长，可以在表名后面使用&apos; as 简写名&apos;或&apos; 简写名&apos;，为表起个临时的简写名称</div></pre></td></tr></table></figure>
+<p>left<br><img src="/2017/10/20/mysql/leftjoin.png" alt="leftjoin"></p>
+<p>right<br><img src="/2017/10/20/mysql/rightjoin.png" alt="rightjoin"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">查询学生的姓名、平均分</div><div class="line">select students.sname,avg(scores.score)</div><div class="line">from scores</div><div class="line">inner join students on scores.stuid=students.id</div><div class="line">group by students.sname;</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/innerjoin1.png" alt="innerjoin1"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">查询科目的名称、平均分</div><div class="line">select subjects.stitle,avg(scores.score)</div><div class="line">from scores</div><div class="line">inner join subjects on scores.subid=subjects.id</div><div class="line">group by subjects.stitle;</div></pre></td></tr></table></figure></p>
+<p><img src="/2017/10/20/mysql/innerjoin2.png" alt="innerjoin2"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">查询科目的名称、最高分、平均分</div><div class="line">select subjects.stitle,avg(scores.score),max(scores.score)</div><div class="line">from scores</div><div class="line">inner join subjects on scores.subid=subjects.id</div><div class="line">group by subjects.stitle;</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/innerjoin3.png" alt="innerjoin3"></p>
+<h2 id="自关联"><a href="#自关联" class="headerlink" title="自关联"></a>自关联</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">设计省信息的表结构provinces</div><div class="line">id</div><div class="line">ptitle</div><div class="line"></div><div class="line">设计市信息的表结构citys</div><div class="line">id</div><div class="line">ctitle</div><div class="line">proid</div><div class="line"></div><div class="line">citys表的proid表示城市所属的省，对应着provinces表的id值</div><div class="line">问题：能不能将两个表合成一张表呢？</div><div class="line">思考：观察两张表发现，citys表比provinces表多一个列proid，其它列的类型都是一样的</div><div class="line"></div><div class="line">意义：存储的都是地区信息，而且每种信息的数据量有限，没必要增加一个新表，或者将来还要存储区、乡镇信息，都增加新表的开销太大</div><div class="line"></div><div class="line">答案：定义表areas，结构如下</div><div class="line">id</div><div class="line">atitle</div><div class="line">pid</div><div class="line"></div><div class="line">因为省没有所属的省份，所以可以填写为null</div><div class="line"></div><div class="line">城市所属的省份pid，填写省所对应的编号id</div><div class="line"></div><div class="line">这就是自关联，表中的某一列，关联了这个表中的另外一列，但是它们的业务逻辑含义是不一样的，城市信息的pid引用的是省信息的id</div><div class="line"></div><div class="line">在这个表中，结构不变，可以添加区县、乡镇街道、村社区等信息</div><div class="line"></div><div class="line">创建areas表的语句如下：</div><div class="line">create table areas(</div><div class="line">id int primary key,</div><div class="line">atitle varchar(20),</div><div class="line">pid int,</div><div class="line">foreign key(pid) references areas(id)</div><div class="line">);</div><div class="line"></div><div class="line">把.sql数据复制进去执行。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">查询省的名称为&quot;广东省&quot;的所有城市</div><div class="line">select city.* from areas as city </div><div class="line">inner join areas as province </div><div class="line">on city.pid=province.id where</div><div class="line">province.atitle=&apos;广东省&apos;;</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/zilianjie1.png" alt="zilianjie1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">查询&apos;广州市&apos;的所有区县</div><div class="line">select dis.*,dis2.* from areas as dis</div><div class="line">inner join areas as city on city.id=dis.pid</div><div class="line">left join areas as dis2 on dis.id=dis2.pid</div><div class="line">where city.atitle=&apos;广州市&apos;;</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/zilianjie2.png" alt="zilianjie2"></p>
+<h2 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h2><h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">查看字符的ascii码值ascii(str)，str是空串时返回0</div><div class="line"></div><div class="line">select ascii(&apos;a&apos;);</div><div class="line"></div><div class="line">查看ascii码值对应的字符char(数字)</div><div class="line">select char(97);</div><div class="line"></div><div class="line">拼接字符串concat(str1,str2...)</div><div class="line">select concat(12,34,&apos;ab&apos;);</div><div class="line"></div><div class="line">包含字符个数length(str)</div><div class="line">select length(&apos;abc&apos;);</div><div class="line"></div><div class="line">截取字符串</div><div class="line">left(str,len)返回字符串str的左端len个字符</div><div class="line">right(str,len)返回字符串str的右端len个字符</div><div class="line">substring(str,pos,len)返回字符串str的位置pos起len个字符</div><div class="line">select substring(&apos;abc123&apos;,2,3);</div><div class="line"></div><div class="line">去除空格</div><div class="line">ltrim(str)返回删除了左空格的字符串str</div><div class="line"></div><div class="line">rtrim(str)返回删除了右空格的字符串str</div><div class="line"></div><div class="line">trim([方向 remstr from str)返回从某侧删除remstr后的字符串str，方向词包括both、leading、trailing，表示两侧、左、右</div><div class="line">select trim(&apos;  bar   &apos;);</div><div class="line">select trim(leading &apos;x&apos; FROM &apos;xxxbarxxx&apos;);</div><div class="line">select trim(both &apos;x&apos; FROM &apos;xxxbarxxx&apos;);</div><div class="line">select trim(trailing &apos;x&apos; FROM &apos;xxxbarxxx&apos;);</div><div class="line"></div><div class="line">返回由n个空格字符组成的一个字符串space(n)</div><div class="line">select space(10);</div><div class="line"></div><div class="line">替换字符串replace(str,from_str,to_str)</div><div class="line">select replace(&apos;abc123&apos;,&apos;123&apos;,&apos;def&apos;);</div><div class="line"></div><div class="line">大小写转换，函数如下</div><div class="line">lower(str)</div><div class="line">upper(str)</div><div class="line">select lower(&apos;aBcD&apos;);</div></pre></td></tr></table></figure>
+<h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">求绝对值abs(n)</div><div class="line">select abs(-32);</div><div class="line"></div><div class="line">求m除以n的余数mod(m,n)，同运算符%</div><div class="line">select mod(10,3);</div><div class="line">select 10%3;</div><div class="line"></div><div class="line">地板floor(n)，表示不大于n的最大整数</div><div class="line">select floor(2.3);</div><div class="line"></div><div class="line">天花板ceiling(n)，表示不小于n的最大整数</div><div class="line">select ceiling(2.3);</div><div class="line"></div><div class="line">求四舍五入值round(n,d)，n表示原数，d表示小数位置，默认为0</div><div class="line">select round(1.6);</div><div class="line"></div><div class="line">求x的y次幂pow(x,y)</div><div class="line">select pow(2,3);</div><div class="line"></div><div class="line">获取圆周率PI()</div><div class="line">select PI();</div><div class="line"></div><div class="line">随机数rand()，值为0-1.0的浮点数</div><div class="line">select rand();</div><div class="line"></div><div class="line">还有其它很多三角函数，使用时可以查询文档</div></pre></td></tr></table></figure>
+<h3 id="日期时间函数"><a href="#日期时间函数" class="headerlink" title="日期时间函数"></a>日期时间函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">获取子值，语法如下</div><div class="line">year(date)返回date的年份(范围在1000到9999)</div><div class="line"></div><div class="line">month(date)返回date中的月份数值</div><div class="line"></div><div class="line">day(date)返回date中的日期数值</div><div class="line"></div><div class="line">hour(time)返回time的小时数(范围是0到23)</div><div class="line"></div><div class="line">minute(time)返回time的分钟数(范围是0到59)</div><div class="line"></div><div class="line">second(time)返回time的秒数(范围是0到59)</div><div class="line"></div><div class="line">select year(&apos;2016-12-21&apos;);</div><div class="line"></div><div class="line">日期计算，使用+-运算符，数字后面的关键字为year、month、day、hour、minute、second</div><div class="line">select &apos;2016-12-21&apos;+interval 1 day;</div><div class="line"></div><div class="line">日期格式化date_format(date,format)，format参数可用的值如下</div><div class="line"></div><div class="line">获取年%Y，返回4位的整数</div><div class="line"></div><div class="line">*　获取年%y，返回2位的整数</div><div class="line"></div><div class="line">*　获取月%m，值为1-12的整数</div><div class="line"></div><div class="line">获取日%d，返回整数</div><div class="line"></div><div class="line">*　获取时%H，值为0-23的整数</div><div class="line"></div><div class="line">*　获取时%h，值为1-12的整数</div><div class="line"></div><div class="line">*　获取分%i，值为0-59的整数</div><div class="line"></div><div class="line">*　获取秒%s，值为0-59的整数</div><div class="line"></div><div class="line">select date_format(&apos;2016-12-21&apos;,&apos;%Y %m %d&apos;);</div><div class="line"></div><div class="line">当前日期current_date()</div><div class="line">select current_date();</div><div class="line"></div><div class="line">当前时间current_time()</div><div class="line">select current_time();</div><div class="line"></div><div class="line">当前日期时间now()</div><div class="line">select now();</div></pre></td></tr></table></figure>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">对于复杂的查询，在多次使用后，维护是一件非常麻烦的事情</div><div class="line"></div><div class="line">解决：定义视图</div><div class="line"></div><div class="line">视图本质就是对查询的一个封装</div><div class="line"></div><div class="line">定义视图</div><div class="line"></div><div class="line">create view stuscore as </div><div class="line">select students.*,scores.score from scores</div><div class="line">inner join students on scores.stuid=students.id;</div><div class="line"></div><div class="line">视图的用途就是查询</div><div class="line">select * from stuscore;</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/view1.png" alt="view"></p>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">当一个业务逻辑需要多个sql完成时，如果其中某条sql语句出错，则希望整个操作都退回</div><div class="line"></div><div class="line">使用事务可以完成退回的功能，保证业务逻辑的正确性</div><div class="line"></div><div class="line">事务四大特性(简称ACID)</div><div class="line">原子性(Atomicity)：事务中的全部操作在数据库中是不可分割的，要么全部完成，要么均不执行</div><div class="line"></div><div class="line">一致性(Consistency)：几个并行执行的事务，其执行结果必须与按某一顺序串行执行的结果相一致</div><div class="line"></div><div class="line">隔离性(Isolation)：事务的执行不受其他事务的干扰，事务执行的中间结果对其他事务必须是透明的</div><div class="line"></div><div class="line">持久性(Durability)：对于任意已提交事务，系统必须保证该事务对数据库的改变不被丢失，即使数据库出现故障</div><div class="line"></div><div class="line">要求：表的类型必须是innodb或bdb类型，才可以对此表使用事务</div><div class="line"></div><div class="line">查看mysql 引擎 show engines;</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/shiwu1.png" alt="shiwu1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">修改表的类型</div><div class="line">alter table &apos;表名&apos; engine=innodb;</div><div class="line">mysql默认就是innodb</div><div class="line"></div><div class="line">事务语句</div><div class="line">开启begin;</div><div class="line">提交commit;</div><div class="line">回滚rollback;</div><div class="line">示例1</div><div class="line"></div><div class="line">步骤1：打开两个终端，连接mysql，使用同一个数据库，操作同一张表</div><div class="line">终端1：</div><div class="line">select * from students;</div><div class="line">------------------------</div><div class="line">终端2：</div><div class="line">begin;</div><div class="line">insert into students(sname) values(&apos;lxhsec5&apos;);</div><div class="line">步骤2</div><div class="line">终端1：</div><div class="line">select * from students;</div><div class="line">步骤3</div><div class="line">终端2：</div><div class="line">commit;</div><div class="line">------------------------</div><div class="line">终端1：</div><div class="line">select * from students;</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/shiwu2.png" alt="shiwu2"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">示例2</div><div class="line"></div><div class="line">步骤1：打开两个终端，连接mysql，使用同一个数据库，操作同一张表</div><div class="line">终端1：</div><div class="line">select * from students;</div><div class="line">------------------------</div><div class="line">终端2：</div><div class="line">begin;</div><div class="line">insert into students(sname) values(&apos;lxhsec6&apos;);</div><div class="line">步骤2</div><div class="line">终端1：</div><div class="line">select * from students;</div><div class="line">步骤3</div><div class="line">终端2：</div><div class="line">rollback;</div><div class="line">------------------------</div><div class="line">终端1：</div><div class="line">select * from students;</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/shiwu3.png" alt="shiwu3"></p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">首先:先假设有一张student表,表的数据有10W条数据,</div><div class="line">我们想执行下面语句。</div><div class="line">SELECT * FROM student WHERE atitle = &apos;python&apos;</div><div class="line"></div><div class="line">在没有建立索引的时候，mysql执行这条语句是从10w条数据中一行一行的找。</div><div class="line">当我们建立了索引那么mysql就直接根据 索引的列 找，而不需要一行行找，</div><div class="line"></div><div class="line"></div><div class="line">那我们根据什么列来建立索引呢，根据实际的sql语句建立索引。</div><div class="line">例如：</div><div class="line">SELECT * FROM student WHERE atitle=&apos;mysql&apos; and gender=0 and score&gt;90</div><div class="line"></div><div class="line">可以根据where条件来建立索引，例如上面的sql语句，我们可以建立，atitle，gender，score这三个列的索引。</div><div class="line"></div><div class="line">这里要注意，如果语句是这么写的</div><div class="line">SELECT * FROM student WHERE atitle=&apos;mysql&apos; and score&gt;90 and gender=0</div><div class="line"></div><div class="line">那么一旦索引 找到是一个范围的时候，索引就没有用了。不是具体的某一块了，之后的索引建了也白建。</div><div class="line">也就是说gender索引建了也白建。</div><div class="line"></div><div class="line">如果语句这么写</div><div class="line"></div><div class="line">SELECT * FROM student WHERE atitle=&apos;mysql&apos; or score&gt;90 and gender=0</div><div class="line"></div><div class="line">那么or 后面的索引基本是废了,or语句没办法优化。</div><div class="line"></div><div class="line">缺点：虽然索引大大提高了查询速度，同时会降低更新表的速度，如果对表进行insert，update，delete </div><div class="line">因为更新表，mysql不仅要保存数据，还要保存一下索引文件。</div><div class="line">建立大量的索引会占用磁盘空间的索引文件。</div></pre></td></tr></table></figure>
+<h3 id="选择列的数据类型"><a href="#选择列的数据类型" class="headerlink" title="选择列的数据类型"></a>选择列的数据类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">越小的数据类型通常更好，能用int的不要用varchar，因为字符比较更为复杂，</div><div class="line"></div><div class="line">尽量避免NULL：应该在创建表时指定列为NOT NULL，除非你想储存NULL,</div><div class="line">在MYSQL中含有空值的列很难进行查询优化，因为它们使得索引，索引的统计信息以及运算更加复杂，</div><div class="line">你应该用0，一个特殊的值，或者一个空串代替空值。</div></pre></td></tr></table></figure>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">索引分单列索引和组合索引：</div><div class="line"></div><div class="line">单列索引：即一个索引只包含单个列，一个表可以有多个单列索引，</div><div class="line"></div><div class="line">组合索引：即一个索引包含多个列</div><div class="line"></div><div class="line">查看索引：show index from tablename;</div><div class="line"></div><div class="line">创建索引：create index indexname ON mytable(field(length)); </div><div class="line">length是创建表时设置的类型长度，int型可以不写。一个查询的条件尽量建立在一个索引上，</div><div class="line">如有多个字段建立索引，则</div><div class="line">mytable(field(length),field(length),field(length))</div><div class="line"></div><div class="line">删除索引：drop index [indexname] on mytable;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">1.开启运行时间监测：</div><div class="line">set profiling=1;</div><div class="line"></div><div class="line">2.查询</div><div class="line">select * from areas where atitle=&apos;广州市&apos;;</div><div class="line"></div><div class="line">3.查看执行时间</div><div class="line">show profiles;</div><div class="line"></div><div class="line">4.创建索引</div><div class="line">create index atitleindex on areas(atitle(20));</div><div class="line"></div><div class="line">5.再次查询</div><div class="line">select * from areas where atitle=&apos;广州市&apos;;</div><div class="line"></div><div class="line">6.再次查看索引时间</div><div class="line">show profiles;</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/indexex1.png" alt="indexex1"></p>
+<p><img src="/2017/10/20/mysql/indexex2.png" alt="indexex2"></p>
+<p><img src="/2017/10/20/mysql/indexex3.png" alt="indexex3"></p>
+<h1 id="与python3交互"><a href="#与python3交互" class="headerlink" title="与python3交互"></a>与python3交互</h1><h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pip3 install pymysql</div><div class="line">要注意的是：python2 没有pymysql这个包而是用其他包代替。</div></pre></td></tr></table></figure>
+<h2 id="Connection对象"><a href="#Connection对象" class="headerlink" title="Connection对象"></a>Connection对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">用于建立与数据库的连接</div><div class="line">创建对象：调用connect()方法</div><div class="line">conn=connect(参数列表)</div><div class="line">参数host：连接的mysql主机，默认是&apos;localhost&apos;</div><div class="line">参数port：连接的mysql主机的端口，默认是3306</div><div class="line">参数database：数据库的名称</div><div class="line">参数user：连接的用户名</div><div class="line">参数password：连接的密码</div><div class="line">参数charset：通信采用的编码方式，默认是&apos;gb2312&apos;，要求与数据库创建时指定的编码一致，否则中文会乱码</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">对象的方法</div><div class="line"></div><div class="line">close()关闭连接</div><div class="line">commit()事务，所以需要提交才会生效</div><div class="line">rollback()事务，放弃之前的操作</div><div class="line">cursor()返回Cursor对象，用于执行sql语句并获得结果</div></pre></td></tr></table></figure>
+<h2 id="Cursor对象"><a href="#Cursor对象" class="headerlink" title="Cursor对象"></a>Cursor对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">执行sql语句</div><div class="line">创建对象：调用Connection对象的cursor()方法</div><div class="line">cursor1=conn.cursor()</div><div class="line">对象的方法</div><div class="line"></div><div class="line">close()关闭</div><div class="line">execute(operation [, parameters ])执行语句，返回受影响的行数</div><div class="line">fetchone()执行查询语句时，获取查询结果集的第一个行数据，返回一个元组</div><div class="line">next()执行查询语句时，获取当前行的下一行</div><div class="line">fetchall()执行查询时，获取结果集的所有行，一行构成一个元组，再将这些元组装入一个元组返回</div><div class="line">scroll(value[,mode])将行指针移动到某个位置</div><div class="line">mode表示移动的方式</div><div class="line">mode的默认值为relative，表示基于当前行移动到value，value为正则向下移动，value为负则向上移动</div><div class="line">mode的值为absolute，表示基于第一条数据的位置，第一条数据的位置为0</div></pre></td></tr></table></figure>
+<h3 id="对象的属性"><a href="#对象的属性" class="headerlink" title="对象的属性"></a>对象的属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rowcount只读属性，表示最近一次execute()执行后受影响的行数</div><div class="line">connection获得当前连接对象</div></pre></td></tr></table></figure>
+<h2 id="增删改"><a href="#增删改" class="headerlink" title="增删改"></a>增删改</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># - * - coding:utf-8 - * -</div><div class="line">import pymysql</div><div class="line">try:</div><div class="line">    conn = pymysql.connect(host=&apos;127.0.0.1&apos;,</div><div class="line">                           port=3306,</div><div class="line">                           user=&apos;root&apos;,</div><div class="line">                           password =&apos;root&apos;,</div><div class="line">                           database=&apos;lxhsec&apos;,</div><div class="line">                           charset=&apos;utf8&apos;)</div><div class="line">    cs = conn.cursor()</div><div class="line">    # 增</div><div class="line">    # content = cs.execute(&quot;insert into students(id,sname) values(5,&apos;张良3&apos;)&quot;)</div><div class="line"></div><div class="line">    # 参数化 可用于过滤某些东西。</div><div class="line">    sname = input(&quot;请输入学生姓名：&quot;)</div><div class="line">    id = input(&quot;请输入学生id&quot;)</div><div class="line">    params = [id, sname]</div><div class="line">    content = cs.execute(&apos;insert into students(id,sname) values(%s,%s)&apos;, params)</div><div class="line"></div><div class="line">    # 改</div><div class="line">    # content = cs.execute(&quot;update students set sname=&apos;刘邦&apos; where id=6&quot;)</div><div class="line">    # 删</div><div class="line">    # content = cs.execute(&quot;delete from students where id=0&quot;)</div><div class="line">    print(content)  # 1</div><div class="line">    conn.commit()</div><div class="line">    cs.close()</div><div class="line">    conn.close()</div><div class="line">except Exception as e :</div><div class="line">    print(&quot;错误原因：&quot; + str(e))</div><div class="line"></div><div class="line">---------------千万要注意创建的文件名不要跟包的名字一样，</div><div class="line">即不要创建pymysql.py这个文件，不然会出错。</div></pre></td></tr></table></figure>
+<p><img src="/2017/10/20/mysql/pymysql1.png" alt="pymysql1"></p>
+<p><img src="/2017/10/20/mysql/pymysql2.png" alt="pymysql2"></p>
+<h3 id="其它语句"><a href="#其它语句" class="headerlink" title="其它语句"></a>其它语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cursor对象的execute()方法，也可以用于执行create table等语句</div><div class="line">建议在开发之初，就创建好数据库表结构，不要在这里执行</div></pre></td></tr></table></figure>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"># - * - coding:utf-8 - * -</div><div class="line">import pymysql</div><div class="line">try:</div><div class="line">    conn = pymysql.connect(host=&apos;127.0.0.1&apos;,</div><div class="line">                           port=3306,</div><div class="line">                           user=&apos;root&apos;,</div><div class="line">                           password =&apos;root&apos;,</div><div class="line">                           database=&apos;lxhsec&apos;,</div><div class="line">                           charset=&apos;utf8&apos;)</div><div class="line">    cs = conn.cursor()</div><div class="line">    cs.execute(&apos;select * from students &apos;)</div><div class="line">    # result = cs.fetchone()  # 查询一条数据</div><div class="line">    result = cs.fetchall()    # 查询多条数据</div><div class="line">    print(result)</div><div class="line">    cs.close()</div><div class="line">    conn.close()</div><div class="line">except Exception as e :</div><div class="line">    print(&quot;错误原因：&quot; + str(e))</div></pre></td></tr></table></figure>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"># 创建一个test3pymysql.py文件</div><div class="line"></div><div class="line"># - * - coding:utf-8 - * -</div><div class="line">import pymysql</div><div class="line"></div><div class="line">class MysqlHelper():</div><div class="line">    def __init__(self, host, port, database, user, password, charset=&apos;utf8&apos;):</div><div class="line">        self.host = host</div><div class="line">        self.port = port</div><div class="line">        self.database = database</div><div class="line">        self.user = user</div><div class="line">        self.password = password</div><div class="line">        self.charset = charset</div><div class="line"></div><div class="line">    def connect(self):</div><div class="line">        self.conn = pymysql.connect(host=self.host,port=self.port,database=self.database,user=self.user,passwd=self.password,charset=self.charset)</div><div class="line">        self.cursor = self.conn.cursor()</div><div class="line"></div><div class="line">    def close(self):</div><div class="line">        self.cursor.close()</div><div class="line">        self.conn.close()</div><div class="line"></div><div class="line">    def get_one(self, sql, params=()):</div><div class="line">        result = None</div><div class="line">        try:</div><div class="line">            self.connect()  # 创建连接</div><div class="line">            self.cursor.execute(sql, params)</div><div class="line">            result = self.cursor.fetchone()</div><div class="line">            self.close()</div><div class="line">        except Exception as e:</div><div class="line">            print(e.message)</div><div class="line">        return result</div><div class="line"></div><div class="line">    def get_all(self,sql,params=()):</div><div class="line">        list = ()</div><div class="line">        try:</div><div class="line">            self.connect() # 创建连接</div><div class="line">            self.cursor.execute(sql,params)</div><div class="line">            list = self.cursor.fetchall()</div><div class="line">            self.close()</div><div class="line">        except Exception as e:</div><div class="line">            print(e.message)</div><div class="line">        return list</div><div class="line"></div><div class="line">    def insert(self, sql, params=()):</div><div class="line">        return self.__edit(sql,params)</div><div class="line"></div><div class="line">    def update(self, sql, params=()):</div><div class="line">        return self.__edit(sql, params)</div><div class="line"></div><div class="line">    def delete(self, sql, params=()):</div><div class="line">        return self.__edit(sql, params)</div><div class="line"></div><div class="line">    def __edit(self, sql, params):</div><div class="line">        count = 0</div><div class="line">        try:</div><div class="line">            self.connect() # 创建连接</div><div class="line">            count = self.cursor.execute(sql, params)</div><div class="line">            self.conn.commit()</div><div class="line">            self.close()</div><div class="line">        except Exception as e:</div><div class="line">            print(e.message)</div><div class="line">        return count</div></pre></td></tr></table></figure>
+<h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># 创建test4.py文件</div><div class="line"></div><div class="line"># - * - coding:utf-8 - * -</div><div class="line">from test3pymysql import *</div><div class="line"></div><div class="line">sname = input(&quot;请输入用户名：&quot;)</div><div class="line">id = input(&quot;id:&quot;)</div><div class="line">params = [sname, id]</div><div class="line">sql = &apos;insert into students(sname, id) values(%s,%s)&apos;</div><div class="line">mysqlHelper = MysqlHelper(&apos;localhost&apos;,3306,&apos;lxhsec&apos;,&apos;root&apos;,&apos;root&apos;)</div><div class="line">count = mysqlHelper.insert(sql, params)</div><div class="line">if count == 1:</div><div class="line">    print (&apos;ok&apos;)</div><div class="line">else:</div><div class="line">    print (&apos;error&apos;)</div></pre></td></tr></table></figure>
+<h3 id="查询-1"><a href="#查询-1" class="headerlink" title="查询"></a>查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># 创建一个test5.py文件</div><div class="line"># - * - coding:utf-8 - * -</div><div class="line">from test3pymysql import *</div><div class="line"></div><div class="line">sql = &apos;select * from students&apos;</div><div class="line"></div><div class="line">helper = MysqlHelper(&apos;localhost&apos;,3306,&apos;lxhsec&apos;,&apos;root&apos;,&apos;root&apos;)</div><div class="line">one = helper.get_all(sql)</div><div class="line"># one=helper.get_one(sql)</div><div class="line">print(one)</div></pre></td></tr></table></figure>
+<h2 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">创建用户表userinfos</div><div class="line"></div><div class="line">表结构如下</div><div class="line">id</div><div class="line">uname</div><div class="line">upwd</div><div class="line">isdelete</div><div class="line">注意：需要对密码进行加密</div><div class="line">如果使用md5加密，则密码包含32个字符</div><div class="line">如果使用sha1加密，则密码包含40个字符，推荐使用这种方式</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">create table userinfos(</div><div class="line">id int primary key auto_increment,</div><div class="line">uname varchar(20),</div><div class="line">upwd char(40),</div><div class="line">isdelete bit default 0</div><div class="line">);</div><div class="line"></div><div class="line">插入如下数据，用户名为123,密码为123,这是sha1加密后的值</div><div class="line">insert into userinfos values(0,&apos;123&apos;,&apos;40bd001563085fc35165329ea1ff5c5ecbdbbeef&apos;,0);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"># - * - coding:utf-8 - * -</div><div class="line">from  test3pymysql import MysqlHelper</div><div class="line">from hashlib import sha1</div><div class="line"></div><div class="line">sname = input(&quot;请输入用户名：&quot;)</div><div class="line">spwd = input(&quot;请输入密码:&quot;)</div><div class="line"></div><div class="line">s1 = sha1()</div><div class="line">s1.update(spwd.encode(&apos;utf-8&apos;))</div><div class="line">spwdSha1 = s1.hexdigest()</div><div class="line"></div><div class="line">sql = &quot;select upwd from userinfos where uname=%s&quot;</div><div class="line">params = [sname]</div><div class="line"></div><div class="line">sqlhelper = MysqlHelper(&apos;localhost&apos;,3306,&apos;lxhsec&apos;,&apos;root&apos;,&apos;root&apos;)</div><div class="line">userinfo = sqlhelper.get_one(sql, params)</div><div class="line">if userinfo == None:</div><div class="line">    print(&apos;用户名错误&apos;)</div><div class="line">elif userinfo[0] == spwdSha1:</div><div class="line">    print(&apos;登录成功&apos;)</div><div class="line">else:</div><div class="line">    print(&apos;密码错误&apos;)</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2017/10/20/mysql/" title="mysql">http://www.lxhsec.com/2017/10/20/mysql/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/08/sqlmap/" rel="next" title="sqlmap">
+                <i class="fa fa-chevron-left"></i> sqlmap
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/31/mongodb/" rel="prev" title="mongodb">
+                mongodb <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介与安装"><span class="nav-number">1.</span> <span class="nav-text">简介与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字段"><span class="nav-number">1.1.1.</span> <span class="nav-text">字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束"><span class="nav-number">1.1.2.</span> <span class="nav-text">约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑删除"><span class="nav-number">1.1.3.</span> <span class="nav-text">逻辑删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接数据库"><span class="nav-number">1.3.</span> <span class="nav-text">连接数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务"><span class="nav-number">1.4.</span> <span class="nav-text">服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启远程连接"><span class="nav-number">1.5.</span> <span class="nav-text">开启远程连接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库与表的操作"><span class="nav-number">2.</span> <span class="nav-text">数据库与表的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库命令："><span class="nav-number">2.1.</span> <span class="nav-text">数据库命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表命令："><span class="nav-number">2.2.</span> <span class="nav-text">表命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据的增加、修改、删除以及简单的查询："><span class="nav-number">2.3.</span> <span class="nav-text">数据的增加、修改、删除以及简单的查询：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据备份"><span class="nav-number">2.4.</span> <span class="nav-text">数据备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据恢复"><span class="nav-number">2.5.</span> <span class="nav-text">数据恢复</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据的查询（重点）"><span class="nav-number">3.</span> <span class="nav-text">数据的查询（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查询的基本语法"><span class="nav-number">3.1.</span> <span class="nav-text">查询的基本语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消除重复行"><span class="nav-number">3.2.</span> <span class="nav-text">消除重复行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件"><span class="nav-number">3.3.</span> <span class="nav-text">条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#比较运算符"><span class="nav-number">3.3.1.</span> <span class="nav-text">比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">3.3.2.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊查询like"><span class="nav-number">3.3.3.</span> <span class="nav-text">模糊查询like</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范围查询-in"><span class="nav-number">3.3.4.</span> <span class="nav-text">范围查询 in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空判断"><span class="nav-number">3.3.5.</span> <span class="nav-text">空判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优先级"><span class="nav-number">3.3.6.</span> <span class="nav-text">优先级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚合"><span class="nav-number">3.4.</span> <span class="nav-text">聚合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分组"><span class="nav-number">3.5.</span> <span class="nav-text">分组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分组后的数据筛选"><span class="nav-number">3.5.1.</span> <span class="nav-text">分组后的数据筛选</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">3.6.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分页"><span class="nav-number">3.7.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.8.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级"><span class="nav-number">4.</span> <span class="nav-text">高级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#外键"><span class="nav-number">4.1.</span> <span class="nav-text">外键</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外键的级联操作"><span class="nav-number">4.1.1.</span> <span class="nav-text">外键的级联操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接"><span class="nav-number">4.2.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自关联"><span class="nav-number">4.3.</span> <span class="nav-text">自关联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置函数"><span class="nav-number">4.4.</span> <span class="nav-text">内置函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串函数"><span class="nav-number">4.4.1.</span> <span class="nav-text">字符串函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学函数"><span class="nav-number">4.4.2.</span> <span class="nav-text">数学函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期时间函数"><span class="nav-number">4.4.3.</span> <span class="nav-text">日期时间函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图"><span class="nav-number">4.5.</span> <span class="nav-text">视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">4.6.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">4.7.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择列的数据类型"><span class="nav-number">4.7.1.</span> <span class="nav-text">选择列的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作"><span class="nav-number">4.7.2.</span> <span class="nav-text">操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#与python3交互"><span class="nav-number">5.</span> <span class="nav-text">与python3交互</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-1"><span class="nav-number">5.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connection对象"><span class="nav-number">5.2.</span> <span class="nav-text">Connection对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cursor对象"><span class="nav-number">5.3.</span> <span class="nav-text">Cursor对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的属性"><span class="nav-number">5.3.1.</span> <span class="nav-text">对象的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增删改"><span class="nav-number">5.4.</span> <span class="nav-text">增删改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#其它语句"><span class="nav-number">5.4.1.</span> <span class="nav-text">其它语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">5.5.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">5.6.</span> <span class="nav-text">封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加"><span class="nav-number">5.6.1.</span> <span class="nav-text">添加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询-1"><span class="nav-number">5.6.2.</span> <span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户登录"><span class="nav-number">5.7.</span> <span class="nav-text">用户登录</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
