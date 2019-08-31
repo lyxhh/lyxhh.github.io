@@ -121,15 +121,15 @@
 <meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/read_file.png">
 <meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/xie.gif">
 <meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/%E6%98%9F%E5%8F%B7.png">
-<meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/sqlmap/httpheader.png">
-<meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/sqlmap/httpheader2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/sqlmap_header.png">
+<meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/sqlmap_header2.png">
 <meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/ua.png">
 <meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/ua_new.png">
 <meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/tamper.png">
 <meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/tamper1.png">
 <meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/Burp.png">
 <meta property="og:image" content="http://www.lxhsec.com/2017/10/08/sqlmap/2222.gif">
-<meta property="og:updated_time" content="2019-08-31T04:30:52.751Z">
+<meta property="og:updated_time" content="2019-08-31T08:10:19.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqlmap">
 <meta name="twitter:description" content="sqlmap用来检测与利用SQL注入漏洞的免费开源工具，支持多种数据库。">
@@ -411,7 +411,7 @@
 <h3 id="星号的使用"><a href="#星号的使用" class="headerlink" title="星号的使用"></a>星号的使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sqlmap不会对URI路径执行任何自动测试，</div><div class="line">像类似伪静态这种，那么就可以用*号来指定，</div><div class="line">即存在注入点的地方加多一个*，post,cookie相同</div><div class="line">（注意：%INJECT HERE%还支持Havij样式）在命令行中指定这些注入点。</div><div class="line">sqlmap.py -u &quot;http://127.0.0.1/test.php?id=1*&quot; --batch</div></pre></td></tr></table></figure>
 <p><img src="/2017/10/08/sqlmap/%E6%98%9F%E5%8F%B7.png" alt="星号"></p>
 <h3 id="从文件加载HTTP请求-结合-使用-——指定注入参数"><a href="#从文件加载HTTP请求-结合-使用-——指定注入参数" class="headerlink" title="从文件加载HTTP请求 结合*使用 ——指定注入参数"></a>从文件加载HTTP请求 结合*使用 ——指定注入参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sqlmap.py -r C:\\Users\\xiaohao\\Desktop\111.txt</div><div class="line">Cookie post 都是浮云。</div></pre></td></tr></table></figure>
-<p><img src="sqlmap/httpheader.png" alt="httpheader"><br><img src="sqlmap/httpheader2.png" alt="httpheader2"></p>
+<p><img src="/2017/10/08/sqlmap/sqlmap_header.png" alt="httpheader"><br><img src="/2017/10/08/sqlmap/sqlmap_header2.png" alt="httpheader2"></p>
 <h3 id="user-agent的使用"><a href="#user-agent的使用" class="headerlink" title="user-agent的使用"></a>user-agent的使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sqlmap.py -u &quot;http://127.0.0.1/test.php?id=1&quot; --user-agent=&quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36&quot;</div><div class="line">绕不过的话加个代理池，加个延迟还不是美滋滋。</div></pre></td></tr></table></figure>
 <p><img src="/2017/10/08/sqlmap/ua.png" alt="ua"><br><img src="/2017/10/08/sqlmap/ua_new.png" alt="uanwe"></p>
 <h3 id="tamper模块的使用"><a href="#tamper模块的使用" class="headerlink" title="tamper模块的使用"></a>tamper模块的使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在sqlmap目录下有一个tamper文件夹，sqlmap允许我们定制自己的篡改脚本。即自定义sql语句。</div><div class="line">用以绕过某些昂贵的企业级IPS设备或Web应用程序防火墙（WAF）调用的自行开发的输入验证例程</div><div class="line">sqlmap也提供了一些脚本供我们使用，但是过waf的基本失效了。</div><div class="line">若你要写过狗的话可以更改它以前的过狗脚本，或者自写一个python脚本用正则函数一个个替换。</div><div class="line">sqlmap.py -u &quot;http://127.0.0.1/test.php?id=1&quot; --tamper=&quot;versionedkeywords&quot;  </div><div class="line">指定脚本的名称</div></pre></td></tr></table></figure>
