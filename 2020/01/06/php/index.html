@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="PHP基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php">
+<meta property="og:url" content="http://www.lxhsec.com/2020/01/06/php/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="PHP基础">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpbase1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpvar1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpvar2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpvar3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpconst1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpecho1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpbasetype1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpbasetype2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpbasetype3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpbasetype4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpbasetype5.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/phpswitch1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/explode1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/06/php/cgctfweb15.png">
+<meta property="og:updated_time" content="2020-01-08T09:03:09.924Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php">
+<meta name="twitter:description" content="PHP基础">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/01/06/php/phpbase1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/01/06/php/"/>
+
+
+
+
+
+  <title>php | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/01/06/php/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">php</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-06T17:28:56+08:00">
+                2020-01-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-08T17:03:09+08:00">
+                2020-01-08
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>PHP基础<a id="more"></a></p>
+<h1 id="PHP基础"><a href="#PHP基础" class="headerlink" title="PHP基础"></a>PHP基础</h1><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><p>PHP脚本可以放在文档中的任何位置。<br>PHP脚本通常以&lt;?php开始，以?&gt;结束。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line">	<span class="comment">//php code</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>PHP 文件的默认文件扩展名是 “.php”。</p>
+<p>PHP语言的Hello World。</p>
+<p><img src="/2020/01/06/php/phpbase1.png" alt="phpbase1"></p>
+<p>PHP 中的每个代码行都必须以分号结束</p>
+<h3 id="php-注释"><a href="#php-注释" class="headerlink" title="php 注释"></a>php 注释</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//单行注释</div><div class="line"></div><div class="line">/*</div><div class="line">   //多行注释。</div><div class="line">*/</div></pre></td></tr></table></figure>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="PHP变量"><a href="#PHP变量" class="headerlink" title="PHP变量"></a>PHP变量</h3><p>PHP是弱类型语言，变量可以直接使用，变量无须声明之后再去使用。</p>
+<p>变量命名规则如下：</p>
+<ul>
+<li>变量以 $ 符号开始，后面跟着变量的名称</li>
+<li>变量名必须以字母或者下划线字符开始</li>
+<li>变量名只能包含字母数字字符以及下划线（A-z、0-9 和 _ ）</li>
+<li>变量名不能包含空格</li>
+<li>变量名是区分大小写的（$y 和 $Y 是两个不同的变量）</li>
+</ul>
+<p>以下是正确的变量命名:<br>$VarName<br>$_VarName</p>
+<p>错误的命名如下：<br>$666VarName  不能以数字开头<br>$VarName@#   变量只能由字母数字字符以及下划线组成，不能有#@等特殊符号。</p>
+<h3 id="PHP-变量作用域"><a href="#PHP-变量作用域" class="headerlink" title="PHP 变量作用域"></a>PHP 变量作用域</h3><p>变量的作用域指的是 变量在什么范围内可以被引用or使用。</p>
+<p>PHP 有四种不同的变量作用域：</p>
+<ul>
+<li>local</li>
+<li>global</li>
+<li>static</li>
+<li>parameter</li>
+</ul>
+<h4 id="local-And-global"><a href="#local-And-global" class="headerlink" title="local And global"></a>local And global</h4><p>local:  在 PHP 函数内部声明的变量是局部变量，仅能在函数内部访问。<br>global:  在函数外部定义的变量，拥有全局作用域（从定义处一直到文件结尾都有效），全局变量可以被脚本中的任何部分访问，但 要在函数中访问全局变量，需要使用 global 关键字，或者通过 php 中自定义的 $GLOBALS 数组获取。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line">$a = <span class="number">10</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line">	$b = <span class="number">1000</span>;</div><div class="line">	<span class="keyword">echo</span> <span class="string">"function a: "</span> .$a.<span class="string">"&lt;br /&gt;"</span>; <span class="comment">// 没有声明global关键字，因此访问不到外面定义的全局变量。</span></div><div class="line">	<span class="keyword">echo</span> <span class="string">"function b: "</span> . $b.<span class="string">"&lt;br /&gt;"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">	<span class="keyword">echo</span> <span class="string">"a: "</span> . $a.<span class="string">"&lt;br /&gt;"</span>;</div><div class="line">	<span class="keyword">echo</span> <span class="string">"b: "</span> . $b.<span class="string">"&lt;br /&gt;"</span>; <span class="comment">// 局部变量仅能在函数内部访问</span></div><div class="line"></div><div class="line">test();</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="/2020/01/06/php/phpvar1.png" alt="phpvar1"></p>
+<p>改变下test函数为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function test()&#123;</div><div class="line">	$b = 1000;</div><div class="line">	global $a; // change</div><div class="line">	echo &quot;function a: &quot; .$a.&quot;&lt;br /&gt;&quot;;</div><div class="line">	echo &quot;function b: &quot; . $b.&quot;&lt;br /&gt;&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>结果如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a: 10</div><div class="line">b: </div><div class="line">function a: 10</div><div class="line">function b: 1000</div></pre></td></tr></table></figure></p>
+<p>PHP 将所有全局变量存储在一个名为 $GLOBALS[index] 的数组中。 index 为变量的名称。<br>这个数组可以在函数内部or外部直接访问，也可以直接通过 GLOBALS全局数组 来更新全局变量的值，如下:<br><img src="/2020/01/06/php/phpvar2.png" alt="phpvar2"></p>
+<h4 id="Static"><a href="#Static" class="headerlink" title="Static"></a>Static</h4><p>当一个函数完成时，它的所有局部变量通常都会被删除。然而，当你希望某个局部变量不要被删除时，请在第一次声明该变量时使用 static 关键字修饰。</p>
+<p><img src="/2020/01/06/php/phpvar3.png" alt="phpvar3"></p>
+<p>Note: 被static修饰的变量仍然是函数的局部变量。</p>
+<h4 id="parameter"><a href="#parameter" class="headerlink" title="parameter"></a>parameter</h4><p>参数是在参数列表中声明的，作为函数声明的一部分，<br>参数属于函数内的局部变量。</p>
+<h2 id="PHP常量"><a href="#PHP常量" class="headerlink" title="PHP常量"></a>PHP常量</h2><p>常量值被定义后，在脚本的其他任何地方都不能被改变。</p>
+<p>一个常量由英文字母、下划线、和数字组成,但数字不能作为首字母出现。 (常量名不需要加 $ 修饰符)。</p>
+<p>常量从定义处一直到文件结尾都可以被访问，默认是全局变量。</p>
+<h3 id="设置常量"><a href="#设置常量" class="headerlink" title="设置常量"></a>设置常量</h3><p>使用 define() 函数，函数语法如下：<br><code>bool define ( string $name , mixed $value [, bool $case_insensitive = false ] )</code></p>
+<p>该函数有三个参数:</p>
+<ul>
+<li>name：必选参数，常量名称，即标志符。</li>
+<li>value：必选参数，常量的值。</li>
+<li>case_insensitive ：可选参数，如果设置为 TRUE，该常量则大小写不敏感。默认是大小写敏感的,即常量A与常量a是两个不同的常量。</li>
+</ul>
+<p><img src="/2020/01/06/php/phpconst1.png" alt="phpconst1"></p>
+<h2 id="PHP常见的输出语句"><a href="#PHP常见的输出语句" class="headerlink" title="PHP常见的输出语句"></a>PHP常见的输出语句</h2><p>echo 和print都是关键字 而不是函数。后接的括号可有可无。</p>
+<p>echo(): 可以输出一个或多个字符串，没有返回值。<br>print()：只允许输出一个字符串，返回值总为1.<br>print_r()：打印结果，不打印变量类型，不适用于 输出布尔值和NULL的结果，因为都是打印” “。用var_dump()函数更适合。<br>var_dump(): 返回表达式的类型与值。</p>
+<p><img src="/2020/01/06/php/phpecho1.png" alt="phpecho1"></p>
+<h2 id="PHP-数据类型"><a href="#PHP-数据类型" class="headerlink" title="PHP 数据类型"></a>PHP 数据类型</h2><p>String（字符串）,<br>Integer（整型）,<br>Float（浮点型）,<br>Boolean（布尔型）,<br>Array（数组）,<br>Object（对象）,<br>NULL（空值）。</p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>双引号/单引号 围起来的一串字符序列。</p>
+<p>双引号与单引号的区别，<br>双引号解析变量，单引号不解析变量。</p>
+<p><img src="/2020/01/06/php/phpbasetype1.png" alt="phpbasetype1"></p>
+<p><strong>PHP字符串的一些操作</strong></p>
+<h4 id="字符串运算符点"><a href="#字符串运算符点" class="headerlink" title="字符串运算符点."></a>字符串运算符点<code>.</code></h4><p>用于把两个字符串值连接起来，如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php </div><div class="line">	$txt1=&quot;Hello&quot;; </div><div class="line">	$txt2=&quot;world!&quot;; </div><div class="line">	echo $txt1 . &quot; &quot; . $txt2; //结果：Hello world!</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="计算字符串的长度"><a href="#计算字符串的长度" class="headerlink" title="计算字符串的长度"></a>计算字符串的长度</h4><p>strlen() 函数返回字符串的长度（字符数）<br>在PHP中 一个英文为一个字符数，一个中文在UTF-8编码的情况下为3个字符数，如下都输出12.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php </div><div class="line">	echo strlen(&quot;Hello world!&quot;);  // 12</div><div class="line">	echo PHP_EOL;</div><div class="line">	echo strlen(&quot;中文字符&quot;); // 12</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>若要计算中文字符的个数，可以使用mb_strlen函数,并指定编码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">	echo mb_strlen(&quot;中文字符&quot;,&apos;utf-8&apos;);  // 输出 4</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="在字符串内查找指定文本的位置"><a href="#在字符串内查找指定文本的位置" class="headerlink" title="在字符串内查找指定文本的位置"></a>在字符串内查找指定文本的位置</h4><p>strpos() 函数用于在字符串内查找一个字符或一段指定的文本。<br>如果在字符串中找到匹配，该函数会返回 第一个匹配的字符 离 第一个字符之间的字符数量。如果未找到匹配，则返回 FALSE。</p>
+<p>字符串中的位置是从0开始，中文占3个字符，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php </div><div class="line">echo strpos(&apos;123测试ceshi&apos;, &apos;测试&apos;) . PHP_EOL; //3</div><div class="line">echo strpos(&apos;开始23测试ceshi&apos;, &apos;测试&apos;) . PHP_EOL; // 8</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>有中文的情况下，使用strpos就不能得到我们预期的位置值，因此对于中文，需要使用mb_strpos 来查询字符的位置。</p>
+<p><code>mb_strpos ( string $haystack , string $needle [, int $offset = 0 [, string $encoding = mb_internal_encoding() ]] ) : int</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?php </div><div class="line">echo strpos(&apos;开始23测试ceshi&apos;, &apos;测试&apos;) . PHP_EOL;  //8</div><div class="line">echo mb_strpos(&apos;开始23测试ceshi&apos;, &apos;测试&apos;,0,&quot;UTF-8&quot;) . PHP_EOL; // 4 </div><div class="line"></div><div class="line">echo strpos(&apos;123测试ceshi&apos;, &apos;测试&apos;) . PHP_EOL;  //3</div><div class="line">echo mb_strpos(&apos;123测试ceshi&apos;, &apos;测试&apos;,0,&quot;UTF-8&quot;) . PHP_EOL; //3</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<p>Note: 这里明确指定UTF-8的字符编码，如果不指定则使用默认的，默认的编码可能导致的结果与strpos的结果一致。</p>
+<h3 id="Integer"><a href="#Integer" class="headerlink" title="Integer"></a>Integer</h3><p>整数是一个没有小数的数字。<br>整数规则:</p>
+<ul>
+<li>整数必须至少有一个数字 (0-9)</li>
+<li>整数不能包含逗号或空格</li>
+<li>整数是没有小数点的</li>
+<li>整数可以是正数或负数</li>
+<li>整型可以用三种格式来指定：十进制， 十六进制（ 以 0x 为前缀）或八进制（前缀为 0）。</li>
+</ul>
+<p><img src="/2020/01/06/php/phpbasetype2.png" alt="phpbasetype2"></p>
+<h3 id="Float"><a href="#Float" class="headerlink" title="Float"></a>Float</h3><p>浮点数是带小数部分的数字，或是指数形式。<br><img src="/2020/01/06/php/phpbasetype3.png" alt="phpbasetype3"></p>
+<h3 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h3><p>布尔型可以是 TRUE 或 FALSE。<br><img src="/2020/01/06/php/phpbasetype4.png" alt="phpbasetype4"></p>
+<h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><p>数组 可以在一个变量中存储多个值，与其他语言(数组是相同数据类型的集合)不同的是，php中的数组可以存储不同类型的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$cars=array(123,1.22,&quot;Toyota&quot;);</div><div class="line">var_dump($cars); //结果为: array(3) &#123; [0]=&gt; int(123) [1]=&gt; float(1.22) [2]=&gt; string(6) &quot;Toyota&quot; &#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h4><p>在 PHP 中，array() 函数用于创建数组</p>
+<p>有三种类型的数组：</p>
+<ul>
+<li>数值数组 - 带有数字 ID 键的数组</li>
+<li>关联数组 - 带有指定的键的数组，每个键关联一个值</li>
+<li>多维数组 - 包含一个或多个数组的数组</li>
+</ul>
+<h5 id="数值数组"><a href="#数值数组" class="headerlink" title="数值数组"></a>数值数组</h5><p>数值数组的两种创建方式：</p>
+<ol>
+<li><p>自动分配ID</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>人工分配 ID 键：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$cars[0]=&quot;Volvo&quot;;</div><div class="line">$cars[1]=&quot;BMW&quot;;</div><div class="line">$cars[2]=&quot;Toyota&quot;;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>访问数组通过下标访问，下标从0开始。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);</div><div class="line">echo &quot;I like &quot; . $cars[0] . &quot;, &quot; . $cars[1] . &quot; and &quot; . $cars[2] . &quot;.&quot;;</div><div class="line">//结果为: I like Volvo, BMW and Toyota.</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>获取数组的长度 - count() 函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);</div><div class="line">echo count($cars); //结果为：3</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>遍历数组的两种方式:<br>for循环：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);</div><div class="line">$arrlength=count($cars);</div><div class="line"></div><div class="line">for($x=0;$x&lt;$arrlength;$x++)</div><div class="line">&#123;	</div><div class="line">    echo &quot;Key=&quot; . $x . &quot;, Value=&quot; . $cars[$x];</div><div class="line">    echo &quot;&lt;br&gt;&quot;;</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>foreach:</p>
+<p>foreach 仅能够应用于数组和对象，如果尝试应用于其他数据类型的变量，或者未初始化的变量将发出错误信息, 有两种语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">foreach (array_expression as $value)</div><div class="line">    statement</div><div class="line">foreach (array_expression as $key =&gt; $value)</div><div class="line">    statement</div></pre></td></tr></table></figure></p>
+<p>foreach循环:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);</div><div class="line">$arrlength=count($cars);</div><div class="line"></div><div class="line"></div><div class="line">foreach($cars as $x=&gt;$x_value)</div><div class="line">&#123;</div><div class="line">    echo &quot;Key=&quot; . $x . &quot;, Value=&quot; . $x_value;</div><div class="line">    echo &quot;&lt;br&gt;&quot;;</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果都为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Key=0, Value=Volvo</div><div class="line">Key=1, Value=BMW</div><div class="line">Key=2, Value=Toyota</div></pre></td></tr></table></figure></p>
+<p>foreach循环只遍历值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);</div><div class="line">$arrlength=count($cars);</div><div class="line"></div><div class="line"></div><div class="line">foreach($cars as $x_value)</div><div class="line">&#123;</div><div class="line">    echo &quot;Value=&quot; . $x_value;</div><div class="line">    echo &quot;&lt;br&gt;&quot;;</div><div class="line">&#125;</div><div class="line">?&gt;</div><div class="line">/*</div><div class="line">//结果为：</div><div class="line">Value=Volvo</div><div class="line">Value=BMW</div><div class="line">Value=Toyota</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<h5 id="关联数组"><a href="#关联数组" class="headerlink" title="关联数组"></a>关联数组</h5><p>PHP关联数组的两种创建方式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);</div></pre></td></tr></table></figure></p>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$age[&apos;Peter&apos;]=&quot;35&quot;;</div><div class="line">$age[&apos;Ben&apos;]=&quot;37&quot;;</div><div class="line">$age[&apos;Joe&apos;]=&quot;43&quot;;</div></pre></td></tr></table></figure></p>
+<p>数组访问，指定键：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);</div><div class="line">echo &quot;Peter is &quot; . $age[&apos;Peter&apos;] . &quot; years old.&quot;; </div><div class="line">//结果为：Peter is 35 years old.</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>遍历数组的方式与数值数组相同。</p>
+<h5 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h5><p>一个数组中的值可以是另一个数组，另一个数组的值也可以是一个数组。<br>依照这种方式，我们可以创建二维或者三维数组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;?php </div><div class="line">$sites = array </div><div class="line">( </div><div class="line">    &quot;lxhsec&quot;=&gt;array </div><div class="line">    ( </div><div class="line">        &quot;lxhsec&quot;, </div><div class="line">        &quot;https://www.lxhsec.com&quot; </div><div class="line">    ), </div><div class="line">    &quot;google&quot;=&gt;array </div><div class="line">    ( </div><div class="line">        &quot;Google&quot;, </div><div class="line">        &quot;http://www.google.com&quot; </div><div class="line">    ), </div><div class="line">    &quot;taobao&quot;=&gt;array </div><div class="line">    ( </div><div class="line">        &quot;taobao&quot;, </div><div class="line">        &quot;http://www.taobao.com&quot; </div><div class="line">    ) </div><div class="line">); </div><div class="line">print(&quot;&lt;pre&gt;&quot;); // 格式化输出数组 </div><div class="line">print_r($sites); </div><div class="line">print(&quot;&lt;/pre&gt;&quot;); </div><div class="line">echo $sites[&apos;lxhsec&apos;][0].&apos; blog is : &apos;;</div><div class="line">echo $sites[&apos;lxhsec&apos;][1];  // 访问二维数组值。</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Array</div><div class="line">(</div><div class="line">    [lxhsec] =&gt; Array</div><div class="line">        (</div><div class="line">            [0] =&gt; lxhsec</div><div class="line">            [1] =&gt; https://www.lxhsec.com</div><div class="line">        )</div><div class="line"></div><div class="line">    [google] =&gt; Array</div><div class="line">        (</div><div class="line">            [0] =&gt; Google</div><div class="line">            [1] =&gt; http://www.google.com</div><div class="line">        )</div><div class="line"></div><div class="line">    [taobao] =&gt; Array</div><div class="line">        (</div><div class="line">            [0] =&gt; taobao</div><div class="line">            [1] =&gt; http://www.taobao.com</div><div class="line">        )</div><div class="line"></div><div class="line">)</div><div class="line">lxhsec blog is : https://www.lxhsec.com</div></pre></td></tr></table></figure></p>
+<h3 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h3><h3 id="NULL"><a href="#NULL" class="headerlink" title="NULL"></a>NULL</h3><p>NULL 值表示变量没有值。</p>
+<p>可以通过设置变量值为 NULL 来清空变量数据：<br><img src="/2020/01/06/php/phpbasetype5.png" alt="phpbasetype5"></p>
+<h2 id="PHP-类型比较"><a href="#PHP-类型比较" class="headerlink" title="PHP 类型比较"></a>PHP 类型比较</h2><h2 id="PHP选择结构"><a href="#PHP选择结构" class="headerlink" title="PHP选择结构"></a>PHP选择结构</h2><p>在PHP中选择结构，有 if，与Switch</p>
+<h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><p>if语句用于根据不同条件执行不同动作。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">if (条件)&#123;</div><div class="line">    if 条件成立时执行的代码;</div><div class="line">&#125;</div><div class="line">else if (条件)&#123;</div><div class="line">    elseif 条件成立时执行的代码;</div><div class="line">&#125;</div><div class="line">else&#123;</div><div class="line">    条件不成立时执行的代码;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h3><p>如果希望有选择地执行若干代码块之一，请使用 switch 语句。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">switch (n)</div><div class="line">&#123;</div><div class="line">case label1:</div><div class="line">    如果 n=label1，此处代码将执行;</div><div class="line">    break;</div><div class="line">case label2:</div><div class="line">    如果 n=label2，此处代码将执行;</div><div class="line">    break;</div><div class="line">default:</div><div class="line">    如果 n 既不等于 label1 也不等于 label2，此处代码将执行;</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">header(&quot;Content-type:text/html;charset=utf-8&quot;);</div><div class="line">$favcolor = &quot;red&quot;;</div><div class="line">switch ($favcolor)</div><div class="line">&#123;</div><div class="line">case &quot;red&quot;:</div><div class="line">    echo &quot;你喜欢的颜色是红色!&quot;;</div><div class="line">    break;</div><div class="line">case &quot;blue&quot;:</div><div class="line">    echo &quot;你喜欢的颜色是蓝色!&quot;;</div><div class="line">    break;</div><div class="line">default:</div><div class="line">    echo &quot;你喜欢的颜色不是 红, 蓝&quot;;</div><div class="line">&#125;</div><div class="line">//结果： 你喜欢的颜色是红色!</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>需要注意的是break，不能漏，否则会输出非预期的结果，如下：<br><img src="/2020/01/06/php/phpswitch1.png" alt="phpswitch1"></p>
+<h2 id="PHP中的循环结构"><a href="#PHP中的循环结构" class="headerlink" title="PHP中的循环结构"></a>PHP中的循环结构</h2><p>在PHP中提供了四种循环结构，分别是 For循环，While循环，do…while循环，foreach循环。</p>
+<ul>
+<li>for - 循环执行代码块指定的次数</li>
+<li>while - </li>
+<li><ul>
+<li>首先执行一次代码块，然后在指定的条件成立时重复这个循环</li>
+</ul>
+</li>
+<li>foreach - 根据数组中每个元素来循环代码块</li>
+</ul>
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><p>for 循环用于 预先知道脚本 需要运行的 次数 的情况。<br>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for (初始值; 条件; 增量)</div><div class="line">&#123;</div><div class="line">    //要执行的代码;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><p>while 循环将重复执行代码块，直到指定的条件不成立。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">while(条件)&#123;</div><div class="line">	//要执行的代码；</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="do…while"><a href="#do…while" class="headerlink" title="do…while"></a>do…while</h3><p>do…while 语句会至少执行一次代码，然后检查条件，只要条件成立，就会重复进行循环。<br>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">do&#123;</div><div class="line">    //要执行的代码;</div><div class="line">&#125;</div><div class="line">while (条件);</div></pre></td></tr></table></figure></p>
+<h3 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h3><p>foreach 循环常用于遍历数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">foreach ($array as $value)</div><div class="line">&#123;</div><div class="line">    //要执行代码;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="PHP-函数"><a href="#PHP-函数" class="headerlink" title="PHP 函数"></a>PHP 函数</h2><p>语法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function functionName($varname1,$varname2)</div><div class="line">&#123;</div><div class="line">    // 要执行的代码</div><div class="line">	return ;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">header(&quot;Content-type:text/html;charset=utf-8&quot;);</div><div class="line"></div><div class="line">function sum($x, $y)&#123;</div><div class="line">	return $x+$y;</div><div class="line">&#125;</div><div class="line"></div><div class="line">echo sum(5,10); //15</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="PHP-魔术变量"><a href="#PHP-魔术变量" class="headerlink" title="PHP 魔术变量"></a>PHP 魔术变量</h2><p>在PHP中有 八个魔术常量 它们的值随着它们在代码中的位置改变而改变。</p>
+<h3 id="LINE"><a href="#LINE" class="headerlink" title="LINE"></a><strong>LINE</strong></h3><p>获取文件中的<strong>当前行号</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">header(&quot;Content-type:text/html;charset=utf-8&quot;);</div><div class="line"></div><div class="line">echo &apos;这是第 &apos;  . __LINE__ . &apos; 行&apos;; // 结果为: 这是第 4 行</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<h3 id="FILE"><a href="#FILE" class="headerlink" title="FILE"></a><strong>FILE</strong></h3><p>获取<strong>当前文件的绝对路径</strong>，包含文件名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">header(&quot;Content-type:text/html;charset=utf-8&quot;);</div><div class="line"></div><div class="line">echo &apos;该文件位于 &quot; &apos;  . __FILE__ . &apos; &quot; &apos;; // 结果为: 该文件位于 &quot; E:\WWW\php\test.php &quot;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<h3 id="DIR"><a href="#DIR" class="headerlink" title="DIR"></a><strong>DIR</strong></h3><p>获取<strong>当前文件所在目录的绝对路径</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">header(&quot;Content-type:text/html;charset=utf-8&quot;);</div><div class="line"></div><div class="line">echo &apos;该文件位于 &quot; &apos;  . __DIR__ . &apos; &quot; &apos;; // 结果为: 该文件位于 &quot; E:\WWW\php &quot;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<h3 id="FUNCTION"><a href="#FUNCTION" class="headerlink" title="FUNCTION"></a><strong>FUNCTION</strong></h3><p>函数名称（PHP 4.3.0 新加）。自 PHP 5 起本常量 <strong>返回该函数被定义时的名字</strong>（区分大小写）。在 PHP 4 中该值总是小写字母的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">header(&quot;Content-type:text/html;charset=utf-8&quot;);</div><div class="line">function test() &#123;</div><div class="line">    echo  &apos;函数名为：&apos; . __FUNCTION__ ;</div><div class="line">&#125;</div><div class="line">test();</div><div class="line"></div><div class="line">?&gt;</div><div class="line">//结果为: 函数名为：test</div></pre></td></tr></table></figure>
+<h3 id="CLASS"><a href="#CLASS" class="headerlink" title="CLASS"></a><strong>CLASS</strong></h3><p>自 PHP 5 起本常量 <strong>返回该类被定义时的名字</strong>（区分大小写）。<br>在 PHP 4 中该值总是小写字母的。</p>
+<p>注意自 PHP 5.4 起 <strong>CLASS</strong> 对 trait 也起作用。当用在 trait 方法中时，<strong>CLASS</strong> 是调用 trait 方法的类的名字。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">header(&quot;Content-type:text/html;charset=utf-8&quot;);</div><div class="line">class test &#123;</div><div class="line">    function _print() &#123;</div><div class="line">        echo &apos;类名为：&apos;  . __CLASS__ . &quot;&lt;br&gt;&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$t = new test();</div><div class="line">$t-&gt;_print();</div><div class="line">?&gt;</div><div class="line">//结果为： 类名为：test</div></pre></td></tr></table></figure>
+<h3 id="TRAIT"><a href="#TRAIT" class="headerlink" title="TRAIT"></a><strong>TRAIT</strong></h3><p>自 PHP 5.4.0 起，PHP 实现了代码复用的一个方法，称为 traits。</p>
+<p>获取traits的名字。</p>
+<p>以下代码输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Hello World!</div><div class="line">__TRAIT__: SayWorld</div><div class="line">__CLASS__: MyHelloWorld</div><div class="line">run 2</div></pre></td></tr></table></figure></p>
+<p>说明MyHelloWorld类中的sayHello方法，覆盖了Trait中的同名方法，而基类中的run方法被Trait中的同名方法所覆盖。<br>因此得出优先顺序是: Trait中的方法或属性会覆盖 基类（Base）中的同名的方法或属性，而本类（MyHelloWorld）会覆盖Trait中同名的属性或方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">header(&quot;Content-type:text/html;charset=utf-8&quot;);</div><div class="line">class Base &#123;</div><div class="line">    public function sayHello() &#123;</div><div class="line">        echo &apos;Hello &apos;;</div><div class="line">		</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">	public function run()&#123;</div><div class="line">		echo &quot;run 1&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">trait SayWorld &#123;</div><div class="line">    public function sayHello() &#123;</div><div class="line">		echo __TRAIT__.&apos;&lt;br / &gt;&apos;;</div><div class="line">        parent::sayHello();</div><div class="line">		</div><div class="line">        echo &apos;World!QQ&apos;;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">	public function run()&#123;</div><div class="line">		echo &quot;__TRAIT__: &quot; . __TRAIT__.&apos;&lt;br / &gt;&apos;;</div><div class="line">		echo &quot;__CLASS__: &quot;. __CLASS__.&apos;&lt;br / &gt;&apos;;</div><div class="line">		echo &quot;run 2&quot;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">class MyHelloWorld extends Base &#123;</div><div class="line">    use SayWorld;</div><div class="line">	public function sayHello() &#123;</div><div class="line">        parent::sayHello();</div><div class="line">        echo &apos;World!&apos;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"> </div><div class="line">$o = new MyHelloWorld();</div><div class="line">$o-&gt;sayHello();</div><div class="line">echo &quot;&lt;br /&gt;&quot;;</div><div class="line">$o-&gt;run();</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<h3 id="METHOD"><a href="#METHOD" class="headerlink" title="METHOD"></a><strong>METHOD</strong></h3><p>类的方法名，返回该方法被定义时的名字（区分大小写），PHP 5.0.0 新增。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">header(&quot;Content-type:text/html;charset=utf-8&quot;);</div><div class="line">class test &#123;</div><div class="line">    function _print() &#123;</div><div class="line">        echo &apos;类的方法名：&apos;  . __METHOD__ . &quot;&lt;br&gt;&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$t = new test();</div><div class="line">$t-&gt;_print();</div><div class="line"></div><div class="line">?&gt;</div><div class="line">//结果为： 类的方法名：test::_print</div></pre></td></tr></table></figure>
+<h3 id="NAMESPACE"><a href="#NAMESPACE" class="headerlink" title="NAMESPACE"></a><strong>NAMESPACE</strong></h3><p>当前命名空间的名称（区分大小写）。此常量是在编译时定义的（PHP 5.3.0 新增）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">namespace MyProject;</div><div class="line">header(&quot;Content-type:text/html;charset=utf-8&quot;);</div><div class="line"></div><div class="line">echo &apos;命名空间为：&quot;&apos;, __NAMESPACE__, &apos;&quot;&apos;; </div><div class="line">//结果为： &quot;MyProject&quot;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<h2 id="PHP中的超级全局变量"><a href="#PHP中的超级全局变量" class="headerlink" title="PHP中的超级全局变量"></a>PHP中的超级全局变量</h2><p>超级全局变量在PHP 4.1.0之后被启用, 是PHP系统中自带的变量，在一个脚本的全部作用域中都可用,无须声明。</p>
+<p>PHP 超级全局变量列表:</p>
+<ul>
+<li>$GLOBALS</li>
+<li>$_SERVER</li>
+<li>$_REQUEST</li>
+<li>$_POST</li>
+<li>$_GET</li>
+<li>$_FILES</li>
+<li>$_ENV</li>
+<li>$_COOKIE</li>
+<li>$_SESSION</li>
+</ul>
+<h2 id="PHP-命名空间"><a href="#PHP-命名空间" class="headerlink" title="PHP 命名空间"></a>PHP 命名空间</h2><h2 id="PHP-面向对象"><a href="#PHP-面向对象" class="headerlink" title="PHP 面向对象"></a>PHP 面向对象</h2><h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>类：定义了一件事物的抽象特点，类的定义包含了数据的形式以及对数据的操作。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//php通过关键字class 定义类,大括号内可以定义变量和方法。</div><div class="line">//类的变量使用 var 来声明, 类的变量也可以在声明的时候初始化值。</div><div class="line">//方法定义 类似 PHP 函数的定义，但方法只能通过该类及其实例化的对象访问。</div><div class="line">class classname&#123;</div><div class="line">	var varname;</div><div class="line"></div><div class="line">	function methodName()&#123;</div><div class="line">		//dosomething</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ex:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">class Person&#123;</div><div class="line">	var $name= &quot;lxhsec&quot;;</div><div class="line">	</div><div class="line">	function getName()&#123;</div><div class="line">		echo $this-&gt;name; //变量$this代表调用getName方法的对象。</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	function setName($name)&#123;</div><div class="line">		$this-&gt;name = $name; //变量$this代表调用setName方法的对象。</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>当类创建后，我们可以使用 new 运算符来 实例化 该类的对象，这里我们实例化上面创建的Person类。<br><code>$ps = new Person();</code></p>
+<h3 id="调用成员方法"><a href="#调用成员方法" class="headerlink" title="调用成员方法"></a>调用成员方法</h3><p>通过创建的实例化对象，可以调用对象所属类中的成员方法。<br><code>$ps-&gt;getName();</code> //输出lxhsec</p>
+<p>变量的修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ps-&gt;setName(&quot;bbbb&quot;);</div><div class="line">echo &apos;&lt;br /&gt;&apos;;</div><div class="line">$ps-&gt;getName(); // 输出bbbb</div></pre></td></tr></table></figure></p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>构造函数是一种特殊的方法。主要用来在创建对象时初始化变量值。</p>
+<p>在上面例子中，我们将name的名字固定为lxhsec，但是并不是所有的人类，都叫这个名字，每个人都应有自己的姓名，我们创建对象的时候可以通过构造函数初始化不同人（对象）的名字。</p>
+<p>语法格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">void __construct ([ mixed $args [, $... ]] )</div></pre></td></tr></table></figure></p>
+<p>ex:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">class Person&#123;</div><div class="line">	var $name;</div><div class="line">	</div><div class="line">	function __construct( $name ) &#123;</div><div class="line">		$this-&gt;name = $name;          //add</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	function getName()&#123;</div><div class="line">		echo $this-&gt;name;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	function setName($name)&#123;</div><div class="line">		$this-&gt;name = $name; //变量$this代表调用getName方法的对象。</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ps = new Person(&quot;www.lxhsec.com&quot;); // 在初始化对象时传参，构造函数会处理这个参数。</div><div class="line">$ps-&gt;getName(); // 最终输出www.lxhsec.com</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><p>析构函数(destructor) 与构造函数相反，当对象结束其生命周期时（例如对象所在的函数已调用完毕），系统自动执行析构函数。</p>
+<p>语法格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">void __destruct ( void )</div></pre></td></tr></table></figure></p>
+<p>ex:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">class Person&#123;</div><div class="line">	var $name;</div><div class="line">	</div><div class="line">	function __construct( $name ) &#123;</div><div class="line">		$this-&gt;name = $name;</div><div class="line">	&#125;</div><div class="line">	function getName()&#123;</div><div class="line">		echo $this-&gt;name;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	function setName($name)&#123;</div><div class="line">		$this-&gt;name = $name; //变量$this代表调用getName方法的对象。</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">   function __destruct() &#123;    //add</div><div class="line">       echo &quot;del &quot; . $this-&gt;name . &quot;\n&quot;; // 当对象不在被使用时，php会自动调用此函数。</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ps = new Person(&quot;www.lxhsec.com&quot;);</div><div class="line">$ps-&gt;getName();</div><div class="line">echo &quot;&lt;br /&gt;&quot;;</div><div class="line"></div><div class="line">/*</div><div class="line">结果为： </div><div class="line">www.lxhsec.com</div><div class="line">del www.lxhsec.com</div><div class="line">*/</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><p>PHP 对属性或方法的访问控制，是通过在前面添加关键字 public（公有），protected（受保护）或 private（私有）来实现的。</p>
+<ul>
+<li>public（公有）：公有的类成员可以在任何地方被访问。</li>
+<li>protected（受保护）：受保护的类成员则可以被其自身以及其子类和父类访问。</li>
+<li>private（私有）：私有的类成员则只能被其定义所在的类访问。</li>
+</ul>
+<p><strong>类属性的访问控制</strong><br>类属性必须定义为 公有，受保护，私有 之一。如果用 var 定义，则被视为公有。</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>PHP 使用关键字 extends 来继承一个类，PHP 不支持多继承，格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">class Child extends Parent &#123;</div><div class="line">   // 代码部分</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当扩展一个类，子类就会继承父类所有公有的和受保护的方法以及属性。除非子类覆盖了父类的方法，被继承的方法都会保留其原有功能。</p>
+<p>ex：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<h2 id="PHP标记"><a href="#PHP标记" class="headerlink" title="PHP标记"></a>PHP标记</h2><p>有以下几种标记可以解析PHP<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1. &lt;?php phpinfo();?&gt;</div><div class="line">2. &lt;?= phpinfo();?&gt;</div><div class="line">3. &lt;script language=&quot;php&quot;&gt;phpinfo();&lt;/script&gt;</div><div class="line">4. 短标签 &lt;? phpinfo();?&gt; 需要在php.ini中设置short _open_tag=on.</div><div class="line">5. asp标签(PHP 3.0.4 版后支持)： &lt;% phpinfo(); %&gt;需要在php.ini中设置asp_tags=on</div></pre></td></tr></table></figure></p>
+<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><p>记录我遇到的一些常见的php函数。</p>
+<h3 id="in-array"><a href="#in-array" class="headerlink" title="in_array"></a>in_array</h3><p>in_array() 函数用于搜索数组中是否存在指定的值。</p>
+<p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bool in_array ( mixed $needle , array $haystack [, bool $strict = FALSE ] )</div><div class="line"></div><div class="line">可选。如果该参数设置为 TRUE，则 in_array() 函数检查搜索的数据与数组的值的类型是否相同。</div></pre></td></tr></table></figure></p>
+<p>返回值：如果在数组中找到值，则返回 TRUE，否则返回 FALSE。</p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line">$people = <span class="keyword">array</span>(<span class="string">"Peter"</span>, <span class="number">23</span>);</div><div class="line"></div><div class="line"><span class="keyword">if</span> (in_array(<span class="string">"23"</span>, $people, <span class="keyword">TRUE</span>))&#123;  <span class="comment">//返回false</span></div><div class="line">   <span class="keyword">echo</span> <span class="string">"true Match found&lt;br&gt;"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span>&#123;</div><div class="line">   <span class="keyword">echo</span> <span class="string">"true Match not found&lt;br&gt;"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> (in_array(<span class="string">"23"</span>, $people))&#123; <span class="comment">// 返回true</span></div><div class="line">   <span class="keyword">echo</span> <span class="string">"false Match found&lt;br&gt;"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span>&#123;</div><div class="line">   <span class="keyword">echo</span> <span class="string">"false Match not found&lt;br&gt;"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">	结果:</span></div><div class="line"><span class="comment">		true Match not found</span></div><div class="line"><span class="comment">		false Match found</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="is-array"><a href="#is-array" class="headerlink" title="is_array"></a>is_array</h3><p>is_array() 函数用于检测变量是否是一个数组。</p>
+<p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bool is_array ( mixed $var )</div></pre></td></tr></table></figure></p>
+<p>返回值: 如果检测的变量是数组，则返回 TRUE，否则返回 FALSE。</p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line">$site = <span class="keyword">array</span>(<span class="string">'www.lxhsec.com'</span>);</div><div class="line"><span class="keyword">if</span>(is_array($site))&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">'变量 $site 是一个数组'</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">	结果:</span></div><div class="line"><span class="comment">		变量 $site 是一个数组</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="explode"><a href="#explode" class="headerlink" title="explode"></a>explode</h3><p>explode() 函数使用一个字符串分割另一个字符串，并返回由字符串组成的数组。</p>
+<p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">explode(separator,string,limit)</div><div class="line"></div><div class="line">Note:</div><div class="line">1.&quot;separator&quot; 参数不能是一个空字符串。</div><div class="line">2.limit	可选。规定所返回的数组元素的数目。</div><div class="line">可能的值：</div><div class="line"></div><div class="line">大于 0 - 返回包含最多 limit 个元素的数组</div><div class="line">小于 0 - 返回包含除了最后的 -limit 个元素以外的所有元素的数组</div><div class="line">0 - 会被当做 1, 返回包含一个元素的数组</div></pre></td></tr></table></figure></p>
+<p>返回值：    返回字符串数组。</p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$str = <span class="string">"www.lxhsec.com"</span>;</div><div class="line">print_r (explode(<span class="string">"."</span>,$str));</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">	结果:</span></div><div class="line"><span class="comment">		Array</span></div><div class="line"><span class="comment">		(</span></div><div class="line"><span class="comment">			[0] =&gt; www</span></div><div class="line"><span class="comment">			[1] =&gt; lxhsec</span></div><div class="line"><span class="comment">			[2] =&gt; com</span></div><div class="line"><span class="comment">		)</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>存在limit参数时，<br><img src="/2020/01/06/php/explode1.png" alt="explode1"></p>
+<h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3><p>end() 函数将内部指针指向数组中的最后一个元素，并输出。</p>
+<p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">end(array)</div></pre></td></tr></table></figure></p>
+<p>返回值：    如果成功则返回数组中最后一个元素的值，如果数组为空则返回 FALSE。</p>
+<p>输出数组中最后一个元素的值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$people = array(&quot;x&quot;,&quot;lyxhh&quot;,&quot;lxhsec&quot;);</div><div class="line"></div><div class="line">echo end($people);</div><div class="line">/*</div><div class="line">	结果:</div><div class="line">		lxhsec</div><div class="line">*/</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h3><p>reset() 函数将内部指针指向数组中的第一个元素，并输出。</p>
+<p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">reset(array)</div></pre></td></tr></table></figure></p>
+<p>返回值：如果成功则返回数组中第一个元素的值，如果数组为空则返回 FALSE。</p>
+<p>输出数组中第一个元素的值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$people = array(&quot;lxh&quot;,&quot;lyxhh&quot;,&quot;lxhsec&quot;);</div><div class="line"></div><div class="line">echo reset($people);</div><div class="line">/*</div><div class="line">	结果:</div><div class="line">		lxh</div><div class="line">*/</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="pathinfo"><a href="#pathinfo" class="headerlink" title="pathinfo"></a>pathinfo</h3><p>pathinfo() 函数以数组的形式返回关于文件路径的信息。</p>
+<p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">pathinfo(path,options)</div><div class="line"></div><div class="line">options：</div><div class="line">	可选。规定要返回的数组元素。默认是 all。</div><div class="line"></div><div class="line">可能的值：</div><div class="line">PATHINFO_DIRNAME - 只返回 dirname</div><div class="line">PATHINFO_BASENAME - 只返回 basename</div><div class="line">PATHINFO_EXTENSION - 只返回 extension</div><div class="line">PATHINFO_FILENAME - 只返回 filename</div></pre></td></tr></table></figure></p>
+<p>实例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">print_r(pathinfo(&quot;/lxhsec/php.txt&quot;));</div><div class="line"></div><div class="line">/*</div><div class="line">结果：</div><div class="line">Array</div><div class="line">(</div><div class="line">    [dirname] =&gt; /lxhsec</div><div class="line">    [basename] =&gt; php.txt</div><div class="line">    [extension] =&gt; txt</div><div class="line">    [filename] =&gt; php</div><div class="line">)</div><div class="line">*/</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h3><p>empty() 函数用于检查一个变量是否为空。</p>
+<p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bool empty ( mixed $var )</div></pre></td></tr></table></figure></p>
+<p>返回值：当 var 存在，并且是一个非空非零的值时返回 FALSE 否则返回 TRUE。</p>
+<p>以下的变量会被认为是空的：</p>
+<ul>
+<li><code>&quot;&quot;</code> (空字符串)</li>
+<li>0 (作为整数的0)</li>
+<li>0.0 (作为浮点数的0)</li>
+<li><code>&quot;0&quot;</code> (作为字符串的0)</li>
+<li>NULL</li>
+<li>FALSE</li>
+<li>array() (一个空数组)</li>
+<li>$var; (一个声明了，但是没有值的变量)</li>
+</ul>
+<p>实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$ivar1=0;</div><div class="line">$istr1=&apos;Runoob&apos;;</div><div class="line"></div><div class="line">var_dump(empty($ivar1)); // 因为值是零因此返回True。</div><div class="line">var_dump(empty($istr1)); // $istr1)存在，且值不是非空非零，因此返回false.</div><div class="line"></div><div class="line">/*</div><div class="line">结果:</div><div class="line">bool(true)</div><div class="line">bool(false)</div><div class="line">*/</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="一些缺陷函数"><a href="#一些缺陷函数" class="headerlink" title="一些缺陷函数"></a>一些缺陷函数</h2><p>QNKCDZO<br>s155964671a<br>s878926199a<br>1.倘若函数的参数不符合其函数要求的时候返回的是null值</p>
+<p>php中 0e开头的md5 都将被视为0，e为科学记数法的意思。</p>
+<h3 id="md5-计算字符串的-MD5-散列值"><a href="#md5-计算字符串的-MD5-散列值" class="headerlink" title="md5() - 计算字符串的 MD5 散列值"></a>md5() - 计算字符串的 MD5 散列值</h3><p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">string md5 ( string $str [, bool $raw_output = FALSE ] )</div><div class="line"></div><div class="line">如果可选的 raw_output 被设置为 TRUE，那么 MD5 报文摘要将以16字节长度的原始二进制格式返回,</div><div class="line">默认以 32 字符十六进制数字形式返回散列值。</div></pre></td></tr></table></figure></p>
+<p>若md5函数参数str不为预期的String类型时(例如数组), 将返回NUll。</p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">error_reporting(<span class="number">0</span>);</div><div class="line">$_GET[<span class="string">'s'</span>] = <span class="keyword">array</span>();</div><div class="line">var_dump(md5($_GET[<span class="string">'s'</span>]));</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NULL</div></pre></td></tr></table></figure></p>
+<h3 id="sha1-计算字符串的-sha1-散列值"><a href="#sha1-计算字符串的-sha1-散列值" class="headerlink" title="sha1() - 计算字符串的 sha1 散列值"></a>sha1() - 计算字符串的 sha1 散列值</h3><p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">string sha1 ( string $str [, bool $raw_output = false ] )</div><div class="line"></div><div class="line">如果可选的 raw_output 参数被设置为 TRUE， 那么 sha1 摘要将以 20 字符长度的原始格式返回， </div><div class="line">默认以 40 字符长度的十六进制数字形式返回散列值。</div></pre></td></tr></table></figure></p>
+<p>若sha1函数参数str不为预期的String类型时(例如数组), 将返回NUll。</p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">error_reporting(0);</div><div class="line">$_GET[&apos;s&apos;] = array();</div><div class="line">var_dump(sha1($_GET[&apos;s&apos;]));</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NULL</div></pre></td></tr></table></figure></p>
+<h3 id="strcmp-二进制安全字符串比较"><a href="#strcmp-二进制安全字符串比较" class="headerlink" title="strcmp() - 二进制安全字符串比较"></a>strcmp() - 二进制安全字符串比较</h3><p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">int strcmp ( string $str1 , string $str2 )</div><div class="line"></div><div class="line">如果 str1 小于 str2 返回 &lt; 0； </div><div class="line">如果 str1 大于 str2 返回 &gt; 0；</div><div class="line">如果两者相等，返回 0。</div><div class="line"></div><div class="line">比较区分大小写。</div></pre></td></tr></table></figure></p>
+<p>若strcmp函数参数str1不为预期的String类型时(例如数组，)，在5.3版本之前将返回-1，5.3之后的版本将返回NULL。</p>
+<p>//PHP Version 5.3.29<br>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">error_reporting(0);</div><div class="line">$_GET[&apos;s&apos;] = array();</div><div class="line">if(strcmp($_GET[&apos;s&apos;],&apos;a&apos;)==0)&#123; //在==时候，NULL会强转为0.</div><div class="line">	echo ok.&quot;&lt;br /&gt;&quot;;</div><div class="line">&#125;</div><div class="line">var_dump(strcmp($_GET[&apos;s&apos;],&apos;a&apos;));</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ok</div><div class="line">NULL</div></pre></td></tr></table></figure></p>
+<p>//PHP Version 5.2.17<br>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">error_reporting(0);</div><div class="line">$_GET[&apos;s&apos;] = array();</div><div class="line">var_dump(strcmp($_GET[&apos;s&apos;],&apos;a&apos;));</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int(-1)</div></pre></td></tr></table></figure></p>
+<h3 id="strpos-查找字符串首次出现的位置"><a href="#strpos-查找字符串首次出现的位置" class="headerlink" title="strpos() - 查找字符串首次出现的位置"></a>strpos() - 查找字符串首次出现的位置</h3><p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int strpos ( string $haystack , mixed $needle [, int $offset = 0 ] )</div><div class="line"></div><div class="line">返回 needle 在 haystack 中首次出现的数字位置。</div><div class="line">未找到needle 将返回FALSE。</div></pre></td></tr></table></figure></p>
+<p>若strpos函数参数haystack不为预期的String类型时(例如数组，)，将返回NULL。</p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">error_reporting(0);</div><div class="line">$_GET[&apos;s&apos;] = array();</div><div class="line">var_dump(strpos($_GET[&apos;s&apos;],&apos;a&apos;));</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NULL</div></pre></td></tr></table></figure></p>
+<h3 id="ereg-正则表达式匹配"><a href="#ereg-正则表达式匹配" class="headerlink" title="ereg() - 正则表达式匹配"></a>ereg() - 正则表达式匹配</h3><p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int ereg ( string $pattern , string $string [, array &amp;$regs ] )</div><div class="line"></div><div class="line">以区分大小写的方式在 string 中寻找与给定的正则表达式 pattern 所匹配的子串。</div></pre></td></tr></table></figure></p>
+<p>1.若ereg函数参数string不为预期的String类型时(例如数组，)，将返回NULL。</p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">error_reporting(0);</div><div class="line">$_GET[&apos;s&apos;] = array();</div><div class="line">var_dump(ereg(&quot;^[a-zA-Z0-9]+$&quot;, $_GET[&apos;s&apos;]));</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NULL</div></pre></td></tr></table></figure></p>
+<p>2.ereg %00 截断</p>
+<p>当ereg函数参数string中出现%00时，将截断从%00开始的内容再进行匹配。</p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">error_reporting(<span class="number">0</span>);</div><div class="line">var_dump(ereg(<span class="string">"^[a-zA-Z0-9]+$"</span>, $_GET[<span class="string">'password'</span>]));</div><div class="line"><span class="keyword">echo</span> <span class="string">"&lt;br /&gt;"</span>;</div><div class="line"><span class="keyword">echo</span> $_GET[<span class="string">'password'</span>];</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>结果:<br><a href="http://127.0.0.1/test.php?password=123%00-" target="_blank" rel="external">http://127.0.0.1/test.php?password=123%00-</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int(1) </div><div class="line">123-</div></pre></td></tr></table></figure></p>
+<h3 id="extract-将变量从数组导入当前符号表"><a href="#extract-将变量从数组导入当前符号表" class="headerlink" title="extract() - 将变量从数组导入当前符号表"></a>extract() - 将变量从数组导入当前符号表</h3><p>Description:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">int extract （array &amp;$array [，int $flags= EXTR_OVERWRITE [，string $prefix=NULL ]]）</div><div class="line"></div><div class="line">该函数使用数组键名作为变量名，使用数组键值作为变量值。</div><div class="line">该函数返回成功设置的变量数目。</div><div class="line"></div><div class="line">EXTR_OVERWRITE -  默认。如果变量有冲突，则覆盖已有的变量。</div></pre></td></tr></table></figure></p>
+<p>extract flags在默认状态EXTR_OVERWRITE下，导致变量覆盖。</p>
+<p>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">error_reporting(0);</div><div class="line">$flag=&apos;xxx&apos;;</div><div class="line">extract($_GET);</div><div class="line">$content=trim(file_get_contents($flag));</div><div class="line">if($lxh==$content)&#123;</div><div class="line">	echo&apos;flag&#123;xxx&#125;&apos;;</div><div class="line">&#125;</div><div class="line">else&#123;</div><div class="line">	echo&apos;Oh.no&apos;;</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>测试结果:<br><a href="http://127.0.0.1/test.php?flag=&amp;lxh=" target="_blank" rel="external">http://127.0.0.1/test.php?flag=&amp;lxh=</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">flag&#123;xxx&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="hash比较缺陷"><a href="#hash比较缺陷" class="headerlink" title="hash比较缺陷"></a>hash比较缺陷</h3><p>php在处理hash字符串的时候会用到!=,==来进行hash比较，如果hash值以0e开头，后边都是数字，再与数字比较，就会被解释成0*10^n还是为0，就会被判断相等，绕过登录环节。</p>
+<p>测试代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">error_reporting(<span class="number">0</span>);</div><div class="line">$md2 = md5($_GET[<span class="string">'a'</span>]);</div><div class="line">var_dump($md2);</div><div class="line"><span class="keyword">echo</span> <span class="string">"&lt;br /&gt;"</span>;</div><div class="line"><span class="keyword">if</span> (<span class="string">"0e1231241241413"</span> == $md2) &#123;</div><div class="line">	<span class="keyword">echo</span> <span class="string">"true!!!"</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="keyword">echo</span> <span class="string">"false!!!"</span>;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>测试结果：<br><a href="http://127.0.0.1/test.php?a=s878926199a" target="_blank" rel="external">http://127.0.0.1/test.php?a=s878926199a</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">string(32) &quot;0e545993274517709034328855841020&quot; </div><div class="line">true!!!</div></pre></td></tr></table></figure></p>
+<p>当0e后面不全是数字的时候就不会相等，从<strong>var_dump(“0e1234abc”==”0”)</strong>可以看出来。 </p>
+<p>测试代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">var_dump(&quot;00e1234&quot; == &quot;0&quot;); </div><div class="line">var_dump(&quot;0e1234&quot;==&quot;0&quot;);</div><div class="line">var_dump(&quot;0e1234abc&quot;==&quot;0&quot;); </div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>测试结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bool(true) bool(true) bool(false)</div></pre></td></tr></table></figure></p>
+<h3 id="变量类型强制转化"><a href="#变量类型强制转化" class="headerlink" title="变量类型强制转化"></a>变量类型强制转化</h3><p>当int 遇上String</p>
+<p>在php进行比较运算的时候,当有一个对比参数是整数的时候，会把另外一个参数强制转换为整数，相当于对字符串部分intval再和整数部分比较。</p>
+<p>测试代码结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">error_reporting(0);</div><div class="line">var_dump(0 == &apos;0&apos;); // true</div><div class="line">var_dump(0 == &apos;abc&apos;); // true  </div><div class="line">var_dump(0 === &apos;abcd&apos;); // false</div><div class="line">var_dump(1 == &apos;1abcd&apos;); // true </div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>其中，’1abcd’转换后的值是1，而’abcd’是0，也说明了intval会从第一位不是数字的单位开始进行。</p>
+<p>所以也有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var_dump(intval(&apos;3333a&apos;));// 输出 3333</div></pre></td></tr></table></figure></p>
+<p>这个例子就告诉我们，永远不要相信下面的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if($a&gt;1000)&#123;</div><div class="line">    mysql_query(&apos;update ... .... set value=$a&apos;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你以为这时候进入该支的万无一失为整数了。</p>
+<p>其实$a可能是1001/**/union…</p>
+<h3 id="stripslashes-amp-htmlentities"><a href="#stripslashes-amp-htmlentities" class="headerlink" title="stripslashes &amp; htmlentities"></a>stripslashes &amp; htmlentities</h3><h4 id="stripslashes"><a href="#stripslashes" class="headerlink" title="stripslashes"></a>stripslashes</h4><p>stripslashes() 函数 把反斜杠删除。</p>
+<p>语法：<br><code>stripslashes(string)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">echo stripslashes(&quot;Who\&apos;s Bill Gates?&quot;); //result: Who&apos;s Bill Gates?</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<h4 id="htmlentities"><a href="#htmlentities" class="headerlink" title="htmlentities"></a>htmlentities</h4><p>htmlentities() 函数把字符转换为 HTML 实体。<br>例如: 将 单引号<code>&#39;</code>转换为 <code>&amp;#039;</code></p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">htmlentities(string,flags,[character-set],[double_encode])</div><div class="line">可用的引号类型：</div><div class="line"></div><div class="line">flags:</div><div class="line">	ENT_COMPAT - 默认。仅编码双引号。</div><div class="line">	ENT_QUOTES - 编码双引号和单引号。</div><div class="line">	ENT_NOQUOTES - 不编码任何引号。</div></pre></td></tr></table></figure></p>
+<p>ex:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$str = &quot;l&apos;xhs\&quot;ec&quot;; </div><div class="line">echo $str.&apos;&lt;br/&gt;&apos;;</div><div class="line">echo htmlentities($str, ENT_QUOTES); // 转换双引号和单引号为HTML字符实体。</div><div class="line">?&gt;</div><div class="line">//result : l&apos;xhs&quot;ec&lt;br/&gt;l&amp;#039;xhs&amp;quot;ec</div></pre></td></tr></table></figure></p>
+<p><a href="chinalover.sinaapp.com/web15/index.php">一道CTF题目</a></p>
+<p>源码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;!--</div><div class="line">#GOAL: login as admin,then get the flag;</div><div class="line">error_reporting(0);</div><div class="line">require &apos;db.inc.php&apos;;</div><div class="line"></div><div class="line">function clean($str)&#123;</div><div class="line">	if(get_magic_quotes_gpc())&#123;</div><div class="line">		$str=stripslashes($str);</div><div class="line">	&#125;</div><div class="line">	return htmlentities($str, ENT_QUOTES);</div><div class="line">&#125;</div><div class="line"></div><div class="line">$username = @clean((string)$_GET[&apos;username&apos;]);</div><div class="line">$password = @clean((string)$_GET[&apos;password&apos;]);</div><div class="line"></div><div class="line">$query=&apos;SELECT * FROM users WHERE name=\&apos;&apos;.$username.&apos;\&apos; AND pass=\&apos;&apos;.$password.&apos;\&apos;;&apos;;</div><div class="line">$result=mysql_query($query);</div><div class="line">if(!$result || mysql_num_rows($result) &lt; 1)&#123;</div><div class="line">	die(&apos;Invalid password!&apos;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">echo $flag;</div><div class="line">--&gt;</div></pre></td></tr></table></figure></p>
+<p>clean函数的作用是，如果开启了魔术引号（会将单引号<code>&#39;</code>，双引号<code>&quot;</code>，空字符<code>NULL</code>，反斜杠<code>\</code> 前面加多一条反斜杠<code>\</code>），就把魔术引号产生的反斜杠去掉,如果没有开启，则直接进入htmlentities函数，这个函数会将单引号和双引号转换为HTML实体。</p>
+<p>因为下面的查询语句 要有结果，才能输出flag，但是我们不知道到底有啥username，跟password，因此 我们需要构造 or 1=1,让查询返回有结果，参考万能密码。</p>
+<p>clean的作用避免了我们使用单引号<code>&#39;</code>以及双引号<code>&quot;</code>来闭合语句组成or 1=1.</p>
+<p>但是我们可以使用反斜杠<code>\</code>来 闭合单引号。</p>
+<p>SELECT * FROM users WHERE name=’.$username.’ AND pass=’.$password.’;</p>
+<p>当username 等于反斜杠时<code>\</code>,会到下一个单引号才闭合，也就是name =’\’ AND pass=’ ,password 我们构造成or 1=1 在使用#注释掉 $password后面的单引号。</p>
+<p>SELECT * FROM users WHERE name=<code>&#39;\&#39; AND pass=&#39;</code> or 1=1#’;</p>
+<p>解题如下：<br><a href="http://chinalover.sinaapp.com/web15/index.php?username=\&amp;password=or" target="_blank" rel="external">http://chinalover.sinaapp.com/web15/index.php?username=\&amp;password=or</a> 1=1%23<br><img src="/2020/01/06/php/cgctfweb15.png" alt="cgctfweb15"></p>
+<h1 id="ThinkPHP"><a href="#ThinkPHP" class="headerlink" title="ThinkPHP"></a>ThinkPHP</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/01/06/php/" title="php">http://www.lxhsec.com/2020/01/06/php/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/05/upload-labs-writeup/" rel="next" title="upload-labs-writeup">
+                <i class="fa fa-chevron-left"></i> upload-labs-writeup
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP基础"><span class="nav-number">1.</span> <span class="nav-text">PHP基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本语法"><span class="nav-number">1.1.</span> <span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#php-注释"><span class="nav-number">1.1.1.</span> <span class="nav-text">php 注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.2.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP变量"><span class="nav-number">1.2.1.</span> <span class="nav-text">PHP变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-变量作用域"><span class="nav-number">1.2.2.</span> <span class="nav-text">PHP 变量作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#local-And-global"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">local And global</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Static"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">Static</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#parameter"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">parameter</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP常量"><span class="nav-number">1.3.</span> <span class="nav-text">PHP常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置常量"><span class="nav-number">1.3.1.</span> <span class="nav-text">设置常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP常见的输出语句"><span class="nav-number">1.4.</span> <span class="nav-text">PHP常见的输出语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-数据类型"><span class="nav-number">1.5.</span> <span class="nav-text">PHP 数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">1.5.1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串运算符点"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">字符串运算符点.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算字符串的长度"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">计算字符串的长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在字符串内查找指定文本的位置"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">在字符串内查找指定文本的位置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Integer"><span class="nav-number">1.5.2.</span> <span class="nav-text">Integer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Float"><span class="nav-number">1.5.3.</span> <span class="nav-text">Float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean"><span class="nav-number">1.5.4.</span> <span class="nav-text">Boolean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array"><span class="nav-number">1.5.5.</span> <span class="nav-text">Array</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建数组"><span class="nav-number">1.5.5.1.</span> <span class="nav-text">创建数组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数值数组"><span class="nav-number">1.5.5.1.1.</span> <span class="nav-text">数值数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关联数组"><span class="nav-number">1.5.5.1.2.</span> <span class="nav-text">关联数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多维数组"><span class="nav-number">1.5.5.1.3.</span> <span class="nav-text">多维数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object"><span class="nav-number">1.5.6.</span> <span class="nav-text">Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NULL"><span class="nav-number">1.5.7.</span> <span class="nav-text">NULL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-类型比较"><span class="nav-number">1.6.</span> <span class="nav-text">PHP 类型比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP选择结构"><span class="nav-number">1.7.</span> <span class="nav-text">PHP选择结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if"><span class="nav-number">1.7.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch"><span class="nav-number">1.7.2.</span> <span class="nav-text">Switch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP中的循环结构"><span class="nav-number">1.8.</span> <span class="nav-text">PHP中的循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for"><span class="nav-number">1.8.1.</span> <span class="nav-text">for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while"><span class="nav-number">1.8.2.</span> <span class="nav-text">while</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#do…while"><span class="nav-number">1.8.3.</span> <span class="nav-text">do…while</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#foreach"><span class="nav-number">1.8.4.</span> <span class="nav-text">foreach</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-函数"><span class="nav-number">1.9.</span> <span class="nav-text">PHP 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-魔术变量"><span class="nav-number">1.10.</span> <span class="nav-text">PHP 魔术变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LINE"><span class="nav-number">1.10.1.</span> <span class="nav-text">LINE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FILE"><span class="nav-number">1.10.2.</span> <span class="nav-text">FILE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DIR"><span class="nav-number">1.10.3.</span> <span class="nav-text">DIR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FUNCTION"><span class="nav-number">1.10.4.</span> <span class="nav-text">FUNCTION</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CLASS"><span class="nav-number">1.10.5.</span> <span class="nav-text">CLASS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TRAIT"><span class="nav-number">1.10.6.</span> <span class="nav-text">TRAIT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#METHOD"><span class="nav-number">1.10.7.</span> <span class="nav-text">METHOD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NAMESPACE"><span class="nav-number">1.10.8.</span> <span class="nav-text">NAMESPACE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP中的超级全局变量"><span class="nav-number">1.11.</span> <span class="nav-text">PHP中的超级全局变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-命名空间"><span class="nav-number">1.12.</span> <span class="nav-text">PHP 命名空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-面向对象"><span class="nav-number">1.13.</span> <span class="nav-text">PHP 面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">1.13.1.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">1.13.2.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用成员方法"><span class="nav-number">1.13.3.</span> <span class="nav-text">调用成员方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数"><span class="nav-number">1.13.4.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#析构函数"><span class="nav-number">1.13.5.</span> <span class="nav-text">析构函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问控制"><span class="nav-number">1.13.6.</span> <span class="nav-text">访问控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">1.13.7.</span> <span class="nav-text">继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP标记"><span class="nav-number">1.14.</span> <span class="nav-text">PHP标记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用函数"><span class="nav-number">1.15.</span> <span class="nav-text">常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#in-array"><span class="nav-number">1.15.1.</span> <span class="nav-text">in_array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#is-array"><span class="nav-number">1.15.2.</span> <span class="nav-text">is_array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#explode"><span class="nav-number">1.15.3.</span> <span class="nav-text">explode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#end"><span class="nav-number">1.15.4.</span> <span class="nav-text">end</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reset"><span class="nav-number">1.15.5.</span> <span class="nav-text">reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pathinfo"><span class="nav-number">1.15.6.</span> <span class="nav-text">pathinfo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#empty"><span class="nav-number">1.15.7.</span> <span class="nav-text">empty</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些缺陷函数"><span class="nav-number">1.16.</span> <span class="nav-text">一些缺陷函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#md5-计算字符串的-MD5-散列值"><span class="nav-number">1.16.1.</span> <span class="nav-text">md5() - 计算字符串的 MD5 散列值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sha1-计算字符串的-sha1-散列值"><span class="nav-number">1.16.2.</span> <span class="nav-text">sha1() - 计算字符串的 sha1 散列值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strcmp-二进制安全字符串比较"><span class="nav-number">1.16.3.</span> <span class="nav-text">strcmp() - 二进制安全字符串比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strpos-查找字符串首次出现的位置"><span class="nav-number">1.16.4.</span> <span class="nav-text">strpos() - 查找字符串首次出现的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ereg-正则表达式匹配"><span class="nav-number">1.16.5.</span> <span class="nav-text">ereg() - 正则表达式匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#extract-将变量从数组导入当前符号表"><span class="nav-number">1.16.6.</span> <span class="nav-text">extract() - 将变量从数组导入当前符号表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hash比较缺陷"><span class="nav-number">1.16.7.</span> <span class="nav-text">hash比较缺陷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量类型强制转化"><span class="nav-number">1.16.8.</span> <span class="nav-text">变量类型强制转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stripslashes-amp-htmlentities"><span class="nav-number">1.16.9.</span> <span class="nav-text">stripslashes & htmlentities</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#stripslashes"><span class="nav-number">1.16.9.1.</span> <span class="nav-text">stripslashes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#htmlentities"><span class="nav-number">1.16.9.2.</span> <span class="nav-text">htmlentities</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ThinkPHP"><span class="nav-number">2.</span> <span class="nav-text">ThinkPHP</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
