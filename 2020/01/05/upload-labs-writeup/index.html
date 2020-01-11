@@ -144,7 +144,7 @@
 <meta property="og:image" content="http://www.lxhsec.com/2020/01/05/upload-labs-writeup/upload-lab20-02.png">
 <meta property="og:image" content="http://www.lxhsec.com/2020/01/05/upload-labs-writeup/upload-lab20-03.png">
 <meta property="og:image" content="http://www.lxhsec.com/2020/01/05/upload-labs-writeup/file-upload-summary.png">
-<meta property="og:updated_time" content="2020-01-11T10:32:16.394Z">
+<meta property="og:updated_time" content="2020-01-11T13:36:23.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="upload-labs-writeup">
 <meta name="twitter:description" content="upload-labs 记录及文件上传总结">
@@ -366,7 +366,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-11T18:32:16+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-11T21:36:23+08:00">
                 2020-01-11
               </time>
             
@@ -401,6 +401,7 @@
 
       
         <p>upload-labs 记录及文件上传总结<a id="more"></a></p>
+<p>靶机地址：<a href="https://github.com/c0ny1/upload-labs" target="_blank" rel="external">https://github.com/c0ny1/upload-labs</a></p>
 <h2 id="Pass01"><a href="#Pass01" class="headerlink" title="Pass01"></a>Pass01</h2><p>JS前端校验:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkFile</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> file = document.getElementsByName(<span class="string">'upload_file'</span>)[<span class="number">0</span>].value;</div><div class="line">    <span class="keyword">if</span> (file == <span class="keyword">null</span> || file == <span class="string">""</span>) &#123;</div><div class="line">        alert(<span class="string">"请选择要上传的文件!"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//定义允许上传的文件类型</span></div><div class="line">    <span class="keyword">var</span> allow_ext = <span class="string">".jpg|.png|.gif"</span>;</div><div class="line">    <span class="comment">//提取上传文件的类型</span></div><div class="line">    <span class="keyword">var</span> ext_name = file.substring(file.lastIndexOf(<span class="string">"."</span>));</div><div class="line">    <span class="comment">//判断上传文件类型是否允许上传</span></div><div class="line">    <span class="keyword">if</span> (allow_ext.indexOf(ext_name + <span class="string">"|"</span>) == <span class="number">-1</span>) &#123;</div><div class="line">        <span class="keyword">var</span> errMsg = <span class="string">"该文件不允许上传，请上传"</span> + allow_ext + <span class="string">"类型的文件,当前文件类型为："</span> + ext_name;</div><div class="line">        alert(errMsg);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>直接上传php，弹框提示文件不合法，也没有数据包传输，猜测是本地js验证。<br><img src="/2020/01/05/upload-labs-writeup/upload-lab1.png" alt="upload-lab1"></p>
 <p>关闭Google浏览器解析Javascript功能，<br>在 设置-&gt;高级-&gt;隐私设置和安全性-&gt;网站设置-&gt;JavaScript-&gt;关闭按钮</p>
