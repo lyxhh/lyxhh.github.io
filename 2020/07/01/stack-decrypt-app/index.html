@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="利用Android堆栈信息快速定位APP加解密算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Android堆栈信息快速定位APP加解密算法">
+<meta property="og:url" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="利用Android堆栈信息快速定位APP加解密算法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/okk.jpg">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-09.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-10.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/decrypt1.gif">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-11.png">
+<meta property="og:updated_time" content="2020-12-21T01:10:39.807Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用Android堆栈信息快速定位APP加解密算法">
+<meta name="twitter:description" content="利用Android堆栈信息快速定位APP加解密算法">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/stack-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/"/>
+
+
+
+
+
+  <title>利用Android堆栈信息快速定位APP加解密算法 | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">利用Android堆栈信息快速定位APP加解密算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-01T17:08:51+08:00">
+                2020-07-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-21T09:10:39+08:00">
+                2020-12-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>利用Android堆栈信息快速定位APP加解密算法<a id="more"></a></p>
+<p>某个项目得一个APP，</p>
+<p>安装完后 登陆处抓包，发现存在加密，如下：</p>
+<p><img src="/2020/07/01/stack-decrypt-app/stack-01.png" alt="stack-01"></p>
+<p>共两处需要解决，一个是account，password的加密，一个是数据包签名signature。</p>
+<p>签名长度 数了下是32位的，猜测可能是md5加密。</p>
+<p>简单反编译看了下 发现使用了爱加密企业版加固，用外面放出来的脱壳机随便试试，</p>
+<p>于是，日常脱壳失败。</p>
+<p>既然静态分析没戏，那只能动态分析勉强维持生活了。</p>
+<p>先用Inspector的Hash模块动态拦截下md5算法，验证signature是否是md5加密的。</p>
+<p>结果如下：<br><img src="/2020/07/01/stack-decrypt-app/stack-02.png" alt="stack-02"></p>
+<p>从Inspector拦截的md5算法可知，签名<code>0cbd8a3deeea47914061925806eb1fc9</code>，由以下明文<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">account=qTS2c2UluGnp4P9cmbhJy5vVdxeHKdCx14Z2LTMP0tiSIeR4+QqRH3XOhpSlq6axn3Xr9TLiEkJ4PyXGIzF1YraWgNJM4L/D4vVMQT7521L5rdfBOEQK/ftztYLfrwHeTy23FRrensuE3Xj1EHHVrvuxYpBDBu217U7sZExKY+KG1kDaFmvFxL2XmrB6hfC6V4JkRx/De++TrThvFTET/fhJiUPyxfgwJyK3lXCImNSPPsG+bM+2OATlpq4N7tm0rbX3IEOUnHSUhaoM/iN0N/6tvsv82kEIQ8jEJlB+PKBcMN5x6JzmEPn5ivQ5MvU5lutGAHGtpLRufjJIoayMaQ==android_id=8a559a097211d13dapp_id=12biz_type=002device_mac=30:74:96:6e:04:24device_type=BLN-AL20extend_info=&#123;&quot;app_id&quot;:&quot;lama&quot;,&quot;version&quot;:&quot;8.0.4&quot;,&quot;mac&quot;:&quot;30:74:96:6e:04:24&quot;&#125;imei=864911035255721lang=zh-CNpassword=ZKh2q2KsYqlN0joR4jwUwGZhyreMBCc3PfRHcwWiVHqwFoBMg4lk+KPyyKyE9njHd+tgSGpFn/zyqpumEcVtUDUJW6yAxfG1JtKgYr49zW/6o/wZOmHHTph9XLJ1KpsWOavz7o77XgSBYxB5hKl3a5nJZI9JkaBoA3/0ZWiqcMyLkXgTtScQCgE9MTJE9S4/rxDrPKsq0O00pi7GUXDbcezvLRp3sUFgDG60Be0gJjDdLIL7uVtfDPKMvKfXK3Pqnw5GO3Vrx4pSha4ztrrJMkuPbnQVZY/A6z2VOBqk+ssCAtDzdW8hGUW/WsAoeAgzhX1e+yBv5XiWXtxJ9O7dRQ==source_request=1timestamp=1577713884user_id=iamxxxxkey!@#$%^&amp;*()</div></pre></td></tr></table></figure></p>
+<p>根据md5加密算法得到，明文中我们还需要得到account字段的加密算法，其他字段都在数据包里可以得到。</p>
+<p>根据Crypto模块的信息:<br><img src="/2020/07/01/stack-decrypt-app/stack-03.png" alt="stack-03"></p>
+<p>可以知道加密使用了RSA算法，加密模式：<code>RSA/ECB/PKCS1Padding</code>，现在我们知道app使用了RSA算法，但是我们不清楚RSA加密得时候有没有加Key之类得，因此我们得思路就不去找RSA得公钥了，而是直接找到app内的加密函数，通过HTTPDecrypt工具直接利用就完事了，找到加密函数就可以组装payload进行测试了。</p>
+<p>脱壳虽然失败了，脱下来的dex没有方法体，但是方法声明还是有的，我们直接搜索rsa的加密模式<code>RSA/ECB/PKCS1Padding</code></p>
+<p><img src="/2020/07/01/stack-decrypt-app/stack-04.png" alt="stack-04"></p>
+<p>搜到两个，先看第一个，因为没有方法体，无法静态分析，只能靠hook勉强维持生活。</p>
+<p>直接用HTTPDecrypt工具hook<br><code>com.xxx.b.util.string</code> 该包名下所有方法。<br>可以看到 <code>com.xxx.b.util.string.a.a</code>函数返回值是account的加密值，</p>
+<p><img src="/2020/07/01/stack-decrypt-app/stack-05.png" alt="stack-05"></p>
+<p><img src="/2020/07/01/stack-decrypt-app/okk.jpg" alt="okk"></p>
+<p>但是它得传参却是数组形式得，因此我们不能直接使用，还需要再找找。</p>
+<p>查看<code>com.xxx.b.util.string.a.a</code>函数的堆栈信息，看下是哪个函数调用了它，结果如下：</p>
+<p><img src="/2020/07/01/stack-decrypt-app/stack-06.png" alt="stack-06"></p>
+<p><code>com.xxx.b.usercenter.b.h.a</code>调用了<code>com.xxx.b.util.string.a.a</code><br>因此继续hook <code>com.xxx.baf.usercenter.b.h</code></p>
+<p>结果如下：</p>
+<p><img src="/2020/07/01/stack-decrypt-app/stack-07.png" alt="stack-07"></p>
+<p><code>com.xxx.b.usercenter.b.h.a</code> 这个函数就是我们要找的函数了，经过测试发现 第二个参数是固定的，因此我们可以直接使用HTTPDecrypt直接导出，使用它来对我们得明文字段进行加密。</p>
+<p>函数有两个参数，需要写一点点代码，因为方法是静态得，因此点击Generate export static script<br><img src="/2020/07/01/stack-decrypt-app/stack-08.png" alt="stack-08"></p>
+<p>将生成的脚本更改一点点，最终如下：<br><img src="/2020/07/01/stack-decrypt-app/stack-09.png" alt="stack-09"></p>
+<p>Burp插件设置如下：<br><img src="/2020/07/01/stack-decrypt-app/stack-10.png" alt="stack-10"></p>
+<p>调用加密：<br><img src="/2020/07/01/stack-decrypt-app/decrypt1.gif" alt="decrypt1.gif"></p>
+<p>签名知道，算法可以调用，用python对接HTTPDecrypt接口，然后将明文整个md5进行加密，就可以进行测试啦，当然你也可以写个burp插件，自动替换签名值。</p>
+<p>如果不知道算法，随便改会报错的噢，而且报错三次过后就需要验证码，也太难受了叭。<br><img src="/2020/07/01/stack-decrypt-app/stack-11.png" alt="stack-11"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/07/01/stack-decrypt-app/" title="利用Android堆栈信息快速定位APP加解密算法">http://www.lxhsec.com/2020/07/01/stack-decrypt-app/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/12/android-SSLPinning/" rel="next" title="Android（SSL/TLS Pinning) & SSL Pinning Bypass">
+                <i class="fa fa-chevron-left"></i> Android（SSL/TLS Pinning) & SSL Pinning Bypass
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/09/android-ssl-shuangxiang/" rel="prev" title="app双向校验 && 快速定位bypass">
+                app双向校验 && 快速定位bypass <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

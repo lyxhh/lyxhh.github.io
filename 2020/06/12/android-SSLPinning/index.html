@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Android（SSL/TLS UnPinning 原理与绕过思路）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android（SSL&#x2F;TLS Pinning) &amp; SSL Pinning Bypass">
+<meta property="og:url" content="http://www.lxhsec.com/2020/06/12/android-SSLPinning/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="Android（SSL/TLS UnPinning 原理与绕过思路）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/12/android-SSLPinning/sslpin-00.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/12/android-SSLPinning/sslpin-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/12/android-SSLPinning/sslpin-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/12/android-SSLPinning/sslpin-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/12/android-SSLPinning/sslpin-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/12/android-SSLPinning/sslunpin-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/12/android-SSLPinning/sslunpin-02.png">
+<meta property="og:updated_time" content="2020-06-15T01:55:44.727Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android（SSL&#x2F;TLS Pinning) &amp; SSL Pinning Bypass">
+<meta name="twitter:description" content="Android（SSL/TLS UnPinning 原理与绕过思路）">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/06/12/android-SSLPinning/sslpin-00.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/06/12/android-SSLPinning/"/>
+
+
+
+
+
+  <title>Android（SSL/TLS Pinning) & SSL Pinning Bypass | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/06/12/android-SSLPinning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android（SSL/TLS Pinning) & SSL Pinning Bypass</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-12T10:00:09+08:00">
+                2020-06-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-06-15T09:55:44+08:00">
+                2020-06-15
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Android（SSL/TLS UnPinning 原理与绕过思路）<a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>相信大家都用过JustTrustMe这个Xposed插件，但是为什么要用，它是拿来干啥的，估计大部门人都会有点懵逼，一开始我用的时候就是一脸懵逼，网上的资料都告诉你要安装这个插件，但是为什么要装却没有讲的很清楚，下面以Android开发的角度来一一讲述下JustTrustMe这个插件的作用以及原理。</p>
+<h2 id="SSL-Pinning"><a href="#SSL-Pinning" class="headerlink" title="SSL Pinning"></a>SSL Pinning</h2><p>Android 证书固定写法如下（以URLConnection为例）：<br><img src="/2020/06/12/android-SSLPinning/sslpin-00.png" alt="sslpin-00"></p>
+<p><img src="/2020/06/12/android-SSLPinning/sslpin-01.png" alt="sslpin-01"></p>
+<p>当访问的域名是 <strong>预埋证书内的域名</strong>时，正常返回数据，如下：<br><img src="/2020/06/12/android-SSLPinning/sslpin-02.png" alt="sslpin-02"></p>
+<p>当访问 <strong>非预埋证书内的域名</strong>时，如百度，结果如下：<br><img src="/2020/06/12/android-SSLPinning/sslpin-03.png" alt="sslpin-03"></p>
+<p>显示证书链错误，</p>
+<p>也就是说证书固定，只能访问预埋证书内的域名，访问其他的域名都会报错，从而导致了我们在使用burp抓包时，会出现抓不到数据包的情况。</p>
+<p>当手机设置了burp代理，流量会经过burp，会读取burp的https证书，由于burp的证书不是app内预埋的，导致请求失败，burp的Alerts选项卡中会出现错误<code>The client failed to negotiate an SSL connection to test.lxhsec.com:443: Received fatal alert: certificate_unknown</code>，具体如下：<br><img src="/2020/06/12/android-SSLPinning/sslpin-04.png" alt="sslpin-04"></p>
+<p>SSL Pinning成功的防止了大多数的中间人攻击。</p>
+<h2 id="SSL-Pinning-Bypass"><a href="#SSL-Pinning-Bypass" class="headerlink" title="SSL Pinning Bypass"></a>SSL Pinning Bypass</h2><p>绕过也很简单，</p>
+<p>通过hook的方式，将SSLContext实例绑定的TrustManager置为空实现，</p>
+<p>具体代码如下（Frida实现）：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">AndroidMain</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> X509TrustManager = Java.use(<span class="string">'javax.net.ssl.X509TrustManager'</span>);</div><div class="line">    <span class="keyword">var</span> TrustManager;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">	    </div><div class="line">		TrustManager = Java.registerClass(&#123;</div><div class="line">			name: <span class="string">'org.wooyun.TrustManager'</span>,</div><div class="line">			implements: [X509TrustManager],</div><div class="line">			methods: &#123;</div><div class="line">				checkClientTrusted: <span class="function"><span class="keyword">function</span>(<span class="params">chain, authType</span>) </span>&#123;&#125;,</div><div class="line">				checkServerTrusted: <span class="function"><span class="keyword">function</span>(<span class="params">chain, authType</span>) </span>&#123;&#125;,</div><div class="line">				getAcceptedIssuers: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">					<span class="keyword">return</span> [];</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">		</div><div class="line">		<span class="keyword">var</span> TrustManagers = [TrustManager.$<span class="keyword">new</span>()];</div><div class="line">		</div><div class="line">		<span class="keyword">var</span> SSLContext = Java.use(<span class="string">'javax.net.ssl.SSLContext'</span>);</div><div class="line">		</div><div class="line">		SSLContext.init.overload(<span class="string">'[Ljavax.net.ssl.KeyManager;'</span>, <span class="string">'[Ljavax.net.ssl.TrustManager;'</span>, <span class="string">'java.security.SecureRandom'</span>).implementation = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		    <span class="built_in">console</span>.log(<span class="string">"执行替换"</span>)</div><div class="line"></div><div class="line">		    <span class="keyword">this</span>.init.overload(<span class="string">'[Ljavax.net.ssl.KeyManager;'</span>, <span class="string">'[Ljavax.net.ssl.TrustManager;'</span>, <span class="string">'java.security.SecureRandom'</span>).call(<span class="keyword">this</span>, <span class="literal">null</span>, TrustManagers, <span class="literal">null</span>);</div><div class="line">		</div><div class="line">        &#125;</div><div class="line">		</div><div class="line">	&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">"error:  "</span> + e.message);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>加载脚本，</p>
+<p>继续访问 <strong>非预埋证书内的域名</strong>时，如百度，结果如下：</p>
+<p><img src="/2020/06/12/android-SSLPinning/sslunpin-01.png" alt="sslunpin-01"></p>
+<p>burp抓包也是ok的，如下：<br><img src="/2020/06/12/android-SSLPinning/sslunpin-02.png" alt="sslunpin-02"></p>
+<p>而JustTrustMe这个Xposed插件的原理，就是将不同(尽可能多)的请求库（URLConnection、okhttp等）的证书固定写法 针对性的替换为空实现，从而让测试人员遇到App证书固定时可以直接抓到数据包进行测试。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/06/12/android-SSLPinning/" title="Android（SSL/TLS Pinning) & SSL Pinning Bypass">http://www.lxhsec.com/2020/06/12/android-SSLPinning/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/07/https-android/" rel="next" title="正确校验HTTPS证书-Android">
+                <i class="fa fa-chevron-left"></i> 正确校验HTTPS证书-Android
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/01/stack-decrypt-app/" rel="prev" title="利用Android堆栈信息快速定位APP加解密算法">
+                利用Android堆栈信息快速定位APP加解密算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSL-Pinning"><span class="nav-number">2.</span> <span class="nav-text">SSL Pinning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSL-Pinning-Bypass"><span class="nav-number">3.</span> <span class="nav-text">SSL Pinning Bypass</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

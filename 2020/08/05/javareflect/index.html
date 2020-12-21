@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java反射从入门到放弃。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Reflection">
+<meta property="og:url" content="http://www.lxhsec.com/2020/08/05/javareflect/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="Java反射从入门到放弃。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/class01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/class02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/field01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/field03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/field02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/field04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/constructor01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/constructor02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/constructor03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/constructor04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/constructor06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/constructor05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/method01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/method02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/method03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/method04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/08/05/javareflect/method05.png">
+<meta property="og:updated_time" content="2020-08-11T02:34:48.985Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Reflection">
+<meta name="twitter:description" content="Java反射从入门到放弃。">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/08/05/javareflect/class01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/08/05/javareflect/"/>
+
+
+
+
+
+  <title>Java Reflection | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/08/05/javareflect/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java Reflection</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-05T10:43:37+08:00">
+                2020-08-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-08-11T10:34:48+08:00">
+                2020-08-11
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Java反射从入门到放弃。<a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Java的反射是指程序在运行期可以访问、检测和修改它本身状态或行为的一种能力。</p>
+<h2 id="获取Class对象"><a href="#获取Class对象" class="headerlink" title="获取Class对象"></a>获取Class对象</h2><p>常用有三种方式获取Class对象</p>
+<h3 id="Class-forName"><a href="#Class-forName" class="headerlink" title="Class.forName"></a>Class.forName</h3><p>在Source源码<code>.java</code> 编译成 字节码<code>.class</code>阶段，可以通过<code>Class.forName(&quot;全限定类名&quot;)</code>加载<strong>全限定类名</strong>所对应的<code>.class</code>字节码文件，获取Class对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Class&lt;?&gt; aClass = Class.forName(<span class="string">"com.lxhsec.javareflect.Student"</span>);</div></pre></td></tr></table></figure>
+<h3 id="classname-class"><a href="#classname-class" class="headerlink" title="classname.class"></a>classname.class</h3><p>在 类加载器 ClassLoader 将字节码文件 加载到Java虚拟机阶段，可以通过<code>类名.class</code>，获取Class对象。</p>
+<p>例如：<br>将 <code>Student.class</code>字节码文件 经过ClassLoader加载到JVM中时，可以通过<code>Student.class</code>，获取Student类的Class对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Class&lt;?&gt; studentClass = Student.class;</div><div class="line">String name = studentClass.getName();</div><div class="line">System.out.println(name);</div></pre></td></tr></table></figure>
+<h3 id="object-getClass"><a href="#object-getClass" class="headerlink" title="object.getClass()"></a>object.getClass()</h3><p>在Java程序运行时阶段，可以通过<code>对象.getClass()</code>，获取Class对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Student student = <span class="keyword">new</span> Student();</div><div class="line">Class&lt;?&gt; aClass2 = student.getClass();</div><div class="line">String name2 = aClass2.getName();</div><div class="line">System.out.println(name2);</div></pre></td></tr></table></figure>
+<p><img src="/2020/08/05/javareflect/class01.png" alt="class01"></p>
+<p>同一个字节码文件(*.class)在一次程序运行过程中，只会被加载一次，因此 以上三种方式，<br>对于同一个class而言，获取到的Class 对象是 相同的，如下：</p>
+<p>Student.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lxhsec.javareflect;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> score;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Test.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lxhsec.javareflect;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</div><div class="line"></div><div class="line">        Class&lt;?&gt; aClass = Class.forName(<span class="string">"com.lxhsec.javareflect.Student"</span>);</div><div class="line">        String name1 = aClass.getName();</div><div class="line"></div><div class="line">        System.out.println(name1);</div><div class="line"></div><div class="line">        Class&lt;?&gt; aClass1 = Student.class;</div><div class="line">        String name = aClass1.getName();</div><div class="line"></div><div class="line">        System.out.println(name);</div><div class="line"></div><div class="line">        Student student = <span class="keyword">new</span> Student();</div><div class="line">        Class&lt;?&gt; aClass2 = student.getClass();</div><div class="line">        String name2 = aClass2.getName();</div><div class="line"></div><div class="line">        System.out.println(name2);</div><div class="line"></div><div class="line">        System.out.println(aClass == aClass1);</div><div class="line">        System.out.println(aClass == aClass2);</div><div class="line">        System.out.println(aClass1 == aClass2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行结果如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">com.lxhsec.javareflect.Student</div><div class="line">com.lxhsec.javareflect.Student</div><div class="line">com.lxhsec.javareflect.Student</div><div class="line"><span class="keyword">true</span></div><div class="line"><span class="keyword">true</span></div><div class="line"><span class="keyword">true</span></div></pre></td></tr></table></figure></p>
+<h3 id="ClassLoader-loadClass"><a href="#ClassLoader-loadClass" class="headerlink" title="ClassLoader.loadClass()"></a>ClassLoader.loadClass()</h3><p>还有一种获取Class类对象的方式，通过ClassLoader手动加载：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ClassLoader.getSystemClassLoader().loadClass(<span class="string">"com.lxhsec.javareflect.Student"</span>);</div></pre></td></tr></table></figure></p>
+<p>通过ClassLoader手动加载获取到的类对象，与上面三种方式获取到的类对象是相同的，如下：<br><img src="/2020/08/05/javareflect/class02.png" alt="class02"></p>
+<h2 id="获取Field对象"><a href="#获取Field对象" class="headerlink" title="获取Field对象"></a>获取Field对象</h2><p>通过反射，获取类中 包含的 成员变量。</p>
+<p>Person.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lxhsec.javareflect;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String pri_per_name;</div><div class="line">    <span class="keyword">protected</span> String pro_per_name;</div><div class="line">    <span class="keyword">public</span> String pub_per_name; <span class="comment">// public</span></div><div class="line">    String per_name;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Student.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lxhsec.javareflect;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> score;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> public1; <span class="comment">// public</span></div><div class="line">    <span class="keyword">protected</span> String protect1;</div><div class="line">    String normal;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="getFields-amp-amp-getField"><a href="#getFields-amp-amp-getField" class="headerlink" title="getFields &amp;&amp; getField"></a>getFields &amp;&amp; getField</h3><ul>
+<li>Field[] getFields() ：获取所有public修饰的成员变量（包括父类）</li>
+<li>Field getField(String name)   获取指定名称的 public修饰的成员变量（包括父类）</li>
+</ul>
+<p>Test.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lxhsec.javareflect;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Field;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        Class&lt;?&gt; aClass = Class.forName(<span class="string">"com.lxhsec.javareflect.Student"</span>);</div><div class="line">        Field[] fields = aClass.getFields();</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (Field field: fields) &#123;</div><div class="line">            System.out.println(field);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        System.out.println(<span class="string">"------"</span>);</div><div class="line"></div><div class="line">        Field pub_per_name = aClass.getField(<span class="string">"pub_per_name"</span>); <span class="comment">//获取父类成员变量pub_per_name</span></div><div class="line"></div><div class="line">        System.out.println(pub_per_name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> com.lxhsec.javareflect.Student.public1</div><div class="line"><span class="keyword">public</span> java.lang.String com.lxhsec.javareflect.Person.pub_per_name</div><div class="line">------</div><div class="line"><span class="keyword">public</span> java.lang.String com.lxhsec.javareflect.Person.pub_per_name</div></pre></td></tr></table></figure></p>
+<h3 id="getDeclaredFields-amp-amp-getDeclaredField"><a href="#getDeclaredFields-amp-amp-getDeclaredField" class="headerlink" title="getDeclaredFields &amp;&amp; getDeclaredField"></a>getDeclaredFields &amp;&amp; getDeclaredField</h3><ul>
+<li><p>Field[] getDeclaredFields()  获取所有的成员变量，不考虑修饰符（不包括父类）</p>
+</li>
+<li><p>Field getDeclaredField(String name) 获取指定名称的成员变量（不包括父类）</p>
+</li>
+</ul>
+<p>Test.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lxhsec.javareflect;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Field;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        Class&lt;?&gt; aClass = Class.forName(<span class="string">"com.lxhsec.javareflect.Student"</span>);</div><div class="line">        Field[] fields = aClass.getDeclaredFields();</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (Field field: fields) &#123;</div><div class="line">            System.out.println(field);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"------"</span>);</div><div class="line"></div><div class="line">        Field pub_per_name = aClass.getDeclaredField(<span class="string">"name"</span>);</div><div class="line">        System.out.println(pub_per_name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> java.lang.String com.lxhsec.javareflect.Student.name</div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> com.lxhsec.javareflect.Student.age</div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> com.lxhsec.javareflect.Student.score</div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> com.lxhsec.javareflect.Student.public1</div><div class="line"><span class="keyword">protected</span> java.lang.String com.lxhsec.javareflect.Student.protect1</div><div class="line">java.lang.String com.lxhsec.javareflect.Student.normal</div><div class="line">------</div><div class="line"><span class="keyword">private</span> java.lang.String com.lxhsec.javareflect.Student.name</div></pre></td></tr></table></figure></p>
+<h3 id="Field-API"><a href="#Field-API" class="headerlink" title="Field API"></a>Field API</h3><p>一个Field对象包含了一个成员变量的所有信息：</p>
+<ul>
+<li><code>getName()</code>:返回成员变量名称。</li>
+<li><code>getType()</code>:返回成员变量类型。</li>
+<li><code>getModifiers()</code>:返回成员变量修饰符。</li>
+</ul>
+<p><img src="/2020/08/05/javareflect/field01.png" alt="class02"></p>
+<ul>
+<li><code>set(Object obj, Object value)</code>:设置成员变量值。</li>
+<li><code>get(Object obj)</code>:返回成员变量值。</li>
+</ul>
+<p><strong>获取成员变量值：</strong></p>
+<p><img src="/2020/08/05/javareflect/field03.png" alt="class03"></p>
+<p>在<strong>获取成员变量值</strong>时，如果该成员变量的作用域 非<code>public</code>修饰，则需要设置成员变量的属性<code>Accessible</code>为<code>true</code>。</p>
+<p>如上图中， 获取的成员变量name，是被private修饰的，因此需要添加<code>pub_per_name.setAccessible(true);</code></p>
+<p>如果未设置<code>Accessible</code>为<code>true</code>，在获取成员变量值时，会报错，如下：</p>
+<p><img src="/2020/08/05/javareflect/field02.png" alt="class02"></p>
+<p><strong>设置成员变量值：</strong></p>
+<p><img src="/2020/08/05/javareflect/field04.png" alt="class04"></p>
+<p>同样，在<strong>设置成员变量值</strong>时，当成员变量的作用域非<code>public</code>修饰，也需要设置成员变量的属性<code>Accessible</code>为<code>true</code>。</p>
+<h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><p>通常，使用反射创建新的实例，可以调用Class类提供的<code>newInstance()</code>方法，如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Class&lt;?&gt; aClass = Class.forName(<span class="string">"com.lxhsec.javareflect.Student"</span>);</div><div class="line">Object o1 = aClass.newInstance();</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/08/05/javareflect/constructor01.png" alt="constructor01"></p>
+<p>Class类提供的<code>newInstance()</code>方法，是通过调用该类的 public 无参数构造方法 创建的实例，</p>
+<p>如果构造方法带有参数，或者构造方法的 作用域 不是public，就无法直接通过<code>Class.newInstance()</code>来创建新的实例对象。</p>
+<p>Student类没有默认的无参构造，<br><img src="/2020/08/05/javareflect/constructor02.png" alt="constructor02"></p>
+<p>通过<code>Class.newInstance()</code>创建新的实例对象时，就会报错了：<br><img src="/2020/08/05/javareflect/constructor03.png" alt="constructor03"></p>
+<p>为了调用任意的构造方法，Java的反射API提供了Constructor对象，它包含一个构造方法的所有信息，也可以用来创建一个新的实例。</p>
+<h3 id="获取Constructor实例"><a href="#获取Constructor实例" class="headerlink" title="获取Constructor实例"></a>获取Constructor实例</h3><p>通过Class实例获取Constructor的方法如下：</p>
+<ul>
+<li><code>getConstructor(Class...)</code>：返回类的某个public的<code>Constructor</code>；</li>
+<li><code>getDeclaredConstructor(Class...)</code>：返回类的某个<code>Constructor</code>；</li>
+<li><code>getConstructors()</code>：返回类的所有public的<code>Constructor</code>；</li>
+<li><code>getDeclaredConstructors()</code>：返回类的所有<code>Constructor</code>。</li>
+</ul>
+<p>Student.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lxhsec.javareflect;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Student</span><span class="params">(String name, String age)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/08/05/javareflect/constructor04.png" alt="constructor04"></p>
+<h3 id="通过Constructor类创建新的对象"><a href="#通过Constructor类创建新的对象" class="headerlink" title="通过Constructor类创建新的对象"></a>通过Constructor类创建新的对象</h3><p>通过<code>Constructor.newInstance(Object ... initargs)</code>创建对象：<br><img src="/2020/08/05/javareflect/constructor06.png" alt="constructor06"></p>
+<p>对于 非public修饰的构造函数，必须设置<code>setAccessible(true)</code>，否则报错，报错内容如下：</p>
+<p><img src="/2020/08/05/javareflect/constructor05.png" alt="constructor05"></p>
+<p><strong>Notes:</strong><br>1、Constructor 是当前类定义的构造方法，和父类无关，因此不存在多态的问题。<br>2、通过Class类对象的方法<code>getConstructor()</code>，<br><code>getConstructors()</code>，<code>getDeclaredConstructor()</code>，<br><code>getDeclaredConstructors()</code>，可以获取Constructor 类对象。<br>3、通过Constructor类对象的方法<code>newInstance(Object... parameters);</code> 可以创建一个实例对象。<br>4、通过Constructor类对象 创建 实例对象时，如果 构造函数作用域 非public修饰，<br>则必须设置<code>setAccessible(true)</code>。</p>
+<h2 id="获取Method对象"><a href="#获取Method对象" class="headerlink" title="获取Method对象"></a>获取Method对象</h2><p>通过反射，获取类中 包含的 成员方法信息。</p>
+<p>Class类提供了以下几个方法来获取Method对象：</p>
+<p><code>Method getMethod(name, Class...)</code>：返回指定名称的Method对象，作用域由public修饰（包括父类）<br><code>Method getDeclaredMethod(name, Class...)</code>：返回当前类中指定名称的Method（不包括父类）<br><code>Method[] getMethods()</code>：返回所有public修饰的Method（包括父类）<br><code>Method[] getDeclaredMethods()</code>：返回当前类的所有Method（不包括父类）</p>
+<p>与获取Field对象时 提供的方法 类似。</p>
+<p>Student.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lxhsec.javareflect;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Test.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lxhsec.javareflect;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        Class&lt;?&gt; aClass = Class.forName(<span class="string">"com.lxhsec.javareflect.Student"</span>);</div><div class="line">        Method[] declaredMethods = aClass.getDeclaredMethods(); <span class="comment">// 获取所有方法，不包含父类</span></div><div class="line">        <span class="keyword">for</span> (Method item: declaredMethods) &#123;</div><div class="line">            System.out.println(item);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"----------------\n"</span>);</div><div class="line">        Method setName = aClass.getDeclaredMethod(<span class="string">"setName"</span>, String.class); <span class="comment">// 获取单个指定方法，不包含父类</span></div><div class="line">        System.out.println(setName);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> java.lang.String com.lxhsec.javareflect.Student.getName()</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> com.lxhsec.javareflect.Student.setName(java.lang.String)</div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> com.lxhsec.javareflect.Student.getAge()</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> com.lxhsec.javareflect.Student.setAge(<span class="keyword">int</span>)</div><div class="line">----------------</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> com.lxhsec.javareflect.Student.setName(java.lang.String)</div></pre></td></tr></table></figure></p>
+<h3 id="Method-API"><a href="#Method-API" class="headerlink" title="Method API"></a>Method API</h3><p>一个Method对象包含一个方法的所有信息：</p>
+<p><code>getName()</code>：返回方法名称，<br><code>getReturnType()</code>：返回方法返回值类型，也是一个Class实例，例如：String.class；<br><code>getParameterTypes()</code>：返回方法的参数类型，是一个Class数组，例如：<code>[String.class, int.class]</code>；<br><code>getModifiers()</code>：返回方法的修饰符，它是一个int，不同的bit表示不同的含义。</p>
+<p><img src="/2020/08/05/javareflect/method01.png" alt="method01"></p>
+<h3 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h3><p>当我们获取到一个Method对象时，就可以对它进行调用。</p>
+<h4 id="调用static静态方法"><a href="#调用static静态方法" class="headerlink" title="调用static静态方法"></a>调用static静态方法</h4><p>Student.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lxhsec.javareflect;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">test</span><span class="params">(String name)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Test.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lxhsec.javareflect;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        Class&lt;?&gt; aClass = Class.forName(<span class="string">"com.lxhsec.javareflect.Student"</span>);</div><div class="line"></div><div class="line">        Method test = aClass.getDeclaredMethod(<span class="string">"test"</span>, String.class);<span class="comment">// 查找名为test，参数为String类型的方法</span></div><div class="line">        System.out.println(test);</div><div class="line"></div><div class="line">        Object invoke = test.invoke(<span class="keyword">null</span>, <span class="string">"www.lxhsec.com"</span>);<span class="comment">// 静态方法，invoke调用时，第一个参数可以为null，后面的参数是传参。</span></div><div class="line">	<span class="comment">//invoke的返回值是 test函数执行完后的返回值。</span></div><div class="line">        System.out.println(invoke);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/08/05/javareflect/method02.png" alt="method02"></p>
+<h4 id="调用实例方法"><a href="#调用实例方法" class="headerlink" title="调用实例方法"></a>调用实例方法</h4><p><img src="/2020/08/05/javareflect/method03.png" alt="method03"></p>
+<p>当方法的作用域非public修饰时，则需要设置方法的Accessible属性为true，<code>setAccessible(true)</code></p>
+<p><img src="/2020/08/05/javareflect/method04.png" alt="method04"></p>
+<p>否则，将报错，报错内容如下：<br><img src="/2020/08/05/javareflect/method05.png" alt="method05"></p>
+<p><strong>Notes:</strong><br>1、通过Class类对象方法<br><code>getMethod()</code>，<code>getMethods()</code>，<br><code>getDeclaredMethod()</code>，<code>getDeclaredMethods()</code>；<br>可以获取Method实例。</p>
+<p>2、通过Method实例方法<br><code>getName()</code>，<code>getReturnType()</code>，<br><code>getParameterTypes()</code>，<code>getModifiers()</code><br>可以 获取Method的不同信息：</p>
+<p>3、通过Method实例方法<code>Object invoke(Object instance, Object... parameters)</code>可以调用某个对象的方法：</p>
+<p>4、调用静态方法时，<code>Object invoke(Object instance, Object... parameters)；</code>，invoke的第一个参数可以为null。</p>
+<p>5、通过设置<code>setAccessible(true)</code>来调用 非public修饰的方法。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/08/05/javareflect/" title="Java Reflection">http://www.lxhsec.com/2020/08/05/javareflect/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/03/fastjsonparse/" rel="next" title="fastjsonparse">
+                <i class="fa fa-chevron-left"></i> fastjsonparse
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/11/JavaDeserialization/" rel="prev" title="Java Deserialization">
+                Java Deserialization <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取Class对象"><span class="nav-number">2.</span> <span class="nav-text">获取Class对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-forName"><span class="nav-number">2.1.</span> <span class="nav-text">Class.forName</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#classname-class"><span class="nav-number">2.2.</span> <span class="nav-text">classname.class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#object-getClass"><span class="nav-number">2.3.</span> <span class="nav-text">object.getClass()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ClassLoader-loadClass"><span class="nav-number">2.4.</span> <span class="nav-text">ClassLoader.loadClass()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取Field对象"><span class="nav-number">3.</span> <span class="nav-text">获取Field对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getFields-amp-amp-getField"><span class="nav-number">3.1.</span> <span class="nav-text">getFields && getField</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getDeclaredFields-amp-amp-getDeclaredField"><span class="nav-number">3.2.</span> <span class="nav-text">getDeclaredFields && getDeclaredField</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Field-API"><span class="nav-number">3.3.</span> <span class="nav-text">Field API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造方法"><span class="nav-number">4.</span> <span class="nav-text">构造方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取Constructor实例"><span class="nav-number">4.1.</span> <span class="nav-text">获取Constructor实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过Constructor类创建新的对象"><span class="nav-number">4.2.</span> <span class="nav-text">通过Constructor类创建新的对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取Method对象"><span class="nav-number">5.</span> <span class="nav-text">获取Method对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-API"><span class="nav-number">5.1.</span> <span class="nav-text">Method API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法调用"><span class="nav-number">5.2.</span> <span class="nav-text">方法调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调用static静态方法"><span class="nav-number">5.2.1.</span> <span class="nav-text">调用static静态方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用实例方法"><span class="nav-number">5.2.2.</span> <span class="nav-text">调用实例方法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

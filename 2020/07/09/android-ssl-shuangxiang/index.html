@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HTTPS证书双向校验原理 &amp;amp; 定位校验代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="app双向校验 &amp;&amp; 快速定位bypass">
+<meta property="og:url" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="HTTPS证书双向校验原理 &amp;amp; 定位校验代码">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/env-00.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/env-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/env-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/openssl-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/openssl-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/openssl-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/openssl-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/req-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/req-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/req-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/req-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/req-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/req-06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/req-07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server06.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server07.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server08.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server09.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server10.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server11.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/server12.png">
+<meta property="og:updated_time" content="2020-12-21T01:12:36.878Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="app双向校验 &amp;&amp; 快速定位bypass">
+<meta name="twitter:description" content="HTTPS证书双向校验原理 &amp;amp; 定位校验代码">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/env-00.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/"/>
+
+
+
+
+
+  <title>app双向校验 && 快速定位bypass | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">app双向校验 && 快速定位bypass</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-09T16:25:12+08:00">
+                2020-07-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-21T09:12:36+08:00">
+                2020-12-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>HTTPS证书双向校验原理 &amp; 定位校验代码<a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>APP接触多了，相信大家都会遇到HTTPS双向证书验证的情况，在这种情况下，使用Burp默认情况下无法进行抓包，下面以开发的角度来一一讲解下Android中HTTPS双向证书校验 &amp;&amp; 解决burp抓包问题 &amp;&amp; 如何快速定位客户端证书在APP中的位置，密码。</p>
+<h2 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h2><p>这里使用phpstudy2014 搭建HTTPS双向校验环境,版本随便选一个，这里我选择Nginx + PHP 5.5n<br><img src="/2020/07/09/android-ssl-shuangxiang/env-00.png" alt="env-00"></p>
+<p>1、打开主机配置文件vhosts.conf<br><img src="/2020/07/09/android-ssl-shuangxiang/env-01.png" alt="env-01"></p>
+<p>添加如下配置，并重启Nginx<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="section">server</span> &#123;</div><div class="line">      <span class="attribute">listen</span>      <span class="number">443</span>; </div><div class="line">      <span class="attribute">server_name</span>  test.lxhsec.com;</div><div class="line">      <span class="attribute">root</span>   <span class="string">"E:/WWW/"</span>; </div><div class="line">      <span class="attribute">ssl</span> <span class="literal">on</span>;</div><div class="line">      <span class="attribute">ssl_certificate</span> C:\Users\lxhsec\Desktop\https\shuangxiang\server.crt;     <span class="comment">#服务器证书文件</span></div><div class="line">      <span class="attribute">ssl_certificate_key</span> C:\Users\lxhsec\Desktop\https\shuangxiang\server_private.key; <span class="comment">#服务器证书密匙</span></div><div class="line">      <span class="attribute">ssl_client_certificate</span> C:\Users\lxhsec\Desktop\https\shuangxiang\ca_public.crt;  <span class="comment">#根证书 双向认证</span></div><div class="line">      <span class="attribute">ssl_verify_client</span> <span class="literal">on</span>; <span class="comment">#开启客户端验证</span></div><div class="line">      <span class="attribute">location</span> / &#123;</div><div class="line">            <span class="attribute">index</span>  index.html index.htm index.php;</div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/07/09/android-ssl-shuangxiang/env-02.png" alt="env-02"></p>
+<p>上述配置中的各类证书，由以下命令生成：</p>
+<p>1）生成CA根证书ca_public.crt</p>
+<p>生成CA私钥文件（ca_private.key）：<br><code>openssl genrsa -out ca_private.key 2048</code></p>
+<p>生成证书签名请求CSR文件（ca.csr）：<br><code>openssl req -new -key ca_private.key -out ca.csr</code></p>
+<p>生成X.509格式的CA根证书ca_public.crt（公钥证书）：<br><code>openssl x509 -req -days 365 -in ca.csr -signkey ca_private.key -out ca_public.crt</code><br><img src="/2020/07/09/android-ssl-shuangxiang/openssl-01.png" alt="openssl-01"></p>
+<p>2）生成服务端证书server.crt，server_private.key</p>
+<p>先生成服务器私钥文件server_private.key：<br><code>openssl genrsa -out server_private.key 2048</code></p>
+<p>生成证书签名请求CSR文件（server.csr）：<br><code>openssl req -new -key server_private.key -out server.csr</code></p>
+<p>服务器端用server.csr文件向CA机构申请签名证书, 签名过程需要CA的公钥证书和私钥参与,最终生成一个带有CA签名的服务器端证书。<br><code>openssl x509 -req -CA ca_public.crt -CAkey ca_private.key -CAcreateserial -in server.csr -out server.crt</code></p>
+<p><img src="/2020/07/09/android-ssl-shuangxiang/openssl-02.png" alt="openssl-02"></p>
+<p>因为是双向认证，因此还需要生成客户端证书，如下：</p>
+<p>3）生成客户端证书，命令与生成服务端证书类似。</p>
+<p><code>openssl genrsa -out clinet_private.key 2048</code></p>
+<p><code>openssl req -new -key clinet_private.key -out client.csr</code></p>
+<p><code>openssl x509 -req -CA ca_public.crt -CAkey ca_private.key -CAcreateserial -in                                                                                               client.csr -out client.crt</code></p>
+<p><img src="/2020/07/09/android-ssl-shuangxiang/openssl-03.png" alt="openssl-03"></p>
+<p>4）接着生成客户端p12格式根证书(密码设置为qwe123456)<br><code>openssl pkcs12 -export -inkey client_private.key -in client.crt -out client.p12</code></p>
+<p><img src="/2020/07/09/android-ssl-shuangxiang/openssl-04.png" alt="openssl-04"></p>
+<h3 id="环境验证"><a href="#环境验证" class="headerlink" title="环境验证"></a>环境验证</h3><p>2、PC添加host解析：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">127.0.0.1   test.lxhsec.com</div></pre></td></tr></table></figure></p>
+<p>浏览器访问<code>https://test.lxhsec.com</code>，出现如下页面:<br><img src="/2020/07/09/android-ssl-shuangxiang/req-01.png" alt="req-01"></p>
+<p>说明服务端启动了双向认证，需要浏览器携带客户端的证书，而我们的浏览器中并没有与服务端对应的客户端证书，因此出现了400的请求错误。</p>
+<h3 id="导入客户端证书"><a href="#导入客户端证书" class="headerlink" title="导入客户端证书"></a>导入客户端证书</h3><p>接下来 我们将client.p12证书导入浏览器，<code>chrome://settings/security</code> -&gt; 管理证书 -&gt;导入，如下：<br><img src="/2020/07/09/android-ssl-shuangxiang/req-02.png" alt="req-02"></p>
+<p>接着输入生成.p12证书时设置的密码qwe123456,<br><img src="/2020/07/09/android-ssl-shuangxiang/req-03.png" alt="req-03"></p>
+<p>证书存储在个人即可，<br><img src="/2020/07/09/android-ssl-shuangxiang/req-04.png" alt="req-04"></p>
+<p>导入完成如下：<br><img src="/2020/07/09/android-ssl-shuangxiang/req-05.png" alt="req-05"></p>
+<p>重启浏览器（这很重要），再次访问<code>https://test.lxhsec.com</code></p>
+<p>会出现个弹窗，询问是否加载客户端证书，点击确认即可。<br><img src="/2020/07/09/android-ssl-shuangxiang/req-06.png" alt="req-06"></p>
+<p>成功访问index.html<br><img src="/2020/07/09/android-ssl-shuangxiang/req-07.png" alt="req-07"></p>
+<h2 id="Android中的双向证书校验（以URLConnection为例）"><a href="#Android中的双向证书校验（以URLConnection为例）" class="headerlink" title="Android中的双向证书校验（以URLConnection为例）"></a>Android中的双向证书校验（以URLConnection为例）</h2><p>读取预埋服务端证书，<br><img src="/2020/07/09/android-ssl-shuangxiang/server01.png" alt="server01"></p>
+<p>通过预埋的服务端证书生成证书信任链TrustManager，以供客户端请求服务端时，完成对服务端证书的校验（HTTPS交互时，服务端会下发证书到客户端，客户端将其与预埋的证书进行对比，完成对服务端证书的校验）。<br><img src="/2020/07/09/android-ssl-shuangxiang/server02.png" alt="server02"></p>
+<p>创建客户端证书KeyManager，以供服务端校验（HTTPS交互时，请求携带客户端证书发送到服务端，服务端对其进行校验）。<br><img src="/2020/07/09/android-ssl-shuangxiang/server03.png" alt="server03"></p>
+<p>创建SSLContext并绑定TrustManager，KeyManager，接着替换默认的SocketFactory，使用SSLContext中的SocketFactory。<br><img src="/2020/07/09/android-ssl-shuangxiang/server04.png" alt="server04"></p>
+<p>都完成之后，APP就可以正常请求服务端了，效果如下：<br><img src="/2020/07/09/android-ssl-shuangxiang/server05.png" alt="server05"></p>
+<h2 id="Burp抓包问题"><a href="#Burp抓包问题" class="headerlink" title="Burp抓包问题"></a>Burp抓包问题</h2><p>手机设置代理，运行app，进行请求。</p>
+<p>此时，burp无法抓到数据包，并在Alert选型卡中报错如下：<br><img src="/2020/07/09/android-ssl-shuangxiang/server06.png" alt="server06"></p>
+<p>这是因为app校验了服务端证书，而手机挂了代理，在HTTPS交互阶段，Burp充当了服务端，证书下发的是Burp的，与app内置的证书不一致，服务端校验失败，因此没有请求发送出来。</p>
+<p>这里我们使用Frida加载脚本，绕过服务端证书校验，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">AndroidMain</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> X509TrustManager = Java.use(<span class="string">'javax.net.ssl.X509TrustManager'</span>);</div><div class="line">    <span class="keyword">var</span> TrustManager;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">	    </div><div class="line">		TrustManager = Java.registerClass(&#123;</div><div class="line">			name: <span class="string">'org.wooyun.TrustManager'</span>,</div><div class="line">			implements: [X509TrustManager],</div><div class="line">			methods: &#123;</div><div class="line">				checkClientTrusted: <span class="function"><span class="keyword">function</span>(<span class="params">chain, authType</span>) </span>&#123;&#125;,</div><div class="line">				checkServerTrusted: <span class="function"><span class="keyword">function</span>(<span class="params">chain, authType</span>) </span>&#123;&#125;,</div><div class="line">				getAcceptedIssuers: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">					<span class="keyword">return</span> [];</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">		</div><div class="line">		<span class="keyword">var</span> TrustManagers = [TrustManager.$<span class="keyword">new</span>()];</div><div class="line">		</div><div class="line">		<span class="keyword">var</span> SSLContext = Java.use(<span class="string">'javax.net.ssl.SSLContext'</span>);</div><div class="line">		</div><div class="line">		SSLContext.init.overload(<span class="string">'[Ljavax.net.ssl.KeyManager;'</span>, <span class="string">'[Ljavax.net.ssl.TrustManager;'</span>, <span class="string">'java.security.SecureRandom'</span>).implementation = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		    <span class="built_in">console</span>.log(<span class="string">"执行替换"</span>)</div><div class="line"></div><div class="line">		    <span class="keyword">this</span>.init.overload(<span class="string">'[Ljavax.net.ssl.KeyManager;'</span>, <span class="string">'[Ljavax.net.ssl.TrustManager;'</span>, <span class="string">'java.security.SecureRandom'</span>).call(<span class="keyword">this</span>, <span class="literal">null</span>, TrustManagers, <span class="literal">null</span>);</div><div class="line">		</div><div class="line">        &#125;</div><div class="line">		</div><div class="line">	&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">"error:  "</span> + e.message);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	send(<span class="string">"script running..."</span> + <span class="string">"-cusoto0oom0sc0ri0pt-"</span>);</div><div class="line">	<span class="comment">//打印堆栈</span></div><div class="line">    <span class="keyword">if</span> (ObjC.available) &#123;</div><div class="line">		<span class="comment">//</span></div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(Java.available) &#123;</div><div class="line">		Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">       		AndroidMain();</div><div class="line">   		&#125;);</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>再次请求，结果如下：<br><img src="/2020/07/09/android-ssl-shuangxiang/server07.png" alt="server07"></p>
+<p>此时burp成功的抓到了数据包，但是返回包却提示<code>No required SSL certificate was sent</code>，这是因为服务端开启了对客户端证书的校验，而burp发送请求出去时，并没有携带正确的客户端证书。</p>
+<p>这里我们将Android工程中的client.p12导入burp，让burp发包的时候带上。</p>
+<p><code>User options</code> -&gt; <code>Client SSL Certificates</code><br><img src="/2020/07/09/android-ssl-shuangxiang/server08.png" alt="server08"></p>
+<p>输入密码qwe123456<br><img src="/2020/07/09/android-ssl-shuangxiang/server09.png" alt="server09"></p>
+<p>导入成功，如下：<br><img src="/2020/07/09/android-ssl-shuangxiang/server10.png" alt="server10"></p>
+<p>再次请求，成功通过客户端校验，抓到了包<br><img src="/2020/07/09/android-ssl-shuangxiang/server11.png" alt="server11"></p>
+<p>Notes: <code>Burp 1.7.37好像有点bug，导入证书第一次没效果，删除第一次导入的记录，第二次在导入，才生效。</code></p>
+<h2 id="快速定位证书位置以及密码"><a href="#快速定位证书位置以及密码" class="headerlink" title="快速定位证书位置以及密码"></a>快速定位证书位置以及密码</h2><p>使用frida， hook KeyStore load方法，打印证书密码，以及堆栈信息，然后根据堆栈信息往上找，就可以很快找到啦~~。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCaller</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> Java.use(<span class="string">"java.lang.Thread"</span>).currentThread().getStackTrace().slice(<span class="number">2</span>,<span class="number">5</span>).reverse().toString().replace(<span class="regexp">/,/g</span>,<span class="string">"\n"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">AndroidMain</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	        </div><div class="line">    <span class="keyword">var</span> KeyStore = Java.use(<span class="string">"java.security.KeyStore"</span>);</div><div class="line">    <span class="keyword">var</span> strr = Java.use(<span class="string">"java.lang.String"</span>);</div><div class="line"></div><div class="line">    </div><div class="line">    KeyStore.load.overload(<span class="string">'java.io.InputStream'</span>, <span class="string">'[C'</span>).implementation = <span class="function"><span class="keyword">function</span> (<span class="params">str1, str2</span>) </span>&#123;</div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (str1 != <span class="literal">null</span>)&#123;</div><div class="line">            <span class="comment">//console.log(str1);</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (str2 != <span class="literal">null</span>)&#123;</div><div class="line">            <span class="keyword">var</span> strss = strr.$<span class="keyword">new</span>(str2);</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"密码: "</span>+strss);</div><div class="line">            </div><div class="line">            <span class="built_in">console</span>.log(getCaller());</div><div class="line">                            </div><div class="line">            <span class="comment">//console.log(JSON.stringify(str2));</span></div><div class="line">        &#125;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"========"</span>)</div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="keyword">this</span>.load(str1,str2);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">        <span class="comment">//return true;</span></div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	send(<span class="string">"script running..."</span> + <span class="string">"-cusoto0oom0sc0ri0pt-"</span>);</div><div class="line">	<span class="comment">//打印堆栈</span></div><div class="line">    <span class="keyword">if</span> (ObjC.available) &#123;</div><div class="line">		<span class="comment">//</span></div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(Java.available) &#123;</div><div class="line">		Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">       		AndroidMain();</div><div class="line">   		&#125;);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>效果如下：<br><img src="/2020/07/09/android-ssl-shuangxiang/server12.png" alt="server12"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文从环境搭建出发，以开发的角度由浅入深，浅谈HTTPS双向证书校验的原理，为什么会抓不到包，找到证书后，如何导入burp进行抓包，最后通过逆向的角度 快速定位 证书的密码，以及加载的客户端证书在代码中的大概位置。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/" title="app双向校验 && 快速定位bypass">http://www.lxhsec.com/2020/07/09/android-ssl-shuangxiang/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/01/stack-decrypt-app/" rel="next" title="利用Android堆栈信息快速定位APP加解密算法">
+                <i class="fa fa-chevron-left"></i> 利用Android堆栈信息快速定位APP加解密算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/13/shiroRememberMeSerialized/" rel="prev" title="Apache Shiro 反序列化之殇">
+                Apache Shiro 反序列化之殇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建环境"><span class="nav-number">2.</span> <span class="nav-text">搭建环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境验证"><span class="nav-number">2.1.</span> <span class="nav-text">环境验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入客户端证书"><span class="nav-number">2.2.</span> <span class="nav-text">导入客户端证书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android中的双向证书校验（以URLConnection为例）"><span class="nav-number">3.</span> <span class="nav-text">Android中的双向证书校验（以URLConnection为例）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Burp抓包问题"><span class="nav-number">4.</span> <span class="nav-text">Burp抓包问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速定位证书位置以及密码"><span class="nav-number">5.</span> <span class="nav-text">快速定位证书位置以及密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

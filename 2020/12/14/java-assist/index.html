@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Javassist初探">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javassist初探">
+<meta property="og:url" content="http://www.lxhsec.com/2020/12/14/java-assist/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="Javassist初探">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/12/14/java-assist/javassist01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/12/14/java-assist/javassist02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/12/14/java-assist/javassist03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/12/14/java-assist/javassist04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/12/14/java-assist/javassist05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/12/14/java-assist/javassist06.png">
+<meta property="og:updated_time" content="2020-12-21T09:46:21.630Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javassist初探">
+<meta name="twitter:description" content="Javassist初探">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/12/14/java-assist/javassist01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/12/14/java-assist/"/>
+
+
+
+
+
+  <title>Javassist初探 | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/12/14/java-assist/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Javassist初探</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-14T14:45:33+08:00">
+                2020-12-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-21T17:46:21+08:00">
+                2020-12-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Javassist初探<a id="more"></a></p>
+<p>Javassist（Java编程助手）使Java字节码操作变得简单。它是一个用于在Java中编辑字节码的类库。它使Java程序可以在运行时定义新类，并在JVM加载它时修改类文件。与其他类似的字节码编辑器不同，Javassist提供了两个级别的API：源级别和字节代码级别。如果用户使用源代码级API，则他们可以在不了解Java字节码规范的情况下编辑类文件。整个API仅使用Java语言的词汇表进行设计。您甚至可以以源文本的形式指定插入的字节码。Javassist可以即时对其进行编译。另一方面，字节码级别的API允许用户像其他编辑器一样直接编辑类文件。</p>
+<h2 id="Javassist简介"><a href="#Javassist简介" class="headerlink" title="Javassist简介"></a>Javassist简介</h2><p>我们先来看下<a href="http://www.javassist.org/" target="_blank" rel="external">Javassist官方网站</a>对Javassist的介绍，如下：<br><img src="/2020/12/14/java-assist/javassist01.png" alt="java-assist"></p>
+<p>简单翻译过来，Javassist是用于编辑（创建，修改）.class字节码文件的Java库，一般情况下 我们都是在.java文件中写代码，然后编译成.class文件，在加载进Java虚拟机中执行代码，如果要修改已编译好的文件，要使用010 Editor 去手动的计算一些偏移值进行修改，但是Javassist的出现，使得我们操作.class文件变得简单，并且可以在Java虚拟机JVM运行时”动态”的改变.class文件。</p>
+<p>恐怖如斯~，接下来，我们学习下Javassist的简单使用，该技术常在Java反序列化中被使用到，可以在ysoserial项目中看到很多Javassist的身影。</p>
+<h2 id="修改已编译的-class文件"><a href="#修改已编译的-class文件" class="headerlink" title="修改已编译的.class文件"></a>修改已编译的.class文件</h2><p>打开IDEA，创建maven项目，引入javassist包，最新版本是3.27.0-GA<br><img src="/2020/12/14/java-assist/javassist02.png" alt="java-assist2"><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.javassist<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javassist<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.27.0-GA<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>创建Anfuzai.java文件，目录结构，文件内容如下，然后点击左上角的绿色锤子，编译成.class文件，在target下是.class文件的生成目录。<br><img src="/2020/12/14/java-assist/javassist03.png" alt="java-assist3"></p>
+<h3 id="更改-class文件中的方法体"><a href="#更改-class文件中的方法体" class="headerlink" title="更改.class文件中的方法体"></a>更改.class文件中的方法体</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.anfuzai.javassist;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javassist.ClassPool;</div><div class="line"><span class="keyword">import</span> javassist.CtClass;</div><div class="line"><span class="keyword">import</span> javassist.CtMethod;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateAnfuzai</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        ClassPool pool = ClassPool.getDefault();</div><div class="line">        <span class="comment">// 添加类搜索路径</span></div><div class="line">        pool.appendClassPath(<span class="string">"F:\\IDEAProject\\javassist\\target\\classes\\"</span>);</div><div class="line">        <span class="comment">// 根据 全权限的类名 获取该类的CtClass对象</span></div><div class="line">        CtClass cc = pool.get(<span class="string">"com.anfuzai.javassist.Anfuzai"</span>);</div><div class="line">        <span class="comment">// 获取类方法</span></div><div class="line">        CtMethod anfuzai = cc.getDeclaredMethod(<span class="string">"getAnfuzai"</span>);</div><div class="line">        <span class="comment">/*</span></div><div class="line"><span class="comment">            对方法进行修改:</span></div><div class="line"><span class="comment">            insertBefore : 在方法的起始位置插入代码；</span></div><div class="line"><span class="comment">            insterAfter : 在方法的所有 return 语句前插入代码以确保语句能够被执行，除非遇到exception；</span></div><div class="line"><span class="comment">            两行</span></div><div class="line"><span class="comment">        */</span></div><div class="line">        anfuzai.insertBefore(<span class="string">"System.out.println(\"ready get tools anfuzai\");"</span>);</div><div class="line">        anfuzai.insertAfter(<span class="string">"&#123;System.out.println(\"anfuzai get success\");&#125;"</span>);</div><div class="line">        <span class="comment">// 修改完后，重新加载到JVM中。</span></div><div class="line">        <span class="comment">// toClass: 通过类加载器加载com.anfuzai.javassist.Anfuzai, </span></div><div class="line">        <span class="comment">// toClass返回Class类对象，然后通过反射的方式newInstance创建Anfuzai对象</span></div><div class="line">        Object Anfuzai = cc.toClass().newInstance();</div><div class="line">        <span class="comment">// 通过反射调用 getAnfuzai 方法</span></div><div class="line">        Method getAnfuzaiMethod = Anfuzai.getClass().getMethod(<span class="string">"getAnfuzai"</span>);</div><div class="line">        getAnfuzaiMethod.invoke(Anfuzai);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        UpdateAnfuzai.update();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="/2020/12/14/java-assist/javassist04.png" alt="java-assist4"></p>
+<h3 id="给-class文件新增方法"><a href="#给-class文件新增方法" class="headerlink" title="给.class文件新增方法"></a>给.class文件新增方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.anfuzai.javassist;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javassist.ClassPool;</div><div class="line"><span class="keyword">import</span> javassist.CtClass;</div><div class="line"><span class="keyword">import</span> javassist.CtMethod;</div><div class="line"><span class="keyword">import</span> javassist.Modifier;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateAnfuzai</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        ClassPool pool = ClassPool.getDefault();</div><div class="line">        <span class="comment">// 添加类搜索路径</span></div><div class="line">        pool.appendClassPath(<span class="string">"F:\\IDEAProject\\javassist\\target\\classes\\"</span>);</div><div class="line">        <span class="comment">// 根据 全权限的类名 获取该类的CtClass对象</span></div><div class="line">        CtClass cc = pool.get(<span class="string">"com.anfuzai.javassist.Anfuzai"</span>);</div><div class="line">        <span class="comment">//新增一个方法,参数类型为String，返回值为void,修饰符为private</span></div><div class="line">        CtMethod ctMethod = <span class="keyword">new</span> CtMethod(CtClass.voidType, <span class="string">"setAnfuzai"</span>, <span class="keyword">new</span> CtClass[]&#123;pool.get(<span class="string">"java.lang.String"</span>)&#125;, cc);</div><div class="line">        ctMethod.setModifiers(Modifier.PRIVATE);</div><div class="line">        <span class="comment">// 设置方法体 $0为this对象，$1为第一个参数</span></div><div class="line">        ctMethod.setBody(<span class="string">"&#123;System.out.println($1);&#125;"</span>);</div><div class="line"></div><div class="line">        cc.addMethod(ctMethod);</div><div class="line">        <span class="comment">// writeFile: 根据CtClass生成 .class 文件；</span></div><div class="line"><span class="comment">//        cc.writeFile("F:\\IDEAProject\\javassist\\target\\");</span></div><div class="line"></div><div class="line">        Object Anfuzai = cc.toClass().newInstance();</div><div class="line">        <span class="comment">// 通过反射调用 setAnfuzai 方法</span></div><div class="line">        Method execute = Anfuzai.getClass().getDeclaredMethod(<span class="string">"setAnfuzai"</span>, String.class);</div><div class="line">        execute.setAccessible(<span class="keyword">true</span>);</div><div class="line">        execute.invoke(Anfuzai,<span class="string">"sb"</span>); <span class="comment">//  传参，执行setAnfuzai方法,结果为输出:sb</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        UpdateAnfuzai.update();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>添加的方法：<br><img src="/2020/12/14/java-assist/javassist05.png" alt="java-assist5"></p>
+<h3 id="class文件转换为字节码，通过classloader加载使用"><a href="#class文件转换为字节码，通过classloader加载使用" class="headerlink" title=".class文件转换为字节码，通过classloader加载使用"></a>.class文件转换为字节码，通过classloader加载使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.anfuzai.javassist;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javassist.ClassPool;</div><div class="line"><span class="keyword">import</span> javassist.CtClass;</div><div class="line"><span class="keyword">import</span> javassist.CtMethod;</div><div class="line"><span class="keyword">import</span> javassist.Modifier;</div><div class="line"><span class="keyword">import</span> org.mozilla.javascript.DefiningClassLoader;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UpdateAnfuzai</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        ClassPool pool = ClassPool.getDefault();</div><div class="line">        <span class="comment">// 添加类搜索路径</span></div><div class="line">        pool.appendClassPath(<span class="string">"F:\\IDEAProject\\javassist\\target\\classes\\"</span>);</div><div class="line">        <span class="comment">// 根据 全权限的类名 获取该类的CtClass对象</span></div><div class="line">        CtClass cc = pool.get(<span class="string">"com.anfuzai.javassist.Anfuzai"</span>);</div><div class="line"></div><div class="line">        <span class="comment">//将.class文件转换为字节码</span></div><div class="line">        <span class="keyword">byte</span>[] bytes = cc.toBytecode();</div><div class="line"></div><div class="line">        <span class="comment">// 通过classloader加载字节码，然后根据全限定类名找到对应的Class类对象</span></div><div class="line">        DefiningClassLoader classLoader = <span class="keyword">new</span> DefiningClassLoader();</div><div class="line">        Class&lt;?&gt; aClass = classLoader.defineClass(<span class="string">"com.anfuzai.javassist.Anfuzai"</span>, bytes);</div><div class="line"></div><div class="line">        <span class="comment">//接下来就是反射调用</span></div><div class="line">        Object o = aClass.newInstance();</div><div class="line"></div><div class="line">        Method setAnfuzai = aClass.getDeclaredMethod(<span class="string">"setAnfuzai"</span>, String.class);</div><div class="line">        setAnfuzai.setAccessible(<span class="keyword">true</span>);</div><div class="line"></div><div class="line">        setAnfuzai.invoke(o,<span class="string">"sb"</span>); <span class="comment">// 执行, 传参</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        UpdateAnfuzai.update();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果，输出sb:<br><img src="/2020/12/14/java-assist/javassist06.png" alt="java-assist6"></p>
+<h2 id="Java动态代理"><a href="#Java动态代理" class="headerlink" title="Java动态代理"></a>Java动态代理</h2><p>通常我们使用接口，一般情况下是编写实现类，实现接口中的方法，接着创建实现类的实例，通过实例使用接口。</p>
+<p>定义接口：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Hello</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">anfuzai</span><span class="params">(String name)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>编写实现类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> <span class="keyword">implements</span> <span class="title">Hello</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">anfuzai</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"anfuzai six six six, "</span> + name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>创建实现类的实例，转型为接口并调用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Hello hello = <span class="keyword">new</span> HelloWorld();</div><div class="line">hello.anfuzai(<span class="string">"360anfuzai"</span>); <span class="comment">// 使用接口</span></div></pre></td></tr></table></figure></p>
+<p>那有没有 可能不编写实现类，直接在程序运行期间创建某个interface的实例呢？</p>
+<p>这是可能的，Java标准库提供了动态代理的机制，可以在运行期动态创建某个interface的实例。</p>
+<p>这里我们仍然先定义接口Hello，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Hello</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">anfuzai</span><span class="params">(String name)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着不编写实现类，而是通过<code>Proxy.newProxyInstance()</code>创建了一个Hello接口对象</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/12/14/java-assist/" title="Javassist初探">http://www.lxhsec.com/2020/12/14/java-assist/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/11/other/" rel="next" title="other">
+                <i class="fa fa-chevron-left"></i> other
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/20/ysoserial-parse-CC1/" rel="prev" title="ysoserial CC1">
+                ysoserial CC1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Javassist简介"><span class="nav-number">1.</span> <span class="nav-text">Javassist简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改已编译的-class文件"><span class="nav-number">2.</span> <span class="nav-text">修改已编译的.class文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更改-class文件中的方法体"><span class="nav-number">2.1.</span> <span class="nav-text">更改.class文件中的方法体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给-class文件新增方法"><span class="nav-number">2.2.</span> <span class="nav-text">给.class文件新增方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class文件转换为字节码，通过classloader加载使用"><span class="nav-number">2.3.</span> <span class="nav-text">.class文件转换为字节码，通过classloader加载使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java动态代理"><span class="nav-number">3.</span> <span class="nav-text">Java动态代理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

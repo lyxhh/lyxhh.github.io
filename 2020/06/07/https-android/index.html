@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Android正确使用HTTPS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正确校验HTTPS证书-Android">
+<meta property="og:url" content="http://www.lxhsec.com/2020/06/07/https-android/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="Android正确使用HTTPS">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/error_code01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/error_code02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/error_code03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/error_log01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/error_log02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/error_log03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/error_log04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/env-hs-00.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/env-hs-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/env-hs-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/update-hosts.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/y-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/y-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/y-03.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/y-04.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/y-05.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/06/07/https-android/y-06.png">
+<meta property="og:updated_time" content="2020-12-21T01:22:42.131Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正确校验HTTPS证书-Android">
+<meta name="twitter:description" content="Android正确使用HTTPS">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/06/07/https-android/error_code01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/06/07/https-android/"/>
+
+
+
+
+
+  <title>正确校验HTTPS证书-Android | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/06/07/https-android/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">正确校验HTTPS证书-Android</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-07T18:07:33+08:00">
+                2020-06-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-21T09:22:42+08:00">
+                2020-12-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Android正确使用HTTPS<a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近代码审计，发现很多开发都不会校验HTTPS证书,通常所看到的错误代码如下:</p>
+<p>1、未正确实现校验服务端证书<br><img src="/2020/06/07/https-android/error_code01.png" alt="error_code01"></p>
+<p>2、未正确实现校验服务端证书中的域名是否相符<br><img src="/2020/06/07/https-android/error_code02.png" alt="error_code02"></p>
+<p>3、信任所有域名<br><img src="/2020/06/07/https-android/error_code03.png" alt="error_code03"></p>
+<p>一般情况下，在Android中，访问HTTPS网站通常代码如下（以URLConnection为例）：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">URL url = <span class="keyword">new</span> URL(<span class="string">"https://www.baidu.com"</span>);</div><div class="line">HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();</div><div class="line">urlConnection.setConnectTimeout(<span class="number">10</span>*<span class="number">1000</span>);</div><div class="line"></div><div class="line">InputStream inputStream = urlConnection.getInputStream();</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//读取输入流</span></div><div class="line">reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(inputStream));</div><div class="line"></div><div class="line">String line;</div><div class="line"><span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">	result.append(line);</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> result.toString();</div></pre></td></tr></table></figure></p>
+<p>以上代码，访问CA签发证书的HTTPS网站是没问题的，但是，通常程序猿写代码是在测试环境下进行测试，测试环境下的HTTPS证书一般都是使用openssl生成的自签名证书，此时使用上面的代码访问，就会报如下错误：<br><img src="/2020/06/07/https-android/error_log01.png" alt="error_log01"></p>
+<p>当测试人员拿app去测试时，访问的是自签名的测试环境，测试人员发现访问不了，就会报bug，这时开发就去排查，开发找到<code>javax.net.ssl.SSLHandshakeException: java.security.cert.CertPathValidatorException: Trust anchor for certification path not found.</code>错误，然后程序猿就去百度，<br>百度的结果如下，这时程序猿会从第一个开始看起。<br><img src="/2020/06/07/https-android/error_log02.png" alt="error_log02"></p>
+<p>我们点进去百度搜索的第一个看看，如下：<br><img src="/2020/06/07/https-android/error_log03.png" alt="error_log03"></p>
+<p>天呐，博主提供了代码，然后开发一顿操作，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Ctrl+C</div><div class="line">Ctrl+V</div><div class="line">git add .</div><div class="line">git commit -m &quot;fix https&quot;</div><div class="line">git push</div></pre></td></tr></table></figure></p>
+<p>然后大家都这么做，纷纷感谢博主，<code>啊！！博主爱您！第二种很有用！</code><br><img src="/2020/06/07/https-android/error_log04.png" alt="error_log04"></p>
+<p>于是安全进行代码审计的时候就难受了。</p>
+<p>以上都是我的猜测，也不一定按我这个套路走，看<strong>学安全公众号</strong>也就图一乐，哈哈哈哈。</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>这里我们用python3搭建简单的HTTPS网站，</p>
+<p>代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"><span class="comment"># </span></div><div class="line"><span class="comment"># @author: lyxhh</span></div><div class="line"><span class="comment"># @微信公众号: 学安全</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> web</div><div class="line"><span class="keyword">from</span> cheroot.server <span class="keyword">import</span> HTTPServer</div><div class="line"><span class="keyword">from</span> cheroot.ssl.builtin <span class="keyword">import</span> BuiltinSSLAdapter</div><div class="line"></div><div class="line"></div><div class="line">HTTPServer.ssl_adapter = BuiltinSSLAdapter(</div><div class="line">        certificate=<span class="string">'E:\\androidpro\\httpsdemo\\app\\src\\main\\assets\\server.crt'</span>,</div><div class="line">        private_key=<span class="string">'E:\\androidpro\\httpsdemo\\app\\src\\main\\assets\\server_private.key'</span>)</div><div class="line"></div><div class="line">urls = (<span class="string">"/.*"</span>, <span class="string">"lxh"</span>)</div><div class="line">app = web.application(urls, globals())</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">lxh</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">GET</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'hello, world!'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    app.run()</div></pre></td></tr></table></figure></p>
+<p>测试：<br><img src="/2020/06/07/https-android/env-hs-00.png" alt="env-hs-00"></p>
+<p>使用openssl生成server.crt与server_private.key，步骤如下：</p>
+<p>1）生成自己的CA根证书</p>
+<p>生成CA私钥文件（ca_private.key）：<br><code>openssl genrsa -out ca_private.key 2048</code></p>
+<p>生成证书签名请求CSR文件（ca.csr）：<br><code>openssl req -new -key ca_private.key -out ca.csr</code></p>
+<p>生成X.509格式的CA根证书ca_public.crt（公钥证书）：<br><code>openssl x509 -req -days 365 -in ca.csr -signkey ca_private.key -out ca_public.crt</code><br><img src="/2020/06/07/https-android/env-hs-01.png" alt="env-hs-01"></p>
+<p>2）生成服务端证书 </p>
+<p>先生成服务器私钥文件server_private.key：<br><code>openssl genrsa -out server_private.key 2048</code></p>
+<p>生成证书签名请求CSR文件（server.csr）：<br><code>openssl req -new -key server_private.key -out server.csr</code></p>
+<p>服务器端用server.csr文件向CA机构申请签名证书, 签名过程需要CA的公钥证书和私钥参与,最终生成一个带有CA签名的服务器端证书。<br><code>openssl x509 -req -CA ca_public.crt -CAkey ca_private.key -CAcreateserial -in server.csr -out server.crt</code><br><img src="/2020/06/07/https-android/env-hs-02.png" alt="env-hs-02"></p>
+<p>其中:<br>Common Name必须和网站域名一致，以便之后进行Host Name校验。</p>
+<p>修改手机hosts文件，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">192.168.43.240   test.lxhsec.com</div></pre></td></tr></table></figure></p>
+<p><img src="/2020/06/07/https-android/update-hosts.png" alt="update-hosts"></p>
+<h2 id="正确使用"><a href="#正确使用" class="headerlink" title="正确使用"></a>正确使用</h2><p>1、正确校验证书是否在有效期内，且证书链是否正确。<br><img src="/2020/06/07/https-android/y-01.png" alt="y-01"></p>
+<p>如果访问的域名与证书内Common Name的域名一致，则正常访问：<br><img src="/2020/06/07/https-android/y-02.png" alt="y-02"></p>
+<p>如果不一致，例如访问test.lxhsec.com对应的ip<code>192.168.43.240</code>，报错如下：<br><img src="/2020/06/07/https-android/y-03.png" alt="y-03"></p>
+<p>2、正确实现HostnameVerifier<br><img src="/2020/06/07/https-android/y-04.png" alt="y-04"></p>
+<p>再次访问192.168.43.240，正常请求，如下：<br><img src="/2020/06/07/https-android/y-05.png" alt="y-05"></p>
+<p>3、主机名验证策略改成严格模式<br><img src="/2020/06/07/https-android/y-06.png" alt="y-06"></p>
+<p>代码打包到百度云盘了，公众号内回复获取：<strong>HTTPS1</strong></p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>修改/etc/hosts文件</p>
+<p>解决：<br><a href="https://blog.csdn.net/dzkdxyx/article/details/82877755" target="_blank" rel="external">https://blog.csdn.net/dzkdxyx/article/details/82877755</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://developer.android.com/training/articles/security-ssl" target="_blank" rel="external">https://developer.android.com/training/articles/security-ssl</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/06/07/https-android/" title="正确校验HTTPS证书-Android">http://www.lxhsec.com/2020/06/07/https-android/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/14/spring/" rel="next" title="Spring">
+                <i class="fa fa-chevron-left"></i> Spring
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/12/android-SSLPinning/" rel="prev" title="Android（SSL/TLS Pinning) & SSL Pinning Bypass">
+                Android（SSL/TLS Pinning) & SSL Pinning Bypass <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">2.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确使用"><span class="nav-number">3.</span> <span class="nav-text">正确使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的问题"><span class="nav-number">4.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

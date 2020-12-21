@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.1.1 二进制代码保护缺少DEX代码(classes.dex)加密保护验证dex文件是否能JEB，jadx等工具被反编译，反编译后核心代码是否泄露。 缺少Dalvik反调试检测使用IDA验证Dex文件是否可以被调试，如果可以调试，说明缺少反调试检测。 缺少Native反调试检测使用IDA验证SO文件是否可以被调试，如果可以调试，说明缺少反调试检测。 缺少Native代码注入检测使用Frida验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="app_client_test">
+<meta property="og:url" content="http://www.lxhsec.com/2020/03/04/app-client-test/index.html">
+<meta property="og:site_name" content="lyxhh">
+<meta property="og:description" content="1.1.1 二进制代码保护缺少DEX代码(classes.dex)加密保护验证dex文件是否能JEB，jadx等工具被反编译，反编译后核心代码是否泄露。 缺少Dalvik反调试检测使用IDA验证Dex文件是否可以被调试，如果可以调试，说明缺少反调试检测。 缺少Native反调试检测使用IDA验证SO文件是否可以被调试，如果可以调试，说明缺少反调试检测。 缺少Native代码注入检测使用Frida验">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.lxhsec.com/2020/03/04/app-client-test/activityddos-01.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/03/04/app-client-test/activityddos-02.png">
+<meta property="og:image" content="http://www.lxhsec.com/2020/03/04/app-client-test/activityddos-03.png">
+<meta property="og:updated_time" content="2020-03-04T04:10:32.275Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="app_client_test">
+<meta name="twitter:description" content="1.1.1 二进制代码保护缺少DEX代码(classes.dex)加密保护验证dex文件是否能JEB，jadx等工具被反编译，反编译后核心代码是否泄露。 缺少Dalvik反调试检测使用IDA验证Dex文件是否可以被调试，如果可以调试，说明缺少反调试检测。 缺少Native反调试检测使用IDA验证SO文件是否可以被调试，如果可以调试，说明缺少反调试检测。 缺少Native代码注入检测使用Frida验">
+<meta name="twitter:image" content="http://www.lxhsec.com/2020/03/04/app-client-test/activityddos-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lxhsec.com/2020/03/04/app-client-test/"/>
+
+
+
+
+
+  <title>app_client_test | lyxhh</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyxhh</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lxhsec.com/2020/03/04/app-client-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyxhh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyxhh">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">app_client_test</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-04T10:06:05+08:00">
+                2020-03-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-04T12:10:32+08:00">
+                2020-03-04
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-1-1-二进制代码保护"><a href="#1-1-1-二进制代码保护" class="headerlink" title="1.1.1 二进制代码保护"></a>1.1.1 二进制代码保护</h2><h3 id="缺少DEX代码-classes-dex-加密保护"><a href="#缺少DEX代码-classes-dex-加密保护" class="headerlink" title="缺少DEX代码(classes.dex)加密保护"></a>缺少DEX代码(classes.dex)加密保护</h3><p>验证dex文件是否能JEB，jadx等工具被反编译，反编译后核心代码是否泄露。</p>
+<h3 id="缺少Dalvik反调试检测"><a href="#缺少Dalvik反调试检测" class="headerlink" title="缺少Dalvik反调试检测"></a>缺少Dalvik反调试检测</h3><p>使用IDA验证Dex文件是否可以被调试，如果可以调试，说明缺少反调试检测。</p>
+<h3 id="缺少Native反调试检测"><a href="#缺少Native反调试检测" class="headerlink" title="缺少Native反调试检测"></a>缺少Native反调试检测</h3><p>使用IDA验证SO文件是否可以被调试，如果可以调试，说明缺少反调试检测。</p>
+<h3 id="缺少Native代码注入检测"><a href="#缺少Native代码注入检测" class="headerlink" title="缺少Native代码注入检测"></a>缺少Native代码注入检测</h3><p>使用Frida验证apk是否可注入代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ frida-trace -U -i &quot;recv*&quot; -i &quot;read*&quot; package</div></pre></td></tr></table></figure></p>
+<p>观察 <code>Frida</code> 是否能成功注入，并且获取 <code>recv api</code> 相关的数据。</p>
+<h3 id="缺少-Native-库（-so-文件）加密保护"><a href="#缺少-Native-库（-so-文件）加密保护" class="headerlink" title="缺少 Native 库（.so 文件）加密保护"></a>缺少 Native 库（.so 文件）加密保护</h3><p>使用 IDA Pro 对.so 文件进行反汇编,反汇编成功说明 so 文件未做加密保护，so 文件可被反编译成可读性较强的类 C/C++代码，核心功能、核心算法、加密算法等核心代码被泄露。</p>
+<h3 id="缺少脚本代码（Javascript、Lua-等文件）加密保护"><a href="#缺少脚本代码（Javascript、Lua-等文件）加密保护" class="headerlink" title="缺少脚本代码（Javascript、Lua 等文件）加密保护"></a>缺少脚本代码（Javascript、Lua 等文件）加密保护</h3><p>看下是否有敏感信息泄露</p>
+<h3 id="缺少敏感资源文件加密保护"><a href="#缺少敏感资源文件加密保护" class="headerlink" title="缺少敏感资源文件加密保护"></a>缺少敏感资源文件加密保护</h3><p>看下是否有敏感信息泄露</p>
+<h3 id="缺少自身签名完整性校验"><a href="#缺少自身签名完整性校验" class="headerlink" title="缺少自身签名完整性校验"></a>缺少自身签名完整性校验</h3><p>对apk进行重新签名，覆盖原有的签名，安装到设备中，仍然能够正常运行，且没有任何提示，通过逆向 App，也未发现 App 中添加有检查签名完整性的代码或者 SDK，说明缺少签名完整性校验。</p>
+<h3 id="缺少自身文件完整性校验"><a href="#缺少自身文件完整性校验" class="headerlink" title="缺少自身文件完整性校验"></a>缺少自身文件完整性校验</h3><p>反编译修改应用，安装篡改后的应用，检测其是否能够重新运行。</p>
+<h3 id="使用ALLOW-ALL-HOSTNAME-VERIFIER-忽略-SSL-证书域名验证"><a href="#使用ALLOW-ALL-HOSTNAME-VERIFIER-忽略-SSL-证书域名验证" class="headerlink" title="使用ALLOW_ALL_HOSTNAME_VERIFIER 忽略 SSL 证书域名验证"></a>使用ALLOW_ALL_HOSTNAME_VERIFIER 忽略 SSL 证书域名验证</h3><p>错误实例<a href="https://blog.csdn.net/tiantianchuqiji/article/details/76639796" target="_blank" rel="external">https://blog.csdn.net/tiantianchuqiji/article/details/76639796</a></p>
+<h3 id="自定义-HostnameVerifier-忽略-SSL-证书域名验证"><a href="#自定义-HostnameVerifier-忽略-SSL-证书域名验证" class="headerlink" title="自定义 HostnameVerifier 忽略 SSL 证书域名验证"></a>自定义 HostnameVerifier 忽略 SSL 证书域名验证</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setHostnameVerifier</div></pre></td></tr></table></figure>
+<ol>
+<li>不要使用自定义的HostnameVerifier；</li>
+<li>在HostnameVerifier中使用getDefaultHostnameVerifier进行校验。</li>
+<li>或者参考如下的自定义方式：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">HostnameVerifier hnv = new HostnameVerifier() &#123;</div><div class="line"></div><div class="line">  @Override</div><div class="line"></div><div class="line">  public boolean verify(String hostname, SSLSession session) &#123;</div><div class="line"></div><div class="line">    //示例</div><div class="line"></div><div class="line">    if(&quot;yourhostname&quot;.equals(hostname))&#123;  </div><div class="line"></div><div class="line">      return true;  </div><div class="line"></div><div class="line">    &#125; else &#123;  </div><div class="line"></div><div class="line">      HostnameVerifier hv = HttpsURLConnection.getDefaultHostnameVerifier();</div><div class="line"></div><div class="line">      return hv.verify(hostname, session);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="自定义-X509TrustManager-未正确校验-SSL-证书链"><a href="#自定义-X509TrustManager-未正确校验-SSL-证书链" class="headerlink" title="自定义 X509TrustManager 未正确校验 SSL 证书链"></a>自定义 X509TrustManager 未正确校验 SSL 证书链</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public class MyX509TrustManager implements X509TrustManager &#123;</div><div class="line"></div><div class="line">https://blog.csdn.net/weimianlong/article/details/50924227</div></pre></td></tr></table></figure>
+<h3 id="自定义-WebViewClient-忽略-SSL-证书校验异常"><a href="#自定义-WebViewClient-忽略-SSL-证书校验异常" class="headerlink" title="自定义 WebViewClient 忽略 SSL 证书校验异常"></a>自定义 WebViewClient 忽略 SSL 证书校验异常</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">一般来说，使用Webview连接带有可信机构颁发证书的HTTPs站点，onReceivedSslError()方法里无需作任何处理（系统默认是拒绝连接的）。如果要重写WebViewClient类的onReceivedSslError函数，请不要使用paramSslErrorHandler.proceed();忽略证书校验异常。正确的重写方法如下：</div><div class="line"></div><div class="line">public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error)&#123;</div><div class="line"></div><div class="line">    // Do nothing</div><div class="line"></div><div class="line">    paramSslErrorHandler.cancel();  // 可选</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="未使用-HTTPS-进行数据传输"><a href="#未使用-HTTPS-进行数据传输" class="headerlink" title="未使用 HTTPS 进行数据传输"></a>未使用 HTTPS 进行数据传输</h3><p>核心业务未使用HTTPS通信传输</p>
+<h2 id="1-1-3-跨进程交互安全"><a href="#1-1-3-跨进程交互安全" class="headerlink" title="1.1.3 跨进程交互安全"></a>1.1.3 跨进程交互安全</h2><h3 id="导出组件-Activity-拒绝服务漏洞"><a href="#导出组件-Activity-拒绝服务漏洞" class="headerlink" title="导出组件 Activity 拒绝服务漏洞"></a>导出组件 Activity 拒绝服务漏洞</h3><p>本地拒绝服务一般会导致正在运行的应用崩溃，首先影响用户体验，其次影响到后台的Crash统计数据，另外比较严重的后果是应用如果是系统级的软件，可能导致手机重启。</p>
+<h4 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h4><p><strong>漏洞触发前提条件：</strong><br>getIntent()的intent附带空数据、异常或畸形数据;<br>处理getXXXExtra()获取的数据时没有进行异常捕获;<br>组件允许导出;</p>
+<p><strong>成因：</strong><br>Android应用使用Intent机制在组件之间传递数据，如果组件在处理Intent附加数据的时候，没有进行异常捕获，当处理空数据、异常或者畸形数据时，应用就会发生Crash，从而拒绝服务。</p>
+<h4 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h4><h5 id="NullPointerException"><a href="#NullPointerException" class="headerlink" title="NullPointerException"></a>NullPointerException</h5><p>NullPointerException异常导致的拒绝服务，源于程序没有对getAction()等获取到的数据进行空指针判断，从而导致空指针异常而导致应用崩溃。</p>
+<p>新建一个应用，界面设置一个按钮，activity_main.xml如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</div><div class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;</div><div class="line">    tools:context=&quot;com.activity.ddos.activityddos.MainActivity&quot;&gt;</div><div class="line"></div><div class="line">   &lt;Button</div><div class="line">       android:layout_width=&quot;wrap_content&quot;</div><div class="line">       android:layout_height=&quot;wrap_content&quot;</div><div class="line">       android:text=&quot;start&quot;</div><div class="line">       android:onClick=&quot;test&quot;/&gt;</div><div class="line"></div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure></p>
+<p>按钮执行的代码如下,其他代码不变。<br>MainActivity.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public void test(View view) &#123;</div><div class="line">	//攻击代码</div><div class="line">    Intent intent = new Intent(MainActivity.this, TestActivity.class);</div><div class="line">    startActivity(intent);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>TestActivity.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class TestActivity extends AppCompatActivity &#123;</div><div class="line">    @Override</div><div class="line">    protected void onCreate(@Nullable Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">		//漏洞代码</div><div class="line">        Intent i = new Intent();</div><div class="line">        if (i.getAction().equals(&quot;TestForNullPointerException&quot;)) &#123;</div><div class="line">            Log.d(&quot;lxhsec&quot;, &quot;Test for Android Refuse Service Bug&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>清单文件，注册TestActivity<br><img src="/2020/03/04/app-client-test/activityddos-01.png" alt="activityddos-01"></p>
+<p>安装后点击按钮，报错如下：<br><img src="/2020/03/04/app-client-test/activityddos-02.png" alt="activityddos-02"></p>
+<h4 id="ClassCastException"><a href="#ClassCastException" class="headerlink" title="ClassCastException"></a>ClassCastException</h4><p>ClassCastException异常导致的拒绝服务, 源于程序没有对getSerializableExtra()等获取到的数据进行类型判断而进行强制类型转换，从而导致类型转换异常而导致应用崩溃；</p>
+<p>使用上面工程，更改MainActivity,TestActivity文件,其余不变。<br>MainActivity.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public void test(View view) &#123;</div><div class="line">    //攻击代码</div><div class="line">    Intent i = new Intent();</div><div class="line">    //第一个参数是漏洞代码所在包名，第二个参数是漏洞应用代码所在全包名</div><div class="line">    i.setClassName(&quot;com.activity.ddos.activityddos&quot;, &quot;com.activity.ddos.activityddos.TestActivity&quot;);</div><div class="line">    i.putExtra(&quot;serializable_key&quot;, BigInteger.valueOf(1));</div><div class="line">    startActivity(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>TestActivity.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class TestActivity extends AppCompatActivity &#123;</div><div class="line">    @Override</div><div class="line">    protected void onCreate(@Nullable Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line"></div><div class="line">        Intent i = getIntent();</div><div class="line">        String test = (String)i.getSerializableExtra(&quot;serializable_key&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>安装后点击按钮，报错如下：<br><img src="/2020/03/04/app-client-test/activityddos-03.png" alt="activityddos-03"></p>
+<p>#### </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>穷困潦倒的安全工作者，如果文章对您有所帮助，可以选择性打赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatQR.JPG" alt="lyxhh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    lyxhh
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.lxhsec.com/2020/03/04/app-client-test/" title="app_client_test">http://www.lxhsec.com/2020/03/04/app-client-test/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/19/flask/" rel="next" title="flask">
+                <i class="fa fa-chevron-left"></i> flask
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/13/domain-penetration-protocol/" rel="prev" title="内网渗透-协议篇">
+                内网渗透-协议篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjIyNy84Nzkx"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="lyxhh" />
+            
+              <p class="site-author-name" itemprop="name">lyxhh</p>
+              <p class="site-description motion-element" itemprop="description">有你给的阳光，没有理由绝望。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.secbug.org/" title="破晓团队" target="_blank">破晓团队</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-1-二进制代码保护"><span class="nav-number">1.</span> <span class="nav-text">1.1.1 二进制代码保护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少DEX代码-classes-dex-加密保护"><span class="nav-number">1.1.</span> <span class="nav-text">缺少DEX代码(classes.dex)加密保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少Dalvik反调试检测"><span class="nav-number">1.2.</span> <span class="nav-text">缺少Dalvik反调试检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少Native反调试检测"><span class="nav-number">1.3.</span> <span class="nav-text">缺少Native反调试检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少Native代码注入检测"><span class="nav-number">1.4.</span> <span class="nav-text">缺少Native代码注入检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少-Native-库（-so-文件）加密保护"><span class="nav-number">1.5.</span> <span class="nav-text">缺少 Native 库（.so 文件）加密保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少脚本代码（Javascript、Lua-等文件）加密保护"><span class="nav-number">1.6.</span> <span class="nav-text">缺少脚本代码（Javascript、Lua 等文件）加密保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少敏感资源文件加密保护"><span class="nav-number">1.7.</span> <span class="nav-text">缺少敏感资源文件加密保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少自身签名完整性校验"><span class="nav-number">1.8.</span> <span class="nav-text">缺少自身签名完整性校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少自身文件完整性校验"><span class="nav-number">1.9.</span> <span class="nav-text">缺少自身文件完整性校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ALLOW-ALL-HOSTNAME-VERIFIER-忽略-SSL-证书域名验证"><span class="nav-number">1.10.</span> <span class="nav-text">使用ALLOW_ALL_HOSTNAME_VERIFIER 忽略 SSL 证书域名验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义-HostnameVerifier-忽略-SSL-证书域名验证"><span class="nav-number">1.11.</span> <span class="nav-text">自定义 HostnameVerifier 忽略 SSL 证书域名验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义-X509TrustManager-未正确校验-SSL-证书链"><span class="nav-number">1.12.</span> <span class="nav-text">自定义 X509TrustManager 未正确校验 SSL 证书链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义-WebViewClient-忽略-SSL-证书校验异常"><span class="nav-number">1.13.</span> <span class="nav-text">自定义 WebViewClient 忽略 SSL 证书校验异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未使用-HTTPS-进行数据传输"><span class="nav-number">1.14.</span> <span class="nav-text">未使用 HTTPS 进行数据传输</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-3-跨进程交互安全"><span class="nav-number">2.</span> <span class="nav-text">1.1.3 跨进程交互安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导出组件-Activity-拒绝服务漏洞"><span class="nav-number">2.1.</span> <span class="nav-text">导出组件 Activity 拒绝服务漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#漏洞成因"><span class="nav-number">2.1.1.</span> <span class="nav-text">漏洞成因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复现"><span class="nav-number">2.1.2.</span> <span class="nav-text">复现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#NullPointerException"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">NullPointerException</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ClassCastException"><span class="nav-number">2.1.3.</span> <span class="nav-text">ClassCastException</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyxhh</span>
+
+  
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
